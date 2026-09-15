@@ -4,8 +4,6 @@ import Button from '../common/Button';
 export default function HeroSection() {
   const sectionRef = useRef(null);
   const celestialStageRef = useRef(null);
-  const celestialBodyRef = useRef(null);
-  const ringRefs = useRef([]);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,7 +30,7 @@ export default function HeroSection() {
       targetY = (event.clientY / window.innerHeight - 0.5) * 2;
     };
 
-    // Touch events for full mobile responsiveness
+    // Touch events for mobile: conservative range without page scroll interference
     const handleTouchStart = event => {
       if (!event.touches || event.touches.length === 0) return;
       isTouching = true;
@@ -46,14 +44,15 @@ export default function HeroSection() {
     const handleTouchMove = event => {
       if (!event.touches || event.touches.length === 0) return;
       const touch = event.touches[0];
-      const deltaX = (touch.clientX - touchStartX) / (window.innerWidth * 0.4);
-      const deltaY = (touch.clientY - touchStartY) / (window.innerHeight * 0.4);
+      const deltaX = (touch.clientX - touchStartX) / (window.innerWidth * 0.8);
+      const deltaY = (touch.clientY - touchStartY) / (window.innerHeight * 0.8);
 
-      targetX = Math.max(-1.8, Math.min(1.8, deltaX));
-      targetY = Math.max(-1.8, Math.min(1.8, deltaY));
+      // Clamp touch influence strictly to avoid extreme displacements
+      targetX = Math.max(-0.4, Math.min(0.4, deltaX));
+      targetY = Math.max(-0.4, Math.min(0.4, deltaY));
 
-      inertiaX = deltaX * 0.08;
-      inertiaY = deltaY * 0.08;
+      inertiaX = deltaX * 0.03;
+      inertiaY = deltaY * 0.03;
     };
 
     const handleTouchEnd = () => {
@@ -63,8 +62,8 @@ export default function HeroSection() {
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
 
     const stageEl = celestialStageRef.current;
-    const heroEl = sectionRef.current;
 
+    // Attach touch handlers strictly to stage element to prevent interfering with main page scrolling
     if (stageEl) {
       stageEl.addEventListener('touchstart', handleTouchStart, { passive: true });
       stageEl.addEventListener('touchmove', handleTouchMove, { passive: true });
@@ -72,19 +71,12 @@ export default function HeroSection() {
       stageEl.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     }
 
-    if (heroEl) {
-      heroEl.addEventListener('touchstart', handleTouchStart, { passive: true });
-      heroEl.addEventListener('touchmove', handleTouchMove, { passive: true });
-      heroEl.addEventListener('touchend', handleTouchEnd, { passive: true });
-      heroEl.addEventListener('touchcancel', handleTouchEnd, { passive: true });
-    }
-
     function animateParallax(now) {
       const elapsed = now - startTime;
 
-      // Gentle organic cosmic idle breathing oscillation
-      const idleX = Math.sin(elapsed * 0.0008) * 0.08;
-      const idleY = Math.cos(elapsed * 0.0006) * 0.08;
+      // Gentle organic cosmic idle breathing oscillation (subtle micro-drift)
+      const idleX = Math.sin(elapsed * 0.0006) * 0.04;
+      const idleY = Math.cos(elapsed * 0.0005) * 0.04;
 
       if (!isTouching) {
         // Apply smooth inertia damping when finger is released
@@ -100,31 +92,20 @@ export default function HeroSection() {
       const activeTargetX = targetX + idleX;
       const activeTargetY = targetY + idleY;
 
-      currentX += (activeTargetX - currentX) * 0.07;
-      currentY += (activeTargetY - currentY) * 0.07;
+      currentX += (activeTargetX - currentX) * 0.06;
+      currentY += (activeTargetY - currentY) * 0.06;
 
       const isMobile = window.innerWidth <= 950;
 
+      // Complete celestial system translates together as ONE unified object
+      // All rings and the ball share one exact geometric center and never drift apart
       if (celestialStageRef.current) {
         if (isMobile) {
-          celestialStageRef.current.style.transform = `translate3d(${currentX * 16}px, ${currentY * 16}px, 0) rotateX(${-currentY * 18}deg) rotateY(${currentX * 22}deg)`;
+          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0)`;
         } else {
-          celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 20}px), calc(-50% + ${currentY * 20}px), 0) rotateX(${-currentY * 14}deg) rotateY(${currentX * 18}deg)`;
+          celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 5}px), calc(-50% + ${currentY * 5}px), 0)`;
         }
       }
-
-      if (celestialBodyRef.current) {
-        celestialBodyRef.current.style.transform = `translate3d(${currentX * 12}px, ${currentY * 12}px, 0) rotateY(${currentX * 24}deg)`;
-      }
-
-      ringRefs.current.forEach((ring, index) => {
-        if (ring) {
-          const depthMultiplier = (index + 1) * 7;
-          ring.style.transformOrigin = 'center center';
-          ring.style.marginLeft = `${currentX * depthMultiplier}px`;
-          ring.style.marginTop = `${currentY * depthMultiplier}px`;
-        }
-      });
 
       animationFrame = requestAnimationFrame(animateParallax);
     }
@@ -139,12 +120,6 @@ export default function HeroSection() {
         stageEl.removeEventListener('touchend', handleTouchEnd);
         stageEl.removeEventListener('touchcancel', handleTouchEnd);
       }
-      if (heroEl) {
-        heroEl.removeEventListener('touchstart', handleTouchStart);
-        heroEl.removeEventListener('touchmove', handleTouchMove);
-        heroEl.removeEventListener('touchend', handleTouchEnd);
-        heroEl.removeEventListener('touchcancel', handleTouchEnd);
-      }
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
   }, []);
@@ -153,33 +128,50 @@ export default function HeroSection() {
     <section className="hero section-pad" id="home" ref={sectionRef}>
       <div className="hero-depth-ambient" aria-hidden="true" />
 
-      {/* REFINED CELESTIAL PHENOMENON — TOUCH & MOUSE RESPONSIVE */}
+      {/* UNIFIED CELESTIAL PHENOMENON — 3D ORBITAL DEPTH SYSTEM */}
       <div className="hero-celestial-stage" ref={celestialStageRef} aria-hidden="true">
         {/* Volumetric ambient starlight / corona glow */}
         <div className="celestial-corona-aura" />
 
-        {/* Outer cosmic accretion dust ring */}
-        <div className="celestial-ring ring-outer" ref={el => (ringRefs.current[0] = el)}>
-          <span className="stellar-satellite node-outer-1" />
-          <span className="stellar-satellite node-outer-2" />
+        {/* REAR ORBITAL RINGS LAYER — Sits BEHIND the celestial sphere (z-index: 2) */}
+        <div className="celestial-rings-layer celestial-rings-rear" aria-hidden="true">
+          <div className="celestial-ring ring-outer">
+            <span className="stellar-satellite node-outer-1" />
+            <span className="stellar-satellite node-outer-2" />
+          </div>
+
+          <div className="celestial-ring ring-accretion">
+            <div className="accretion-dust-texture" />
+            <span className="stellar-satellite node-mid" />
+          </div>
+
+          <div className="celestial-ring ring-inner">
+            <span className="stellar-satellite node-inner" />
+          </div>
         </div>
 
-        {/* Mid astronomical accretion disk with dust lanes */}
-        <div className="celestial-ring ring-accretion" ref={el => (ringRefs.current[1] = el)}>
-          <div className="accretion-dust-texture" />
-          <span className="stellar-satellite node-mid" />
-        </div>
-
-        {/* Inner photon orbital ring */}
-        <div className="celestial-ring ring-inner" ref={el => (ringRefs.current[2] = el)}>
-          <span className="stellar-satellite node-inner" />
-        </div>
-
-        {/* Central 3D Celestial Body */}
-        <div className="celestial-body" ref={celestialBodyRef}>
+        {/* CENTRAL 3D CELESTIAL BODY — Layered between rear and front rings (z-index: 5) */}
+        <div className="celestial-body">
           <div className="celestial-atmosphere" />
           <div className="celestial-inner-core" />
           <div className="celestial-rim-light" />
+        </div>
+
+        {/* FRONT ORBITAL RINGS LAYER — Passes IN FRONT OF the celestial sphere (z-index: 8) */}
+        <div className="celestial-rings-layer celestial-rings-front" aria-hidden="true">
+          <div className="celestial-ring ring-outer">
+            <span className="stellar-satellite node-outer-1" />
+            <span className="stellar-satellite node-outer-2" />
+          </div>
+
+          <div className="celestial-ring ring-accretion">
+            <div className="accretion-dust-texture" />
+            <span className="stellar-satellite node-mid" />
+          </div>
+
+          <div className="celestial-ring ring-inner">
+            <span className="stellar-satellite node-inner" />
+          </div>
         </div>
       </div>
 
@@ -208,9 +200,12 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-meta">
-        <span>23° 48′ N</span>
-        <span>90° 24′ E</span>
-        <span>Dhaka · Bangladesh</span>
+        <span className="coord-group">
+          <span>23° 48′ N</span>
+          <span className="coord-divider">·</span>
+          <span>90° 24′ E</span>
+        </span>
+        <span className="coord-place">Dhaka · Bangladesh</span>
       </div>
 
       <div className="scroll-indicator" aria-hidden="true">
