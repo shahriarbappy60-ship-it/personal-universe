@@ -1,4 +1,4 @@
-﻿.observe-hero {
+.observe-hero {
     position: relative;
     min-height: 88svh;
     max-width: 1600px;
@@ -79,8 +79,8 @@ html[data-theme="light"] .observe-hero-grid {
 .observe-status {
     color: var(--faint);
     font-size: 8px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-weight: 600;
+    letter-spacing: .12em;
 }
 
 .observe-hero-meta {
@@ -107,7 +107,7 @@ html[data-theme="light"] .observe-hero-grid {
     gap: 15px;
     color: var(--faint);
     font-size: 8px;
-    letter-spacing: .17em;
+    letter-spacing: .12em;
     z-index: 5;
 }
 
@@ -374,8 +374,8 @@ gap: 70px;
 .observe-intro-index {
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .16em;
+font-weight: 500;
+letter-spacing: .12em;
 padding-top: 8px;
 }
 
@@ -403,8 +403,8 @@ border-left: 1px solid var(--line);
 display: block;
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .17em;
+font-weight: 500;
+letter-spacing: .12em;
 }
 
 .observe-intro-note p {
@@ -452,8 +452,8 @@ align-items: flex-end;
 gap: 15px;
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .14em;
+font-weight: 500;
+letter-spacing: .12em;
 }
 
 .archive-heading-meta strong {
@@ -570,7 +570,7 @@ color: var(--faint);
 .archive-visible {
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
+font-weight: 500;
 letter-spacing: .12em;
 white-space: nowrap;
 }
@@ -713,8 +713,8 @@ line-height: 1.3;
 .observe-card-caption small {
 color: var(--muted);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .13em;
+font-weight: 500;
+letter-spacing: .10em;
 text-transform: uppercase;
 }
 
@@ -739,8 +739,8 @@ display: block;
 .observe-empty > span {
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .18em;
+font-weight: 500;
+letter-spacing: .12em;
 }
 
 .observe-empty p {
@@ -784,8 +784,8 @@ background: var(--surface-strong);
 .insight-card > span {
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .15em;
+font-weight: 500;
+letter-spacing: .12em;
 }
 
 .insight-card strong {
@@ -831,8 +831,8 @@ line-height: 1.75;
 .observe-next-content > span {
     color: var(--faint);
     font-size: 8px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-weight: 500;
+    letter-spacing: .12em;
 }
 
 .observe-next-content h3 {
@@ -1003,8 +1003,8 @@ gap: 30px;
 .observe-lightbox-info > div:first-child > span {
 color: var(--faint);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .15em;
+font-weight: 500;
+letter-spacing: .12em;
 }
 
 .observe-lightbox-info h2 {
@@ -1020,8 +1020,8 @@ display: flex;
 gap: 18px;
 color: var(--muted);
 font-size: 8px;
-font-weight: 700;
-letter-spacing: .13em;
+font-weight: 500;
+letter-spacing: .10em;
 text-transform: uppercase;
 }
 
@@ -1248,16 +1248,16 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 .observe-coming-label span:first-child {
     color: var(--text);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .22em;
+    font-weight: 600;
+    letter-spacing: .14em;
     text-transform: uppercase;
 }
 
 .observe-coming-label span:last-child {
     color: var(--muted);
     font-size: 8px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-weight: 500;
+    letter-spacing: .12em;
     text-transform: uppercase;
 }
 
@@ -1329,8 +1329,8 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     background: transparent;
     color: var(--muted);
     font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .12em;
+    font-weight: 600;
+    letter-spacing: .10em;
     text-transform: uppercase;
     border-radius: 999px;
     cursor: pointer;
@@ -1557,20 +1557,22 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 .observe-stream-meta-top h3 {
-    font-size: 24px;
-    font-family: "Instrument Serif", serif;
-    font-weight: 400;
-    font-style: italic;
+    font-size: 20px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -.01em;
     color: var(--text);
     margin: 0;
 }
 
 .observe-stream-badge {
-    font-size: 9px;
-    letter-spacing: .18em;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: .12em;
     color: var(--muted);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .observe-stream-story {
@@ -1714,10 +1716,10 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
 .exif-cell span {
     font-size: 8.5px;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
     color: var(--muted);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .exif-cell strong {
@@ -1733,10 +1735,10 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
 .exif-story-block span {
     font-size: 8.5px;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
     color: var(--muted);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     display: block;
     margin-bottom: 6px;
 }
@@ -1768,7 +1770,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     border-radius: 4px;
     padding: 2px 5px;
     font-family: inherit;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text);
     margin: 0 3px;
 }
@@ -1809,7 +1811,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     padding-bottom: 20px;
     border-bottom: 1px solid var(--line);
     font-size: 9.5px;
-    letter-spacing: .2em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--muted);
 }
@@ -1858,25 +1860,27 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 .manifesto-num {
-    font-size: 11px;
-    font-weight: 700;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
     color: var(--muted);
-    letter-spacing: .15em;
+    letter-spacing: .12em;
 }
 
 .manifesto-cat {
+    font-family: var(--font-mono);
     font-size: 8.5px;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
     color: var(--faint);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .manifesto-content h3 {
-    font-family: "Instrument Serif", serif;
-    font-size: 30px;
-    font-style: italic;
-    font-weight: 400;
+    font-family: var(--sans);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
     letter-spacing: -.02em;
     color: var(--text);
     margin: 0 0 10px;
@@ -1896,11 +1900,12 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 .manifesto-detail span {
+    font-family: var(--font-mono);
     font-size: 8.5px;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--faint);
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* Zero-Box Open Horizon Gateway (Completely Boxless & Open) */
@@ -1913,28 +1918,31 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 .gateway-eyebrow {
-    font-size: 10px;
-    letter-spacing: .25em;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .14em;
     text-transform: uppercase;
     color: var(--muted);
-    font-weight: 700;
+    font-weight: 500;
     display: inline-block;
     margin-bottom: 16px;
 }
 
 .gateway-title {
     font-size: clamp(38px, 6.8vw, 76px);
-    font-family: "Instrument Serif", serif;
-    font-style: italic;
+    font-family: var(--sans);
+    font-style: normal;
     line-height: 1.05;
     letter-spacing: -.03em;
     color: var(--text);
     margin: 0 0 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .gateway-title em {
+    font-family: var(--serif);
     font-style: italic;
+    font-weight: 400;
     color: #fff;
     text-shadow: 0 0 40px rgba(255,255,255,.15);
 }
@@ -1961,8 +1969,8 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     background: var(--text);
     color: var(--bg);
     font-size: 10.5px;
-    font-weight: 700;
-    letter-spacing: .18em;
+    font-weight: 600;
+    letter-spacing: .12em;
     text-transform: uppercase;
     display: inline-flex;
     align-items: center;
@@ -2006,10 +2014,10 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 .gateway-footnote {
     margin-top: 50px;
     font-size: 8.5px;
-    letter-spacing: .22em;
+    letter-spacing: .14em;
     color: var(--faint);
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 /* =========================================================

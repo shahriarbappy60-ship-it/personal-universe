@@ -36,9 +36,10 @@
     align-items: center;
     gap: 18px;
     color: var(--muted);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: .18em;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: .14em;
     text-transform: uppercase;
 }
 
@@ -56,16 +57,18 @@
 
 .wonder-counter span {
     color: var(--faint);
+    font-family: var(--font-mono);
     font-size: 8px;
-    font-weight: 600;
-    letter-spacing: .16em;
+    font-weight: 500;
+    letter-spacing: .12em;
 }
 
 .wonder-counter strong {
     color: var(--text);
+    font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 500;
-    letter-spacing: .12em;
+    letter-spacing: .08em;
 }
 
 .wonder-hero-main {
@@ -82,17 +85,19 @@
 .wonder-hero h1 {
     margin: 0;
     color: var(--text);
-    font-family: var(--serif);
-    font-size: clamp(74px, 9.5vw, 140px);
-    font-weight: 400;
+    font-family: var(--sans);
+    font-size: clamp(56px, 8.2vw, 120px);
+    font-weight: 500;
     line-height: 0.95;
-    letter-spacing: -0.018em;
+    letter-spacing: -0.022em;
     word-spacing: 0.06em;
 }
 
 .wonder-hero h1 em {
-    color: var(--muted);
+    font-family: var(--serif);
+    font-style: italic;
     font-weight: 400;
+    color: var(--text);
 }
 
 .wonder-hero-description {
@@ -117,7 +122,7 @@
     font-family: var(--sans);
     font-size: 9px;
     font-weight: 600;
-    letter-spacing: .16em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     cursor: pointer;
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
@@ -151,23 +156,23 @@
     color: var(--faint);
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: .16em;
+    letter-spacing: .12em;
 }
 
 .wonder-hero-side p {
     max-width: 180px;
     margin: auto 0;
     color: var(--muted);
-    font-family: var(--serif);
-    font-size: 24px;
-    line-height: 1.08;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.6;
 }
 
 .wonder-side-location {
     color: var(--faint);
     font-size: 8px;
     font-weight: 600;
-    letter-spacing: .16em;
+    letter-spacing: .12em;
 }
 
 .wonder-hero-bottom {
@@ -189,7 +194,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
 }
 
 .wonder-hero-bottom strong {
@@ -210,7 +215,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
     writing-mode: vertical-rl;
 }
 
@@ -241,7 +246,7 @@
     color: var(--faint);
     font-size: 8px;
     font-weight: 600;
-    letter-spacing: .17em;
+    letter-spacing: .12em;
 }
 
 .wonder-intro-grid {
@@ -255,15 +260,18 @@
     max-width: 680px;
     margin: 0;
     color: var(--text);
-    font-family: var(--serif);
-    font-size: clamp(58px, 7vw, 100px);
-    font-weight: 400;
-    line-height: .92;
-    letter-spacing: -.035em;
+    font-family: var(--sans);
+    font-size: clamp(48px, 6.2vw, 84px);
+    font-weight: 500;
+    line-height: .96;
+    letter-spacing: -.03em;
 }
 
 .wonder-intro-grid h2 em {
-    color: var(--muted);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text);
 }
 
 .wonder-intro-copy {
@@ -291,7 +299,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
 }
 
 
@@ -311,15 +319,18 @@
     max-width: 700px;
     margin: 22px 0 0;
     color: var(--text);
-    font-family: var(--serif);
-    font-size: clamp(54px, 6.5vw, 90px);
-    font-weight: 400;
-    line-height: .92;
-    letter-spacing: -.035em;
+    font-family: var(--sans);
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 500;
+    line-height: .96;
+    letter-spacing: -.03em;
 }
 
 .wonder-archive-head h2 em {
-    color: var(--muted);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text);
 }
 
 .archive-count {
@@ -333,7 +344,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .17em;
+    letter-spacing: .12em;
 }
 
 .archive-count strong {
@@ -452,17 +463,17 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .17em;
+    letter-spacing: .12em;
 }
 
 .wonder-entry-content h3 {
     margin: 0;
     color: var(--text);
-    font-family: var(--serif);
-    font-size: clamp(34px, 4vw, 56px);
-    font-weight: 400;
-    line-height: .98;
-    letter-spacing: -.025em;
+    font-family: var(--sans);
+    font-size: clamp(24px, 2.8vw, 38px);
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.02em;
     transition: transform .45s var(--ease);
 }
 
@@ -558,7 +569,7 @@
     color: var(--faint);
     font-size: 8px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
 }
 
 
@@ -672,7 +683,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .17em;
+    letter-spacing: .12em;
 }
 
 .reader-close {
@@ -712,7 +723,7 @@
     color: var(--faint);
     font-size: 8px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
 }
 
 .reader-heading h2 {
@@ -773,18 +784,18 @@
 }
 
 .reader-photocard-caption span {
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono);
     font-size: 8.5px;
-    font-weight: 700;
-    letter-spacing: .12em;
+    font-weight: 500;
+    letter-spacing: .10em;
     color: var(--text);
     text-transform: uppercase;
 }
 
 .reader-photocard-caption small {
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono);
     font-size: 8px;
-    letter-spacing: .12em;
+    letter-spacing: .10em;
     color: var(--muted);
     text-transform: uppercase;
 }
@@ -838,7 +849,7 @@
     color: var(--faint);
     font-size: 7px;
     font-weight: 600;
-    letter-spacing: .18em;
+    letter-spacing: .12em;
 }
 
 html[data-theme="light"] .reader-backdrop {
@@ -1230,10 +1241,10 @@ html[data-theme="light"] .reader-panel {
     border: 1px solid var(--line);
     background: var(--surface);
     color: var(--muted);
-    font-family: var(--font-sans, -apple-system, sans-serif);
+    font-family: var(--sans);
     font-size: 9.5px;
-    font-weight: 700;
-    letter-spacing: .12em;
+    font-weight: 500;
+    letter-spacing: .08em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all .25s var(--ease);
@@ -1307,18 +1318,18 @@ html[data-theme="light"] .wonder-filter-chip.active {
 }
 
 .article-number {
-    font-family: var(--font-mono, monospace);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: .12em;
     color: var(--faint);
 }
 
 .article-category {
-    font-family: var(--font-mono, monospace);
+    font-family: var(--font-mono);
     font-size: 8.5px;
-    font-weight: 700;
-    letter-spacing: .16em;
+    font-weight: 500;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--muted);
     padding: 3px 10px;
@@ -1328,11 +1339,11 @@ html[data-theme="light"] .wonder-filter-chip.active {
 }
 
 .article-card-title {
-    font-family: var(--serif);
-    font-size: clamp(24px, 2.6vw, 34px);
-    font-weight: 400;
-    letter-spacing: -.025em;
-    line-height: 1.15;
+    font-family: var(--sans);
+    font-size: clamp(20px, 2.2vw, 28px);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 1.2;
     color: var(--text);
     margin: 0;
 }
@@ -1354,10 +1365,10 @@ html[data-theme="light"] .wonder-filter-chip.active {
 }
 
 .article-read-time {
-    font-family: var(--font-mono, monospace);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: .14em;
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    font-weight: 500;
+    letter-spacing: .10em;
     text-transform: uppercase;
     color: var(--faint);
 }

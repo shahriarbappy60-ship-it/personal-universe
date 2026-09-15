@@ -1,56 +1,82 @@
 import React from 'react';
 
-const skills = [
-  { index: '01', name: 'HTML & Semantic Web', status: 'Foundation', description: 'Clean document structure, accessible typography, SEO framing' },
-  { index: '02', name: 'CSS Architecture', status: 'Foundation', description: 'Design systems, responsive flexbox/grid, bespoke animations' },
-  { index: '03', name: 'JavaScript', status: 'Learning', description: 'DOM lifecycle, async operations, modern ES6+ paradigms' },
-  { index: '04', name: 'Python', status: 'Learning', description: 'Core syntax, object-oriented logic, backend scripting' },
-  { index: '05', name: 'Django', status: 'Building', description: 'Models, views, ORM queries, template rendering & REST APIs' },
-  { index: '06', name: 'Databases & SQL', status: 'Exploring', description: 'Relational data modeling, schema design, PostgreSQL queries' }
+const stages = [
+  {
+    id: 'before',
+    label: 'BEFORE',
+    statement: 'I used to move through life without asking much of it.',
+    reflection: 'Fear felt like something to escape, and uncertainty felt like something to solve.'
+  },
+  {
+    id: 'shift',
+    label: 'THE SHIFT',
+    statement: 'Then I started asking different questions.',
+    reflection: 'Who am I? Why am I here? What does it mean to experience a world from inside one particular mind?'
+  },
+  {
+    id: 'unfolding',
+    label: 'STILL UNFOLDING',
+    statement: 'I’m not trying to arrive at a final version of myself.',
+    reflection: 'I’m learning, building, questioning, and letting the answer change as I do.'
+  }
 ];
 
 export default function BecomingSection() {
   return (
-    <section className="section section-pad skills-section" id="becoming">
+    <section className="section section-pad becoming-section" id="becoming">
       <div className="section-heading reveal">
         <div>
-          <div className="eyebrow">06 / BECOMING</div>
+          <div className="eyebrow">BECOMING</div>
           <h2>
-            What I'm <em>learning.</em>
+            Still <em>becoming.</em>
           </h2>
         </div>
         <p className="section-intro">
-          A living measure of technical capability. These are disciplines
-          actively practiced, engineered into software, and deepened each day.
+          I don’t see life the way I used to. I’m still figuring out who I am and where I’m going.
         </p>
       </div>
 
-      <div className="skills-matrix reveal">
-        {skills.map(skill => (
-          <div key={skill.index} className="skill-qualitative-row">
-            <span className="skill-row-idx">{skill.index}</span>
-            <div className="skill-row-info">
-              <strong>{skill.name}</strong>
-              <p className="skill-row-desc">{skill.description}</p>
-            </div>
-            <span className={`skill-status-tag status-${skill.status.toLowerCase()}`}>
-              {skill.status}
-            </span>
-          </div>
+      <div className="becoming-timeline reveal delay-1">
+        {stages.map((stage, idx) => (
+          <React.Fragment key={stage.id}>
+            <article className="becoming-stage">
+              <div className="becoming-stage-meta">
+                <span className="becoming-stage-kicker">{stage.label}</span>
+              </div>
+              <h3 className="becoming-stage-statement">{stage.statement}</h3>
+              <p className="becoming-stage-reflection">{stage.reflection}</p>
+            </article>
+
+            {idx < stages.length - 1 && (
+              <div className="becoming-connector" aria-hidden="true">
+                <svg
+                  className="becoming-arrow-icon"
+                  width="12"
+                  height="26"
+                  viewBox="0 0 12 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <line x1="6" y1="0" x2="6" y2="21" stroke="currentColor" strokeWidth="1" />
+                  <path
+                    d="M2 17.5L6 21.5L10 17.5"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            )}
+          </React.Fragment>
         ))}
       </div>
 
-      <div className="becoming-editorial-footer reveal delay-1">
-        <div className="becoming-quote">
-          <span className="quote-mark">“</span>
-          <p>
-            The software craftsman does not claim mastery prematurely.
-            Every script, schema, and layout is a quiet rehearsal of thought.
-          </p>
-        </div>
-        <div className="becoming-trajectory-pill">
-          <span>TRAJECTORY: DIPLOMA → B.SC. CSE → FULL-STACK WEB → BEYOND</span>
-        </div>
+      <div className="becoming-closing reveal delay-2">
+        <div className="becoming-closing-divider" aria-hidden="true" />
+        <p className="becoming-closing-phrase">
+          For now, I’m okay with not knowing.
+        </p>
       </div>
     </section>
   );
