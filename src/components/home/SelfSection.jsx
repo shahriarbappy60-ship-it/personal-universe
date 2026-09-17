@@ -29,34 +29,20 @@ export default function SelfSection() {
           </div>
 
           <div className="portrait-overlay">
-            <div className="portrait-badge">
-              <span className="portrait-status-dot" />
-              <span>DHAKA · BANGLADESH</span>
-            </div>
-            <h3>SHAHRIAR</h3>
-            <p>Observer / Developer</p>
+            <h3>SHAHRIAR KHAN</h3>
+            <p>OBSERVER · DEVELOPER</p>
           </div>
         </div>
 
         {/* PROMINENT EDITORIAL CONTENT: THE OBSERVER */}
         <div className="about-editorial-simple">
           <div className="about-observer-block">
-            <div className="about-kicker">PERSONAL IDENTITY · PHILOSOPHY</div>
-            <h3 className="observer-title">THE OBSERVER</h3>
+            <div className="about-kicker">PERSONAL IDENTITY</div>
+            <h3 className="observer-title">SHAHRIAR KHAN</h3>
+            <div className="observer-role-sub">OBSERVER · DEVELOPER</div>
             <p className="observer-statement">
               “I’m curious about how things work, how people see the world, and what lies beneath the surface. I build with code, capture what catches my eye, and write about the questions that stay with me.”
             </p>
-          </div>
-
-          {/* EDITORIAL CONTEXT & IDENTITY METADATA */}
-          <div className="observer-editorial-meta">
-            <div className="observer-meta-tag">
-              <span className="meta-tag-dot" />
-              <span>CSE Undergraduate / Aspiring Full-Stack Developer</span>
-            </div>
-            <div className="observer-meta-location">
-              <span>Southeast University · Dhaka, Bangladesh</span>
-            </div>
           </div>
 
           {/* VIEW PROFILE BUTTON */}

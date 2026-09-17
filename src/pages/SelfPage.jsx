@@ -13,7 +13,6 @@ export default function SelfPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  // 03 / THINGS I KEEP EXPLORING
   const exploringAreas = [
     {
       category: 'MIND',
@@ -33,7 +32,6 @@ export default function SelfPage() {
     }
   ];
 
-  // 04 / OUTSIDE THE CODE
   const outsidePursuits = [
     {
       title: 'MUSIC',
@@ -53,81 +51,69 @@ export default function SelfPage() {
     }
   ];
 
-  // 06 / WHERE I LEARNED TO BUILD
   const academicHistory = [
     {
-      period: '2024 — PRESENT',
+      period: '2024–Present',
       degree: 'B.Sc. in Computer Science & Engineering',
       institution: 'Southeast University, Dhaka',
-      status: 'ONGOING',
-      grade: null
+      status: 'Ongoing'
     },
     {
       period: '2023',
       degree: 'Diploma in Computer Engineering',
       institution: 'Bangladesh Skill Development Institute, Chandpur',
-      status: 'COMPLETED',
-      grade: 'CGPA 3.51 / 4.00'
+      status: 'Completed'
     },
     {
       period: '2019',
-      degree: 'Secondary School Certificate (SSC)',
+      degree: 'SSC',
       institution: 'Matlabganj J.B. Pilot High School, Chandpur',
-      status: 'COMPLETED',
-      grade: 'GPA 3.79 / 5.00 · Science'
+      discipline: 'Science',
+      status: 'Completed'
     }
   ];
 
-  // 07 / WHAT I’M LEARNING TO BUILD
   const capabilities = [
-    { index: '01', name: 'HTML', status: 'FOUNDATION', note: 'Semantic structure · accessible markup' },
-    { index: '02', name: 'CSS', status: 'FOUNDATION', note: 'Responsive layouts · visual systems · animation' },
-    { index: '03', name: 'JAVASCRIPT', status: 'LEARNING', note: 'DOM · interaction · application logic' },
-    { index: '04', name: 'REACT', status: 'BUILDING', note: 'Components · reusable interfaces · state' },
-    { index: '05', name: 'PYTHON', status: 'LEARNING', note: 'Programming fundamentals · problem solving' },
-    { index: '06', name: 'DJANGO', status: 'BUILDING', note: 'Models · views · backend fundamentals' },
-    { index: '07', name: 'DATABASES', status: 'EXPLORING', note: 'SQL · relational concepts · data modelling' },
-    { index: '08', name: 'GIT / GITHUB', status: 'WORKING KNOWLEDGE', note: 'Version control · collaboration workflows' }
+    { index: '01', name: 'HTML', status: 'Foundation', note: 'Semantic structure · accessible markup' },
+    { index: '02', name: 'CSS', status: 'Foundation', note: 'Responsive layouts · visual systems · animation' },
+    { index: '03', name: 'JavaScript', status: 'Learning', note: 'DOM · interaction · application logic' },
+    { index: '04', name: 'React', status: 'Building', note: 'Components · reusable interfaces · state' },
+    { index: '05', name: 'Python', status: 'Learning', note: 'Programming fundamentals · problem solving' },
+    { index: '06', name: 'Django', status: 'Learning', note: 'Models · views · backend fundamentals' },
+    { index: '07', name: 'Databases', status: 'Exploring', note: 'SQL · relational concepts · data modelling' },
+    { index: '08', name: 'Git / GitHub', status: 'Working Knowledge', note: 'Version control · collaboration workflows' }
   ];
 
-  // 08 / THINGS I’VE MADE
   const selectedProjects = [
     {
       index: '01',
-      title: 'PERSONAL UNIVERSE',
+      title: 'Personal Universe',
+      type: 'Digital Space · Ongoing',
       desc: 'A living digital space built around observation, thought, creativity, learning, and the evolving identity of its creator.',
       tech: 'React · JavaScript · CSS Architecture',
       note: 'Django backend planned',
-      status: 'BUILDING',
-      year: '2026',
       link: '/'
     },
     {
       index: '02',
-      title: 'STUDENT ASSIGNMENT PORTAL',
+      title: 'Student Assignment Portal',
+      type: 'Academic Project',
       desc: 'A university-focused interface engineered for organizing course assignments, tracking deadlines, and structuring academic workflow.',
       tech: 'HTML · CSS · JavaScript',
-      status: 'FOUNDATION',
-      year: '2025',
-      link: 'https://github.com/shahriarbappy60-ship-it'
+      link: null
     },
     {
       index: '03',
-      title: 'SEU TECH EVENT',
+      title: 'SEU Tech Event',
+      type: 'Academic Project',
       desc: 'An interactive event portal and registration interface designed for a university engineering and technology symposium.',
       tech: 'HTML · CSS · JavaScript',
-      status: 'FOUNDATION',
-      year: '2024',
-      link: 'https://github.com/shahriarbappy60-ship-it'
+      link: null
     }
   ];
 
   return (
     <main className="self-page minimalist-dossier" id="mainContent">
-
-      {/* ==================================================
-          01 / IDENTITY
-          ================================================== */}
       <section className="self-hero section-pad" id="identity">
         <div className="self-container">
           <div className="self-hero-top reveal">
@@ -190,9 +176,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          02 / THE WAY I SEE THINGS
-          ================================================== */}
       <section className="self-section-block section-pad self-perspective-block" id="perspective">
         <div className="self-container">
           <div className="self-narrative-panel reveal">
@@ -209,9 +192,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          03 / THINGS I KEEP EXPLORING
-          ================================================== */}
       <section className="self-section-block section-pad" id="exploring">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -222,7 +202,7 @@ export default function SelfPage() {
               </h2>
             </div>
             <p className="section-intro">
-              Four recurring spheres of curiosity that continuously shape my thinking.
+              Some questions keep returning, even when I stop looking for them.
             </p>
           </div>
 
@@ -244,9 +224,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          04 / OUTSIDE THE CODE
-          ================================================== */}
       <section className="self-section-block section-pad" id="outside">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -271,17 +248,15 @@ export default function SelfPage() {
               ))}
             </div>
 
-            {/* ONE SUPPORTING VISUAL */}
             <div className="self-outside-visual-wrap">
               <div className="outside-visual-frame">
                 <img
                   src="/images/ontario-cover.jpg"
-                  alt="Atmospheric landscape visual reflection"
+                  alt="Atmospheric reflection"
                   loading="lazy"
                 />
                 <div className="outside-visual-caption">
-                  <span className="visual-caption-tag">ATMOSPHERE & SOUND</span>
-                  <span className="visual-caption-note">Textures and feelings that anchor my thoughts</span>
+                  <span className="visual-caption-tag">A FRAME I KEEP RETURNING TO</span>
                 </div>
               </div>
             </div>
@@ -289,9 +264,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          05 / I NOTICE THINGS
-          ================================================== */}
       <section className="self-section-block section-pad" id="notice">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -310,12 +282,9 @@ export default function SelfPage() {
             <div className="self-notice-image-wrap">
               <img
                 src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85"
-                alt="Quiet horizon study"
+                alt="Quiet horizon contemplation"
                 loading="lazy"
               />
-              <div className="self-notice-image-badge">
-                <span>SCENES / THE QUIET HORIZON</span>
-              </div>
             </div>
 
             <div className="self-notice-content">
@@ -332,9 +301,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          06 / WHERE I LEARNED TO BUILD
-          ================================================== */}
       <section className="self-section-block section-pad" id="education">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -354,7 +320,7 @@ export default function SelfPage() {
               <div key={idx} className="minimal-edu-row">
                 <div className="edu-time-col">
                   <span className="edu-year">{item.period}</span>
-                  <span className={`edu-status-pill ${item.status === 'ONGOING' ? 'status-ongoing' : ''}`}>
+                  <span className={`edu-status-pill ${item.status === 'Ongoing' ? 'status-ongoing' : ''}`}>
                     {item.status}
                   </span>
                 </div>
@@ -362,8 +328,8 @@ export default function SelfPage() {
                   <h3 className="edu-degree-title">{item.degree}</h3>
                   <div className="edu-school-line">
                     <span className="edu-school-name">{item.institution}</span>
-                    {item.grade && (
-                      <span className="edu-score-badge">{item.grade}</span>
+                    {item.discipline && (
+                      <span className="edu-discipline-tag">· {item.discipline}</span>
                     )}
                   </div>
                 </div>
@@ -373,9 +339,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          07 / WHAT I’M LEARNING TO BUILD
-          ================================================== */}
       <section className="self-section-block section-pad" id="skills">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -386,7 +349,7 @@ export default function SelfPage() {
               </h2>
             </div>
             <p className="section-intro">
-              Engineering growth measured by depth of practice rather than arbitrary percentages.
+              What I’m learning, building, and slowly getting better at.
             </p>
           </div>
 
@@ -411,9 +374,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          08 / THINGS I’VE MADE
-          ================================================== */}
       <section className="self-section-block section-pad" id="projects">
         <div className="self-container">
           <div className="section-heading reveal">
@@ -429,41 +389,35 @@ export default function SelfPage() {
           </div>
 
           <div className="self-selected-projects-list reveal">
-            {selectedProjects.map(proj => {
-              const isExternal = proj.link.startsWith('http');
-              return (
-                <div key={proj.title} className="self-project-editorial-row">
-                  <div className="self-project-left">
-                    <span className="self-project-index">{proj.index}</span>
-                    <div>
-                      <h3 className="self-project-title">
-                        {isExternal ? (
-                          <a href={proj.link} target="_blank" rel="noopener noreferrer">
-                            {proj.title} ↗
-                          </a>
-                        ) : (
-                          <Link to={proj.link}>{proj.title} →</Link>
-                        )}
-                      </h3>
-                      <p className="self-project-desc">{proj.desc}</p>
-                    </div>
-                  </div>
-
-                  <div className="self-project-right">
-                    <div className="self-project-tech-line">
-                      <span>{proj.tech}</span>
-                      {proj.note && (
-                        <span className="self-project-backend-note">({proj.note})</span>
+            {selectedProjects.map(proj => (
+              <div key={proj.title} className="self-project-editorial-row">
+                <div className="self-project-left">
+                  <span className="self-project-index">{proj.index}</span>
+                  <div>
+                    <h3 className="self-project-title">
+                      {proj.link ? (
+                        <Link to={proj.link}>{proj.title} →</Link>
+                      ) : (
+                        <span>{proj.title}</span>
                       )}
-                    </div>
-                    <div className="self-project-meta-pills">
-                      <span className="self-project-status-pill">{proj.status}</span>
-                      <span className="self-project-year">{proj.year}</span>
-                    </div>
+                    </h3>
+                    <p className="self-project-desc">{proj.desc}</p>
                   </div>
                 </div>
-              );
-            })}
+
+                <div className="self-project-right">
+                  <div className="self-project-tech-line">
+                    <span>{proj.tech}</span>
+                    {proj.note && (
+                      <span className="self-project-backend-note">({proj.note})</span>
+                    )}
+                  </div>
+                  <div className="self-project-meta-pills">
+                    <span className="self-project-type-pill">{proj.type}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="self-projects-cta reveal">
@@ -474,9 +428,6 @@ export default function SelfPage() {
         </div>
       </section>
 
-      {/* ==================================================
-          09 / WHERE I’M HEADING
-          ================================================== */}
       <section className="self-section-block section-pad self-heading-block" id="direction">
         <div className="self-container">
           <div className="self-narrative-panel reveal">
@@ -491,25 +442,104 @@ export default function SelfPage() {
             </div>
             <div className="self-narrative-meta">
               <div className="narrative-meta-col">
-                <span>APPROACH</span>
-                <strong>Foundations · Real Builds · Adaptability</strong>
+                <span>CURRENTLY LEARNING</span>
+                <strong>Web development · Software · Backend fundamentals</strong>
               </div>
               <div className="narrative-meta-col">
-                <span>FOCUS</span>
-                <strong>Full-Stack Architecture & Modern Web Systems</strong>
+                <span>BUILDING TOWARD</span>
+                <strong>Full-stack web development</strong>
               </div>
               <div className="narrative-meta-col">
-                <span>LOCATION</span>
-                <strong>Dhaka, Bangladesh · GMT+6</strong>
+                <span>BASED IN</span>
+                <strong>Dhaka, Bangladesh</strong>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ==================================================
-          10 / CURRICULUM VITAE
-          ================================================== */}
+      <section className="self-section-block section-pad self-elsewhere-block" id="elsewhere">
+        <div className="self-container">
+          <div className="section-heading reveal">
+            <div>
+              <div className="eyebrow">ELSEWHERE</div>
+              <h2>
+                Find me <em>online.</em>
+              </h2>
+            </div>
+            <p className="section-intro">
+              Places where I publish code, share frames, or keep an active presence.
+            </p>
+          </div>
+
+          <div className="self-elsewhere-list reveal">
+            <a
+              href="https://github.com/shahriarbappy60-ship-it"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="elsewhere-link"
+              aria-label="Shahriar on GitHub"
+            >
+              <span className="elsewhere-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                </svg>
+              </span>
+              <span className="elsewhere-name">GitHub</span>
+              <span className="elsewhere-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="https://instagram.com/_shahriar.bappy_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="elsewhere-link"
+              aria-label="Shahriar on Instagram"
+            >
+              <span className="elsewhere-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </span>
+              <span className="elsewhere-name">Instagram</span>
+              <span className="elsewhere-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <div
+              className="elsewhere-link elsewhere-pending"
+              aria-disabled="true"
+              title="Profile link to be configured"
+            >
+              <span className="elsewhere-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </span>
+              <span className="elsewhere-name">Facebook</span>
+              <span className="elsewhere-status">SOON</span>
+            </div>
+
+            <div
+              className="elsewhere-link elsewhere-pending"
+              aria-disabled="true"
+              title="Profile link to be configured"
+            >
+              <span className="elsewhere-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </span>
+              <span className="elsewhere-name">LinkedIn</span>
+              <span className="elsewhere-status">SOON</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="self-section-block section-pad self-cv-section" id="cv">
         <div className="self-container">
           <div className="self-cv-box reveal">
@@ -527,8 +557,6 @@ export default function SelfPage() {
               <a
                 href="/assets/Shahriar_Khan_CV.pdf"
                 download="Shahriar_Khan_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="btn btn-solid self-cv-download-btn"
                 aria-label="Download Shahriar Khan's Curriculum Vitae as PDF"
               >
@@ -539,7 +567,6 @@ export default function SelfPage() {
           </div>
         </div>
       </section>
-
     </main>
   );
 }

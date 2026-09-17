@@ -6578,6 +6578,116 @@ html[data-theme="light"] .stellar-satellite {
     white-space: nowrap;
 }
 
+/* ELSEWHERE (SOCIAL PRESENCE) */
+.self-elsewhere-block {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01) 0%, transparent 100%);
+}
+
+.self-elsewhere-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.elsewhere-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--muted);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.elsewhere-link:hover:not(.elsewhere-pending) {
+    color: var(--white);
+    background: var(--glass-bg-hover);
+    border-color: var(--line);
+    transform: translateY(-2px);
+}
+
+.elsewhere-link:hover:not(.elsewhere-pending) .elsewhere-arrow {
+    transform: translate(2px, -2px);
+    color: var(--white);
+}
+
+.elsewhere-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    flex-shrink: 0;
+}
+
+.elsewhere-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.elsewhere-name {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: inherit;
+    flex-grow: 1;
+}
+
+.elsewhere-arrow {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--faint);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.elsewhere-link.elsewhere-pending {
+    opacity: 0.55;
+    cursor: default;
+    border-style: dashed;
+}
+
+.elsewhere-status {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    color: var(--faint);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* HOME OBSERVER SUBTITLE & SELF PILLS */
+.observer-role-sub {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+.edu-discipline-tag {
+    font-size: 0.84rem;
+    color: var(--faint);
+}
+
+.self-project-type-pill {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    padding: 3px 9px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--line-soft);
+    color: var(--muted);
+}
+
 /* RESPONSIVE BREAKPOINTS FOR SELF PAGE */
 @media (max-width: 992px) {
     .self-hero-main {
@@ -6629,6 +6739,10 @@ html[data-theme="light"] .stellar-satellite {
         flex-direction: column;
         align-items: flex-start;
     }
+
+    .self-elsewhere-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 640px) {
@@ -6659,5 +6773,9 @@ html[data-theme="light"] .stellar-satellite {
     .self-narrative-meta {
         grid-template-columns: 1fr;
         gap: 1.25rem;
+    }
+
+    .self-elsewhere-list {
+        grid-template-columns: 1fr;
     }
 }
