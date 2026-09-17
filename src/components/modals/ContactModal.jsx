@@ -2,14 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 import Button from '../common/Button';
 
 export default function ContactModal({ isOpen, onClose }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'sent' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
   const closeBtnRef = useRef(null);
 
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add('modal-open');
+      setStatus('idle');
+      setErrorMessage('');
       setTimeout(() => closeBtnRef.current?.focus(), 50);
     } else {
       document.body.classList.remove('modal-open');
@@ -27,35 +33,76 @@ export default function ContactModal({ isOpen, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  const handleSubmit = e => {
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async e => {
     e.preventDefault();
-    const trimmedName = name.trim();
-    const trimmedEmail = email.trim();
-    const trimmedMessage = message.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedMessage = formData.message.trim();
+    const trimmedName = formData.name.trim();
 
-    if (!trimmedName || !trimmedEmail || !trimmedMessage) return;
+    if (!trimmedEmail || !trimmedMessage) return;
 
-    const subject = encodeURIComponent(`Inquiry from ${trimmedName}`);
-    const bodyText = encodeURIComponent(`Name: ${trimmedName}\nEmail: ${trimmedEmail}\n\n${trimmedMessage}`);
-    window.location.href = `mailto:shahriarkhan.cse@gmail.com?subject=${subject}&body=${bodyText}`;
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      // Prepared for Django REST / API endpoint POST /api/messages/
+      const response = await fetch('/api/messages/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: trimmedName || 'Anonymous',
+          email: trimmedEmail,
+          message: trimmedMessage
+        })
+      });
+
+      if (response.ok) {
+        setStatus('sent');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+      } else {
+        throw new Error(`Server returned ${response.status}`);
+      }
+    } catch (err) {
+      // Graceful fallback to mailto: if API endpoint is not yet connected
+      console.warn('API unavailable, activating mailto fallback:', err);
+      const subject = encodeURIComponent(trimmedName ? `Message from ${trimmedName}` : 'Personal Universe Inquiry');
+      const body = encodeURIComponent(
+        `Name: ${trimmedName || 'Not specified'}\nEmail: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}`
+      );
+      window.location.href = `mailto:khanshahriar102@gmail.com?subject=${subject}&body=${body}`;
+      setStatus('sent');
+      setTimeout(() => {
+        onClose();
+      }, 1500);
+    }
   };
 
   if (!isOpen) return null;
 
   return (
     <div
-      className="modal open"
+      className="modal open conversation-modal-wrapper"
       id="contactModal"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="contactModalTitle"
+      aria-labelledby="conversationModalTitle"
     >
       <div className="modal-backdrop" onClick={onClose} />
 
-      <div className="contact-modal" onClick={e => e.stopPropagation()}>
+      <div className="conversation-modal-panel" onClick={e => e.stopPropagation()}>
         <button
           ref={closeBtnRef}
-          className="modal-close"
+          className="modal-close conversation-close-btn"
           type="button"
           aria-label="Close dialog"
           onClick={onClose}
@@ -63,57 +110,79 @@ export default function ContactModal({ isOpen, onClose }) {
           ×
         </button>
 
-        <div className="modal-header">
-          <span className="eyebrow">DIRECT CONTACT</span>
-          <h2 id="contactModalTitle">
-            Let’s <em>talk.</em>
+        <div className="conversation-modal-header">
+          <h2 id="conversationModalTitle" className="conversation-modal-title">
+            WRITE SOMETHING
           </h2>
-          <p className="modal-subtitle">
-            Send an email inquiry directly to <a href="mailto:shahriarkhan.cse@gmail.com">shahriarkhan.cse@gmail.com</a>.
-          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="contact-form-modal">
-          <div className="form-group">
-            <label htmlFor="modalName">NAME</label>
-            <input
-              type="text"
-              id="modalName"
-              required
-              value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder="Your name"
-            />
+        {status === 'sent' ? (
+          <div className="conversation-sent-state">
+            <span className="sent-indicator" aria-hidden="true">✓</span>
+            <p>Your message has been initiated. Thank you.</p>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="conversation-modal-form">
+            <div className="conversation-field">
+              <label htmlFor="modalName">
+                YOUR NAME <span className="field-optional">Optional</span>
+              </label>
+              <input
+                type="text"
+                id="modalName"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder=""
+                autoComplete="name"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="modalEmail">EMAIL</label>
-            <input
-              type="email"
-              id="modalEmail"
-              required
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder="Your email address"
-            />
-          </div>
+            <div className="conversation-field">
+              <label htmlFor="modalEmail">YOUR EMAIL</label>
+              <input
+                type="email"
+                id="modalEmail"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                placeholder=""
+                autoComplete="email"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="modalMessage">MESSAGE</label>
-            <textarea
-              id="modalMessage"
-              rows="4"
-              required
-              value={message}
-              onChange={e => setMessage(e.target.value)}
-              placeholder="Share your inquiry or project..."
-            />
-          </div>
+            <div className="conversation-field">
+              <label htmlFor="modalMessage">YOUR MESSAGE</label>
+              <textarea
+                id="modalMessage"
+                name="message"
+                rows="5"
+                required
+                value={formData.message}
+                onChange={handleChange}
+                placeholder=""
+              />
+            </div>
 
-          <Button type="submit" variant="solid">
-            Get in touch
-          </Button>
-        </form>
+            {status === 'error' && (
+              <div className="conversation-error-state">
+                {errorMessage || 'Unable to submit message. Please try again.'}
+              </div>
+            )}
+
+            <div className="conversation-actions">
+              <Button
+                type="submit"
+                variant="solid"
+                className="conversation-submit-btn"
+                disabled={status === 'sending'}
+              >
+                {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE →'}
+              </Button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );

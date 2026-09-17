@@ -177,36 +177,41 @@ export default function ObserveLightbox({
           </div>
         </div>
 
-        {/* EXIF INSPECTOR DRAWER */}
+        {/* SHOT DETAILS & FIELD NOTE DRAWER */}
         {showExif && (
           <div className="observe-lightbox-exif-drawer">
             <div className="exif-grid">
               <div className="exif-cell">
-                <span>CAMERA</span>
-                <strong>{currentPhoto.camera || 'Custom 35mm'}</strong>
+                <span>CATEGORY</span>
+                <strong>{(currentPhoto.category || 'SCENES').toUpperCase()}</strong>
               </div>
 
               <div className="exif-cell">
-                <span>LENS</span>
-                <strong>{currentPhoto.lens || 'Prime Lens'}</strong>
+                <span>LOCATION</span>
+                <strong>{(currentPhoto.location || 'DHAKA').toUpperCase()}</strong>
               </div>
 
               <div className="exif-cell">
-                <span>EXPOSURE</span>
-                <strong>
-                  {currentPhoto.shutter} · {currentPhoto.aperture} · {currentPhoto.iso}
-                </strong>
+                <span>YEAR</span>
+                <strong>{currentPhoto.year || '2026'}</strong>
               </div>
 
-              <div className="exif-cell">
-                <span>FILM RECIPE</span>
-                <strong>{currentPhoto.filmProfile || 'Natural Color'}</strong>
-              </div>
+              {currentPhoto.camera ? (
+                <div className="exif-cell">
+                  <span>CAMERA</span>
+                  <strong>{currentPhoto.camera}</strong>
+                </div>
+              ) : (
+                <div className="exif-cell">
+                  <span>COLLECTION</span>
+                  <strong>PERSONAL ARCHIVE</strong>
+                </div>
+              )}
             </div>
 
             {currentPhoto.story && (
               <div className="exif-story-block">
-                <span>FIELD NOTE</span>
+                <span>OBSERVATION NOTE</span>
                 <p>“{currentPhoto.story}”</p>
               </div>
             )}

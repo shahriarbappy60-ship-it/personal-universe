@@ -33,7 +33,7 @@ export default function CreatePage() {
             <Button href="#projects" variant="solid">
               View projects
             </Button>
-            <Button to="/connect" variant="outline">
+            <Button to="/#get-in-touch" variant="outline">
               Get in touch
             </Button>
           </div>
@@ -82,7 +82,7 @@ export default function CreatePage() {
             <Button to="/self" variant="solid">
               View profile
             </Button>
-            <Button to="/connect" variant="outline">
+            <Button to="/#get-in-touch" variant="outline">
               Get in touch
             </Button>
           </div>

@@ -8,18 +8,24 @@ export default function Button({
   children,
   variant = 'solid', // 'solid' | 'outline' | 'glass'
   className = '',
-  icon = '→',
+  icon,
   target,
   rel,
   type = 'button',
-  ariaLabel
+  ariaLabel,
+  disabled = false
 }) {
   const baseClass = `btn-master btn-${variant} magnetic ${className}`.trim();
+
+  // If icon is explicitly provided (or null/false), honor it.
+  // Otherwise, if children text already has an arrow symbol (→, ←, ↑, ↓, ↗, ↘), do not append duplicate!
+  const hasArrowInChildren = typeof children === 'string' && /[→←↑↓↗↘]/.test(children);
+  const effectiveIcon = icon !== undefined ? icon : (hasArrowInChildren ? null : '→');
 
   const content = (
     <>
       <span className="btn-text">{children}</span>
-      {icon && <span className="btn-icon" aria-hidden="true">{icon}</span>}
+      {effectiveIcon && <span className="btn-icon" aria-hidden="true">{effectiveIcon}</span>}
     </>
   );
 

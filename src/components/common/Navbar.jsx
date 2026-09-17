@@ -71,14 +71,26 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
           <span className="theme-icon theme-icon-moon" aria-hidden="true">◐</span>
         </button>
 
-        <Link
-          to="/connect"
-          className={`connect-button magnetic ${location.pathname.startsWith('/connect') ? 'active' : ''}`}
-          aria-label="Get in touch with Shahriar"
-        >
-          <span>Get in touch</span>
-          <span aria-hidden="true">→</span>
-        </Link>
+        {isHome ? (
+          <a
+            href="#get-in-touch"
+            className="connect-button magnetic"
+            aria-label="Get in touch with Shahriar"
+            onClick={e => handleNavClick(e, 'get-in-touch')}
+          >
+            <span>Get in touch</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        ) : (
+          <Link
+            to="/#get-in-touch"
+            className="connect-button magnetic"
+            aria-label="Get in touch with Shahriar"
+          >
+            <span>Get in touch</span>
+            <span aria-hidden="true">→</span>
+          </Link>
+        )}
 
         <button
           className="menu-button"

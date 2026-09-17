@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { observePhotos } from '../data/observeData';
+import { observePhotos, observeAlbums } from '../data/observeData';
 import PhotoCard from '../components/common/PhotoCard';
 import LightboxModal from '../components/modals/LightboxModal';
 import Button from '../components/common/Button';
@@ -10,11 +10,12 @@ import { useMagnetic } from '../hooks/useMagnetic';
 export default function ObservePage() {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
-  const [activeView, setActiveView] = useState('masonry'); // 'grid' | 'masonry' | 'stream'
+  const [activeView, setActiveView] = useState('grid'); // 'grid' | 'album' | 'stream'
+  const [selectedAlbumId, setSelectedAlbumId] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  useScrollReveal([filter, search, activeView]);
-  useMagnetic([filter, search, activeView]);
+  useScrollReveal([filter, search, activeView, selectedAlbumId]);
+  useMagnetic([filter, search, activeView, selectedAlbumId]);
 
   useEffect(() => {
     document.title = "Observe — Shahriar's Visual Archive";
@@ -31,15 +32,7 @@ export default function ObservePage() {
 
   const filteredPhotos = useMemo(() => {
     return observePhotos.filter(photo => {
-      let matchesCategory = filter === 'all';
-      if (filter === 'stills') {
-        matchesCategory = normalize(photo.category) === 'stills' || normalize(photo.category) === 'architecture';
-      } else if (filter === 'nocturne') {
-        matchesCategory = normalize(photo.category) === 'monochrome' || (photo.title && photo.title.toLowerCase().includes('night'));
-      } else if (filter === 'fragments') {
-        matchesCategory = normalize(photo.category) === 'minimal' || normalize(photo.category) === 'stills';
-      }
-
+      const matchesCategory = filter === 'all' || photo.category === filter;
       if (!matchesCategory) return false;
       if (!search.trim()) return true;
 
@@ -48,7 +41,6 @@ export default function ObservePage() {
         photo.category,
         photo.location,
         photo.year,
-        photo.camera,
         photo.story
       ].map(normalize).join(' ');
 
@@ -58,22 +50,99 @@ export default function ObservePage() {
 
   const categories = [
     { key: 'all', label: 'All', count: observePhotos.length },
-    { key: 'stills', label: 'Stills', count: observePhotos.filter(p => normalize(p.category) === 'stills' || normalize(p.category) === 'architecture').length },
-    { key: 'nocturne', label: 'Nocturne', count: observePhotos.filter(p => normalize(p.category) === 'monochrome' || (p.title && p.title.toLowerCase().includes('night'))).length },
-    { key: 'fragments', label: 'Fragments', count: observePhotos.filter(p => normalize(p.category) === 'minimal' || normalize(p.category) === 'stills').length }
+    { key: 'scenes', label: 'Scenes', count: observePhotos.filter(p => p.category === 'scenes').length },
+    { key: 'moments', label: 'Moments', count: observePhotos.filter(p => p.category === 'moments').length },
+    { key: 'atmosphere', label: 'Atmosphere', count: observePhotos.filter(p => p.category === 'atmosphere').length }
   ];
 
+  const filteredAlbums = useMemo(() => {
+    return observeAlbums.filter(album => {
+      const matchesCategory = filter === 'all' || album.category === filter;
+      if (!matchesCategory) return false;
+      if (!search.trim()) return true;
+
+      const searchable = [
+        album.title,
+        album.subtitle,
+        album.description,
+        album.category
+      ].map(normalize).join(' ');
+
+      return normalize(search).split(' ').filter(Boolean).every(w => searchable.includes(w));
+    });
+  }, [filter, search]);
+
+  const activeAlbum = useMemo(() => {
+    if (!selectedAlbumId) return null;
+    return observeAlbums.find(a => a.id === selectedAlbumId) || null;
+  }, [selectedAlbumId]);
+
+  const activeAlbumPhotos = useMemo(() => {
+    if (!activeAlbum) return [];
+    return observePhotos.filter(p => activeAlbum.photoIds.includes(p.id));
+  }, [activeAlbum]);
+
+  const currentPhotosList = activeView === 'album' && activeAlbum ? activeAlbumPhotos : filteredPhotos;
+
+  const viewModes = {
+    grid: {
+      name: 'Grid',
+      nextName: 'Album',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+      )
+    },
+    album: {
+      name: 'Album',
+      nextName: 'Stream',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="11" rx="1.5" />
+          <rect x="14" y="3" width="7" height="6" rx="1.5" />
+          <rect x="14" y="12" width="7" height="9" rx="1.5" />
+          <rect x="3" y="17" width="7" height="4" rx="1.5" />
+        </svg>
+      )
+    },
+    stream: {
+      name: 'Stream',
+      nextName: 'Grid',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="6" rx="1.5" />
+          <rect x="3" y="14" width="18" height="6" rx="1.5" />
+        </svg>
+      )
+    }
+  };
+
+  const currentView = viewModes[activeView] || viewModes.grid;
+
+  const handleCycleView = () => {
+    setSelectedAlbumId(null);
+    setActiveView(prev => {
+      if (prev === 'grid') return 'album';
+      if (prev === 'album') return 'stream';
+      return 'grid';
+    });
+  };
+
   const openLightboxForPhoto = (photo, idx) => {
-    const foundIndex = filteredPhotos.findIndex(p => p.id === photo.id);
+    const foundIndex = currentPhotosList.findIndex(p => p.id === photo.id);
     setLightboxIndex(foundIndex !== -1 ? foundIndex : idx);
   };
 
   const handlePrev = () => {
-    setLightboxIndex(prev => (prev <= 0 ? filteredPhotos.length - 1 : prev - 1));
+    setLightboxIndex(prev => (prev <= 0 ? currentPhotosList.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
-    setLightboxIndex(prev => (prev >= filteredPhotos.length - 1 ? 0 : prev + 1));
+    setLightboxIndex(prev => (prev >= currentPhotosList.length - 1 ? 0 : prev + 1));
   };
 
   return (
@@ -169,7 +238,7 @@ export default function ObservePage() {
                 </svg>
                 <input
                   type="search"
-                  placeholder="Search title, place, camera..."
+                  placeholder="Search title, place..."
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                 />
@@ -177,86 +246,165 @@ export default function ObservePage() {
             </div>
           </div>
 
-          {/* ALBUM VIEW MODE SWITCHER (GRID / ALBUM MASONRY / STREAM) */}
+          {/* SINGLE DYNAMIC VIEW SWITCHER BUTTON */}
           <div className="observe-toolbar-extras reveal">
-            <div className="observe-view-switch" role="group" aria-label="Gallery view mode">
+            <div className="observe-view-switch-single">
               <button
                 type="button"
-                className={`observe-view-btn ${activeView === 'grid' ? 'active' : ''}`}
-                onClick={() => setActiveView('grid')}
-                aria-label="Grid layout"
+                className={`observe-dynamic-view-btn mode-${activeView}`}
+                onClick={handleCycleView}
+                aria-label={`Layout view: ${currentView.name}. Click to switch to ${currentView.nextName}`}
+                title={`Click to switch to ${currentView.nextName} view`}
               >
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="3" width="7" height="7" rx="1" />
-                  <rect x="14" y="3" width="7" height="7" rx="1" />
-                  <rect x="3" y="14" width="7" height="7" rx="1" />
-                  <rect x="14" y="14" width="7" height="7" rx="1" />
-                </svg>
-                <span>Grid</span>
-              </button>
-
-              <button
-                type="button"
-                className={`observe-view-btn ${activeView === 'masonry' ? 'active' : ''}`}
-                onClick={() => setActiveView('masonry')}
-                aria-label="Album masonry layout"
-              >
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="3" width="7" height="11" rx="1" />
-                  <rect x="14" y="3" width="7" height="6" rx="1" />
-                  <rect x="14" y="12" width="7" height="9" rx="1" />
-                  <rect x="3" y="17" width="7" height="4" rx="1" />
-                </svg>
-                <span>Album</span>
-              </button>
-
-              <button
-                type="button"
-                className={`observe-view-btn ${activeView === 'stream' ? 'active' : ''}`}
-                onClick={() => setActiveView('stream')}
-                aria-label="Stream layout"
-              >
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="4" width="18" height="6" rx="1" />
-                  <rect x="3" y="14" width="18" height="6" rx="1" />
-                </svg>
-                <span>Stream</span>
+                <span className="view-btn-icon-box">
+                  {currentView.icon}
+                </span>
+                <span className="view-btn-label">
+                  <span className="view-btn-caption">View</span>
+                  <strong className="view-btn-current">{currentView.name}</strong>
+                </span>
+                <span className="view-btn-cycle-hint" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" className="cycle-indicator-icon">
+                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </span>
               </button>
             </div>
 
             <div className="archive-visible">
-              <span>{filteredPhotos.length}</span> photographs displayed
+              {activeView === 'album' && !selectedAlbumId ? (
+                <span><span>{filteredAlbums.length}</span> albums available</span>
+              ) : (
+                <span><span>{currentPhotosList.length}</span> photographs displayed</span>
+              )}
             </div>
           </div>
 
-          {/* DYNAMIC PHOTO ARCHIVE GALLERY */}
-          <div className={`observe-gallery mode-${activeView}`} id="galleryGrid">
-            {filteredPhotos.map((photo, idx) => (
-              <PhotoCard
-                key={photo.id}
-                photo={photo}
-                index={idx}
-                onClick={() => openLightboxForPhoto(photo, idx)}
-              />
-            ))}
-          </div>
+          {/* DYNAMIC PHOTO ARCHIVE GALLERY / ALBUMS */}
+          {activeView === 'album' ? (
+            !selectedAlbumId ? (
+              /* ALBUMS COLLECTION GRID */
+              <div className="observe-albums-grid reveal" id="albumsGrid">
+                {filteredAlbums.map((album, idx) => {
+                  const albumPhotos = observePhotos.filter(p => album.photoIds.includes(p.id));
+                  return (
+                    <article
+                      key={album.id}
+                      className="observe-album-card"
+                      style={{ '--card-idx': idx }}
+                      onClick={() => setSelectedAlbumId(album.id)}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedAlbumId(album.id);
+                        }
+                      }}
+                      tabIndex="0"
+                      role="button"
+                      aria-label={`Open album: ${album.title} (${albumPhotos.length} photographs)`}
+                    >
+                      <div className="album-card-stack">
+                        <div className="album-stack-layer layer-back" aria-hidden="true" />
+                        <div className="album-stack-layer layer-mid" aria-hidden="true" />
+                        <div className="album-cover-frame">
+                          <img src={album.cover} alt={album.title} loading="lazy" />
+                          <div className="album-cover-overlay" />
+                          <span className="album-count-badge">
+                            {albumPhotos.length} Photos
+                          </span>
+                        </div>
+                      </div>
 
-          {/* OPEN EDITORIAL CLOSING (COMPLETELY BOXLESS & RESTRAINED) */}
+                      <div className="album-card-info">
+                        <div className="album-meta-row">
+                          <span className="album-category-tag">{album.category.toUpperCase()}</span>
+                          <span className="album-year">{album.year}</span>
+                        </div>
+                        <h3 className="album-title">{album.title}</h3>
+                        <p className="album-subtitle">{album.subtitle}</p>
+                        <div className="album-card-action">
+                          <span>Open Collection</span>
+                          <span className="album-arrow-icon" aria-hidden="true">→</span>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              /* OPENED ALBUM DETAIL VIEW */
+              <div className="observe-album-detail reveal" id="albumDetail">
+                <div className="album-detail-header">
+                  <button
+                    type="button"
+                    className="album-back-btn"
+                    onClick={() => setSelectedAlbumId(null)}
+                    aria-label="Back to all albums"
+                  >
+                    <span aria-hidden="true">←</span>
+                    <span>Back to all albums</span>
+                  </button>
+
+                  <div className="album-detail-info">
+                    <div className="album-detail-eyebrow">
+                      ALBUM · {activeAlbum?.category.toUpperCase()} · {activeAlbum?.year}
+                    </div>
+                    <h3 className="album-detail-title">{activeAlbum?.title}</h3>
+                    <p className="album-detail-description">{activeAlbum?.description}</p>
+                    <span className="album-detail-count">
+                      {activeAlbumPhotos.length} photographs in this collection
+                    </span>
+                  </div>
+                </div>
+
+                {/* Photos inside this album */}
+                <div className="observe-gallery mode-grid" id="albumPhotoGrid">
+                  {activeAlbumPhotos.map((photo, idx) => (
+                    <PhotoCard
+                      key={photo.id}
+                      photo={photo}
+                      index={idx}
+                      onClick={() => openLightboxForPhoto(photo, idx)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )
+          ) : (
+            /* REGULAR PHOTO ARCHIVE GALLERY (GRID OR STREAM) */
+            <div className={`observe-gallery mode-${activeView}`} id="galleryGrid">
+              {filteredPhotos.map((photo, idx) => (
+                <PhotoCard
+                  key={photo.id}
+                  photo={photo}
+                  index={idx}
+                  onClick={() => openLightboxForPhoto(photo, idx)}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* OPEN EDITORIAL CLOSING / GET IN TOUCH */}
           <div className="observe-open-gateway reveal">
-            <span className="gateway-eyebrow">NEXT CHAPTER · 02 / WONDER</span>
+            <span className="gateway-eyebrow">GET IN TOUCH</span>
             <h2 className="gateway-title">
-              There is always something<br />
-              <em>else to notice.</em>
+              You saw what I see.<br />
+              <em>Tell me what you see.</em>
             </h2>
-            <p className="gateway-subtitle">
-              From visual perception and passing light into the questions that refuse to leave.
-            </p>
+            <div className="gateway-subtitle">
+              <span className="gateway-email-tag">EMAIL</span>
+              <a href="mailto:khanshahriar102@gmail.com" className="gateway-email-link">
+                khanshahriar102@gmail.com ↗
+              </a>
+              <span className="gateway-meta-divider">·</span>
+              <span className="gateway-location">DHAKA, BANGLADESH · GMT+6</span>
+            </div>
             <div className="gateway-actions">
-              <Button to="/wonder" variant="solid">
-                Read the archive
+              <Button to="/#get-in-touch" variant="solid">
+                Start a conversation →
               </Button>
-              <Button to="/" variant="outline">
-                Back home
+              <Button to="/wonder" variant="outline">
+                Next: 02 / Wonder
               </Button>
             </div>
           </div>
@@ -264,7 +412,7 @@ export default function ObservePage() {
       </section>
 
       <LightboxModal
-        photos={filteredPhotos}
+        photos={currentPhotosList}
         currentIndex={lightboxIndex}
         onClose={() => setLightboxIndex(-1)}
         onPrev={handlePrev}

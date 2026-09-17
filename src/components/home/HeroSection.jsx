@@ -176,7 +176,7 @@ export default function HeroSection() {
       </div>
 
       <div className="hero-content">
-        <div className="eyebrow reveal">PERSONAL UNIVERSE · 2026</div>
+        <div className="eyebrow reveal">SHAHRIAR'S PERSONAL UNIVERSE · 2026</div>
 
         <h1 className="reveal delay-1">
           A place for<br />
@@ -191,10 +191,6 @@ export default function HeroSection() {
         <div className="hero-actions reveal delay-2">
           <Button href="#observe" variant="solid" icon="↓">
             Explore the archive
-          </Button>
-
-          <Button to="/connect" variant="outline">
-            Get in touch
           </Button>
         </div>
       </div>

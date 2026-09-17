@@ -64,9 +64,10 @@ export default function SelfSection() {
             <Button
               to="/self"
               variant="solid"
-              ariaLabel="View Shahriar's complete profile and curriculum vitae"
+              icon="→"
+              ariaLabel="View Shahriar's complete profile"
             >
-              View profile
+              VIEW PROFILE
             </Button>
           </div>
         </div>

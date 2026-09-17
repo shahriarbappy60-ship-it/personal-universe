@@ -14,15 +14,15 @@ export default function ObserveSection({ onSelectPhoto }) {
 
   const filters = [
     { key: 'all', label: 'All' },
-    { key: 'stills', label: 'Stills' },
-    { key: 'monochrome', label: 'Monochrome' },
-    { key: 'architecture', label: 'Architecture' },
-    { key: 'minimal', label: 'Minimal' }
+    { key: 'scenes', label: 'Scenes' },
+    { key: 'moments', label: 'Moments' },
+    { key: 'atmosphere', label: 'Atmosphere' }
   ];
 
   const filteredPhotos = useMemo(() => {
-    if (activeFilter === 'all') return observePhotos;
-    return observePhotos.filter(p => p.category === activeFilter);
+    const featuredList = observePhotos.filter(p => p.featured === true);
+    if (activeFilter === 'all') return featuredList;
+    return featuredList.filter(p => p.category === activeFilter);
   }, [activeFilter]);
 
   const totalPages = Math.max(1, Math.ceil(filteredPhotos.length / pageSize));

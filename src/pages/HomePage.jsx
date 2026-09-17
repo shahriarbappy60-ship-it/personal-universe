@@ -6,7 +6,7 @@ import CreateSection from '../components/home/CreateSection';
 import SelfSection from '../components/home/SelfSection';
 import ResonanceSection from '../components/home/ResonanceSection';
 import BecomingSection from '../components/home/BecomingSection';
-import ConnectSection from '../components/home/ConnectSection';
+import GetInTouchSection from '../components/home/GetInTouchSection';
 import LightboxModal from '../components/modals/LightboxModal';
 import EssayModal from '../components/modals/EssayModal';
 import { observePhotos } from '../data/observeData';
@@ -85,7 +85,7 @@ export default function HomePage({ onOpenContact, setActiveSection }) {
       <SelfSection />
       <BecomingSection />
       <ResonanceSection />
-      <ConnectSection onOpenContact={onOpenContact} />
+      <GetInTouchSection onOpenContact={onOpenContact} />
 
       <LightboxModal
         photo={selectedPhoto}

@@ -31,7 +31,6 @@ export default function MobileMenu({ isOpen, onClose }) {
     { label: 'Wonder', number: '02', path: '/wonder' },
     { label: 'Create', number: '03', path: '/create' },
     { label: 'Self', number: '04', path: '/self' },
-    { label: 'Connect', number: '05', path: '/connect' },
   ];
 
   return (
@@ -79,7 +78,7 @@ export default function MobileMenu({ isOpen, onClose }) {
           <small>23° 48′ N · 90° 24′ E</small>
         </div>
         <Link
-          to="/connect"
+          to="/#get-in-touch"
           className="mobile-connect-btn"
           onClick={onClose}
         >
