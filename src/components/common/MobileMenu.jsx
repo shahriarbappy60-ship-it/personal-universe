@@ -30,7 +30,7 @@ export default function MobileMenu({ isOpen, onClose }) {
     { label: 'Observe', number: '01', path: '/observe' },
     { label: 'Wonder', number: '02', path: '/wonder' },
     { label: 'Create', number: '03', path: '/create' },
-    { label: 'Self', number: '04', path: '/self' },
+    { label: 'Profile', number: '04', path: '/self', avatar: true },
   ];
 
   return (
@@ -63,6 +63,11 @@ export default function MobileMenu({ isOpen, onClose }) {
             >
               <div className="mobile-link-main">
                 <span className="mobile-link-indicator" />
+                {item.avatar && (
+                  <span className="mobile-link-avatar-frame">
+                    <img src="/images/portrait.jpg" alt="Shahriar Khan" />
+                  </span>
+                )}
                 <span className="mobile-link-text">{item.label}</span>
               </div>
               <small className="mobile-link-num">{item.number}</small>

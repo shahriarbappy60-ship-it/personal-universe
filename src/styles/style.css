@@ -419,6 +419,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
     gap: 30px;
     margin-left: auto;
     margin-right: 34px;
+    align-items: center;
 }
 
 .desktop-nav a {
@@ -430,17 +431,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
     transition: color .3s ease;
 }
 
-.clock {
-    position: relative;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    transition: color .3s ease;
-}
-
-.desktop-nav a::after {
+.desktop-nav a:not(.nav-profile-btn)::after {
     content: "";
     position: absolute;
     left: 0;
@@ -451,14 +442,126 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
     transition: width .3s var(--ease);
 }
 
-.desktop-nav a:hover,
-.desktop-nav a.active {
+.desktop-nav a:not(.nav-profile-btn):hover,
+.desktop-nav a:not(.nav-profile-btn).active {
     color: var(--text);
 }
 
-.desktop-nav a:hover::after,
-.desktop-nav a.active::after {
+.desktop-nav a:not(.nav-profile-btn):hover::after,
+.desktop-nav a:not(.nav-profile-btn).active::after {
     width: 100%;
+}
+
+/* Glassy Profile Avatar Button in Navbar */
+.nav-profile-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    padding: 2px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: transform 0.4s var(--ease-spring), border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.desktop-nav a.nav-profile-btn::after {
+    display: none !important;
+}
+
+.nav-profile-avatar-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+}
+
+.nav-profile-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+    filter: contrast(104%) brightness(96%);
+    transition: transform 0.5s var(--ease), filter 0.4s ease;
+}
+
+.nav-profile-btn:hover {
+    transform: scale(1.08);
+    border-color: var(--line-strong);
+    background: var(--glass-bg-hover);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25), 0 0 16px rgba(255, 255, 255, 0.1);
+}
+
+.nav-profile-btn:hover .nav-profile-avatar-frame img {
+    transform: scale(1.1);
+    filter: contrast(108%) brightness(102%);
+}
+
+.nav-profile-btn.active {
+    border-color: var(--text);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25), 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="light"] .nav-profile-btn {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(17, 18, 21, 0.14);
+    box-shadow: 0 2px 8px rgba(20, 20, 20, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+html[data-theme="light"] .nav-profile-btn:hover {
+    border-color: rgba(17, 18, 21, 0.35);
+    box-shadow: 0 4px 16px rgba(20, 20, 20, 0.12), 0 0 12px rgba(0, 0, 0, 0.04);
+}
+
+html[data-theme="light"] .nav-profile-btn.active {
+    border-color: var(--text);
+    box-shadow: 0 0 0 2px rgba(17, 18, 21, 0.2), 0 4px 12px rgba(20, 20, 20, 0.08);
+}
+
+/* Mobile Menu Avatar frame */
+.mobile-link-avatar-frame {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    margin-right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.mobile-link-avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+}
+
+.clock {
+    position: relative;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    transition: color .3s ease;
 }
 
 .header-right {
@@ -5878,12 +5981,13 @@ html[data-theme="light"] .stellar-satellite {
 }
 
 .self-hero-copy h1 {
-    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-size: clamp(2.3rem, 4.5vw, 4.2rem);
     font-weight: 300;
-    line-height: 0.95;
-    letter-spacing: -0.035em;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     margin: 0 0 1.5rem 0;
     color: var(--white);
+    white-space: nowrap;
 }
 
 .self-hero-copy h1 em {
@@ -5948,49 +6052,90 @@ html[data-theme="light"] .stellar-satellite {
     width: 100%;
     max-width: 380px;
     aspect-ratio: 4 / 5;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    background: var(--bg-elevated);
+    background: var(--surface);
     border: 1px solid var(--line);
     box-shadow: var(--shadow-deep);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    transition: transform .5s var(--ease-spring), border-color .4s ease, box-shadow .4s ease, background .4s ease;
+    will-change: transform;
+}
+
+.self-portrait-frame:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-6px) scale(1.005);
+    box-shadow: var(--shadow-deep), 0 0 30px rgba(255, 255, 255, .03);
+    background: var(--surface-strong);
+}
+
+.self-portrait-image-inner {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
 }
 
 .self-portrait-frame img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center 20%;
     display: block;
-    filter: grayscale(18%) contrast(105%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    filter: contrast(104%) brightness(96%);
+    transition: transform .9s var(--ease), filter .6s ease;
 }
 
 .self-portrait-frame:hover img {
-    transform: scale(1.02);
-    filter: grayscale(0%) contrast(102%);
+    transform: scale(1.04);
+    filter: contrast(108%) brightness(100%);
 }
 
 .self-portrait-overlay {
     position: absolute;
     inset: auto 0 0 0;
-    padding: 24px 20px 18px 20px;
-    background: linear-gradient(to top, rgba(8, 9, 11, 0.92) 0%, rgba(8, 9, 11, 0.5) 70%, transparent 100%);
+    padding: 32px 24px 22px;
+    background: linear-gradient(transparent 0%, rgba(4, 5, 7, 0.72) 42%, rgba(4, 5, 7, 0.96) 100%);
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     gap: 4px;
+    z-index: 3;
+    pointer-events: none;
 }
 
+.self-portrait-overlay-name,
 .self-portrait-overlay span {
     font-family: var(--sans);
-    font-size: 0.85rem;
+    font-size: 1.15rem;
     font-weight: 600;
-    letter-spacing: 0.12em;
-    color: var(--white);
+    letter-spacing: -.01em;
+    color: #ffffff;
 }
 
+.self-portrait-overlay-role,
 .self-portrait-overlay small {
-    font-family: var(--mono);
-    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
     letter-spacing: 0.14em;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+}
+
+html[data-theme="light"] .self-portrait-overlay {
+    background: linear-gradient(transparent 0%, rgba(247, 246, 242, 0.78) 45%, rgba(247, 246, 242, 0.98) 100%);
+}
+
+html[data-theme="light"] .self-portrait-overlay-name,
+html[data-theme="light"] .self-portrait-overlay span {
+    color: var(--text);
+}
+
+html[data-theme="light"] .self-portrait-overlay-role,
+html[data-theme="light"] .self-portrait-overlay small {
     color: var(--muted);
 }
 
@@ -6077,12 +6222,24 @@ html[data-theme="light"] .stellar-satellite {
 
 .outside-card {
     background: var(--glass-bg);
-    border: 1px solid var(--line-soft);
-    padding: 1.5rem;
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    padding: 1.6rem;
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .5s var(--ease-spring), border-color .4s ease, box-shadow .4s ease, background .4s ease;
+    will-change: transform;
+}
+
+.outside-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-4px) scale(1.005);
+    box-shadow: var(--shadow-medium);
+    background: var(--glass-bg-hover);
 }
 
 .outside-label {
@@ -6102,10 +6259,22 @@ html[data-theme="light"] .stellar-satellite {
 
 .outside-visual-frame {
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--line);
-    background: var(--bg-elevated);
+    background: var(--surface);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .5s var(--ease-spring), border-color .4s ease, box-shadow .4s ease, background .4s ease;
+    will-change: transform;
+}
+
+.outside-visual-frame:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-4px) scale(1.005);
+    box-shadow: var(--shadow-deep);
+    background: var(--surface-strong);
 }
 
 .outside-visual-frame img {
@@ -6114,15 +6283,21 @@ html[data-theme="light"] .stellar-satellite {
     object-fit: cover;
     display: block;
     filter: brightness(0.85) contrast(105%);
+    transition: transform .7s var(--ease), filter .5s ease;
+}
+
+.outside-visual-frame:hover img {
+    transform: scale(1.03);
+    filter: brightness(0.92) contrast(108%);
 }
 
 .outside-visual-caption {
-    padding: 14px 18px;
-    background: var(--bg-elevated);
+    padding: 16px 20px;
+    background: var(--surface);
     border-top: 1px solid var(--line-soft);
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
 }
 
 .visual-caption-tag {
@@ -6149,10 +6324,21 @@ html[data-theme="light"] .stellar-satellite {
 
 .self-notice-image-wrap {
     position: relative;
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--line);
-    background: var(--bg-elevated);
+    background: var(--surface);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .5s var(--ease-spring), border-color .4s ease, box-shadow .4s ease;
+    will-change: transform;
+}
+
+.self-notice-image-wrap:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-4px) scale(1.005);
+    box-shadow: var(--shadow-deep);
 }
 
 .self-notice-image-wrap img {
@@ -6160,6 +6346,11 @@ html[data-theme="light"] .stellar-satellite {
     aspect-ratio: 16 / 10;
     object-fit: cover;
     display: block;
+    transition: transform .7s var(--ease);
+}
+
+.self-notice-image-wrap:hover img {
+    transform: scale(1.03);
 }
 
 .self-notice-image-badge {
@@ -6204,17 +6395,22 @@ html[data-theme="light"] .stellar-satellite {
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: 2rem;
-    padding: 1.5rem;
+    padding: 1.6rem 1.8rem;
     background: var(--glass-bg);
-    border: 1px solid var(--line-soft);
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     align-items: baseline;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .4s var(--ease-spring), border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .minimal-edu-row:hover {
-    border-color: var(--line);
+    border-color: var(--line-strong);
     background: var(--glass-bg-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
 }
 
 .edu-time-col {
@@ -6289,18 +6485,22 @@ html[data-theme="light"] .stellar-satellite {
 .self-qualitative-table {
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--line-soft);
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     overflow: hidden;
     margin-top: 2.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
 }
 
 .self-qualitative-row {
     display: grid;
     grid-template-columns: 240px 180px 1fr;
     gap: 1.5rem;
-    padding: 1.15rem 1.5rem;
-    background: var(--glass-bg);
+    padding: 1.25rem 1.6rem;
+    background: transparent;
     border-bottom: 1px solid var(--line-soft);
     align-items: center;
     transition: background 0.25s ease;
@@ -6390,16 +6590,21 @@ html[data-theme="light"] .stellar-satellite {
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    padding: 1.5rem 1.75rem;
+    padding: 1.6rem 1.8rem;
     background: var(--glass-bg);
-    border: 1px solid var(--line-soft);
-    border-radius: 8px;
-    transition: border-color 0.3s ease, background 0.3s ease;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .4s var(--ease-spring), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .self-project-editorial-row:hover {
-    border-color: var(--line);
+    border-color: var(--line-strong);
     background: var(--glass-bg-hover);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
 }
 
 .self-project-left {
@@ -6544,10 +6749,18 @@ html[data-theme="light"] .stellar-satellite {
     align-items: center;
     gap: 2.5rem;
     padding: clamp(2rem, 4vw, 3.5rem);
-    background: var(--bg-elevated);
+    background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: 20px;
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     box-shadow: var(--shadow-medium);
+    transition: transform .5s var(--ease-spring), border-color .4s ease, box-shadow .4s ease;
+}
+
+.self-cv-box:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-deep), 0 0 30px rgba(255, 255, 255, .02);
 }
 
 .self-cv-content {
@@ -6597,18 +6810,22 @@ html[data-theme="light"] .stellar-satellite {
     gap: 0.75rem;
     padding: 1.25rem 1.5rem;
     background: var(--glass-bg);
-    border: 1px solid var(--line-soft);
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
     text-decoration: none;
     color: var(--muted);
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    box-shadow: var(--shadow-soft);
+    transition: transform .4s var(--ease-spring), border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
 }
 
 .elsewhere-link:hover:not(.elsewhere-pending) {
     color: var(--white);
     background: var(--glass-bg-hover);
-    border-color: var(--line);
-    transform: translateY(-2px);
+    border-color: var(--line-strong);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: var(--shadow-medium);
 }
 
 .elsewhere-link:hover:not(.elsewhere-pending) .elsewhere-arrow {
@@ -6746,6 +6963,12 @@ html[data-theme="light"] .stellar-satellite {
 }
 
 @media (max-width: 640px) {
+    .self-hero-copy h1 {
+        white-space: normal;
+        font-size: clamp(2rem, 8.5vw, 2.8rem);
+        line-height: 1.1;
+    }
+
     .self-hero-top {
         flex-direction: column;
         align-items: flex-start;

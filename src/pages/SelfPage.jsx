@@ -130,8 +130,7 @@ export default function SelfPage() {
           <div className="self-hero-main">
             <div className="self-hero-copy reveal delay-1">
               <h1>
-                SHAHRIAR<br />
-                <em>KHAN.</em>
+                SHAHRIAR <em>KHAN.</em>
               </h1>
 
               <div className="self-title-sub">
@@ -161,14 +160,17 @@ export default function SelfPage() {
 
             <div className="self-hero-portrait-wrap reveal delay-2">
               <div className="self-portrait-frame">
-                <img
-                  src="/images/portrait.jpg"
-                  alt="Shahriar Khan"
-                  loading="lazy"
-                />
+                <div className="self-portrait-image-inner">
+                  <img
+                    src="/images/portrait.jpg"
+                    alt="Shahriar Khan"
+                    loading="lazy"
+                  />
+                  <div className="portrait-ambient-glow" aria-hidden="true" />
+                </div>
                 <div className="self-portrait-overlay">
-                  <span>SHAHRIAR KHAN</span>
-                  <small>OBSERVER · DEVELOPER · DHAKA</small>
+                  <span className="self-portrait-overlay-name">SHAHRIAR KHAN</span>
+                  <small className="self-portrait-overlay-role">OBSERVER · DEVELOPER</small>
                 </div>
               </div>
             </div>

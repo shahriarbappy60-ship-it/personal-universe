@@ -41,14 +41,38 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
             <a href="#observe" className={activeSection === 'observe' ? 'active' : ''} onClick={e => handleNavClick(e, 'observe')} data-section-link="observe">Observe</a>
             <a href="#wonder" className={activeSection === 'wonder' ? 'active' : ''} onClick={e => handleNavClick(e, 'wonder')} data-section-link="wonder">Wonder</a>
             <a href="#create" className={activeSection === 'create' ? 'active' : ''} onClick={e => handleNavClick(e, 'create')} data-section-link="create">Create</a>
-            <a href="#self" className={activeSection === 'self' ? 'active' : ''} onClick={e => handleNavClick(e, 'self')} data-section-link="self">Self</a>
+            <Link
+              to="/self"
+              className={`nav-profile-btn magnetic ${isSelf ? 'active' : ''}`}
+              aria-label="Shahriar Khan Profile"
+              title="Profile — Shahriar Khan"
+            >
+              <span className="nav-profile-avatar-frame">
+                <img
+                  src="/images/portrait.jpg"
+                  alt="Shahriar Khan"
+                />
+              </span>
+            </Link>
           </>
         ) : (
           <>
             <Link to="/observe" className={isObserve ? 'active' : ''}>Observe</Link>
             <Link to="/wonder" className={isWonder ? 'active' : ''}>Wonder</Link>
             <Link to="/create" className={isCreate ? 'active' : ''}>Create</Link>
-            <Link to="/self" className={isSelf ? 'active' : ''}>Self</Link>
+            <Link
+              to="/self"
+              className={`nav-profile-btn magnetic ${isSelf ? 'active' : ''}`}
+              aria-label="Shahriar Khan Profile"
+              title="Profile — Shahriar Khan"
+            >
+              <span className="nav-profile-avatar-frame">
+                <img
+                  src="/images/portrait.jpg"
+                  alt="Shahriar Khan"
+                />
+              </span>
+            </Link>
           </>
         )}
       </nav>
