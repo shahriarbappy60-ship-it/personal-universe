@@ -65,7 +65,12 @@ export default function MobileMenu({ isOpen, onClose }) {
                 <span className="mobile-link-indicator" />
                 {item.avatar && (
                   <span className="mobile-link-avatar-frame">
-                    <img src="/images/portrait.jpg" alt="Shahriar Khan" />
+                    <img
+                      src="/images/portrait-avatar.jpg"
+                      onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
+                      alt="Shahriar Khan"
+                    />
+                    <span className="mobile-link-avatar-specular" aria-hidden="true" />
                   </span>
                 )}
                 <span className="mobile-link-text">{item.label}</span>

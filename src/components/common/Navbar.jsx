@@ -47,12 +47,17 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
               aria-label="Shahriar Khan Profile"
               title="Profile — Shahriar Khan"
             >
-              <span className="nav-profile-avatar-frame">
-                <img
-                  src="/images/portrait.jpg"
-                  alt="Shahriar Khan"
-                />
+              <span className="nav-profile-glass-lens">
+                <span className="nav-profile-avatar-frame">
+                  <img
+                    src="/images/portrait-avatar.jpg"
+                    onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
+                    alt="Shahriar Khan"
+                  />
+                </span>
+                <span className="nav-profile-specular" aria-hidden="true" />
               </span>
+              <span className="nav-profile-rim" aria-hidden="true" />
             </Link>
           </>
         ) : (
@@ -66,12 +71,17 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
               aria-label="Shahriar Khan Profile"
               title="Profile — Shahriar Khan"
             >
-              <span className="nav-profile-avatar-frame">
-                <img
-                  src="/images/portrait.jpg"
-                  alt="Shahriar Khan"
-                />
+              <span className="nav-profile-glass-lens">
+                <span className="nav-profile-avatar-frame">
+                  <img
+                    src="/images/portrait-avatar.jpg"
+                    onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
+                    alt="Shahriar Khan"
+                  />
+                </span>
+                <span className="nav-profile-specular" aria-hidden="true" />
               </span>
+              <span className="nav-profile-rim" aria-hidden="true" />
             </Link>
           </>
         )}
