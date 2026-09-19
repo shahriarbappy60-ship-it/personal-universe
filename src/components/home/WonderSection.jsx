@@ -3,31 +3,24 @@ import { wonderThoughts } from '../../data/wonderData';
 import Button from '../common/Button';
 
 export default function WonderSection({ onOpenEssay }) {
+  // Default to index 0: "01 Identity & Becoming"
   const [selectedThoughtIndex, setSelectedThoughtIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
 
   const activeThought = wonderThoughts[selectedThoughtIndex] || wonderThoughts[0];
 
   const handleSelectThought = index => {
-    if (index === selectedThoughtIndex) return;
+    if (index === selectedThoughtIndex || isFading) return;
     setIsFading(true);
     setTimeout(() => {
       setSelectedThoughtIndex(index);
       setIsFading(false);
-    }, 160);
-  };
-
-  const handleRandomThought = () => {
-    const available = wonderThoughts
-      .map((_, i) => i)
-      .filter(i => i !== selectedThoughtIndex);
-    const pool = available.length ? available : wonderThoughts.map((_, i) => i);
-    const randomIndex = pool[Math.floor(Math.random() * pool.length)];
-    handleSelectThought(randomIndex);
+    }, 220);
   };
 
   return (
     <section className="section section-pad inquiry-section" id="wonder">
+      {/* SECTION HEADING */}
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">02 / WONDER</div>
@@ -40,106 +33,45 @@ export default function WonderSection({ onOpenEssay }) {
         </p>
       </div>
 
-      <div className="wonder-grid reveal">
-        {/* FEATURED THOUGHT CARD */}
-        <article className="featured-thought-card">
-          <div className="thought-number" id="thoughtNumber">
-            {activeThought.number}
-          </div>
-
+      {/* QUIET EDITORIAL STAGE: THOUGHT DIRECTLY ON THE DARK PAGE (NO LARGE CARD) */}
+      <div className="wonder-editorial-stage reveal">
+        <div className="wonder-thought-display">
           <blockquote
-            id="featuredThought"
-            style={{
-              opacity: isFading ? 0 : 1,
-              transition: 'opacity 0.2s ease'
-            }}
+            className={`wonder-thought-quote ${isFading ? 'fading' : ''}`}
+            aria-live="polite"
           >
             “{activeThought.thought}”
           </blockquote>
 
-          <button
-            type="button"
-            className="circle-button magnetic"
-            id="randomThought"
-            aria-label="Show another thought"
-            onClick={handleRandomThought}
-          >
-            ↻
-          </button>
-        </article>
+          <div className={`wonder-thought-meta ${isFading ? 'fading' : ''}`}>
+            <span className="wonder-thought-tag">{activeThought.tag}</span>
+          </div>
+        </div>
 
-        {/* THOUGHT LIST CARD */}
-        <div className="thought-list-card">
+        {/* QUIET EDITORIAL INDEX */}
+        <nav className="wonder-thought-index" aria-label="Thought categories">
           {wonderThoughts.map((item, index) => {
             const isActive = index === selectedThoughtIndex;
             return (
               <button
-                key={item.number}
-                className={`thought-item ${isActive ? 'active' : ''}`}
+                key={item.number || index}
                 type="button"
-                data-thought={item.thought}
-                data-number={item.number}
+                className={`wonder-index-item ${isActive ? 'is-active' : ''}`}
                 aria-selected={isActive}
                 onClick={() => handleSelectThought(index)}
               >
-                <span>{item.label}</span>
-                <strong>{item.title}</strong>
-                <span>↗</span>
+                <span className="wonder-index-title">{item.title}</span>
               </button>
             );
           })}
+        </nav>
+
+        {/* ARCHIVE INVITATION CTA */}
+        <div className="wonder-archive-action">
+          <Button to="/wonder" variant="glass">
+            Read the archive
+          </Button>
         </div>
-      </div>
-
-      {/* ESSAY / FIELD NOTE CARD */}
-      <article
-        className="essay-card reveal"
-        style={{
-          maxWidth: 'var(--container)',
-          margin: '16px auto 0',
-          padding: '40px',
-          background: 'var(--surface)',
-          border: '1px solid var(--line)',
-          borderRadius: '24px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          boxShadow: 'var(--shadow-soft)'
-        }}
-      >
-        <div>
-          <div className="eyebrow">FIELD NOTE / 001</div>
-          <h3 style={{ margin: '8px 0', fontSize: '26px', letterSpacing: '-.04em' }}>
-            Notes from an unfinished mind.
-          </h3>
-          <p style={{ color: 'var(--muted)', fontSize: '13px' }}>
-            A collection of questions, fragments and observations.
-          </p>
-        </div>
-
-        <button
-          type="button"
-          className="circle-button magnetic"
-          aria-label="Read field note"
-          onClick={onOpenEssay}
-        >
-          ↗
-        </button>
-      </article>
-
-      {/* STANDALONE WONDER ARCHIVE BUTTON */}
-      <div
-        className="section-archive-link reveal"
-        style={{
-          marginTop: '28px',
-          textAlign: 'center',
-          display: 'flex',
-          justifyContent: 'center'
-        }}
-      >
-        <Button to="/wonder" variant="glass">
-          Read the archive
-        </Button>
       </div>
     </section>
   );

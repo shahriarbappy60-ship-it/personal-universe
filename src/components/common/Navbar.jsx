@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useDhakaClock } from '../../hooks/useDhakaClock';
 import { useHeaderScroll } from '../../hooks/useHeaderScroll';
@@ -9,6 +9,7 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
   const dhakaTime = useDhakaClock();
   const isScrolled = useHeaderScroll();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isHome = location.pathname === '/' || location.pathname === '';
   const isObserve = location.pathname.startsWith('/observe');
@@ -16,19 +17,41 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
   const isCreate = location.pathname.startsWith('/create');
   const isSelf = location.pathname.startsWith('/self');
 
-  const handleNavClick = (e, targetId) => {
-    if (isHome) {
-      e.preventDefault();
-      const el = document.getElementById(targetId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        window.history.pushState(null, '', `#${targetId}`);
-      }
+  const handleBack = e => {
+    e.preventDefault();
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/');
     }
   };
 
   return (
-    <header className={`site-header ${isScrolled ? 'scrolled' : ''}`} id="siteHeader">
+    <>
+      {!isHome && (
+        <button
+          type="button"
+          className={`navbar-floating-back-btn ${isScrolled ? 'scrolled' : ''}`}
+          onClick={handleBack}
+          aria-label="Go back to previous page"
+          title="Go back"
+        >
+          <svg
+            className="navbar-back-arrow"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
+      )}
+
+      <header className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'has-back-btn' : ''}`} id="siteHeader">
       <Link to="/" className="brand" aria-label="Shahriar Personal Universe home">
         <span className="brand-mark" aria-hidden="true" />
         <span>SHAHRIAR</span>
@@ -36,55 +59,10 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
 
       {/* DESKTOP NAVIGATION */}
       <nav className="desktop-nav" aria-label="Primary navigation">
-        {isHome ? (
-          <>
-            <a href="#observe" className={activeSection === 'observe' ? 'active' : ''} onClick={e => handleNavClick(e, 'observe')} data-section-link="observe">Observe</a>
-            <a href="#wonder" className={activeSection === 'wonder' ? 'active' : ''} onClick={e => handleNavClick(e, 'wonder')} data-section-link="wonder">Wonder</a>
-            <a href="#create" className={activeSection === 'create' ? 'active' : ''} onClick={e => handleNavClick(e, 'create')} data-section-link="create">Create</a>
-            <Link
-              to="/self"
-              className={`nav-profile-btn magnetic ${isSelf ? 'active' : ''}`}
-              aria-label="Shahriar Khan Profile"
-              title="Profile — Shahriar Khan"
-            >
-              <span className="nav-profile-glass-lens">
-                <span className="nav-profile-avatar-frame">
-                  <img
-                    src="/images/portrait-avatar.jpg"
-                    onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
-                    alt="Shahriar Khan"
-                  />
-                </span>
-                <span className="nav-profile-specular" aria-hidden="true" />
-              </span>
-              <span className="nav-profile-rim" aria-hidden="true" />
-            </Link>
-          </>
-        ) : (
-          <>
-            <Link to="/observe" className={isObserve ? 'active' : ''}>Observe</Link>
-            <Link to="/wonder" className={isWonder ? 'active' : ''}>Wonder</Link>
-            <Link to="/create" className={isCreate ? 'active' : ''}>Create</Link>
-            <Link
-              to="/self"
-              className={`nav-profile-btn magnetic ${isSelf ? 'active' : ''}`}
-              aria-label="Shahriar Khan Profile"
-              title="Profile — Shahriar Khan"
-            >
-              <span className="nav-profile-glass-lens">
-                <span className="nav-profile-avatar-frame">
-                  <img
-                    src="/images/portrait-avatar.jpg"
-                    onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
-                    alt="Shahriar Khan"
-                  />
-                </span>
-                <span className="nav-profile-specular" aria-hidden="true" />
-              </span>
-              <span className="nav-profile-rim" aria-hidden="true" />
-            </Link>
-          </>
-        )}
+        <Link to="/observe" className={isObserve ? 'active' : ''}>Observe</Link>
+        <Link to="/wonder" className={isWonder ? 'active' : ''}>Wonder</Link>
+        <Link to="/create" className={isCreate ? 'active' : ''}>Create</Link>
+        <Link to="/self" className={isSelf ? 'active' : ''}>Profile</Link>
       </nav>
 
       {/* HEADER RIGHT */}
@@ -140,5 +118,6 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
         </button>
       </div>
     </header>
+  </>
   );
 }

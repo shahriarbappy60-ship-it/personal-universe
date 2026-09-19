@@ -22,10 +22,16 @@ export default function Button({
   const hasArrowInChildren = typeof children === 'string' && /[→←↑↓↗↘]/.test(children);
   const effectiveIcon = icon !== undefined ? icon : (hasArrowInChildren ? null : '→');
 
+  const isDown = effectiveIcon === '↓';
+
   const content = (
     <>
       <span className="btn-text">{children}</span>
-      {effectiveIcon && <span className="btn-icon" aria-hidden="true">{effectiveIcon}</span>}
+      {effectiveIcon && (
+        <span className={`btn-icon ${isDown ? 'btn-icon-down' : ''}`} aria-hidden="true">
+          {effectiveIcon}
+        </span>
+      )}
     </>
   );
 

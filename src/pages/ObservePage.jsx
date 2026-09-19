@@ -151,9 +151,10 @@ export default function ObservePage() {
       <section className="observe-hero section-pad" id="observeHero">
         <div className="observe-hero-photo-backdrop" aria-hidden="true">
           <img
-            src="/images/photo-01.jpg"
-            alt="Cinematic street atmosphere"
+            src={observePhotos[0]?.src || "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85"}
+            alt=""
             className="observe-hero-image"
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
           <div className="observe-hero-scrim" />
         </div>

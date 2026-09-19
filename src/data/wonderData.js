@@ -138,33 +138,38 @@ export const wonderArticles = [
 
 export const wonderThoughts = [
   {
-    number: "THOUGHT / 001",
+    number: "01",
+    tag: "IDENTITY & BECOMING",
     label: "01",
-    title: "Identity & becoming",
-    thought: "What if becoming yourself is less about finding an identity and more about removing everything that isn't you?"
+    title: "Identity & Becoming",
+    thought: "What if becoming yourself\nis less about finding an identity\nand more about removing\neverything that isn't you?"
   },
   {
-    number: "THOUGHT / 002",
+    number: "02",
+    tag: "THE OBSERVER",
     label: "02",
-    title: "The observer",
-    thought: "The observer inside us may be quieter than the thoughts we mistake for ourselves."
+    title: "The Observer",
+    thought: "What if there is no universe\noutside of you,\nonly a reality unfolding through you?"
   },
   {
-    number: "THOUGHT / 003",
+    number: "03",
+    tag: "TIME & PERCEPTION",
     label: "03",
-    title: "Time & perception",
-    thought: "Maybe time feels linear only because memory gives experience a direction."
+    title: "Time & Perception",
+    thought: "Maybe time feels linear\nonly because memory\ngives experience a direction."
   },
   {
-    number: "THOUGHT / 004",
+    number: "04",
+    tag: "UNCERTAINTY",
     label: "04",
     title: "Uncertainty",
-    thought: "We spend years trying to become certain in a universe that keeps changing."
+    thought: "We spend years trying to become certain\nin a universe that keeps changing."
   },
   {
-    number: "THOUGHT / 005",
+    number: "05",
+    tag: "CURIOSITY",
     label: "05",
     title: "Curiosity",
-    thought: "Perhaps curiosity is one of the most honest forms of freedom."
+    thought: "Perhaps curiosity\nis one of the most honest forms of freedom."
   }
 ];

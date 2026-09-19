@@ -101,9 +101,9 @@ export default function HeroSection() {
       // All rings and the ball share one exact geometric center and never drift apart
       if (celestialStageRef.current) {
         if (isMobile) {
-          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0)`;
+          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0) rotate(-12deg)`;
         } else {
-          celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 5}px), calc(-50% + ${currentY * 5}px), 0)`;
+          celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 5}px), calc(-50% + ${currentY * 5}px), 0) rotate(-12deg)`;
         }
       }
 
@@ -183,30 +183,41 @@ export default function HeroSection() {
           everything <em>I am.</em>
         </h1>
 
-        <p className="hero-copy reveal delay-2">
-          I observe the world, wonder about what it means,
-          build things from curiosity, and keep becoming.
-        </p>
+        <div className="hero-lower-row reveal delay-2">
+          <div className="hero-left-col">
+            <p className="hero-copy">
+              I observe the world, wonder about what it means,
+              build things from curiosity, and keep becoming.
+            </p>
 
-        <div className="hero-actions reveal delay-2">
-          <Button href="#observe" variant="solid" icon="↓">
-            Explore the archive
-          </Button>
+            <div className="hero-actions">
+              <Button
+                href="#observe"
+                variant="glass"
+                icon="↓"
+                onClick={e => {
+                  e.preventDefault();
+                  const el = document.getElementById('observe');
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                    window.history.pushState(null, '', '#observe');
+                  }
+                }}
+              >
+                Enter the universe
+              </Button>
+            </div>
+          </div>
+
+          <div className="hero-meta">
+            <span className="coord-group">
+              <span>23° 48′ N</span>
+              <span className="coord-divider">·</span>
+              <span>90° 24′ E</span>
+            </span>
+            <span className="coord-place">Dhaka · Bangladesh</span>
+          </div>
         </div>
-      </div>
-
-      <div className="hero-meta">
-        <span className="coord-group">
-          <span>23° 48′ N</span>
-          <span className="coord-divider">·</span>
-          <span>90° 24′ E</span>
-        </span>
-        <span className="coord-place">Dhaka · Bangladesh</span>
-      </div>
-
-      <div className="scroll-indicator" aria-hidden="true">
-        <i />
-        <span>SCROLL TO EXPLORE</span>
       </div>
     </section>
   );

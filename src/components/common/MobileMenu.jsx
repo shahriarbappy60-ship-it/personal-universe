@@ -30,7 +30,7 @@ export default function MobileMenu({ isOpen, onClose }) {
     { label: 'Observe', number: '01', path: '/observe' },
     { label: 'Wonder', number: '02', path: '/wonder' },
     { label: 'Create', number: '03', path: '/create' },
-    { label: 'Profile', number: '04', path: '/self', avatar: true },
+    { label: 'Profile', number: '04', path: '/self' },
   ];
 
   return (
@@ -84,8 +84,7 @@ export default function MobileMenu({ isOpen, onClose }) {
       {/* BOTTOM PANEL */}
       <div className="mobile-menu-bottom">
         <div className="mobile-meta-info">
-          <span>{dhakaTime} · DHAKA</span>
-          <small>23° 48′ N · 90° 24′ E</small>
+          <span>{dhakaTime}</span>
         </div>
         <Link
           to="/#get-in-touch"
