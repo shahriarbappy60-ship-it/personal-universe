@@ -18,7 +18,7 @@ export default function SelfSection() {
 
       <div className="about-grid reveal">
         {/* TALL SLENDER EDITORIAL PORTRAIT CARD */}
-        <div className="portrait-card portrait-card-tall border border-black/[0.08] shadow-xl rounded-3xl overflow-hidden">
+        <div className="portrait-card portrait-card-tall shadow-xl rounded-3xl overflow-hidden">
           <div className="portrait-image-wrap">
             <img
               src="/images/portrait.jpg"

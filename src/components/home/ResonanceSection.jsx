@@ -296,7 +296,7 @@ export default function ResonanceSection() {
                   key={item.id}
                   role="button"
                   tabIndex={0}
-                  className={`resonance-item-row ${isSelected ? 'is-selected bg-black/[0.08] rounded-2xl border-l-2 border-l-neutral-900 border-t-0 border-r-0 border-b-0 backdrop-blur-md' : 'border-b border-black/[0.06]'} ${isPreviewed ? 'is-active' : ''}`}
+                  className={`resonance-item-row ${isSelected ? 'is-selected' : ''} ${isPreviewed ? 'is-active' : ''}`}
                   onClick={() => {
                     setSelectedItem(item);
                     setPreviewItem(null);
