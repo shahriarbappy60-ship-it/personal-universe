@@ -110,18 +110,18 @@ html[data-theme="light"] {
     --glass-bg-strong: rgba(0, 0, 0, 0.18);
     --glass-blur: 24px;
     --glass-saturation: 120%;
-    --glass-border: rgba(255, 255, 255, 0.65);
-    --glass-border-hover: rgba(255, 255, 255, 0.85);
-    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-    --glass-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --glass-border-hover: rgba(0, 0, 0, 0.12);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 
-    --elevated-bg: rgba(0, 0, 0, 0.12);
-    --elevated-border: rgba(255, 255, 255, 0.75);
-    --elevated-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+    --elevated-bg: rgba(0, 0, 0, 0.10);
+    --elevated-border: rgba(0, 0, 0, 0.08);
+    --elevated-shadow: 0 14px 34px rgba(0, 0, 0, 0.06);
 
     --outline-bg: transparent;
-    --outline-border: rgba(0, 0, 0, 0.15);
-    --outline-border-hover: rgba(0, 0, 0, 0.28);
+    --outline-border: rgba(0, 0, 0, 0.10);
+    --outline-border-hover: rgba(0, 0, 0, 0.18);
 
     --solid-bg: #141414;
     --solid-text: #f3f3ef;
@@ -551,22 +551,18 @@ html[data-theme="light"] .site-header {
     background: rgba(0, 0, 0, 0.08) !important;
     backdrop-filter: blur(24px) saturate(125%) !important;
     -webkit-backdrop-filter: blur(24px) saturate(125%) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.70) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.70) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
     box-shadow: 
-        0 12px 32px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.70) !important;
+        0 10px 30px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
 }
 
 html[data-theme="light"] .site-header.scrolled {
     background: rgba(0, 0, 0, 0.14) !important;
-    border-top-color: rgba(255, 255, 255, 0.85) !important;
-    border-left-color: rgba(255, 255, 255, 0.85) !important;
-    border-bottom-color: rgba(0, 0, 0, 0.20) !important;
-    border-right-color: rgba(0, 0, 0, 0.18) !important;
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.25) !important;
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.08) !important;
 }
 
 html[data-theme="light"] .desktop-nav a {
@@ -576,19 +572,17 @@ html[data-theme="light"] .desktop-nav a {
 html[data-theme="light"] .desktop-nav a:hover {
     color: #000000 !important;
     background: rgba(0, 0, 0, 0.07) !important;
-    border: 1px solid rgba(255, 255, 255, 0.40) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 html[data-theme="light"] .desktop-nav a.active {
     color: #000000 !important;
     background: rgba(0, 0, 0, 0.12) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.80) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.80) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.14) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.14) !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
     box-shadow: 
-        0 4px 14px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.80) !important;
+        0 4px 14px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
 }
 
 /* =========================================================
@@ -652,18 +646,16 @@ html[data-theme="light"] .navbar-floating-back-btn {
     background: rgba(0, 0, 0, 0.08) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.70) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.70) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.70) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
 }
 
 html[data-theme="light"] .navbar-floating-back-btn:hover {
     color: #000000 !important;
     background: rgba(0, 0, 0, 0.14) !important;
-    border-top-color: rgba(255, 255, 255, 0.85) !important;
-    border-left-color: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-top-color: rgba(255, 255, 255, 0.30) !important;
 }
 
 /* Responsive adjustment for viewport under 1380px where left margin shrinks */
@@ -832,21 +824,20 @@ html[data-theme="dark"] .theme-icon-sun {
 
 html[data-theme="light"] .connect-button {
     color: #09090b !important;
-    background: rgba(0, 0, 0, 0.12) !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.60) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.60) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.60) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
 }
 
 html[data-theme="light"] .connect-button:hover,
 html[data-theme="light"] .connect-button.active {
-    background: rgba(0, 0, 0, 0.22) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
     color: #000000 !important;
-    border-color: rgba(0, 0, 0, 0.25) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+    border-color: rgba(0, 0, 0, 0.16) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
 }
 
 .menu-button {
@@ -1695,19 +1686,17 @@ html[data-theme="light"] .filter {
     background: rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-top: 1px solid rgba(255, 255, 255, 0.60);
-    border-left: 1px solid rgba(255, 255, 255, 0.60);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.60);
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
 }
 
 html[data-theme="light"] .filter:hover {
     color: #09090b;
     background: rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 0, 0, 0.22);
+    border-color: rgba(0, 0, 0, 0.16);
     transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
 html[data-theme="light"] .filter.active {
@@ -1885,23 +1874,21 @@ html[data-theme="light"] .filter.active {
 }
 
 html[data-theme="light"] .slider-arrow-btn {
-    background: rgba(0, 0, 0, 0.09) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.60) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.60) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
     color: #09090b !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.60) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
     transition: all 0.3s ease !important;
 }
 
 html[data-theme="light"] .slider-arrow-btn:hover {
-    background: rgba(0, 0, 0, 0.18) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
     color: #000000 !important;
-    border-color: rgba(0, 0, 0, 0.25) !important;
-    transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12) !important;
+    border-color: rgba(0, 0, 0, 0.16) !important;
+    transform: scale(1.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
 }
 
 .slider-arrow-btn.disabled,
@@ -3529,18 +3516,18 @@ html[data-theme="light"] .resonance-featured-card {
     background: rgba(0, 0, 0, 0.08) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.75) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.75) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
     box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.75) !important;
+        0 10px 30px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
 }
 
 html[data-theme="light"] .resonance-featured-card:hover {
     background: rgba(0, 0, 0, 0.12) !important;
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-top-color: rgba(255, 255, 255, 0.28) !important;
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.28) !important;
 }
 
 /* 1:1 Album Cover Frame inside Photocard */
@@ -3577,12 +3564,12 @@ html[data-theme="light"] .resonance-featured-card:hover {
 /* Floating Corner Pill Badge (Sole External Launcher) */
 .resonance-link-chip {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 16px;
+    right: 16px;
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 9999px;
     background: rgba(10, 10, 10, 0.68);
     backdrop-filter: blur(14px);
@@ -3595,7 +3582,7 @@ html[data-theme="light"] .resonance-featured-card:hover {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    z-index: 5;
+    z-index: 20;
     cursor: pointer;
     box-sizing: border-box;
     transition: background .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
@@ -3610,19 +3597,20 @@ html[data-theme="light"] .resonance-featured-card:hover {
 }
 
 html[data-theme="light"] .resonance-link-chip {
-    background: rgba(0, 0, 0, 0.16) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.60) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.60) !important;
-    color: #141414 !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    color: #09090b !important;
+    padding: 6px 14px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
 html[data-theme="light"] .resonance-link-chip:hover {
-    background: rgba(0, 0, 0, 0.28) !important;
-    border-color: rgba(0, 0, 0, 0.35) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(0, 0, 0, 0.16) !important;
     color: #000000 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Smooth Hover-Sync Preview Transition */
@@ -3796,7 +3784,11 @@ html[data-theme="light"] .resonance-returning-list.resonance-scroll::-webkit-scr
 }
 
 html[data-theme="light"] .resonance-item-row {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-top: 0 !important;
+    border-left: 2px solid transparent !important;
+    border-right: 0 !important;
+    border-radius: 1rem !important;
 }
 
 .resonance-item-row:hover,
@@ -3814,14 +3806,19 @@ html[data-theme="light"] .resonance-item-row {
 
 html[data-theme="light"] .resonance-item-row:hover,
 html[data-theme="light"] .resonance-item-row.is-active {
-    background: rgba(0, 0, 0, 0.06) !important;
-    border-bottom-color: rgba(0, 0, 0, 0.12) !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.06) !important;
 }
 
 html[data-theme="light"] .resonance-item-row.is-selected {
-    background: rgba(0, 0, 0, 0.12) !important;
-    border-left: 2px solid #18181b !important;
-    border-bottom-color: rgba(0, 0, 0, 0.14) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    border-radius: 1rem !important;
+    border-left: 2px solid #171717 !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-bottom: 0 !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
 }
 
 
@@ -5516,22 +5513,20 @@ html[data-theme="light"] .btn-outline:hover {
 }
 
 html[data-theme="light"] .btn-glass {
-    background: rgba(0, 0, 0, 0.09) !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.60) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.60) !important;
+    background: rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
     color: #09090b !important;
     backdrop-filter: blur(16px) !important;
     -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.60) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
     transition: all 0.3s ease !important;
 }
 
 html[data-theme="light"] .btn-glass:hover {
-    background: rgba(0, 0, 0, 0.18) !important;
-    border-color: rgba(0, 0, 0, 0.22) !important;
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(0, 0, 0, 0.16) !important;
     color: #000000 !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.10) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
 }
 
 /* 2. MASTER UNIFIED PHOTOCARD SYSTEM */
@@ -5651,13 +5646,11 @@ html[data-theme="light"] .becoming-node-card {
     background: rgba(0, 0, 0, 0.08) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.65) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.65) !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
     box-shadow: 
-        0 14px 34px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.65) !important;
+        0 10px 30px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.20) !important;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
 }
 
@@ -5669,26 +5662,61 @@ html[data-theme="light"] .project-secondary-column .project-card:hover,
 html[data-theme="light"] .now-card:hover,
 html[data-theme="light"] .becoming-node-card:hover {
     background: rgba(0, 0, 0, 0.14) !important;
-    border-top-color: rgba(255, 255, 255, 0.80) !important;
-    border-left-color: rgba(255, 255, 255, 0.80) !important;
-    border-bottom-color: rgba(0, 0, 0, 0.18) !important;
-    border-right-color: rgba(0, 0, 0, 0.16) !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+    border-top-color: rgba(255, 255, 255, 0.30) !important;
     box-shadow: 
-        0 18px 45px rgba(0, 0, 0, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.80) !important;
+        0 14px 38px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.30) !important;
 }
 
-/* Profile Image: ring-1 ring-white/60 shadow-lg */
+/* Portrait Card: Soft natural frame without harsh white ring */
 html[data-theme="light"] .portrait-card,
 html[data-theme="light"] .self-portrait-frame {
-    box-shadow: 
-        0 0 0 1px rgba(255, 255, 255, 0.60),
-        0 14px 40px rgba(0, 0, 0, 0.10) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.20) !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Self Section: VIEW PROFILE button & overlay in light mode */
+html[data-theme="light"] .portrait-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.20) 45%, transparent 100%) !important;
+}
+
+html[data-theme="light"] .portrait-overlay h3 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6) !important;
+}
+
+html[data-theme="light"] .portrait-overlay p {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5) !important;
+}
+
+html[data-theme="light"] .about-action-row .btn-master {
+    background: rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid rgba(0, 0, 0, 0.10) !important;
+    color: #09090b !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border-radius: 9999px !important;
+    padding: 10px 24px !important;
+    font-size: 0.875rem !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.3s ease !important;
+}
+
+html[data-theme="light"] .about-action-row .btn-master:hover {
+    background: rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(0, 0, 0, 0.16) !important;
+    color: #000000 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06) !important;
 }
 
 html[data-theme="light"] .photo-caption {
     background: rgba(0, 0, 0, 0.05) !important;
-    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Wonder Section: Pure Quiet Stage (No Card Container) */

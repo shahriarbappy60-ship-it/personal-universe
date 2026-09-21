@@ -18,7 +18,7 @@ export default function SelfSection() {
 
       <div className="about-grid reveal">
         {/* TALL SLENDER EDITORIAL PORTRAIT CARD */}
-        <div className="portrait-card portrait-card-tall">
+        <div className="portrait-card portrait-card-tall border border-black/[0.08] shadow-xl rounded-3xl overflow-hidden">
           <div className="portrait-image-wrap">
             <img
               src="/images/portrait.jpg"
@@ -28,7 +28,7 @@ export default function SelfSection() {
             <div className="portrait-ambient-glow" aria-hidden="true" />
           </div>
 
-          <div className="portrait-overlay">
+          <div className="portrait-overlay bg-gradient-to-t from-black/60 via-black/20 to-transparent">
             <h3>SHAHRIAR KHAN</h3>
             <p>THE OBSERVER</p>
           </div>
@@ -49,9 +49,10 @@ export default function SelfSection() {
           <div className="about-action-row">
             <Button
               to="/self"
-              variant="solid"
+              variant="glass"
               icon="→"
               ariaLabel="View Shahriar's complete profile"
+              className="rounded-full px-6 py-2.5 text-sm"
             >
               VIEW PROFILE
             </Button>

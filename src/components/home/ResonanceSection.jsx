@@ -247,7 +247,7 @@ export default function ResonanceSection() {
               href={displayItem.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="resonance-link-chip"
+              className="resonance-link-chip absolute top-4 right-4 z-20 px-3.5 py-1.5"
               title={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'} ↗`}
               aria-label={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'}`}
             >
@@ -296,7 +296,7 @@ export default function ResonanceSection() {
                   key={item.id}
                   role="button"
                   tabIndex={0}
-                  className={`resonance-item-row ${isSelected ? 'is-selected' : ''} ${isPreviewed ? 'is-active' : ''}`}
+                  className={`resonance-item-row ${isSelected ? 'is-selected bg-black/[0.08] rounded-2xl border-l-2 border-l-neutral-900 border-t-0 border-r-0 border-b-0 backdrop-blur-md' : 'border-b border-black/[0.06]'} ${isPreviewed ? 'is-active' : ''}`}
                   onClick={() => {
                     setSelectedItem(item);
                     setPreviewItem(null);
