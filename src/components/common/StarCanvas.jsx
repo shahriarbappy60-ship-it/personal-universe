@@ -50,7 +50,7 @@ export default function StarCanvas() {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
       const isLight = document.documentElement.dataset.theme === 'light';
-      canvas.style.opacity = isLight ? '.25' : '.72';
+      canvas.style.opacity = isLight ? '.32' : '.72';
 
       stars.forEach(star => {
         star.y -= star.speed;
@@ -65,7 +65,7 @@ export default function StarCanvas() {
         ctx.beginPath();
         ctx.arc(star.x * canvasWidth, star.y * canvasHeight, star.radius, 0, Math.PI * 2);
         ctx.fillStyle = isLight
-          ? `rgba(20,20,20,${alpha * 0.45})`
+          ? `rgba(60,60,60,${alpha * 0.30})`
           : `rgba(255,255,255,${alpha})`;
         ctx.fill();
       });

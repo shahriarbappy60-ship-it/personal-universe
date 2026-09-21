@@ -30,7 +30,7 @@ export default function SelfSection() {
 
           <div className="portrait-overlay">
             <h3>SHAHRIAR KHAN</h3>
-            <p>OBSERVER · DEVELOPER</p>
+            <p>THE OBSERVER</p>
           </div>
         </div>
 

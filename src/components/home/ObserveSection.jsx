@@ -45,12 +45,13 @@ export default function ObserveSection({ onSelectPhoto }) {
     }
   };
 
-  // Touch swipe handlers
+  // Touch swipe handlers (desktop trackpad / tablet only; mobile uses native touch snap carousel)
   const handleTouchStart = e => {
     touchStartX.current = e.changedTouches[0].screenX;
   };
 
   const handleTouchEnd = e => {
+    if (window.innerWidth <= 768) return;
     touchEndX.current = e.changedTouches[0].screenX;
     const diff = touchStartX.current - touchEndX.current;
     if (Math.abs(diff) > 40) {
