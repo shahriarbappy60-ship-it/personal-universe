@@ -3,7 +3,7 @@ import Button from '../common/Button';
 
 export default function GetInTouchSection({ onOpenContact }) {
   return (
-    <section className="section section-pad get-in-touch-section" id="get-in-touch">
+    <section className="section section-pad get-in-touch-section pt-32 md:pt-36 scroll-mt-28" id="get-in-touch">
       <div className="get-in-touch-container reveal">
         <div className="get-in-touch-eyebrow-wrap">
           <span className="eyebrow get-in-touch-eyebrow">GET IN TOUCH</span>

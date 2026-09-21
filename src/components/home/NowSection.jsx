@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function NowSection() {
   return (
-    <section className="section section-pad" id="now">
+    <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="now">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">07 / NOW</div>

@@ -23,7 +23,7 @@ const stages = [
 
 export default function BecomingSection() {
   return (
-    <section className="section section-pad becoming-section" id="becoming">
+    <section className="section section-pad becoming-section pt-32 md:pt-36 scroll-mt-28" id="becoming">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">BECOMING</div>

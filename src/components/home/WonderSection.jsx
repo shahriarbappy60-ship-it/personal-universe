@@ -19,7 +19,7 @@ export default function WonderSection({ onOpenEssay }) {
   };
 
   return (
-    <section className="section section-pad inquiry-section" id="wonder">
+    <section className="section section-pad inquiry-section pt-32 md:pt-36 scroll-mt-28" id="wonder">
       {/* SECTION HEADING */}
       <div className="section-heading reveal">
         <div>

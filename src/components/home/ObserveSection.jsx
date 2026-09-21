@@ -69,7 +69,7 @@ export default function ObserveSection({ onSelectPhoto }) {
   );
 
   return (
-    <section className="section section-pad" id="observe">
+    <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="observe">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">01 / OBSERVE</div>

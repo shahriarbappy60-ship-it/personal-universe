@@ -3,7 +3,7 @@ import Button from '../common/Button';
 
 export default function SelfSection() {
   return (
-    <section className="section section-pad about-section" id="self">
+    <section className="section section-pad about-section pt-32 md:pt-36 scroll-mt-28" id="self">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">04 / SELF</div>

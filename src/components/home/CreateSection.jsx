@@ -4,7 +4,7 @@ import Button from '../common/Button';
 
 export default function CreateSection() {
   return (
-    <section className="section section-pad" id="create">
+    <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="create">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">03 / CREATE</div>

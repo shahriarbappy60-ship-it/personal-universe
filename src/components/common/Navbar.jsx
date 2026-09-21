@@ -26,6 +26,15 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
     }
   };
 
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const elem = document.getElementById(targetId);
+    if (elem) {
+      elem.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `#${targetId}`);
+    }
+  };
+
   return (
     <>
       {!isHome && (
@@ -90,8 +99,8 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
             aria-label="Get in touch with Shahriar"
             onClick={e => handleNavClick(e, 'get-in-touch')}
           >
-            <span>Get in touch</span>
-            <span aria-hidden="true">→</span>
+            <span>GET IN TOUCH</span>
+            <span aria-hidden="true">↗</span>
           </a>
         ) : (
           <Link
@@ -99,8 +108,8 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
             className="connect-button magnetic"
             aria-label="Get in touch with Shahriar"
           >
-            <span>Get in touch</span>
-            <span aria-hidden="true">→</span>
+            <span>GET IN TOUCH</span>
+            <span aria-hidden="true">↗</span>
           </Link>
         )}
 

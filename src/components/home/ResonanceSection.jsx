@@ -218,7 +218,7 @@ export default function ResonanceSection() {
   };
 
   return (
-    <section className="section section-pad resonance-section" id="resonance">
+    <section className="section section-pad resonance-section pt-32 md:pt-36 scroll-mt-28" id="resonance">
       <div className="section-heading reveal">
         <div>
           <div className="eyebrow">RESONANCE</div>
