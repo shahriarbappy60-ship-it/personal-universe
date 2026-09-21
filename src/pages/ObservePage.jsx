@@ -149,16 +149,6 @@ export default function ObservePage() {
     <main className="observe-page" id="mainContent">
       {/* PHOTOGRAPHY-FIRST HERO */}
       <section className="observe-hero section-pad" id="observeHero">
-        <div className="observe-hero-photo-backdrop" aria-hidden="true">
-          <img
-            src={observePhotos[0]?.src || "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85"}
-            alt=""
-            className="observe-hero-image"
-            onError={(e) => { e.currentTarget.style.display = 'none'; }}
-          />
-          <div className="observe-hero-scrim" />
-        </div>
-
         <div className="observe-hero-content">
           <div className="eyebrow reveal">01 / OBSERVE</div>
           <h1 className="reveal delay-1">
@@ -215,8 +205,8 @@ export default function ObservePage() {
             </div>
           </div>
 
-          {/* TOOLBAR: CATEGORIES & SEARCH */}
-          <div className="archive-toolbar reveal">
+          {/* ARCHIVE TOOLBAR: FILTERS (LEFT) · GROUPED CONTROLS (RIGHT: VIEW SWITCHER + SEARCH GAP-3) */}
+          <div className="archive-toolbar reveal flex justify-between items-center mt-6">
             <div className="filter-categories" id="filterCategories">
               {categories.map(cat => (
                 <button
@@ -225,59 +215,50 @@ export default function ObservePage() {
                   type="button"
                   onClick={() => setFilter(cat.key)}
                 >
-                  <span>{cat.label}</span>
+                  <span>{cat.label.toUpperCase()}</span>
                   <small>({cat.count})</small>
                 </button>
               ))}
             </div>
 
-            <div className="archive-tools">
-              <label className="archive-search">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="11" cy="11" r="6.5" />
-                  <path d="M16 16L21 21" />
-                </svg>
-                <input
-                  type="search"
-                  placeholder="Search title, place..."
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                />
-              </label>
-            </div>
-          </div>
+            <div className="archive-controls-right flex items-center gap-3">
+              <div className="observe-view-switch-single">
+                <button
+                  type="button"
+                  className={`observe-dynamic-view-btn mode-${activeView} font-sans text-xs tracking-wider uppercase font-medium text-zinc-300`}
+                  onClick={handleCycleView}
+                  aria-label={`Layout view: VIEW ${currentView.name.toUpperCase()}. Click to switch to VIEW ${currentView.nextName.toUpperCase()}`}
+                  title={`Click to switch to VIEW ${currentView.nextName.toUpperCase()}`}
+                >
+                  <span className="view-btn-icon-box">
+                    {currentView.icon}
+                  </span>
+                  <span className="view-btn-label">
+                    <strong className="view-btn-current font-sans text-xs tracking-wider uppercase font-medium text-zinc-300">VIEW {currentView.name.toUpperCase()}</strong>
+                  </span>
+                  <span className="view-btn-cycle-hint" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" className="cycle-indicator-icon">
+                      <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </span>
+                </button>
+              </div>
 
-          {/* SINGLE DYNAMIC VIEW SWITCHER BUTTON */}
-          <div className="observe-toolbar-extras reveal">
-            <div className="observe-view-switch-single">
-              <button
-                type="button"
-                className={`observe-dynamic-view-btn mode-${activeView}`}
-                onClick={handleCycleView}
-                aria-label={`Layout view: ${currentView.name}. Click to switch to ${currentView.nextName}`}
-                title={`Click to switch to ${currentView.nextName} view`}
-              >
-                <span className="view-btn-icon-box">
-                  {currentView.icon}
-                </span>
-                <span className="view-btn-label">
-                  <span className="view-btn-caption">View</span>
-                  <strong className="view-btn-current">{currentView.name}</strong>
-                </span>
-                <span className="view-btn-cycle-hint" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" className="cycle-indicator-icon">
-                    <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <div className="archive-tools">
+                <label className="archive-search">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5" />
+                    <path d="M16 16L21 21" />
                   </svg>
-                </span>
-              </button>
-            </div>
-
-            <div className="archive-visible">
-              {activeView === 'album' && !selectedAlbumId ? (
-                <span><span>{filteredAlbums.length}</span> albums available</span>
-              ) : (
-                <span><span>{currentPhotosList.length}</span> photographs displayed</span>
-              )}
+                  <input
+                    type="search"
+                    className="font-sans text-sm font-normal text-zinc-200 placeholder:text-zinc-500"
+                    placeholder="Search title, place..."
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                  />
+                </label>
+              </div>
             </div>
           </div>
 
@@ -385,27 +366,22 @@ export default function ObservePage() {
             </div>
           )}
 
-          {/* OPEN EDITORIAL CLOSING / GET IN TOUCH */}
-          <div className="observe-open-gateway reveal">
-            <span className="gateway-eyebrow">GET IN TOUCH</span>
-            <h2 className="gateway-title">
-              You saw what I see.<br />
-              <em>Tell me what you see.</em>
+          {/* IMMERSIVE EDITORIAL CHAPTER TRANSITION */}
+          <div className="observe-chapter-transition reveal">
+            <span className="transition-eyebrow">01 / TRANSITION</span>
+            <h2 className="transition-title">
+              You observed the silent fragments.
             </h2>
-            <div className="gateway-subtitle">
-              <span className="gateway-email-tag">EMAIL</span>
-              <a href="mailto:khanshahriar102@gmail.com" className="gateway-email-link">
-                khanshahriar102@gmail.com ↗
-              </a>
-              <span className="gateway-meta-divider">·</span>
-              <span className="gateway-location">DHAKA, BANGLADESH · GMT+6</span>
-            </div>
-            <div className="gateway-actions">
-              <Button to="/#get-in-touch" variant="solid">
-                Start a conversation →
-              </Button>
-              <Button to="/wonder" variant="outline">
-                Next: 02 / Wonder
+            <p className="transition-subtitle">
+              Now enter the realm of thought.
+            </p>
+            <div className="transition-actions">
+              <Button
+                to="/wonder"
+                variant="solid"
+                className="transition-btn-primary bg-zinc-100 text-zinc-950 font-medium rounded-full px-8 py-3.5 hover:bg-white transition-all shadow-lg text-sm"
+              >
+                ENTER CHAPTER 02: WONDER →
               </Button>
             </div>
           </div>

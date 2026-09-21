@@ -4,16 +4,17 @@
 ========================================================= */
 
 :root {
-    --bg: #08090b;
-    --bg-elevated: #0d0f12;
-    --bg-deep: #060709;
+    --bg: #050505;
+    --bg-canvas: #050505;
+    --bg-elevated: #080808;
+    --bg-deep: #020202;
 
     --text: #f3f3ef;
     --muted: rgba(243, 243, 239, .60);
     --faint: rgba(243, 243, 239, .36);
 
     --white: #f3f3ef;
-    --black: #08090b;
+    --black: #050505;
 
     /* Material — Glass */
     --glass-bg: rgba(255, 255, 255, .045);
@@ -38,7 +39,7 @@
 
     /* Material — Solid */
     --solid-bg: #f3f3ef;
-    --solid-text: #08090b;
+    --solid-text: #050505;
     --solid-bg-hover: #ffffff;
 
     /* Borders */
@@ -51,15 +52,15 @@
     --shadow-medium: 0 18px 60px rgba(0, 0, 0, .16);
     --shadow-deep: 0 30px 100px rgba(0, 0, 0, .25);
 
-    /* Atmosphere */
-    --atmosphere-primary: rgba(255, 255, 255, .045);
-    --atmosphere-secondary: rgba(255, 255, 255, .022);
-    --atmosphere-glow: rgba(255, 255, 255, .035);
+    /* Atmosphere — Pure Achromatic Neutral Haze */
+    --atmosphere-primary: rgba(255, 255, 255, .03);
+    --atmosphere-secondary: rgba(255, 255, 255, .015);
+    --atmosphere-glow: rgba(255, 255, 255, .025);
     --grain-opacity: .014;
 
     /* Header */
-    --header-bg: rgba(8, 9, 11, .62);
-    --header-bg-scrolled: rgba(8, 9, 11, .84);
+    --header-bg: rgba(5, 5, 5, .62);
+    --header-bg-scrolled: rgba(5, 5, 5, .84);
     --header-blur: 24px;
 
     --serif: "Instrument Serif", Georgia, serif;
@@ -94,6 +95,7 @@
 
 html[data-theme="light"] {
     --bg: #BCBCBC;
+    --bg-canvas: #BCBCBC;
     --bg-elevated: #B0B0B0;
     --bg-deep: #A4A4A4;
 
@@ -262,6 +264,14 @@ body {
 body.modal-open,
 body.menu-open {
     overflow: hidden;
+}
+
+body.modal-open .site-header,
+body.modal-open .navbar-floating-back-btn {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    transition: opacity 0.2s ease, visibility 0.2s ease !important;
 }
 
 img {
@@ -1403,7 +1413,7 @@ html[data-theme="light"] .button-light:hover {
     width: clamp(280px, 34vw, 440px);
     height: clamp(280px, 34vw, 440px);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(160, 195, 255, 0.16) 0%, rgba(120, 160, 240, 0.06) 42%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 42%, transparent 70%);
     filter: blur(28px);
     z-index: 1;
     transform: translate(-50%, -50%);
@@ -1413,7 +1423,7 @@ html[data-theme="light"] .button-light:hover {
 }
 
 html[data-theme="light"] .celestial-corona-aura {
-    background: radial-gradient(circle, rgba(200, 220, 245, 0.25) 0%, rgba(180, 205, 235, 0.08) 42%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.01) 42%, transparent 70%);
 }
 
 @keyframes coronaPulse {
@@ -1604,13 +1614,13 @@ html[data-theme="light"] .stellar-satellite {
     /* Layered between rear rings (z: 2) and front rings (z: 8) */
     isolation: isolate;
     overflow: hidden;
-    /* Clean circular silhouette without atmospheric bleed */
-    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #dfe4ea 10%, #7b889b 28%, #202636 58%, #080a0e 88%, #020305 100%);
+    /* Pure achromatic neutral matte obsidian sphere without blue cast */
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #e0e0e0 10%, #888888 28%, #242424 58%, #080808 88%, #030303 100%);
     box-shadow:
         inset -14px -14px 40px rgba(0, 0, 0, 0.92),
         inset 10px 10px 30px rgba(255, 255, 255, 0.45),
-        0 0 50px rgba(180, 205, 255, 0.18),
-        0 0 120px rgba(120, 160, 240, 0.08);
+        0 0 50px rgba(255, 255, 255, 0.04),
+        0 0 120px rgba(255, 255, 255, 0.015);
     transition: box-shadow 0.6s ease;
 }
 
@@ -1627,7 +1637,7 @@ html[data-theme="light"] .celestial-body {
     position: absolute;
     inset: -3px;
     border-radius: 50%;
-    background: radial-gradient(circle, transparent 62%, rgba(200, 225, 255, 0.28) 92%, rgba(255, 255, 255, 0.6) 100%);
+    background: radial-gradient(circle, transparent 62%, rgba(255, 255, 255, 0.16) 92%, rgba(255, 255, 255, 0.4) 100%);
     pointer-events: none;
     mix-blend-mode: screen;
 }
@@ -6044,7 +6054,7 @@ html[data-theme="light"] .arch-plane {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(160, 195, 255, 0.15), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent 70%);
     filter: blur(20px);
 }
 
@@ -6118,38 +6128,9 @@ html[data-theme="light"] .arch-plane {
     justify-content: center;
 }
 
-/* 6. PHOTOGRAPHY-FIRST OBSERVE HERO */
+/* 6. OBSERVE HERO (UNIFIED CLEAN CANVAS - NO HERO IMAGE) */
 .observe-hero-photo-backdrop {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.observe-hero-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: .28;
-    filter: grayscale(80%) contrast(110%);
-    transform: scale(1.02);
-    transition: transform 12s ease-out;
-}
-
-.observe-hero-scrim {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(8, 9, 11, .75) 0%, rgba(8, 9, 11, .96) 80%);
-}
-
-html[data-theme="light"] .observe-hero-image {
-    opacity: .14;
-    filter: grayscale(100%);
-}
-
-html[data-theme="light"] .observe-hero-scrim {
-    background: radial-gradient(circle at 30% 50%, rgba(247, 246, 242, .78) 0%, rgba(247, 246, 242, .96) 80%);
+    display: none !important;
 }
 
 /* 7. WONDER SPATIAL ATMOSPHERE */
@@ -6169,7 +6150,7 @@ html[data-theme="light"] .observe-hero-scrim {
     width: clamp(300px, 40vw, 550px);
     height: clamp(300px, 40vw, 550px);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(170, 195, 235, 0.08) 0%, rgba(140, 170, 220, 0.03) 45%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 45%, transparent 70%);
     filter: blur(40px);
 }
 
