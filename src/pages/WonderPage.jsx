@@ -1,5 +1,4 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { wonderArticles } from '../data/wonderData';
 import WonderReaderModal from '../components/modals/WonderReaderModal';
 import Button from '../components/common/Button';
@@ -20,81 +19,39 @@ export default function WonderPage() {
 
   const filteredArticles = useMemo(() => {
     if (activeFilter === 'all') return wonderArticles;
-    return wonderArticles.filter(a =>
-      a.category.toLowerCase().replace(/\s+/g, '-').includes(activeFilter)
-    );
+    return wonderArticles.filter(a => {
+      const cat = a.category.toLowerCase().replace(/\s+/g, '-');
+      if (activeFilter === 'philosophy') return cat.includes('philosophy') || cat.includes('inquiry');
+      if (activeFilter === 'notes') return cat.includes('note') || cat.includes('fragment');
+      return cat.includes(activeFilter);
+    });
   }, [activeFilter]);
 
   return (
     <main className="wonder-page" id="mainContent">
-      {/* ABSTRACT SPATIAL ATMOSPHERE HERO */}
-      <section className="wonder-hero">
-        <div className="wonder-spatial-atmosphere" aria-hidden="true">
-          <div className="spatial-central-bloom" />
-          <div className="spatial-concentric-ring ring-1" />
-          <div className="spatial-concentric-ring ring-2" />
+      {/* 1:1 OBSERVE-MIRRORED HERO */}
+      <section className="observe-hero section-pad" id="wonderHero">
+        <div className="observe-hero-content">
+          <div className="eyebrow reveal">02 / WONDER</div>
+          <h1 className="reveal delay-1">
+            <span className="wonder-title-line">The mind, before</span>
+            <span className="wonder-title-line"><em>it speaks.</em></span>
+          </h1>
+          <p className="observe-hero-copy reveal delay-2">
+            A collection of questions, thoughts, and ideas that make me pause, observe, and look a little deeper.
+          </p>
+          <div className="observe-hero-actions reveal delay-2">
+            <Button href="#wonderArchive" variant="solid" icon="↓">
+              READ
+            </Button>
+            <span className="observe-status">WRITTEN ARCHIVE</span>
+          </div>
         </div>
 
-        <div className="wonder-hero-inner">
-          <div className="wonder-hero-top reveal">
-            <div className="wonder-kicker">
-              <span className="eyebrow">02 / WONDER</span>
-              <span className="wonder-rule" aria-hidden="true" />
-              <span>WRITTEN ARCHIVE</span>
-            </div>
-            <div className="wonder-counter">
-              <span>ENTRIES</span>
-              <strong>{String(wonderArticles.length).padStart(2, '0')}</strong>
-            </div>
-          </div>
-
-          <div className="wonder-hero-main">
-            <div className="wonder-hero-copy">
-              <h1 className="reveal delay-1">
-                Questions that<br />
-                refuse to<br />
-                <em>leave.</em>
-              </h1>
-
-              <p className="wonder-hero-description reveal delay-2">
-                A place for ideas I keep returning to —
-                sometimes to understand them,
-                sometimes simply to stay with the question.
-              </p>
-
-              <div className="wonder-hero-actions reveal delay-2">
-                <Button href="#wonderArchive" variant="solid" icon="↓">
-                  Read the archive
-                </Button>
-              </div>
-            </div>
-
-            <div className="wonder-hero-side reveal delay-2">
-              <span className="wonder-side-index">02</span>
-              <p>
-                Some thoughts are better
-                explored than resolved.
-              </p>
-              <span className="wonder-side-location">
-                DHAKA · BANGLADESH
-              </span>
-            </div>
-          </div>
-
-          <div className="wonder-hero-bottom reveal delay-2">
-            <div>
-              <span>ARCHIVE</span>
-              <strong>WRITING</strong>
-            </div>
-            <div>
-              <span>FORM</span>
-              <strong>INQUIRY · FIELD NOTES · FRAGMENTS</strong>
-            </div>
-            <div>
-              <span>STATUS</span>
-              <strong>OPEN ARCHIVE</strong>
-            </div>
-          </div>
+        <div className="observe-hero-meta">
+          <span>23° 48′ N</span>
+          <span>90° 24′ E</span>
+          <span>DHAKA · BANGLADESH</span>
         </div>
       </section>
 
@@ -133,7 +90,7 @@ export default function WonderPage() {
                 <h3 className="article-card-title">{article.title}</h3>
                 <p className="article-card-excerpt">{article.excerpt}</p>
                 <div className="article-card-footer">
-                  <span className="article-read-time">{article.readTime || '3 MIN READ'}</span>
+                  <span className="article-read-time">{article.readTime || article.time || '3 MIN READ'}</span>
                   <span className="article-arrow" aria-hidden="true">↗</span>
                 </div>
               </article>

@@ -2,6 +2,38 @@
     overflow-x: hidden;
 }
 
+.wonder-page .observe-hero-content {
+    position: relative;
+    z-index: 5;
+    max-width: 1050px;
+}
+
+.wonder-page .observe-hero h1 {
+    margin-top: 24px;
+    font-size: clamp(42px, 6.2vw, 96px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -0.022em;
+    word-spacing: 0.08em;
+    font-weight: 500;
+}
+
+.wonder-page .observe-hero h1 em {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.wonder-title-line {
+    display: block;
+    white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+    .wonder-title-line {
+        white-space: normal;
+    }
+}
+
 .wonder-shell {
     width: min(var(--container), calc(100% - 80px));
     margin: 0 auto;
