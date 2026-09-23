@@ -800,17 +800,20 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
     -webkit-touch-callout: none;
     user-select: none;
     -webkit-user-select: none;
-    transition: transform .4s var(--ease-spring), border-color .3s ease, background-color .3s ease;
+    transition: transform .4s var(--ease-spring);
 }
 
 .theme-toggle:focus,
-.theme-toggle:focus-visible {
+.theme-toggle:focus-visible,
+.theme-toggle:hover,
+.theme-toggle:active {
     outline: none !important;
     box-shadow: none !important;
+    border-color: var(--line) !important;
+    background: transparent !important;
 }
 
 .theme-toggle:hover {
-    border-color: var(--text);
     transform: rotate(45deg);
 }
 
@@ -834,18 +837,22 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
 }
 
 html[data-theme="light"] .theme-toggle {
-    border-color: var(--line);
+    border-color: var(--line) !important;
     color: var(--text);
 }
 
 html[data-theme="light"] .theme-toggle:focus,
-html[data-theme="light"] .theme-toggle:focus-visible {
+html[data-theme="light"] .theme-toggle:focus-visible,
+html[data-theme="light"] .theme-toggle:hover,
+html[data-theme="light"] .theme-toggle:active {
     outline: none !important;
     box-shadow: none !important;
+    border-color: var(--line) !important;
+    background: transparent !important;
 }
 
 html[data-theme="light"] .theme-toggle:hover {
-    border-color: var(--text);
+    transform: rotate(45deg);
 }
 
 html[data-theme="light"] .theme-icon-moon {
@@ -951,7 +958,8 @@ html[data-theme="light"] .connect-button.active {
     z-index: 90;
     display: flex;
     flex-direction: column;
-    padding: 105px max(24px, 6vw) 32px;
+    justify-content: space-between;
+    padding: 96px max(20px, 5vw) 28px;
     background: color-mix(in srgb, var(--bg) 92%, transparent);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
@@ -965,152 +973,114 @@ html[data-theme="light"] .connect-button.active {
     transform: translateY(0);
 }
 
-.mobile-menu-top {
+/* 4 Compact Sleek Glass Nav Pills */
+.mobile-nav-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--faint);
-    font-size: 8px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--line-soft);
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 440px;
+    margin: auto auto;
+    padding: 24px 0;
 }
 
-.mobile-brand-pill {
+.mobile-glass-pill-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    padding: 0 22px;
+    border-radius: 100px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s var(--ease), box-shadow 0.3s ease;
+}
+
+.mobile-glass-pill-btn:hover,
+.mobile-glass-pill-btn:active {
+    background: var(--glass-bg-hover);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-1px);
+}
+
+.mobile-glass-pill-btn.active {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.mobile-pill-left {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-weight: 600;
+    gap: 10px;
 }
 
-.brand-dot {
+.mobile-pill-indicator {
     width: 6px;
     height: 6px;
     border-radius: 50%;
+    background: transparent;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-glass-pill-btn.active .mobile-pill-indicator {
     background: var(--text);
     box-shadow: 0 0 8px var(--text);
 }
 
-/* Quick Access Frosted Glass Capsules */
-.mobile-glass-pills-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    margin: 18px 0 22px;
-}
-
-.mobile-glass-capsule {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    padding: 10px 4px;
-    border-radius: 12px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: var(--glass-shadow);
-    transition: all .3s var(--ease);
-    text-align: center;
-}
-
-.mobile-glass-capsule:active,
-.mobile-glass-capsule:hover,
-.mobile-glass-capsule.active {
-    background: var(--glass-bg-hover);
-    border-color: var(--glass-border-hover);
-    transform: translateY(-2px);
-}
-
-.mobile-glass-capsule.active {
-    border-color: rgba(255, 255, 255, 0.35);
-}
-
-html[data-theme="light"] .mobile-glass-capsule.active {
-    border-color: rgba(0, 0, 0, 0.35);
-}
-
-.capsule-num {
-    font-family: var(--font-mono);
-    font-size: 8px;
+.mobile-pill-label {
+    font-family: var(--sans);
+    font-size: 12.5px;
     font-weight: 500;
-    letter-spacing: .10em;
-    color: var(--muted);
-    line-height: 1;
-    transition: color .3s ease;
-}
-
-.mobile-glass-capsule:hover .capsule-num,
-.mobile-glass-capsule.active .capsule-num {
-    color: var(--text);
-}
-
-.capsule-text {
-    font-size: 8px;
-    font-weight: 600;
-    letter-spacing: .06em;
+    letter-spacing: .12em;
     text-transform: uppercase;
     color: var(--text);
-    white-space: nowrap;
+    transition: color 0.25s ease;
 }
 
-/* Numbered Navigation */
-.mobile-nav-list {
-    display: flex;
-    flex-direction: column;
-    margin: auto 0;
-    gap: 2px;
+.mobile-glass-pill-btn.active .mobile-pill-label {
+    font-weight: 600;
 }
 
-.mobile-nav-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 4px;
-    font-family: var(--sans);
-    font-size: clamp(28px, 6.5vw, 44px);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -.02em;
-    border-bottom: 1px solid var(--line-soft);
-    transition: padding-left .3s var(--ease), color .25s ease;
+.mobile-pill-arrow {
+    font-size: 13px;
+    line-height: 1;
+    color: var(--muted);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.mobile-glass-pill-btn:hover .mobile-pill-arrow,
+.mobile-glass-pill-btn:active .mobile-pill-arrow,
+.mobile-glass-pill-btn.active .mobile-pill-arrow {
+    color: var(--text);
+    transform: translateX(2px);
+}
+
+/* Light Theme Support */
+html[data-theme="light"] .mobile-glass-pill-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
     color: var(--text);
 }
 
-.mobile-nav-link:active,
-.mobile-nav-link:hover {
-    padding-left: 12px;
-    color: var(--muted);
+html[data-theme="light"] .mobile-glass-pill-btn:hover,
+html[data-theme="light"] .mobile-glass-pill-btn:active {
+    background: rgba(0, 0, 0, 0.09);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
-.mobile-link-main {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.mobile-link-indicator {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: transparent;
-    transition: all .3s ease;
-}
-
-.mobile-nav-link.active .mobile-link-indicator {
-    background: var(--text);
-    box-shadow: 0 0 10px var(--text);
-}
-
-.mobile-link-num {
-    font-family: var(--font-mono);
-    color: var(--faint);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .08em;
+html[data-theme="light"] .mobile-glass-pill-btn.active {
+    background: rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 /* Mobile Footer */
@@ -1119,8 +1089,10 @@ html[data-theme="light"] .mobile-glass-capsule.active {
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-    margin-top: 20px;
     border-top: 1px solid var(--line-soft);
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
 }
 
 .mobile-meta-info {
@@ -1128,14 +1100,10 @@ html[data-theme="light"] .mobile-glass-capsule.active {
     flex-direction: column;
     gap: 3px;
     color: var(--muted);
-    font-size: 9px;
+    font-family: var(--font-mono);
+    font-size: 10px;
     letter-spacing: .12em;
     text-transform: uppercase;
-}
-
-.mobile-meta-info small {
-    color: var(--faint);
-    font-size: 8px;
 }
 
 .mobile-connect-btn {
@@ -1148,6 +1116,7 @@ html[data-theme="light"] .mobile-glass-capsule.active {
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
     color: var(--text);
     font-size: 9.5px;
     font-weight: 600;
@@ -1161,6 +1130,20 @@ html[data-theme="light"] .mobile-glass-capsule.active {
     background: var(--text);
     color: var(--bg);
     border-color: var(--text);
+}
+
+html[data-theme="light"] .mobile-connect-btn {
+    background: rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: var(--text);
+}
+
+html[data-theme="light"] .mobile-connect-btn:hover,
+html[data-theme="light"] .mobile-connect-btn:active {
+    background: var(--text);
+    color: var(--bg);
 }
 
 /* =========================================================
@@ -5206,13 +5189,13 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .theme-toggle:focus,
-    .theme-toggle:focus-visible {
+    .theme-toggle:focus-visible,
+    .theme-toggle:hover,
+    .theme-toggle:active {
         outline: none !important;
         box-shadow: none !important;
-    }
-
-    .theme-toggle:hover {
-        border-color: var(--text) !important;
+        border-color: var(--line) !important;
+        background: transparent !important;
     }
 
     .theme-icon {
@@ -5564,13 +5547,13 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .theme-toggle:focus,
-    .theme-toggle:focus-visible {
+    .theme-toggle:focus-visible,
+    .theme-toggle:hover,
+    .theme-toggle:active {
         outline: none !important;
         box-shadow: none !important;
-    }
-
-    .theme-toggle:hover {
-        border-color: var(--text) !important;
+        border-color: var(--line) !important;
+        background: transparent !important;
     }
 
     .theme-icon {

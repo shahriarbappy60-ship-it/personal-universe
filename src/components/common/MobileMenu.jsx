@@ -26,11 +26,10 @@ export default function MobileMenu({ isOpen, onClose }) {
   }, [isOpen, onClose]);
 
   const navItems = [
-    { label: 'Home', number: '00', path: '/' },
-    { label: 'Observe', number: '01', path: '/observe' },
-    { label: 'Wonder', number: '02', path: '/wonder' },
-    { label: 'Create', number: '03', path: '/create' },
-    { label: 'Profile', number: '04', path: '/self' },
+    { label: 'Observe', path: '/observe' },
+    { label: 'Wonder', path: '/wonder' },
+    { label: 'Create', path: '/create' },
+    { label: 'Profile', path: '/self' },
   ];
 
   return (
@@ -39,43 +38,23 @@ export default function MobileMenu({ isOpen, onClose }) {
       id="mobileMenu"
       aria-hidden={!isOpen}
     >
-      <div className="mobile-menu-top">
-        <div className="mobile-brand-pill">
-          <span className="brand-dot" />
-          <span>SHAHRIAR</span>
-        </div>
-        <span>PERSONAL UNIVERSE</span>
-      </div>
-
-      {/* CANONICAL UNIVERSE NAVIGATION */}
+      {/* 4 CORE COMPACT GLASS PILL BUTTONS */}
       <nav className="mobile-nav-list" aria-label="Mobile navigation">
         {navItems.map(item => {
-          const isCurrentRoute =
-            (item.path === '/' && location.pathname === '/' && !location.hash) ||
-            (item.path !== '/' && location.pathname.startsWith(item.path));
+          const isCurrentRoute = location.pathname.startsWith(item.path);
 
           return (
             <Link
-              key={item.number}
+              key={item.path}
               to={item.path}
-              className={`mobile-nav-link ${isCurrentRoute ? 'active' : ''}`}
+              className={`mobile-glass-pill-btn ${isCurrentRoute ? 'active' : ''}`}
               onClick={onClose}
             >
-              <div className="mobile-link-main">
-                <span className="mobile-link-indicator" />
-                {item.avatar && (
-                  <span className="mobile-link-avatar-frame">
-                    <img
-                      src="/images/portrait-avatar.jpg"
-                      onError={e => { e.currentTarget.src = '/images/portrait.jpg'; }}
-                      alt="Shahriar Khan"
-                    />
-                    <span className="mobile-link-avatar-specular" aria-hidden="true" />
-                  </span>
-                )}
-                <span className="mobile-link-text">{item.label}</span>
+              <div className="mobile-pill-left">
+                <span className="mobile-pill-indicator" aria-hidden="true" />
+                <span className="mobile-pill-label">{item.label}</span>
               </div>
-              <small className="mobile-link-num">{item.number}</small>
+              <span className="mobile-pill-arrow" aria-hidden="true">→</span>
             </Link>
           );
         })}

@@ -108,7 +108,7 @@ export default function CustomCursor() {
       const target = e.target.closest(
         'a, button, input, textarea, select, [role="button"], .photo-card-item, .observe-slider-card, .slider-arrow-btn, .lightbox-nav-btn, .project-card, .observe-card, .thought-item, .mobile-glass-capsule, .filter, .timeline-node, .skill-row, .minimal-skill-card, .minimal-project-card'
       );
-      if (target) {
+      if (target && !target.closest('.theme-toggle')) {
         document.body.classList.add('cursor-hover');
       } else {
         document.body.classList.remove('cursor-hover');
