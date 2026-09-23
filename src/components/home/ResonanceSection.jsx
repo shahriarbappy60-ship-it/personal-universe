@@ -25,7 +25,7 @@ export const resonanceData = [
     creator: "Kaavish · Music",
     type: "Music",
     cover: "/images/faasle-cover.jpg",
-    link: "https://open.spotify.com/search/Faasle%20Kaavish",
+    link: "https://open.spotify.com/track/6ZBPz49qkS3miMzl3VTabU",
     reflection: "The song I've returned to most over the past two years."
   },
   {
@@ -34,7 +34,7 @@ export const resonanceData = [
     creator: "Alphaville · Music",
     type: "Music",
     cover: "/images/foreveryoung-cover.jpg",
-    link: "https://open.spotify.com/search/Forever%20Young%20Alphaville",
+    link: "https://open.spotify.com/track/4S1VYqwfkLit9mKVY3MXoo",
     reflection: "A fragile prayer against time, realizing everything slips away."
   },
   {
@@ -43,7 +43,7 @@ export const resonanceData = [
     creator: "Pink Floyd · Music",
     type: "Music",
     cover: "/images/high-hopes-cover.jpg",
-    link: "https://open.spotify.com/search/High%20Hopes%20Pink%20Floyd",
+    link: "https://open.spotify.com/track/468LqD2t2u907N2tTjP7W7",
     reflection: "The grass was greener, the light was brighter, the endless river forever."
   },
   {
@@ -79,7 +79,7 @@ export const resonanceData = [
     creator: "Novo Amor & Ed Tullett · Music",
     type: "Music",
     cover: "/images/ontario-cover.jpg",
-    link: "https://open.spotify.com/search/Ontario%20Novo%20Amor%20Ed%20Tullett",
+    link: "https://open.spotify.com/track/4jV1aRz1aJjO8t5R1Xn9i6",
     reflection: "A song I keep coming back to when everything feels quieter."
   },
   {
@@ -97,7 +97,7 @@ export const resonanceData = [
     creator: "Hatirpool Sessions · Music",
     type: "Music",
     cover: "/images/shohorer-duita-gaan-cover.jpg",
-    link: "https://open.spotify.com/search/Shohorer%20Duita%20Gaan%20Hatirpool%20Sessions",
+    link: "https://open.spotify.com/track/62u456qGv7M9iJ4bY1z1gP",
     reflection: "Late night Dhaka nostalgia, unhurried melodies, and familiar streets."
   },
   {
@@ -234,7 +234,14 @@ export default function ResonanceSection() {
       <div className="resonance-composition reveal delay-1">
         {/* LEFT: GLASSY PHOTOCARD WITH 1:1 COVER & TOP-RIGHT CORNER BADGE */}
         <div className="resonance-featured-card" ref={previewCardRef}>
-          <div className="resonance-feature-frame">
+          <a
+            href={displayItem.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="resonance-feature-frame"
+            title={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'} ↗`}
+            aria-label={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'}`}
+          >
             <img
               key={displayItem.cover}
               src={displayItem.cover}
@@ -243,21 +250,25 @@ export default function ResonanceSection() {
               loading="lazy"
             />
             <div className="resonance-visual-scrim" aria-hidden="true" />
-            <a
-              href={displayItem.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <span
               className="resonance-link-chip absolute top-4 right-4 z-20 px-3.5 py-1.5"
               title={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'} ↗`}
-              aria-label={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'}`}
             >
               <span>{badgeLabel}</span>
-            </a>
-          </div>
+            </span>
+          </a>
 
           <div className="resonance-feature-content" key={displayItem.id}>
             <h3 className="resonance-featured-title resonance-fade-in">
-              {displayItem.title}
+              <a
+                href={displayItem.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="resonance-featured-title-link"
+                title={`Open ${displayItem.title} on ${displayItem.type === 'Film' || displayItem.type === 'Series' ? 'IMDb' : 'Spotify'} ↗`}
+              >
+                {displayItem.title}
+              </a>
             </h3>
             <p className="resonance-featured-artist resonance-fade-in">
               {getSubLabel(displayItem)}
@@ -297,15 +308,23 @@ export default function ResonanceSection() {
                   role="button"
                   tabIndex={0}
                   className={`resonance-item-row ${isSelected ? 'is-selected' : ''} ${isPreviewed ? 'is-active' : ''}`}
-                  onClick={() => {
-                    setSelectedItem(item);
-                    setPreviewItem(null);
+                  onClick={(e) => {
+                    if (window.innerWidth <= 900 && selectedItem.id === item.id) {
+                      window.open(item.link, '_blank', 'noopener,noreferrer');
+                    } else {
+                      setSelectedItem(item);
+                      setPreviewItem(null);
+                    }
                   }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setSelectedItem(item);
-                      setPreviewItem(null);
+                      if (window.innerWidth <= 900 && selectedItem.id === item.id) {
+                        window.open(item.link, '_blank', 'noopener,noreferrer');
+                      } else {
+                        setSelectedItem(item);
+                        setPreviewItem(null);
+                      }
                     }
                   }}
                   onMouseEnter={() => setPreviewItem(item)}
