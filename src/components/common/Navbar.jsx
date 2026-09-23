@@ -89,8 +89,9 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
           aria-pressed={theme === 'light'}
           onClick={toggleTheme}
         >
-          <span className="theme-icon theme-icon-sun" aria-hidden="true">☼</span>
-          <span className="theme-icon theme-icon-moon" aria-hidden="true">◐</span>
+          <span className="theme-icon" aria-hidden="true">
+            {theme === 'light' ? '☼' : '◐'}
+          </span>
         </button>
 
         <Link

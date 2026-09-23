@@ -1,9 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function CustomCursor() {
   const ballRef = useRef(null);
 
+  const [isTouchOrMobile, setIsTouchOrMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(hover: none)').matches ||
+      window.innerWidth <= 768
+    );
+  });
+
   useEffect(() => {
+    const updateTouchStatus = () => {
+      setIsTouchOrMobile(
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.matchMedia('(hover: none)').matches ||
+        window.innerWidth <= 768
+      );
+    };
+
+    window.addEventListener('resize', updateTouchStatus, { passive: true });
+    return () => window.removeEventListener('resize', updateTouchStatus);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchOrMobile) return;
+
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
@@ -102,7 +126,11 @@ export default function CustomCursor() {
       if (animationFrame) cancelAnimationFrame(animationFrame);
       document.body.classList.remove('cursor-hover');
     };
-  }, []);
+  }, [isTouchOrMobile]);
+
+  if (isTouchOrMobile) {
+    return null;
+  }
 
   return (
     <div className="cursor-glass-ball" ref={ballRef} aria-hidden="true">
