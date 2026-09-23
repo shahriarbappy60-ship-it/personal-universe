@@ -686,19 +686,12 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
 }
 
 @media (max-width: 950px) {
-    .site-header.has-back-btn {
-        width: calc(100% - 74px);
-        left: calc(50% + 25px);
-    }
     .navbar-floating-back-btn {
-        top: 20px;
-        left: 14px;
-        width: 44px;
-        height: 44px;
+        display: none !important;
     }
-    .navbar-back-arrow {
-        width: 18px;
-        height: 18px;
+    .site-header.has-back-btn {
+        width: min(1240px, calc(100% - 36px)) !important;
+        left: 50% !important;
     }
 }
 
@@ -4936,10 +4929,21 @@ html.js-ready .reveal-item.visible {
     letter-spacing: .14em;
     text-transform: uppercase;
     color: rgba(243, 243, 239, 0.65);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+
+.footer-brand:hover {
+    color: var(--text);
 }
 
 html[data-theme="light"] .footer-brand {
     color: rgba(14, 16, 20, 0.70);
+}
+
+html[data-theme="light"] .footer-brand:hover {
+    color: #000000;
 }
 
 .footer-center {
@@ -5374,9 +5378,17 @@ html[data-theme="light"] .footer-social-link {
     .slider-arrow-btn,
     .btn-master,
     .menu-button,
-    .theme-toggle,
     .resonance-item-row {
         min-height: 48px;
+    }
+
+    .theme-toggle {
+        width: 36px !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        min-width: 36px !important;
+        aspect-ratio: 1 !important;
+        flex-shrink: 0;
     }
 
     .becoming-timeline {

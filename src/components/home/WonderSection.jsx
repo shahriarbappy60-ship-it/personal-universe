@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { wonderThoughts } from '../../data/wonderData';
+import { wonderEntries } from '../../data/wonderData';
 import Button from '../common/Button';
 
 export default function WonderSection({ onOpenEssay }) {
-  // Default to index 0: "01 Identity & Becoming"
+  // Default to index 0
   const [selectedThoughtIndex, setSelectedThoughtIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
 
-  const activeThought = wonderThoughts[selectedThoughtIndex] || wonderThoughts[0];
+  const activeEntry = wonderEntries[selectedThoughtIndex] || wonderEntries[0];
 
   const handleSelectThought = index => {
     if (index === selectedThoughtIndex || isFading) return;
@@ -40,27 +40,27 @@ export default function WonderSection({ onOpenEssay }) {
             className={`wonder-thought-quote ${isFading ? 'fading' : ''}`}
             aria-live="polite"
           >
-            “{activeThought.thought}”
+            “{activeEntry.thought}”
           </blockquote>
 
           <div className={`wonder-thought-meta ${isFading ? 'fading' : ''}`}>
-            <span className="wonder-thought-tag">{activeThought.tag}</span>
+            <span className="wonder-thought-tag">{activeEntry.tag}</span>
           </div>
         </div>
 
         {/* QUIET EDITORIAL INDEX */}
         <nav className="wonder-thought-index" aria-label="Thought categories">
-          {wonderThoughts.map((item, index) => {
+          {wonderEntries.map((item, index) => {
             const isActive = index === selectedThoughtIndex;
             return (
               <button
-                key={item.number || index}
+                key={item.id || item.number || index}
                 type="button"
                 className={`wonder-index-item ${isActive ? 'is-active' : ''}`}
                 aria-selected={isActive}
                 onClick={() => handleSelectThought(index)}
               >
-                <span className="wonder-index-title">{item.title}</span>
+                <span className="wonder-index-title">{item.shortTitle || item.title}</span>
               </button>
             );
           })}

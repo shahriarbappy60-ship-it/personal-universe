@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="footer-left">
-        <span className="footer-brand">SHAHRIAR'S PERSONAL UNIVERSE</span>
+        <Link to="/" className="footer-brand" aria-label="Go to Home">SHAHRIAR'S PERSONAL UNIVERSE</Link>
         <span className="footer-nav-dot" aria-hidden="true">·</span>
         <span className="footer-copy">© 2026</span>
       </div>

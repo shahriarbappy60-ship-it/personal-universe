@@ -105,7 +105,7 @@ export const resonanceData = [
     title: "The Truman Show",
     creator: "Peter Weir · Film",
     type: "Film",
-    cover: "/images/the truman show cover.jpg",
+    cover: "/images/the-truman-show-cover.jpg",
     link: "https://www.imdb.com/title/tt0120382/",
     reflection: "What happens when you realize the world you live in was never built for you?"
   }
