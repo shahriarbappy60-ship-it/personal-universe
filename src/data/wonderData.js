@@ -1,7 +1,7 @@
 export const wonderArticles = [
   {
     id: "observer-inside-thought",
-    number: "001",
+    number: "01",
     category: "INQUIRY",
     date: "2026",
     time: "08 MIN READ",
@@ -34,8 +34,8 @@ export const wonderArticles = [
   },
   {
     id: "small-argument-with-time",
-    number: "002",
-    category: "FIELD NOTE",
+    number: "02",
+    category: "ESSAY",
     date: "2026",
     time: "06 MIN READ",
     title: "A Small Argument With Time",
@@ -67,7 +67,7 @@ export const wonderArticles = [
   },
   {
     id: "consciousness-where",
-    number: "003",
+    number: "03",
     category: "INQUIRY",
     date: "2026",
     time: "09 MIN READ",
@@ -106,7 +106,7 @@ export const wonderArticles = [
   },
   {
     id: "becoming-quiet",
-    number: "004",
+    number: "04",
     category: "FRAGMENT",
     date: "2026",
     time: "03 MIN READ",
@@ -173,3 +173,32 @@ export const wonderThoughts = [
     thought: "Perhaps curiosity\nis one of the most honest forms of freedom."
   }
 ];
+
+export const featuredInquiry = {
+  id: "universe-experiencing-itself",
+  number: "02",
+  category: "FEATURED INQUIRY",
+  title: "What if you are the universe experiencing itself?",
+  excerpt: "We spend our lives looking at reality as if we are visitors standing outside of it. But what happens if awareness is not an isolated light trapped inside the skull, but the cosmos turning around to look at its own architecture? Perhaps the mind is not an observer separated from the world, but the universe finally finding silence to perceive what it has built.",
+  body: `
+    <p class="lead">
+      We spend our lives looking at reality as if we are visitors standing outside of it.
+    </p>
+    <p>
+      From childhood, language teaches us a grammar of separation. There is the world "out there" — vast, silent, indifferent — and there is the subject "in here," looking out through two small windows in the front of a skull. We treat consciousness as an anomaly, a rare and fragile lantern carried across an otherwise dark house.
+    </p>
+    <p>
+      Yet every atom that makes up this looking was forged in ancient thermonuclear furnaces. The iron in our blood, the calcium in our bones, the electric currents flashing across our synapses — none of this is imported from somewhere else. It is all native matter of this universe.
+    </p>
+    <blockquote>
+      You did not come into this world. You came out of it, the way a leaf comes out of a tree or a wave rises from the ocean.
+    </blockquote>
+    <p>
+      What happens if awareness is not an isolated light trapped inside the brain, but the cosmos turning around to look at its own architecture?
+    </p>
+    <p>
+      When you look up at the night sky, it is not a spectator observing stars. It is the universe looking at stars through human eyes. When you listen to the wind moving through pines, it is the earth listening to itself. Perhaps the mind is not an observer separated from the world, but the universe finally finding silence to perceive what it has built.
+    </p>
+  `
+};
+

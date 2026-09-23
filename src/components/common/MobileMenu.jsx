@@ -87,7 +87,7 @@ export default function MobileMenu({ isOpen, onClose }) {
           <span>{dhakaTime}</span>
         </div>
         <Link
-          to="/#get-in-touch"
+          to="/contact"
           className="mobile-connect-btn"
           onClick={onClose}
         >

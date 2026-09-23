@@ -33,7 +33,7 @@ export default function GetInTouchSection({ onOpenContact }) {
 
         <div className="get-in-touch-action">
           <Button
-            variant="solid"
+            variant="glass"
             className="get-in-touch-btn"
             onClick={onOpenContact}
           >

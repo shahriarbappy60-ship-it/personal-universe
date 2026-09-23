@@ -30,10 +30,10 @@ export default function CreatePage() {
             Turning curiosity into interfaces, experiments, software architecture and things that can exist beyond an idea.
           </p>
           <div className="create-hero-actions reveal delay-2">
-            <Button href="#projects" variant="solid">
+            <Button href="#projects" variant="glass">
               View projects
             </Button>
-            <Button to="/#get-in-touch" variant="outline">
+            <Button to="/contact" variant="outline">
               Get in touch
             </Button>
           </div>
@@ -79,10 +79,10 @@ export default function CreatePage() {
             Exploring identity, curriculum vitae, and the questions that shape each build.
           </p>
           <div className="gateway-actions">
-            <Button to="/self" variant="solid">
+            <Button to="/self" variant="glass">
               View profile
             </Button>
-            <Button to="/#get-in-touch" variant="outline">
+            <Button to="/contact" variant="outline">
               Get in touch
             </Button>
           </div>

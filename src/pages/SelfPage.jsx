@@ -149,7 +149,7 @@ export default function SelfPage() {
               </div>
 
               <div className="self-hero-actions">
-                <Button href="#perspective" variant="solid" icon="↓">
+                <Button href="#perspective" variant="glass" icon="↓">
                   The way I see things
                 </Button>
                 <Button href="#cv" variant="outline">

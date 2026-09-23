@@ -149,28 +149,30 @@ export default function ObservePage() {
     <main className="observe-page" id="mainContent">
       {/* PHOTOGRAPHY-FIRST HERO */}
       <section className="observe-hero section-pad" id="observeHero">
-        <div className="observe-hero-content">
-          <div className="eyebrow reveal">01 / OBSERVE</div>
-          <h1 className="reveal delay-1">
-            The world, as I<br />
-            <em>notice it.</em>
-          </h1>
-          <p className="observe-hero-copy reveal delay-2">
-            Places, light, architecture, silence and passing moments —
-            collected before they disappear into memory.
-          </p>
-          <div className="observe-hero-actions reveal delay-2">
-            <Button href="#archive" variant="solid" icon="↓">
-              Explore the archive
-            </Button>
-            <span className="observe-status">VISUAL ARCHIVE · DHAKA</span>
+        <div className="observe-shell">
+          <div className="observe-hero-content">
+            <div className="eyebrow reveal">01 / OBSERVE</div>
+            <h1 className="reveal delay-1">
+              The world, as I<br />
+              <em>notice it.</em>
+            </h1>
+            <p className="observe-hero-copy reveal delay-2">
+              Places, light, architecture, silence and passing moments —
+              collected before they disappear into memory.
+            </p>
+            <div className="observe-hero-actions reveal delay-2">
+              <Button href="#archive" variant="glass" icon="↓">
+                EXPLORE
+              </Button>
+              <span className="observe-status">VISUAL ARCHIVE</span>
+            </div>
           </div>
-        </div>
 
-        <div className="observe-hero-meta">
-          <span>23° 48′ N</span>
-          <span>90° 24′ E</span>
-          <span>DHAKA · BANGLADESH</span>
+          <div className="observe-hero-meta">
+            <span>23° 48′ N</span>
+            <span>90° 24′ E</span>
+            <span>DHAKA · BANGLADESH</span>
+          </div>
         </div>
       </section>
 
@@ -378,10 +380,9 @@ export default function ObservePage() {
             <div className="transition-actions">
               <Button
                 to="/wonder"
-                variant="solid"
-                className="transition-btn-primary bg-zinc-100 text-zinc-950 font-medium rounded-full px-8 py-3.5 hover:bg-white transition-all shadow-lg text-sm"
+                variant="glass"
               >
-                ENTER CHAPTER 02: WONDER →
+                READ WONDER
               </Button>
             </div>
           </div>

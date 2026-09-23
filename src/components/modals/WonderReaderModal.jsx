@@ -64,8 +64,6 @@ export default function WonderReaderModal({ article, onClose }) {
         <div className="reader-top">
           <div className="reader-meta">
             <span id="readerCategory">{article.category}</span>
-            <span id="readerDate">{article.date}</span>
-            <span id="readerTime">{article.time}</span>
           </div>
 
           <button

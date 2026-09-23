@@ -16,6 +16,7 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
   const isWonder = location.pathname.startsWith('/wonder');
   const isCreate = location.pathname.startsWith('/create');
   const isSelf = location.pathname.startsWith('/self');
+  const isContact = location.pathname.startsWith('/contact') || location.pathname.startsWith('/get-in-touch');
 
   const handleBack = e => {
     e.preventDefault();
@@ -92,26 +93,14 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
           <span className="theme-icon theme-icon-moon" aria-hidden="true">◐</span>
         </button>
 
-        {isHome ? (
-          <a
-            href="#get-in-touch"
-            className="connect-button magnetic"
-            aria-label="Get in touch with Shahriar"
-            onClick={e => handleNavClick(e, 'get-in-touch')}
-          >
-            <span>GET IN TOUCH</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-        ) : (
-          <Link
-            to="/#get-in-touch"
-            className="connect-button magnetic"
-            aria-label="Get in touch with Shahriar"
-          >
-            <span>GET IN TOUCH</span>
-            <span aria-hidden="true">↗</span>
-          </Link>
-        )}
+        <Link
+          to="/contact"
+          className={`connect-button magnetic ${isContact ? 'active' : ''}`}
+          aria-label="Get in touch with Shahriar"
+        >
+          <span>GET IN TOUCH</span>
+          <span aria-hidden="true">↗</span>
+        </Link>
 
         <button
           className="menu-button"

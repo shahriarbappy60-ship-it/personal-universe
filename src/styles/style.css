@@ -4305,6 +4305,31 @@ html[data-theme="light"] .becoming-stage:hover .becoming-stage-statement {
    GET IN TOUCH SECTION (QUIET FINAL SPACE)
 ========================================================= */
 
+/* Dedicated Contact Page */
+.contact-page {
+    min-height: calc(100vh - 120px);
+    min-height: calc(100svh - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: clamp(80px, 12vh, 120px);
+    padding-bottom: clamp(60px, 8vh, 100px);
+    box-sizing: border-box;
+}
+
+.contact-page .contact-page-inner {
+    width: 100%;
+}
+
+.contact-page .get-in-touch-section {
+    border-top: none !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    background: transparent !important;
+}
+
 .get-in-touch-section {
     position: relative;
     padding-top: clamp(140px, 15vw, 190px);

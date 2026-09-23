@@ -11,6 +11,7 @@ import ObservePage from './pages/ObservePage';
 import WonderPage from './pages/WonderPage';
 import SelfPage from './pages/SelfPage';
 import CreatePage from './pages/CreatePage';
+import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 import './styles/style.css';
@@ -79,6 +80,14 @@ export default function App() {
         <Route path="/wonder" element={<WonderPage />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/self" element={<SelfPage />} />
+        <Route
+          path="/contact"
+          element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
+        />
+        <Route
+          path="/get-in-touch"
+          element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
