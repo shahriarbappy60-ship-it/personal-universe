@@ -899,62 +899,28 @@ html[data-theme="light"] .connect-button.active {
 
 .menu-button {
     display: none;
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    min-height: 36px;
-    max-width: 36px;
-    max-height: 36px;
-    border: 1px solid var(--line);
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border: 0;
     background: transparent;
     cursor: pointer;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform .4s var(--ease-spring), border-color .3s ease, background-color .3s ease;
-}
-
-.menu-button:hover {
-    border-color: var(--text);
-}
-
-.menu-button:active {
-    transform: scale(0.92);
 }
 
 .menu-button span {
     display: block;
-    width: 14px;
-    height: 1.2px;
-    margin: 2.2px auto;
+    width: 22px;
+    height: 1px;
+    margin: 5px auto;
     background: var(--text);
     transition: transform .35s var(--ease), opacity .35s ease;
 }
 
 .menu-button[aria-expanded="true"] span:first-child {
-    transform: translateY(3.4px) rotate(45deg);
+    transform: translateY(3px) rotate(45deg);
 }
 
 .menu-button[aria-expanded="true"] span:last-child {
-    transform: translateY(-3.4px) rotate(-45deg);
-}
-
-html[data-theme="light"] .menu-button {
-    border-color: var(--line);
-}
-
-html[data-theme="light"] .menu-button:hover {
-    border-color: var(--text);
+    transform: translateY(-3px) rotate(-45deg);
 }
 
 /* =========================================================
@@ -5189,12 +5155,11 @@ html[data-theme="light"] .footer-social-link {
     .header-right {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 12px;
         flex-shrink: 0;
     }
 
-    .theme-toggle,
-    .menu-button {
+    .theme-toggle {
         width: 36px !important;
         height: 36px !important;
         min-width: 36px !important;
@@ -5218,12 +5183,7 @@ html[data-theme="light"] .footer-social-link {
         -webkit-tap-highlight-color: transparent !important;
     }
 
-    .menu-button {
-        flex-direction: column !important;
-    }
-
-    .theme-toggle:hover,
-    .menu-button:hover {
+    .theme-toggle:hover {
         border-color: var(--text) !important;
     }
 
@@ -5247,6 +5207,10 @@ html[data-theme="light"] .footer-social-link {
         padding: 0 10px;
         margin-right: 0;
         opacity: 0.85;
+    }
+
+    .menu-button {
+        display: block;
     }
 
     .hero {
@@ -5536,12 +5500,12 @@ html[data-theme="light"] .footer-social-link {
     .filter,
     .slider-arrow-btn,
     .btn-master,
+    .menu-button,
     .resonance-item-row {
         min-height: 48px;
     }
 
-    .theme-toggle,
-    .menu-button {
+    .theme-toggle {
         width: 36px !important;
         height: 36px !important;
         min-height: 36px !important;
@@ -5565,12 +5529,7 @@ html[data-theme="light"] .footer-social-link {
         -webkit-tap-highlight-color: transparent !important;
     }
 
-    .menu-button {
-        flex-direction: column !important;
-    }
-
-    .theme-toggle:hover,
-    .menu-button:hover {
+    .theme-toggle:hover {
         border-color: var(--text) !important;
     }
 
