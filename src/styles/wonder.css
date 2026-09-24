@@ -1188,3 +1188,33 @@ html[data-theme="light"] .wonder-essay-pill-cta {
         transition-duration: .01ms !important;
     }
 }
+
+/* WONDER PAGE INLINE ESSAY ACCORDION STATES */
+.wonder-essay-wrapper.is-expanded .archive-row-body,
+.wonder-essay-heroic-wrapper.is-expanded .archive-row-body {
+    grid-template-rows: 1fr;
+}
+
+.wonder-essay-wrapper.is-expanded .archive-row-body-inner,
+.wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner {
+    opacity: 1;
+    transition-delay: 0.2s;
+    padding-top: 20px;
+}
+
+/* UPDATE REFLECTION ACCORDION TO CSS GRID FOR INFINITE HEIGHT */
+.wonder-reflection-body {
+    display: grid !important;
+    grid-template-rows: 0fr !important;
+    max-height: none !important;
+    transition: grid-template-rows 0.65s var(--ease) !important;
+}
+
+.wonder-reflection-row.is-expanded .wonder-reflection-body {
+    grid-template-rows: 1fr !important;
+    max-height: none !important;
+}
+
+.wonder-reflection-body-inner {
+    min-height: 0;
+}
