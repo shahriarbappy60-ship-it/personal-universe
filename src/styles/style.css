@@ -8916,3 +8916,37 @@ html[data-theme="light"] .project-archive-row:hover {
         box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05) !important;
     }
 }
+
+@media (max-width: 768px) {
+    .wonder-centerpiece-anchors {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 12px !important;
+        flex-wrap: nowrap !important;
+        margin-top: 32px !important;
+        padding-top: 0 !important;
+        border-top: none !important;
+    }
+
+    .wonder-anchor-item {
+        width: 6px !important;
+        height: 6px !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        background-color: var(--line-strong) !important;
+        border: none !important;
+        overflow: hidden;
+        color: transparent !important;
+    }
+
+    .wonder-anchor-item span {
+        display: none !important;
+    }
+
+    .wonder-anchor-item.is-active {
+        background-color: var(--text) !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05) !important;
+    }
+}

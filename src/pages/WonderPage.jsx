@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { contemplationQuotes, reflections, essays } from '../data/wonderData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -77,6 +77,9 @@ export default function WonderPage() {
 
   const activeQuote = contemplationQuotes[activeQuoteIndex] || contemplationQuotes[0];
 
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
   const handleSelectQuote = index => {
     if (index === activeQuoteIndex || isQuoteFading) return;
     setIsQuoteFading(true);
@@ -86,6 +89,23 @@ export default function WonderPage() {
     }, 220);
   };
 
+  const handleTouchStart = e => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = e => {
+    touchEndX.current = e.changedTouches[0].screenX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        // swipe left -> next
+        handleSelectQuote((activeQuoteIndex + 1) % contemplationQuotes.length);
+      } else {
+        // swipe right -> prev
+        handleSelectQuote((activeQuoteIndex - 1 + contemplationQuotes.length) % contemplationQuotes.length);
+      }
+    }
+  };
 
   return (
     <main className="wonder-page" id="mainContent">
@@ -124,9 +144,13 @@ export default function WonderPage() {
           SECTION 2: THE MONUMENTAL CENTERPIECE
           Direct Home Wonder Mirror — Floating Quote on Void
       ═══════════════════════════════════════════════════ */}
-      <section className="wonder-centerpiece-section section-pad" id="wonderCenterpiece">
+    <section className="wonder-centerpiece-section section-pad" id="wonderCenterpiece">
         <div className="wonder-shell">
-          <div className="wonder-centerpiece-stage reveal">
+          <div 
+            className="wonder-centerpiece-stage reveal"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <blockquote
               className={`wonder-centerpiece-quote ${isQuoteFading ? 'fading' : ''}`}
               aria-live="polite"
