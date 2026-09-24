@@ -85,7 +85,7 @@
     white-space: nowrap;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 950px) {
     .wonder-title-line {
         white-space: normal;
     }

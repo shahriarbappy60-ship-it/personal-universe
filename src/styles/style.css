@@ -244,6 +244,12 @@ html[data-theme="light"] .footer-copy {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a, button, input, textarea, select, [role="button"], .magnetic {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 html {
@@ -990,7 +996,7 @@ html[data-theme="light"] .connect-button.active {
     justify-content: space-between;
     height: 52px;
     padding: 0 22px;
-    border-radius: 100px;
+    border-radius: 14px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(24px) saturate(140%);
@@ -1111,7 +1117,7 @@ html[data-theme="light"] .mobile-glass-pill-btn.active {
     align-items: center;
     gap: 8px;
     padding: 10px 22px;
-    border-radius: 100px;
+    border-radius: 14px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(16px);
@@ -5227,13 +5233,13 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .hero {
-        min-height: auto;
+        min-height: 100svh;
         padding-top: 105px;
         padding-bottom: 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         text-align: center;
     }
 
@@ -5473,6 +5479,13 @@ html[data-theme="light"] .footer-social-link {
 }
 
 @media (max-width: 650px) {
+    :root {
+        --ease: cubic-bezier(0.33, 1, 0.68, 1);
+        --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+        --ease-spring: cubic-bezier(0.22, 1, 0.36, 1); /* Remove bounciness for a quiet feel */
+        --theme-duration: 0.85s;
+    }
+
     .site-header {
         top: 10px;
         width: calc(100% - 24px);
@@ -5484,7 +5497,7 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .hero {
-        min-height: auto;
+        min-height: 100svh;
         padding-top: 96px;
         padding-bottom: 50px;
     }
@@ -5509,13 +5522,54 @@ html[data-theme="light"] .footer-social-link {
         grid-template-columns: 1fr;
     }
 
-    /* Minimum 48px touch targets for mobile accessibility */
-    .filter,
-    .slider-arrow-btn,
+    /* Calmer, quiet, and unique mobile animations */
+    html.js-ready .reveal,
+    html.js-ready .reveal-item {
+        transform: translate3d(0, 16px, 0) !important;
+        transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    }
+
+    html.js-ready .reveal.visible,
+    html.js-ready .reveal-item.visible {
+        transform: translate3d(0, 0, 0) !important;
+    }
+
+    /* Hide unneeded noise and long descriptive texts for absolute minimalist mobile look */
+    .noise,
+    .hero-copy,
+    .observe-hero-copy,
+    .section-intro,
+    .self-hero-copy p {
+        display: none !important;
+    }
+
+    /* Smaller, compact pill-shaped buttons for mobile */
     .btn-master,
+    .connect-button {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding: 0 16px !important;
+        font-size: 9.5px !important;
+        border-radius: 100px !important; 
+    }
+
+    .filter,
     .menu-button,
     .resonance-item-row {
-        min-height: 48px;
+        min-height: 40px;
+    }
+
+    /* Fix Observe Slider Arrow Button to be perfectly round */
+    .slider-arrow-btn {
+        min-height: 40px !important;
+        height: 40px !important;
+        width: 40px !important;
+        min-width: 40px !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     .theme-toggle {
@@ -5635,14 +5689,18 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .hero-actions {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
+        gap: 12px !important;
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
+    .hero-actions .btn-master,
     .hero-actions .button,
     .hero-actions .text-button {
-        width: 100%;
-        justify-content: center;
+        width: max-content;
+        flex: 0 0 auto;
     }
 }
 
@@ -5671,6 +5729,17 @@ html[data-theme="light"] .footer-social-link {
     white-space: nowrap;
     outline: none;
     transition: background-color .22s var(--ease), color .22s var(--ease), border-color .22s var(--ease), transform .22s var(--ease), box-shadow .22s var(--ease);
+}
+
+@media (hover: none) {
+    .btn-master, .connect-button, .magnetic, .photo-card-item, .project-card, .slider-arrow-btn, .button, a {
+        transition: opacity 0.2s ease !important;
+        transform: none !important;
+    }
+    
+    .btn-master:active, .connect-button:active, .magnetic:active, .button:active, a:active {
+        opacity: 0.7;
+    }
 }
 
 .btn-master .btn-icon {
@@ -8133,6 +8202,10 @@ html[data-theme="light"] .self-portrait-overlay small {
 
 /* RESPONSIVE BREAKPOINTS FOR SELF PAGE */
 @media (max-width: 992px) {
+    .self-hero-copy h1 {
+        white-space: normal;
+    }
+
     .self-hero-main {
         grid-template-columns: 1fr;
         gap: 3rem;

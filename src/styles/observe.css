@@ -1122,25 +1122,25 @@ text-transform: uppercase;
 }
 
 @media (max-width: 768px) {
-    .observe-hero { min-height: 850px; padding-top: 125px; }
-    .observe-hero-visual { top: 24%; width: min(84vw, 430px); }
-    .observe-hero-content { margin-top: 300px; }
-    .observe-hero h1 { font-size: clamp(54px,14vw,82px); }
-    .observe-hero-copy { max-width: 430px; font-size: 13px; }
-    .observe-hero-actions { align-items: flex-start; flex-direction: column; gap: 18px; }
-    .observe-hero-meta { position: relative; width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; }
-    .observe-scroll { left: 24px; bottom: 32px; }
-    .observe-intro { padding-top: 85px; padding-bottom: 95px; }
-    .archive-section { padding-top: 95px; padding-bottom: 100px; }
-    .archive-heading { align-items: flex-start; flex-direction: column; margin-bottom: 45px; }
-    .observe-gallery { grid-template-columns: 1fr; }
-    .archive-tools { flex-direction: column; align-items: stretch; }
+    .observe-hero { min-height: auto; padding-top: 125px; padding-bottom: 60px; display: flex; flex-direction: column; justify-content: center; }
+    .observe-hero-visual { display: none; }
+    .observe-hero-content { margin-top: 0; }
+    .observe-hero h1 { font-size: clamp(48px, 12vw, 82px); }
+    .observe-hero-copy { max-width: 100%; font-size: 14px; }
+    .observe-hero-actions { align-items: center; flex-direction: row; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+    .observe-hero-meta { position: relative; width: 100%; display: flex; flex-direction: row; justify-content: space-between; align-items: baseline; margin-top: 48px; }
+    .observe-scroll { display: none; }
+    .observe-intro { padding-top: 60px; padding-bottom: 80px; }
+    .archive-section { padding-top: 80px; padding-bottom: 80px; }
+    .archive-heading { align-items: flex-start; flex-direction: column; margin-bottom: 35px; }
+    .observe-gallery { grid-template-columns: 1fr; gap: 16px; }
+    .archive-tools { flex-direction: column; align-items: stretch; gap: 16px; }
     .archive-search { width: 100%; }
-    .archive-visible { align-self: flex-end; }
-    .archive-insights { grid-template-columns: 1fr; }
+    .archive-visible { align-self: flex-start; margin-top: 10px; }
+    .archive-insights { grid-template-columns: 1fr; gap: 20px; }
     .archive-insights .insight-card:last-child { grid-column: auto; }
     .observe-next {
-        padding: 65px 0 80px;
+        padding: 60px 0 60px;
         grid-template-columns: 1fr;
         align-items: start;
         gap: 30px;
@@ -1161,26 +1161,26 @@ text-transform: uppercase;
         margin-right: 0;
         font-size: clamp(30px,8vw,48px);
     }
-    .observe-lightbox { padding: 12px; }
-    .observe-lightbox-panel { padding: 10px; border-radius: 18px; }
-    .observe-lightbox-image-wrap { height: 65vh; border-radius: 12px; }
-    .observe-lightbox-close { top: 20px; right: 20px; }
-    .observe-lightbox-prev, .observe-lightbox-next { width: 40px; height: 40px; margin-top: -20px; }
-    .observe-lightbox-prev { left: 16px; }
-    .observe-lightbox-next { right: 16px; }
-    .observe-lightbox-info { padding: 16px 4px 3px; align-items: flex-start; flex-direction: column; gap: 10px; }
+    .observe-lightbox { padding: 10px; }
+    .observe-lightbox-panel { padding: 10px; border-radius: 16px; }
+    .observe-lightbox-image-wrap { height: 60vh; border-radius: 10px; }
+    .observe-lightbox-close { top: 16px; right: 16px; }
+    .observe-lightbox-prev, .observe-lightbox-next { width: 44px; height: 44px; margin-top: -22px; }
+    .observe-lightbox-prev { left: 10px; }
+    .observe-lightbox-next { right: 10px; }
+    .observe-lightbox-info { padding: 12px 4px 4px; align-items: flex-start; flex-direction: column; gap: 8px; }
 }
 
 @media (max-width: 480px) {
-    .observe-hero { min-height: 790px; }
-    .observe-hero-visual { top: 23%; width: min(88vw, 360px); }
-    .observe-hero-content { margin-top: 265px; }
-    .observe-card { padding: 11px; border-radius: 17px; }
-    .observe-card-frame { border-radius: 12px; }
-    .observe-card-caption { padding: 14px 4px 3px; }
-    .filter-btn { padding: 8px 11px; font-size: 8px; }
+    .observe-hero { padding-top: 110px; }
+    .observe-hero h1 { font-size: clamp(40px, 11vw, 54px); }
+    .observe-hero-content { margin-top: 0; }
+    .observe-card { padding: 10px; border-radius: 14px; }
+    .observe-card-frame { border-radius: 10px; }
+    .observe-card-caption { padding: 12px 4px 2px; }
+    .filter-btn { padding: 10px 14px; font-size: 10px; }
     .observe-next {
-        padding: 55px 0 70px;
+        padding: 50px 0 60px;
     }
 }
 
