@@ -56,7 +56,7 @@ export default function WonderSection({ onOpenEssay }) {
 
       {/* QUIET EDITORIAL STAGE: THOUGHT DIRECTLY ON THE DARK PAGE (NO LARGE CARD) */}
       <div 
-        className="wonder-editorial-stage reveal"
+        className="wonder-editorial-stage reveal swipe-hint-nudge"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >

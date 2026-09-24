@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { observePhotos } from '../../data/observeData';
 import PhotoCard from '../common/PhotoCard';
 import Button from '../common/Button';
@@ -6,7 +6,16 @@ import Button from '../common/Button';
 export default function ObserveSection({ onSelectPhoto }) {
   const [activeFilter, setActiveFilter] = useState('all');
   const [pageIndex, setPageIndex] = useState(0);
-  const pageSize = 3;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const pageSize = isMobile ? 1 : 3;
 
   // Touch swipe support for mobile
   const touchStartX = useRef(0);
@@ -33,25 +42,36 @@ export default function ObserveSection({ onSelectPhoto }) {
     setPageIndex(0);
   };
 
+  const changePage = (newIndex) => {
+    if (newIndex === safePageIndex || isFading) return;
+    if (isMobile) {
+      setIsFading(true);
+      setTimeout(() => {
+        setPageIndex(newIndex);
+        setIsFading(false);
+      }, 220);
+    } else {
+      setPageIndex(newIndex);
+    }
+  };
+
   const handlePrev = () => {
     if (safePageIndex > 0) {
-      setPageIndex(prev => Math.max(prev - 1, 0));
+      changePage(Math.max(safePageIndex - 1, 0));
     }
   };
 
   const handleNext = () => {
     if (safePageIndex < totalPages - 1) {
-      setPageIndex(prev => Math.min(prev + 1, totalPages - 1));
+      changePage(Math.min(safePageIndex + 1, totalPages - 1));
     }
   };
 
-  // Touch swipe handlers (desktop trackpad / tablet only; mobile uses native touch snap carousel)
   const handleTouchStart = e => {
     touchStartX.current = e.changedTouches[0].screenX;
   };
 
   const handleTouchEnd = e => {
-    if (window.innerWidth <= 768) return;
     touchEndX.current = e.changedTouches[0].screenX;
     const diff = touchStartX.current - touchEndX.current;
     if (Math.abs(diff) > 40) {
@@ -84,7 +104,7 @@ export default function ObserveSection({ onSelectPhoto }) {
 
       <div className="observe-slider-wrapper reveal">
         {/* FILTERS & DYNAMIC SLIDER CONTROLS ROW */}
-        <div className="observe-slider-header">
+        <div className={`observe-slider-header ${isMobile ? 'mobile-centered' : ''}`}>
           <div className="filter-bar" style={{ margin: 0 }} aria-label="Photography preview filters">
             {filters.map(f => (
               <button
@@ -100,41 +120,39 @@ export default function ObserveSection({ onSelectPhoto }) {
             ))}
           </div>
 
-          <div className="observe-slider-controls">
-            <span className="slider-counter">
-              {safePageIndex + 1} / {totalPages}
-            </span>
-
-            {/* ONLY SHOW BACK BUTTON AFTER SLIDING FORWARD (safePageIndex > 0) */}
-            {safePageIndex > 0 && (
-              <button
-                className="slider-arrow-btn"
-                type="button"
-                onClick={handlePrev}
-                aria-label="Previous photographs"
-              >
-                ←
-              </button>
-            )}
-
-            {/* ONLY SHOW NEXT BUTTON IF NOT ON LAST PAGE */}
-            {safePageIndex < totalPages - 1 && (
-              <button
-                className="slider-arrow-btn"
-                type="button"
-                onClick={handleNext}
-                aria-label="Next photographs"
-              >
-                →
-              </button>
-            )}
-          </div>
+          {!isMobile && (
+            <div className="observe-slider-controls">
+              <span className="slider-counter">
+                {safePageIndex + 1} / {totalPages}
+              </span>
+              {safePageIndex > 0 && (
+                <button
+                  className="slider-arrow-btn"
+                  type="button"
+                  onClick={handlePrev}
+                  aria-label="Previous photographs"
+                >
+                  ←
+                </button>
+              )}
+              {safePageIndex < totalPages - 1 && (
+                <button
+                  className="slider-arrow-btn"
+                  type="button"
+                  onClick={handleNext}
+                  aria-label="Next photographs"
+                >
+                  →
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
-        {/* 3-CARD EDITORIAL GALLERY GRID (UNIFORM EXACT SAME SIZE) */}
+        {/* GALLERY GRID */}
         <div
-          className="photo-editorial-grid observe-page-grid"
-          key={`${activeFilter}-${safePageIndex}`}
+          className={`photo-editorial-grid observe-page-grid ${isFading ? 'fading' : ''} ${isMobile ? 'swipe-hint-nudge' : ''}`}
+          key={`${activeFilter}-${isMobile ? 'mobile' : safePageIndex}`}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
@@ -151,6 +169,26 @@ export default function ObserveSection({ onSelectPhoto }) {
             );
           })}
         </div>
+
+        {/* MOBILE DOT PAGINATION */}
+        {isMobile && totalPages > 1 && (
+          <nav className="wonder-thought-index mobile-observe-dots" aria-label="Photo pagination">
+            {Array.from({ length: totalPages }).map((_, idx) => {
+              const isActive = idx === safePageIndex;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`wonder-index-item ${isActive ? 'is-active' : ''}`}
+                  aria-selected={isActive}
+                  onClick={() => changePage(idx)}
+                >
+                  <span className="wonder-index-title">Page {idx + 1}</span>
+                </button>
+              );
+            })}
+          </nav>
+        )}
       </div>
 
       {/* UNIFIED ARCHIVE CTA */}

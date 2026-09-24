@@ -147,7 +147,7 @@ export default function WonderPage() {
     <section className="wonder-centerpiece-section section-pad" id="wonderCenterpiece">
         <div className="wonder-shell">
           <div 
-            className="wonder-centerpiece-stage reveal"
+            className="wonder-centerpiece-stage reveal swipe-hint-nudge"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >

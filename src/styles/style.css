@@ -8950,3 +8950,65 @@ html[data-theme="light"] .project-archive-row:hover {
         box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05) !important;
     }
 }
+
+/* =========================================================
+   MOBILE OBSERVE FADER & SWIPE HINT FIXES
+========================================================= */
+
+@media (max-width: 768px) {
+    /* Observe Filters Centered */
+    .observe-slider-header.mobile-centered {
+        justify-content: center !important;
+    }
+    
+    .observe-slider-header.mobile-centered .filter-bar {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Observe Photo Grid Fading */
+    .observe-page-grid {
+        transition: opacity 0.22s var(--ease);
+        opacity: 1;
+    }
+    
+    .observe-page-grid.fading {
+        opacity: 0;
+    }
+
+    /* Override the previous scroll-snap since we use React pagination now */
+    .observe-page-grid {
+        overflow: hidden !important; /* disable native horizontal scroll to prevent conflicts */
+        scroll-snap-type: none !important;
+        justify-content: center;
+    }
+    
+    .observe-slider-card {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Mobile Observe Dots container spacing */
+    .mobile-observe-dots {
+        margin-top: 24px !important;
+    }
+}
+
+/* =========================================================
+   SWIPE HINT ANIMATION (Plays once to hint at sliding)
+========================================================= */
+@keyframes swipeHintNudge {
+    0% { transform: translateX(0); }
+    15% { transform: translateX(-15px); }
+    30% { transform: translateX(5px); }
+    45% { transform: translateX(-5px); }
+    60% { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .swipe-hint-nudge {
+        animation: swipeHintNudge 2.5s cubic-bezier(0.25, 1, 0.5, 1) 1;
+        animation-delay: 1.5s; /* Wait a bit after appearing */
+    }
+}
