@@ -8810,3 +8810,109 @@ html[data-theme="light"] .project-archive-row:hover {
         padding-bottom: 52px;
     }
 }
+
+/* =========================================================
+   MOBILE FIXES FOR OBSERVE AND WONDER (HOME PAGE)
+========================================================= */
+
+@media (max-width: 768px) {
+    /* 1. OBSERVE FILTER ROW - SINGLE LINE, SMALL, NON-BUTTON LOOK */
+    .observe-slider-header {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 10px !important;
+        width: 100%;
+    }
+
+    .filter-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 12px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 4px; /* for safe scroll area */
+    }
+
+    .filter-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-bar .filter {
+        padding: 0 !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        font-size: 8px !important;
+        letter-spacing: 0.12em !important;
+        color: var(--faint) !important;
+        flex-shrink: 0;
+    }
+
+    .filter-bar .filter.active {
+        color: var(--text) !important;
+        font-weight: 500 !important;
+    }
+
+    .observe-slider-controls {
+        width: auto !important;
+        gap: 8px !important;
+        justify-content: flex-end !important;
+        flex-shrink: 0;
+    }
+
+    .slider-counter {
+        font-size: 8px !important;
+        letter-spacing: 0.1em;
+    }
+
+    .slider-arrow-btn {
+        width: auto !important;
+        height: auto !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        font-size: 10px !important;
+        color: var(--muted) !important;
+    }
+    
+    .slider-arrow-btn:active {
+        background: none !important;
+        transform: scale(0.95);
+    }
+
+    /* 2. WONDER SECTION - DOT PAGINATION FOR QUOTES */
+    .wonder-thought-index {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: nowrap !important;
+        margin-top: 32px;
+    }
+
+    .wonder-index-item {
+        width: 6px !important;
+        height: 6px !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        background-color: var(--line-strong) !important;
+        border: none !important;
+        overflow: hidden;
+        color: transparent !important;
+    }
+
+    .wonder-index-title {
+        display: none !important;
+    }
+
+    .wonder-index-item.is-active {
+        background-color: var(--text) !important;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05) !important;
+    }
+}

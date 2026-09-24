@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { wonderEntries } from '../../data/wonderData';
 import Button from '../common/Button';
 
@@ -6,6 +6,9 @@ export default function WonderSection({ onOpenEssay }) {
   // Default to index 0
   const [selectedThoughtIndex, setSelectedThoughtIndex] = useState(0);
   const [isFading, setIsFading] = useState(false);
+  
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const activeEntry = wonderEntries[selectedThoughtIndex] || wonderEntries[0];
 
@@ -16,6 +19,24 @@ export default function WonderSection({ onOpenEssay }) {
       setSelectedThoughtIndex(index);
       setIsFading(false);
     }, 220);
+  };
+
+  const handleTouchStart = e => {
+    touchStartX.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = e => {
+    touchEndX.current = e.changedTouches[0].screenX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        // swipe left -> next
+        handleSelectThought((selectedThoughtIndex + 1) % wonderEntries.length);
+      } else {
+        // swipe right -> prev
+        handleSelectThought((selectedThoughtIndex - 1 + wonderEntries.length) % wonderEntries.length);
+      }
+    }
   };
 
   return (
@@ -34,7 +55,11 @@ export default function WonderSection({ onOpenEssay }) {
       </div>
 
       {/* QUIET EDITORIAL STAGE: THOUGHT DIRECTLY ON THE DARK PAGE (NO LARGE CARD) */}
-      <div className="wonder-editorial-stage reveal">
+      <div 
+        className="wonder-editorial-stage reveal"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="wonder-thought-display">
           <blockquote
             className={`wonder-thought-quote ${isFading ? 'fading' : ''}`}
