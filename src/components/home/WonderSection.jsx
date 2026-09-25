@@ -13,12 +13,8 @@ export default function WonderSection({ onOpenEssay }) {
   const activeEntry = wonderEntries[selectedThoughtIndex] || wonderEntries[0];
 
   const handleSelectThought = index => {
-    if (index === selectedThoughtIndex || isFading) return;
-    setIsFading(true);
-    setTimeout(() => {
-      setSelectedThoughtIndex(index);
-      setIsFading(false);
-    }, 220);
+    if (index === selectedThoughtIndex) return;
+    setSelectedThoughtIndex(index);
   };
 
   const handleTouchStart = e => {
@@ -60,16 +56,28 @@ export default function WonderSection({ onOpenEssay }) {
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="wonder-thought-display">
-          <blockquote
-            className={`wonder-thought-quote ${isFading ? 'fading' : ''}`}
-            aria-live="polite"
+        <div className="wonder-thought-display" style={{ overflow: 'hidden' }}>
+          <div 
+            style={{ 
+              display: 'flex', 
+              width: '100%', 
+              transition: 'transform 0.7s ease-in-out',
+              transform: `translateX(-${selectedThoughtIndex * 100}%)`
+            }}
           >
-            “{activeEntry.thought}”
-          </blockquote>
-
-          <div className={`wonder-thought-meta ${isFading ? 'fading' : ''}`}>
-            <span className="wonder-thought-tag">{activeEntry.tag}</span>
+            {wonderEntries.map((entry, idx) => (
+              <div key={idx} style={{ flex: '0 0 100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <blockquote
+                  className="wonder-thought-quote"
+                  aria-live="polite"
+                >
+                  “{entry.thought}”
+                </blockquote>
+                <div className="wonder-thought-meta">
+                  <span className="wonder-thought-tag">{entry.tag}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

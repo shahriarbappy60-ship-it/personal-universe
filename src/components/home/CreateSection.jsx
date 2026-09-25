@@ -70,13 +70,13 @@ export default function CreateSection() {
               </div>
             </div>
 
-            <span className="visual-label">EXPERIMENT / 001</span>
+            <span className="visual-label hide-on-mobile">EXPERIMENT / 001</span>
             <span className="visual-caption">A LIVING DIGITAL UNIVERSE</span>
           </div>
 
           <div className="project-info">
             <div>
-              <span className="project-type">PERSONAL SYSTEM / WEB EXPERIENCE</span>
+              <span className="project-type hide-on-mobile">PERSONAL SYSTEM / WEB EXPERIENCE</span>
               <h3>Personal Universe</h3>
               <p>
                 A personal digital space that brings together my photography,
@@ -86,7 +86,7 @@ export default function CreateSection() {
             </div>
 
             <div>
-              <div className="tag-row" aria-label="Technologies used">
+              <div className="tag-row hide-on-mobile" aria-label="Technologies used">
                 <span>REACT</span>
                 <span>JAVASCRIPT</span>
                 <span>CSS</span>

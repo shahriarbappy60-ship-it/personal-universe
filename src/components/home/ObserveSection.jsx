@@ -43,16 +43,8 @@ export default function ObserveSection({ onSelectPhoto }) {
   };
 
   const changePage = (newIndex) => {
-    if (newIndex === safePageIndex || isFading) return;
-    if (isMobile) {
-      setIsFading(true);
-      setTimeout(() => {
-        setPageIndex(newIndex);
-        setIsFading(false);
-      }, 220);
-    } else {
-      setPageIndex(newIndex);
-    }
+    if (newIndex === safePageIndex) return;
+    setPageIndex(newIndex);
   };
 
   const handlePrev = () => {
@@ -150,24 +142,42 @@ export default function ObserveSection({ onSelectPhoto }) {
         </div>
 
         {/* GALLERY GRID */}
-        <div
-          className={`photo-editorial-grid observe-page-grid ${isFading ? 'fading' : ''} ${isMobile ? 'swipe-hint-nudge' : ''}`}
-          key={`${activeFilter}-${isMobile ? 'mobile' : safePageIndex}`}
+        <div 
+          style={{ overflow: 'hidden', width: '100%' }}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {displayedPhotos.map((photo, localIndex) => {
-            const globalIndex = safePageIndex * pageSize + localIndex;
-            return (
-              <PhotoCard
-                key={photo.id}
-                photo={photo}
-                index={localIndex}
-                className="observe-featured-uniform"
-                onClick={() => onSelectPhoto(photo, globalIndex, filteredPhotos)}
-              />
-            );
-          })}
+          <div 
+            style={{ 
+              display: 'flex', 
+              transition: 'transform 0.7s ease-in-out',
+              transform: `translateX(-${safePageIndex * 100}%)`
+            }}
+          >
+            {Array.from({ length: totalPages }).map((_, pageIdx) => {
+              const pagePhotos = filteredPhotos.slice(pageIdx * pageSize, pageIdx * pageSize + pageSize);
+              return (
+                <div 
+                  key={pageIdx} 
+                  className={`photo-editorial-grid observe-page-grid ${isMobile ? 'swipe-hint-nudge' : ''}`} 
+                  style={{ flex: '0 0 100%', width: '100%', minWidth: '100%' }}
+                >
+                  {pagePhotos.map((photo, localIndex) => {
+                    const globalIndex = pageIdx * pageSize + localIndex;
+                    return (
+                      <PhotoCard
+                        key={photo.id}
+                        photo={photo}
+                        index={localIndex}
+                        className="observe-featured-uniform"
+                        onClick={() => onSelectPhoto(photo, globalIndex, filteredPhotos)}
+                      />
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* MOBILE DOT PAGINATION */}

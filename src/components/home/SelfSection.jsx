@@ -37,9 +37,9 @@ export default function SelfSection() {
         {/* PROMINENT EDITORIAL CONTENT: THE OBSERVER */}
         <div className="about-editorial-simple">
           <div className="about-observer-block">
-            <div className="about-kicker">PERSONAL IDENTITY</div>
-            <h3 className="observer-title">SHAHRIAR KHAN</h3>
-            <div className="observer-role-sub">OBSERVER · DEVELOPER</div>
+            <div className="about-kicker hide-on-mobile">PERSONAL IDENTITY</div>
+            <h3 className="observer-title hide-on-mobile">SHAHRIAR KHAN</h3>
+            <div className="observer-role-sub hide-on-mobile">OBSERVER · DEVELOPER</div>
             <p className="observer-statement">
               “I’m curious about how things work, how people see the world, and what lies beneath the surface. I build with code, capture what catches my eye, and write about the questions that stay with me.”
             </p>

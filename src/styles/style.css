@@ -2761,12 +2761,11 @@ html[data-theme="light"] .visual-caption {
 }
 
 .observer-statement {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: clamp(17px, 1.4vw, 22px);
     line-height: 1.7;
     color: var(--text);
     opacity: 0.95;
-    font-style: italic;
     max-width: 680px;
     margin: 10px 0 0;
 }
@@ -5433,12 +5432,16 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .portrait-card {
+        width: 100%;
         min-height: 370px;
         max-width: 380px;
+        margin: 0 auto;
     }
 
     .about-editorial-simple {
         padding: 0;
+        align-items: center;
+        text-align: center;
     }
 
     .photo-editorial-grid {
@@ -5644,8 +5647,13 @@ html[data-theme="light"] .footer-social-link {
     }
 
     .portrait-card {
+        width: 100%;
         min-height: 310px;
         max-width: 320px;
+        margin: 0 auto;
+    }
+    .portrait-card img {
+        object-position: center top !important;
     }
 
     .resonance-featured-card {
@@ -7177,6 +7185,11 @@ html[data-theme="light"] .saturn-globe {
 
     .project-secondary-column {
         gap: 16px !important;
+        display: none !important;
+    }
+
+    .hide-on-mobile {
+        display: none !important;
     }
 
     .project-secondary-column .project-card {

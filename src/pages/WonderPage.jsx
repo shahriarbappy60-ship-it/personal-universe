@@ -81,12 +81,8 @@ export default function WonderPage() {
   const touchEndX = useRef(0);
 
   const handleSelectQuote = index => {
-    if (index === activeQuoteIndex || isQuoteFading) return;
-    setIsQuoteFading(true);
-    setTimeout(() => {
-      setActiveQuoteIndex(index);
-      setIsQuoteFading(false);
-    }, 220);
+    if (index === activeQuoteIndex) return;
+    setActiveQuoteIndex(index);
   };
 
   const handleTouchStart = e => {
@@ -151,15 +147,29 @@ export default function WonderPage() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            <blockquote
-              className={`wonder-centerpiece-quote ${isQuoteFading ? 'fading' : ''}`}
-              aria-live="polite"
-            >
-              “{activeQuote.thought}”
-            </blockquote>
-
-            <div className={`wonder-centerpiece-meta ${isQuoteFading ? 'fading' : ''}`}>
-              <span className="wonder-centerpiece-attribution">{activeQuote.tag}</span>
+            <div style={{ overflow: 'hidden', width: '100%' }}>
+              <div 
+                style={{ 
+                  display: 'flex', 
+                  width: '100%',
+                  transition: 'transform 0.7s ease-in-out',
+                  transform: `translateX(-${activeQuoteIndex * 100}%)`
+                }}
+              >
+                {contemplationQuotes.map((quote, idx) => (
+                  <div key={idx} style={{ flex: '0 0 100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <blockquote
+                      className="wonder-centerpiece-quote"
+                      aria-live="polite"
+                    >
+                      “{quote.thought}”
+                    </blockquote>
+                    <div className="wonder-centerpiece-meta">
+                      <span className="wonder-centerpiece-attribution">{quote.tag}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Philosophical Focus Anchors */}
