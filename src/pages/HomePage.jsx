@@ -23,7 +23,7 @@ export default function HomePage({ onOpenContact, setActiveSection }) {
   useMagnetic([]);
 
   useEffect(() => {
-    document.title = "Shahriar — Personal Universe";
+    document.title = "Shahriar's Personal Universe";
   }, []);
 
   useEffect(() => {

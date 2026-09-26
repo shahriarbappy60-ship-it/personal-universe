@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
+import { projectsData } from '../../data/projectsData';
 
 export default function CreateSection() {
+  const featuredProject = projectsData.find(p => p.featured) || projectsData[0];
+  const secondaryProjects = projectsData.filter(p => !p.featured);
+
   return (
     <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="create">
       <div className="section-heading reveal">
@@ -70,31 +74,28 @@ export default function CreateSection() {
               </div>
             </div>
 
-            <span className="visual-label hide-on-mobile">EXPERIMENT / 001</span>
-            <span className="visual-caption">A LIVING DIGITAL UNIVERSE</span>
+            <span className="visual-label hide-on-mobile">{featuredProject.visualLabel}</span>
+            <span className="visual-caption">{featuredProject.visualCaption}</span>
           </div>
 
           <div className="project-info">
             <div>
-              <span className="project-type hide-on-mobile">PERSONAL SYSTEM / WEB EXPERIENCE</span>
-              <h3>Personal Universe</h3>
+              <span className="project-type hide-on-mobile">{featuredProject.type.toUpperCase()}</span>
+              <h3>{featuredProject.title}</h3>
               <p>
-                A personal digital space that brings together my photography,
-                writing, projects, ideas, and evolving identity in one interactive
-                web experience.
+                {featuredProject.homeDescription}
               </p>
             </div>
 
             <div>
               <div className="tag-row hide-on-mobile" aria-label="Technologies used">
-                <span>REACT</span>
-                <span>JAVASCRIPT</span>
-                <span>CSS</span>
-                <span>VITE</span>
+                {featuredProject.technologies.map(tech => (
+                  <span key={tech}>{tech.toUpperCase()}</span>
+                ))}
               </div>
 
-              <a href="#home" className="arrow-link">
-                <span>Current chapter</span>
+              <a href={featuredProject.homeLink} className="arrow-link">
+                <span>{featuredProject.homeLinkText}</span>
                 <span className="arrow-icon" aria-hidden="true">↗</span>
               </a>
             </div>
@@ -103,37 +104,27 @@ export default function CreateSection() {
 
         {/* RIGHT: TWO SECONDARY PROJECT CARDS STACKED VERTICALLY */}
         <div className="project-secondary-column">
-          <Link to="/create" className="project-card reveal-item" aria-label="Explore Student Assignment Portal">
-            <div className="project-card-header">
-              <span className="project-index">02 / ACADEMIC UTILITY</span>
-              <span className="project-card-arrow" aria-hidden="true">↗</span>
-            </div>
-            <h3>Student Assignment Portal</h3>
-            <p>
-              A university-focused interface for organizing
-              assignments, deadlines and academic workflow.
-            </p>
-            <div className="project-bottom">
-              <span>WEB DEVELOPMENT</span>
-              <span>2025</span>
-            </div>
-          </Link>
-
-          <Link to="/create" className="project-card reveal-item delay-1" aria-label="Explore SEU Tech Event">
-            <div className="project-card-header">
-              <span className="project-index">03 / EVENT PLATFORM</span>
-              <span className="project-card-arrow" aria-hidden="true">↗</span>
-            </div>
-            <h3>SEU Tech Event</h3>
-            <p>
-              An event information and registration experience
-              designed for a university technology symposium.
-            </p>
-            <div className="project-bottom">
-              <span>HTML / CSS / UI</span>
-              <span>2024</span>
-            </div>
-          </Link>
+          {secondaryProjects.map((project, idx) => (
+            <Link
+              key={project.id}
+              to="/create"
+              className={`project-card reveal-item ${idx > 0 ? `delay-${idx}` : ''}`}
+              aria-label={`Explore ${project.title}`}
+            >
+              <div className="project-card-header">
+                <span className="project-index">{project.index} / {project.cardCategory}</span>
+                <span className="project-card-arrow" aria-hidden="true">↗</span>
+              </div>
+              <h3>{project.title}</h3>
+              <p>
+                {project.cardDescription}
+              </p>
+              <div className="project-bottom">
+                <span>{project.categoryTag}</span>
+                <span>{project.year}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 

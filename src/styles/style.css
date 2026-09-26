@@ -8805,6 +8805,10 @@ html[data-theme="light"] .project-archive-row:hover {
     color: #ffffff;
 }
 
+html[data-theme="light"] .project-archive-row:hover .archive-row-title {
+    color: #000000;
+}
+
 .archive-row-type {
     display: block;
     font-family: var(--font-mono);

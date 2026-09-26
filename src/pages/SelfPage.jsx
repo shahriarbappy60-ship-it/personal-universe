@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
+import { projectsData } from '../data/projectsData';
 
 export default function SelfPage() {
   useScrollReveal([]);
@@ -84,33 +85,15 @@ export default function SelfPage() {
     { index: '08', name: 'Git / GitHub', status: 'Working Knowledge', note: 'Version control · collaboration workflows' }
   ];
 
-  const selectedProjects = [
-    {
-      index: '01',
-      title: 'Personal Universe',
-      type: 'Digital Space · Ongoing',
-      desc: 'A living digital space built around observation, thought, creativity, learning, and the evolving identity of its creator.',
-      tech: 'React · JavaScript · CSS Architecture',
-      note: 'Django backend planned',
-      link: '/'
-    },
-    {
-      index: '02',
-      title: 'Student Assignment Portal',
-      type: 'Academic Project',
-      desc: 'A university-focused interface engineered for organizing course assignments, tracking deadlines, and structuring academic workflow.',
-      tech: 'HTML · CSS · JavaScript',
-      link: null
-    },
-    {
-      index: '03',
-      title: 'SEU Tech Event',
-      type: 'Academic Project',
-      desc: 'An interactive event portal and registration interface designed for a university engineering and technology symposium.',
-      tech: 'HTML · CSS · JavaScript',
-      link: null
-    }
-  ];
+  const selectedProjects = projectsData.map(proj => ({
+    index: proj.index,
+    title: proj.title,
+    type: proj.selfType || proj.type,
+    desc: proj.description,
+    tech: proj.selfTech || proj.technologies.join(' · '),
+    note: proj.selfNote,
+    link: proj.selfLink
+  }));
 
   return (
     <main className="self-page minimalist-dossier" id="mainContent">
