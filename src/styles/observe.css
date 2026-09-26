@@ -387,8 +387,8 @@ html[data-theme="light"] .liquid-lens-shadow {
 
 @media (max-width: 950px) {
     .observe-hero {
-        min-height: 900px;
-        padding-top: 150px;
+        min-height: 860px;
+        padding-top: 130px;
         align-items: flex-start;
     }
     .observe-hero-visual {
@@ -397,45 +397,43 @@ html[data-theme="light"] .liquid-lens-shadow {
         width: min(72vw, 500px);
     }
     .observe-hero-content {
-        margin-top: 320px;
+        margin-top: 240px;
     }
 }
 
 .observe-intro {
-padding-top: 110px;
-padding-bottom: 130px;
+padding-top: 88px;
+padding-bottom: 100px;
 border-top: 1px solid var(--line);
 }
 
 .observe-intro-inner {
-max-width: var(--container);
-margin: 0 auto;
-display: grid;
-grid-template-columns: minmax(150px,.35fr) minmax(0,1.65fr);
-gap: 70px;
-}
-
-.observe-intro-index {
-color: var(--faint);
-font-size: 8px;
-font-weight: 500;
-letter-spacing: .12em;
-padding-top: 8px;
+    max-width: 920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 24px;
 }
 
 .observe-intro-content {
-display: grid;
-grid-template-columns: minmax(0,1.25fr) minmax(220px,.55fr);
-gap: 80px;
-align-items: end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 
 .observe-intro-content blockquote {
-max-width: 850px;
-font-family: var(--serif);
-font-size: clamp(34px,4.3vw,62px);
-line-height: 1.02;
-letter-spacing: -.035em;
+    max-width: 860px;
+    margin: 0 auto;
+    font-family: var(--serif);
+    font-size: clamp(30px, 4vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -.025em;
+    text-align: center;
 }
 
 .observe-intro-note {
@@ -459,8 +457,8 @@ line-height: 1.8;
 }
 
 .archive-section {
-padding-top: 130px;
-padding-bottom: 150px;
+padding-top: 96px;
+padding-bottom: 112px;
 border-top: 1px solid var(--line);
 }
 
@@ -1115,8 +1113,8 @@ text-transform: uppercase;
 }
 
 @media (max-width: 950px) {
-    .observe-intro-inner { grid-template-columns: 1fr; gap: 25px; }
-    .observe-intro-content { grid-template-columns: 1fr; gap: 40px; }
+    .observe-intro-inner { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .observe-intro-content { display: flex; justify-content: center; text-align: center; }
     .archive-toolbar { align-items: flex-start; flex-direction: column; }
     .archive-tools { width: 100%; justify-content: space-between; }
 }
@@ -2071,7 +2069,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
 /* Zero-Box Open Horizon Gateway (Completely Boxless & Open) */
 .observe-open-gateway {
-    margin: 120px auto 70px;
+    margin: 60px auto 50px;
     text-align: center;
     max-width: 780px;
     padding: 0 20px;
@@ -2157,8 +2155,8 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
    IMMERSIVE EDITORIAL CHAPTER TRANSITION
 ========================================================= */
 .observe-chapter-transition {
-    margin-top: 130px;
-    padding: 110px 24px 80px;
+    margin-top: 72px;
+    padding: 72px 24px 56px;
     text-align: center;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     display: flex;
@@ -2302,7 +2300,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     }
 
     .observe-hero-content {
-        margin-top: 130px !important;
+        margin-top: 70px !important;
         text-align: center;
     }
 
@@ -2357,11 +2355,25 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
     .observe-intro-inner {
         padding: 0 16px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .observe-intro-content {
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
     }
 
     .observe-intro blockquote {
         font-size: clamp(20px, 5.8vw, 28px) !important;
         line-height: 1.35 !important;
+        text-align: center !important;
+        margin: 0 auto !important;
     }
 
     /* Archive Section & Toolbar Mobile */
@@ -2383,17 +2395,29 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     }
 
     .archive-toolbar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
         gap: 16px !important;
+        margin-top: 16px !important;
     }
 
+    /* 1. Category names: minimal typographic tabs matching Home observe section */
     .filter-categories {
         display: flex !important;
+        flex-wrap: nowrap !important;
+        justify-content: center !important;
+        align-items: center !important;
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
         scrollbar-width: none !important;
-        padding-bottom: 4px !important;
-        gap: 6px !important;
+        gap: 20px !important;
         width: 100% !important;
+        padding: 4px 0 !important;
+        margin: 0 auto !important;
+        background: transparent !important;
+        border: none !important;
+        text-align: center !important;
     }
 
     .filter-categories::-webkit-scrollbar {
@@ -2401,26 +2425,162 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     }
 
     .filter-btn {
+        min-height: auto !important;
+        height: auto !important;
+        padding: 0 !important;
+        background: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        font-family: var(--font-mono) !important;
+        font-size: 8.5px !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.14em !important;
+        text-transform: uppercase !important;
+        color: var(--faint) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
         flex-shrink: 0 !important;
-        padding: 8px 14px !important;
-        font-size: 9px !important;
         white-space: nowrap !important;
+        cursor: pointer !important;
+        transition: color 0.25s var(--ease) !important;
     }
 
-    .archive-tools {
-        flex-direction: column !important;
+    .filter-btn:hover {
+        background: none !important;
+        border: none !important;
+        color: var(--text) !important;
+    }
+
+    .filter-btn.active {
+        background: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        color: var(--text) !important;
+        font-weight: 600 !important;
+        transform: none !important;
+    }
+
+    .filter-btn small {
+        display: none !important;
+    }
+
+    html[data-theme="light"] .filter-btn {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: rgba(21, 22, 24, 0.45) !important;
+    }
+
+    html[data-theme="light"] .filter-btn.active {
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+    }
+
+    /* 2. Controls Row: Searchbar + Dynamic Grid Icon fitting side-by-side */
+    .archive-controls-right {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
         width: 100% !important;
-        gap: 12px !important;
+        margin-top: 2px !important;
     }
 
-    .archive-search {
+    .archive-controls-right .archive-tools {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        width: auto !important;
+        order: 1 !important;
+        display: flex !important;
+    }
+
+    .archive-controls-right .archive-search {
+        width: 100% !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        padding: 0 16px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        border-radius: 9999px !important;
+        box-sizing: border-box !important;
+    }
+
+    .archive-controls-right .archive-search svg {
+        width: 14px !important;
+        height: 14px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .archive-controls-right .archive-search input {
+        font-size: 14px !important;
+        height: 100% !important;
+        padding: 0 !important;
         width: 100% !important;
     }
 
-    .archive-search input {
-        font-size: 16px !important; /* Prevents auto-zoom on iOS */
-        height: 46px !important;
-        padding-left: 38px !important;
+    .archive-controls-right .observe-view-switch-single {
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        display: flex !important;
+        align-items: center !important;
+        margin: 0 !important;
+    }
+
+    .observe-dynamic-view-btn {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        color: var(--text) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-sizing: border-box !important;
+        cursor: pointer !important;
+        transition: all 0.25s ease !important;
+    }
+
+    .observe-dynamic-view-btn:active {
+        transform: scale(0.92) !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-label,
+    .observe-dynamic-view-btn .view-btn-cycle-hint {
+        display: none !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-icon-box {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-icon-box svg {
+        width: 17px !important;
+        height: 17px !important;
+        display: block !important;
+        stroke: currentColor !important;
+    }
+
+    html[data-theme="light"] .observe-dynamic-view-btn {
+        background: rgba(0, 0, 0, 0.05) !important;
+        border-color: rgba(0, 0, 0, 0.12) !important;
+        color: #18181b !important;
     }
 
     .archive-visible {
@@ -2735,19 +2895,6 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     .observe-gallery.mode-stream .photo-card-item .photo-frame,
     .observe-gallery.mode-stream .photo-card-item .photo-frame img {
         border-radius: 18px !important;
-    }
-
-    .observe-dynamic-view-btn {
-        padding: 5px 12px 5px 6px !important;
-    }
-
-    .view-btn-icon-box {
-        width: 26px !important;
-        height: 26px !important;
-    }
-
-    .view-btn-current {
-        font-size: 10px !important;
     }
 }
 

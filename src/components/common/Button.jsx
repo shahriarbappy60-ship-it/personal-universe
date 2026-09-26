@@ -17,16 +17,23 @@ export default function Button({
 }) {
   const baseClass = `btn-master btn-${variant} magnetic ${className}`.trim();
 
-  // If icon is explicitly provided (or null/false), honor it.
-  // Otherwise, if children text already has an arrow symbol (→, ←, ↑, ↓, ↗, ↘), do not append duplicate!
-  const hasArrowInChildren = typeof children === 'string' && /[→←↑↓↗↘]/.test(children);
-  const effectiveIcon = icon !== undefined ? icon : (hasArrowInChildren ? null : '→');
+  // Extract trailing arrow from string children if present, so it is cleanly managed by .btn-icon
+  let cleanChildren = children;
+  let detectedIcon = null;
+  if (typeof children === 'string') {
+    const arrowMatch = children.match(/[\s\u00A0]*([→←↑↓↗↘])[\s\u00A0]*$/);
+    if (arrowMatch) {
+      detectedIcon = arrowMatch[1];
+      cleanChildren = children.replace(/[\s\u00A0]*[→←↑↓↗↘][\s\u00A0]*$/, '').trim();
+    }
+  }
 
+  const effectiveIcon = icon !== undefined ? icon : (detectedIcon || '→');
   const isDown = effectiveIcon === '↓';
 
   const content = (
     <>
-      <span className="btn-text">{children}</span>
+      <span className="btn-text">{cleanChildren}</span>
       {effectiveIcon && (
         <span className={`btn-icon ${isDown ? 'btn-icon-down' : ''}`} aria-hidden="true">
           {effectiveIcon}

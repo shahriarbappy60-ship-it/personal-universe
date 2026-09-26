@@ -179,9 +179,8 @@ export default function ObservePage() {
       {/* EDITORIAL STATEMENT */}
       <section className="observe-intro section-pad">
         <div className="observe-intro-inner">
-          <div className="observe-intro-index reveal">STATEMENT / 001</div>
           <div className="observe-intro-content">
-            <blockquote className="reveal delay-1">
+            <blockquote className="reveal">
               “Photography is not always about capturing something extraordinary.
               Sometimes it is simply about noticing what was already there.”
             </blockquote>
@@ -325,7 +324,7 @@ export default function ObservePage() {
                     onClick={() => setSelectedAlbumId(null)}
                     aria-label="Back to all albums"
                   >
-                    <span aria-hidden="true">←</span>
+                    <span aria-hidden="true" className="btn-icon">←</span>
                     <span>Back to all albums</span>
                   </button>
 

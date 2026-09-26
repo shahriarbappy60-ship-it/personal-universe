@@ -87,6 +87,24 @@
     --light-line: rgba(20, 21, 23, .13);
 
     --container: 1400px;
+
+    /* =====================================================
+       CANONICAL SPACING SYSTEM v1.0.12
+       Desktop targets — use clamp() for fluid scaling
+    ===================================================== */
+    --section-space: 96px;
+    --section-space-major: 112px;
+    --section-heading-gap: 44px;
+    --content-gap: 24px;
+    --grid-gap: 24px;
+    --card-gap: 20px;
+
+    /* Mobile targets (applied via @media overrides below) */
+    --section-space-mobile: 64px;
+    --section-space-major-mobile: 80px;
+    --section-heading-gap-mobile: 28px;
+    --content-gap-mobile: 20px;
+    --grid-gap-mobile: 16px;
 }
 
 /* =========================================================
@@ -1163,8 +1181,8 @@ html[data-theme="light"] .mobile-connect-btn:active {
 
 .section {
     position: relative;
-    padding-top: clamp(128px, 12vw, 144px) !important;
-    padding-bottom: 150px;
+    padding-top: clamp(96px, 9vw, 112px) !important;
+    padding-bottom: clamp(96px, 9vw, 112px);
     scroll-margin-top: 112px !important;
 }
 
@@ -1174,7 +1192,7 @@ html[data-theme="light"] .mobile-connect-btn:active {
 
 .section-heading {
     max-width: var(--container);
-    margin: 0 auto 70px;
+    margin: 0 auto var(--section-heading-gap);
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
     gap: 80px;
@@ -2521,8 +2539,8 @@ html[data-theme="light"] .visual-caption {
 
 .project-secondary-column .project-card {
     flex: 1;
-    min-height: 270px;
-    padding: clamp(24px, 2.8vw, 32px);
+    min-height: 230px;
+    padding: clamp(20px, 2.2vw, 26px);
     border-radius: 20px;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -3459,8 +3477,8 @@ html[data-theme="light"] .meta-tag-dot {
 
 /* 5. Minimal Footer Box */
 .self-minimal-footer {
-    padding-top: 60px;
-    padding-bottom: 90px;
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 .minimal-footer-box {
@@ -4397,8 +4415,8 @@ html[data-theme="light"] .becoming-stage:hover .becoming-stage-statement {
 
 .get-in-touch-section {
     position: relative;
-    padding-top: clamp(140px, 15vw, 190px);
-    padding-bottom: clamp(110px, 13vw, 180px);
+    padding-top: clamp(96px, 11vw, 120px);
+    padding-bottom: clamp(80px, 10vw, 110px);
     scroll-margin-top: 110px;
     background: var(--bg);
     border-top: 1px solid var(--line-soft);
@@ -5763,6 +5781,30 @@ html[data-theme="light"] .footer-social-link {
     transform: translateY(3px);
 }
 
+/* Mobile Button Optimization: Remove arrows from all buttons & center text */
+@media (max-width: 768px) {
+    .btn-master .btn-icon,
+    .btn-icon,
+    .btn .btn-icon,
+    .self-cv-download-btn .btn-icon,
+    .album-back-btn .btn-icon,
+    .mobile-connect-btn span:last-child {
+        display: none !important;
+    }
+
+    .btn-master {
+        gap: 0 !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+
+    .btn-master .btn-text {
+        text-align: center !important;
+    }
+}
+
 .btn-master:focus-visible {
     outline: 2px solid var(--text);
     outline-offset: 3px;
@@ -6376,8 +6418,8 @@ html[data-theme="light"] .arch-plane {
 .create-gateway,
 .wonder-gateway,
 .observe-open-gateway {
-    margin-top: 100px;
-    padding: 70px 40px;
+    margin-top: 60px;
+    padding: 52px 40px;
     border-radius: 24px;
     background: var(--surface);
     border: 1px solid var(--line);
@@ -6918,13 +6960,18 @@ html[data-theme="light"] .arch-plane {
 ========================================================= */
 @media (max-width: 640px) {
     .section-pad {
-        padding-top: 80px !important;
-        padding-bottom: 80px !important;
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
     }
 
     .hero.section-pad {
-        padding-top: 105px !important;
-        padding-bottom: 40px !important;
+        padding-top: 100px !important;
+        padding-bottom: 36px !important;
+    }
+
+    .section {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
     }
 
     .section-heading h2 {
@@ -6944,6 +6991,9 @@ html[data-theme="light"] .arch-plane {
     }
 
     .filter-categories {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         overflow-x: auto;
         padding-bottom: 6px;
         -webkit-overflow-scrolling: touch;
@@ -6955,7 +7005,8 @@ html[data-theme="light"] .arch-plane {
     }
 
     .archive-tools {
-        width: 100%;
+        flex: 1;
+        min-width: 0;
     }
 
     .archive-search {
@@ -6973,7 +7024,6 @@ html[data-theme="light"] .arch-plane {
     }
 
     .button,
-    .filter-btn,
     .wonder-filter-chip,
     .observe-view-btn {
         min-height: 44px;
@@ -7232,14 +7282,14 @@ html[data-theme="light"] .saturn-globe {
 .self-section-block {
     position: relative;
     border-top: 1px solid var(--line-soft);
-    padding: clamp(60px, 8vw, 120px) 0;
+    padding: clamp(52px, 6vw, 84px) 0;
 }
 
 /* 01 / IDENTITY HERO */
 .self-hero {
     position: relative;
-    padding-top: clamp(100px, 12vw, 150px);
-    padding-bottom: clamp(60px, 8vw, 100px);
+    padding-top: clamp(88px, 10vw, 120px);
+    padding-bottom: clamp(52px, 6vw, 80px);
 }
 
 .self-hero-top {
@@ -8312,6 +8362,15 @@ html[data-theme="light"] .self-portrait-overlay small {
 
     .self-elsewhere-list {
         grid-template-columns: 1fr;
+    }
+
+    .self-section-block {
+        padding: 52px 0;
+    }
+
+    .self-hero {
+        padding-top: 80px;
+        padding-bottom: 44px;
     }
 }/* CREATE PAGE SPECIFIC EDITORIAL STYLES */
 .create-how-build {
