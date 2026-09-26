@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Shahriar's Personal Universe</title>
+  <desc id="desc">A black space-themed OG image featuring a large gray planet with orbiting rings and the text Shahriar's Personal Universe · 2026.</desc>
+
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="55%" stop-color="#030303"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+
+    <radialGradient id="planetGrad" cx="35%" cy="30%" r="90%">
+      <stop offset="0%" stop-color="#f4f4f4"/>
+      <stop offset="22%" stop-color="#dfe2e7"/>
+      <stop offset="55%" stop-color="#b7bcc7"/>
+      <stop offset="75%" stop-color="#595d67"/>
+      <stop offset="100%" stop-color="#111316"/>
+    </radialGradient>
+
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="18%" stop-color="#444a52"/>
+      <stop offset="50%" stop-color="#dedfe4"/>
+      <stop offset="82%" stop-color="#444a52"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="16" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGlow)"/>
+
+  <g opacity="0.25">
+    <path d="M111 488 C260 450, 380 445, 520 465" fill="none" stroke="#dfe4ea" stroke-width="1.5"/>
+    <path d="M690 476 C840 448, 1000 456, 1110 492" fill="none" stroke="#dfe4ea" stroke-width="1.5"/>
+  </g>
+
+  <g transform="translate(0 10)">
+    <ellipse cx="610" cy="340" rx="305" ry="122" fill="none" stroke="url(#ringGrad)" stroke-width="8" opacity="0.9" transform="rotate(-18 610 340)"/>
+    <ellipse cx="610" cy="340" rx="295" ry="112" fill="none" stroke="#0d0f12" stroke-width="30" opacity="0.95" transform="rotate(-18 610 340)"/>
+    <ellipse cx="610" cy="340" rx="265" ry="98" fill="none" stroke="#2d3136" stroke-width="18" opacity="0.7" transform="rotate(-18 610 340)"/>
+
+    <circle cx="416" cy="222" r="8" fill="#f5f5f5" opacity="0.9"/>
+    <circle cx="776" cy="394" r="6" fill="#f5f5f5" opacity="0.85"/>
+    <circle cx="870" cy="275" r="12" fill="#f5f5f5" opacity="0.8"/>
+
+    <circle cx="420" cy="270" r="160" fill="url(#planetGrad)"/>
+    <circle cx="420" cy="270" r="145" fill="none" stroke="#1b1e22" stroke-width="2" opacity="0.25"/>
+    <ellipse cx="390" cy="210" rx="80" ry="46" fill="#ffffff" opacity="0.18" transform="rotate(-18 390 210)"/>
+    <ellipse cx="510" cy="288" rx="48" ry="72" fill="#000000" opacity="0.12" transform="rotate(25 510 288)"/>
+
+    <g filter="url(#softGlow)">
+      <circle cx="420" cy="270" r="165" fill="none" stroke="#f8f9fb" stroke-opacity="0.08" stroke-width="24"/>
+    </g>
+  </g>
+
+  <g>
+    <text x="600" y="495" text-anchor="middle" fill="#edf0f3" font-size="36" font-family="Georgia, 'Times New Roman', serif" letter-spacing="6" opacity="0.9">SHAHRIAR'S PERSONAL UNIVERSE</text>
+    <text x="600" y="535" text-anchor="middle" fill="#d8dde3" font-size="18" font-family="Arial, Helvetica, sans-serif" letter-spacing="10" opacity="0.9">• 2026 •</text>
+  </g>
+</svg>
