@@ -38,10 +38,10 @@ export default function SelfPage() {
                 </div>
               </div>
               <p className="self-v2-lead">
-                I’m a Computer Science student, but I’ve never felt that technology is the whole story. I’m drawn to perception, consciousness, creativity, and the quiet questions that sit underneath ordinary life.
+                I’m interested in what exists beneath the obvious — perception, creativity, technology, and the questions that shape how we experience the world.
               </p>
               <p className="self-v2-lead-secondary">
-                Code is one way I make things. Photography is one way I notice them. Thought is one way I make sense of them. They may look like different paths, but they come from the same instinct: to observe, question, and create.
+                I build, observe, and question. Sometimes through code. Sometimes through a photograph. Sometimes through nothing more than a thought.
               </p>
             </div>
 
