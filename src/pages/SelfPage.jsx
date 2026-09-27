@@ -36,10 +36,10 @@ export default function SelfPage() {
                 <span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span>
               </div>
               <p className="self-v2-lead">
-                I’m a Computer Science student drawn to the space between technology, creativity, perception, and the questions that make us look at life differently.
+                I’m a Computer Science student, but I’ve never felt that technology is the whole story. I’m equally drawn to how people see, what we notice, what we overlook, and the questions that remain after the obvious answers are gone.
               </p>
               <p className="self-v2-lead-secondary">
-                I learn by building and exploring. Sometimes that becomes software. Sometimes a photograph. Sometimes, simply, another question.
+                I build with code, photograph what catches my eye, think through ideas that stay with me, and keep learning by following my curiosity. Different forms, same instinct: to observe, understand, and create.
               </p>
               <div className="self-v2-actions">
                 <Button href="#perspective" variant="glass" icon="↓">The way I see things</Button>
@@ -50,11 +50,11 @@ export default function SelfPage() {
             <div className="self-v2-portrait reveal delay-2">
               <figure className="self-v2-portrait-frame">
                 <div className="self-v2-photo-media">
-                  <img src="/images/portrait.jpg" alt="Shahriar Khan" />
+                  <img src="/images/portrait.jpg" alt="Shahriar Khan — The Observer" />
                 </div>
                 <figcaption className="self-v2-portrait-caption">
-                  <strong>SHAHRIAR KHAN</strong>
-                  <span>THE OBSERVER</span>
+                  <strong>THE OBSERVER</strong>
+                  <span>SHAHRIAR KHAN</span>
                 </figcaption>
               </figure>
             </div>
@@ -69,10 +69,10 @@ export default function SelfPage() {
               <span className="self-v2-eyebrow">02 / PERSPECTIVE</span>
               <h2>The way I <em>see things.</em></h2>
             </div>
-            <p className="self-v2-section-intro">How I move through the world: with attention, curiosity, and a tendency to look twice.</p>
+            <p className="self-v2-section-intro">I’m interested in the space between what happens and how we experience it.</p>
           </div>
           <p className="self-v2-statement reveal">
-            I tend to look a little longer than necessary. At people, places, ideas, and the things most of us pass without noticing. I like asking why something is the way it is, exploring different perspectives, and following questions even when they lead somewhere unexpected.
+            I tend to look a little longer than necessary. At people, places, ideas, and the things most of us pass without noticing. I question what feels obvious, try to see beyond a single perspective, and follow a thought even when it leads somewhere I did not expect. For me, observing is not standing outside life; it is a way of being present in it.
           </p>
         </div>
       </section>
@@ -84,7 +84,7 @@ export default function SelfPage() {
               <span className="self-v2-eyebrow">03 / CURIOSITY</span>
               <h2>What keeps me <em>curious.</em></h2>
             </div>
-            <p className="self-v2-section-intro">Not a list of interests. Just a few directions my attention naturally returns to.</p>
+            <p className="self-v2-section-intro">Different subjects, one recurring impulse: understand what is beneath the surface.</p>
           </div>
           <div className="self-v2-curiosity-list reveal">
             {curiosity.map(([index, title, text]) => (
@@ -107,7 +107,7 @@ export default function SelfPage() {
             </div>
           </div>
           <p className="self-v2-life-statement reveal">
-            Music, photography, cinema, and wandering through unfamiliar ideas all give me different ways to notice the world. They are not separate from how I build; they are part of how I look.
+            I’m drawn to quiet moments, music, photography, cinema, unfamiliar places, and conversations that go somewhere deeper than small talk. These things shape how I notice, feel, question, and create. They are part of the same inner world that shows up in my work.
           </p>
         </div>
       </section>
@@ -143,7 +143,7 @@ export default function SelfPage() {
           </div>
           <div className="self-v2-direction reveal">
             <p className="self-v2-direction-statement">
-              I’m building a foundation in software, learning through real projects, and staying open to where curiosity leads next. I don’t have every answer yet. That is part of the point.
+              I’m building a life around curiosity rather than a fixed definition of who I should become. Software gives me a way to build. Photography gives me a way to notice. Thought gives me a way to question. I’m still learning how these parts fit together — and I’m in no hurry to make them separate.
             </p>
             <div className="self-v2-direction-action">
               <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
