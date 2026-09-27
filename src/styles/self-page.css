@@ -77,3 +77,54 @@ html[data-theme="light"] .self-page-v2 .self-v2-photo-card{box-shadow:var(--shad
 @media(max-width:560px){
  .self-page-v2 .self-v2-cv-download{width:100%}
 }
+
+/* SELF FINAL REFINEMENT — preserve original photography, mother-design frame */
+.self-page-v2 .self-v2-portrait-frame{
+  position:relative;
+  aspect-ratio:4/5;
+  max-width:430px;
+  margin-left:auto;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:0;
+  background:var(--surface);
+  padding:0;
+  box-shadow:0 24px 70px rgba(0,0,0,.12);
+}
+.self-page-v2 .self-v2-photo-media{
+  position:absolute;
+  inset:0;
+  aspect-ratio:auto;
+  border-radius:0;
+  overflow:hidden;
+  background:var(--surface);
+}
+.self-page-v2 .self-v2-photo-media::after{display:none}
+.self-page-v2 .self-v2-photo-media img{
+  width:100%;height:100%;display:block;object-fit:cover;
+  filter:none;
+}
+.self-page-v2 .self-v2-portrait-caption{
+  position:absolute;
+  inset:auto 0 0;
+  padding:44px 22px 18px;
+  background:linear-gradient(to top,rgba(0,0,0,.72),transparent);
+  color:#fff;
+}
+.self-page-v2 .self-v2-portrait-caption strong{
+  display:block;font-size:13px;font-weight:500;letter-spacing:.08em
+}
+.self-page-v2 .self-v2-portrait-caption span{
+  display:block;margin-top:5px;font:9px/1.4 var(--font-mono);
+  letter-spacing:.14em;opacity:.72;color:#fff
+}
+.self-page-v2 .self-v2-actions{gap:14px;align-items:center}
+.self-page-v2 .self-v2-cv-download{
+  display:inline-flex;align-items:center;gap:10px;
+  min-height:44px;padding:0 18px;text-decoration:none;
+}
+@media(max-width:760px){
+  .self-page-v2 .self-v2-portrait-frame{max-width:none}
+  .self-page-v2 .self-v2-actions{align-items:stretch}
+  .self-page-v2 .self-v2-cv-download{justify-content:center}
+}
