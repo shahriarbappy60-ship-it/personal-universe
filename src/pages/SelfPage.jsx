@@ -87,7 +87,7 @@ export default function SelfPage() {
 <a className="self-v2-link" href="https://instagram.com/_shahriar.bappy_" target="_blank" rel="noopener noreferrer"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span></span><small>ACTIVE ↗</small></a>
 <span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v5h3v-5h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg><span>Facebook</span></span><small>SOON</small></span>
 <span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M6.5 8.5A2 2 0 1 0 6.5 4a2 2 0 0 0 0 4.5ZM4.5 20h4V10h-4v10Zm6 0h4v-5.2c0-1.4.3-2.8 2-2.8s2 1.6 2 2.8V20h4v-5.8c0-3.1-.7-5.5-4.6-5.5-1.9 0-3.2 1-3.7 2h-.1v-1.7h-3.8V20Z"/></svg><span>LinkedIn</span></span><small>SOON</small></span>
-</nav><div className="self-v2-cv" id="cv"><span className="self-v2-eyebrow">CURRICULUM VITAE</span><h2>A concise <em>snapshot.</em></h2><p>My CV keeps the factual details in one place.</p><a href="/assets/Shahriar_Khan_CV.pdf" download="Shahriar_Khan_CV.pdf" className="btn btn-solid" aria-label="Download Shahriar Khan's Curriculum Vitae as PDF"><span>DOWNLOAD CV</span><span className="btn-icon" aria-hidden="true">↗</span></a></div></div></div></section>
+</nav></div></div></section>
     </main>
   );
 }
