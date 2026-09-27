@@ -51,8 +51,7 @@ export default function SelfPage() {
                   <img src="/images/portrait.jpg" alt="Shahriar Khan — The Observer" />
                 </div>
                 <figcaption className="self-v2-portrait-caption">
-                  <strong>SHAHRIAR KHAN</strong>
-                  <span>THE OBSERVER</span>
+                  <strong>THE OBSERVER</strong>
                 </figcaption>
               </figure>
             </div>
