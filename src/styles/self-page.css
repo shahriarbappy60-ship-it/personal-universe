@@ -109,3 +109,169 @@
  .self-page-v2 .self-v2-lead{max-width:100%;margin-top:24px;font-size:16px;line-height:1.62}
  .self-page-v2 .self-v2-lead-secondary{margin-top:12px;font-size:13.5px;line-height:1.7}
 }
+
+
+/* =========================================================
+   SELF PAGE — FINAL RESPONSIVE RHYTHM
+   Aligned with the site's canonical spacing system.
+========================================================= */
+.self-page-v2{
+  --self-content:min(1200px,calc(100% - 48px));
+  --self-section-space:var(--section-space);
+}
+.self-page-v2 .self-v2-section{
+  padding-block:var(--section-space);
+}
+.self-page-v2 .self-v2-hero{
+  padding-top:clamp(72px,7vw,96px);
+  padding-bottom:var(--section-space-major);
+}
+.self-page-v2 .self-v2-hero-bar{
+  margin-bottom:clamp(40px,4.5vw,60px);
+}
+.self-page-v2 .self-v2-hero-grid{
+  grid-template-columns:minmax(0,1.08fr) minmax(320px,400px);
+  gap:clamp(56px,7vw,104px);
+}
+.self-page-v2 .self-v2-identity-mark{
+  padding-bottom:28px;
+}
+.self-page-v2 .self-v2-name{
+  font-size:clamp(60px,7vw,104px);
+}
+.self-page-v2 .self-v2-lead{
+  max-width:570px;
+  margin-top:26px;
+  font-size:clamp(16px,1.45vw,19px);
+  line-height:1.65;
+}
+.self-page-v2 .self-v2-lead-secondary{
+  max-width:500px;
+  margin-top:11px;
+  font-size:14px;
+  line-height:1.7;
+}
+.self-page-v2 .self-v2-portrait-frame{
+  max-width:400px;
+  border-radius:28px;
+}
+.self-page-v2 .self-v2-section-head{
+  margin-bottom:var(--section-heading-gap);
+}
+.self-page-v2 .self-v2-statement{
+  max-width:880px;
+  margin-left:clamp(0px,4vw,56px);
+}
+.self-page-v2 .self-v2-curiosity-row{
+  padding-block:22px;
+}
+.self-page-v2 .self-v2-foundation-row{
+  padding-block:26px;
+}
+.self-page-v2 .self-v2-direction{
+  gap:40px;
+}
+.self-page-v2 .self-v2-closing{
+  margin-top:72px;
+}
+
+@media (max-width:1024px){
+  .self-page-v2{
+    --self-content:calc(100% - 40px);
+    --self-section-space:clamp(80px,9vw,96px);
+  }
+  .self-page-v2 .self-v2-hero{
+    padding-top:64px;
+    padding-bottom:96px;
+  }
+  .self-page-v2 .self-v2-hero-grid{
+    grid-template-columns:minmax(0,1fr) minmax(300px,360px);
+    gap:48px;
+  }
+  .self-page-v2 .self-v2-name{
+    font-size:clamp(56px,7.5vw,82px);
+  }
+}
+
+@media (max-width:768px){
+  .self-page-v2{
+    --self-content:calc(100% - 32px);
+    --self-section-space:var(--section-space-mobile);
+  }
+  .self-page-v2 .self-v2-section{
+    padding-block:var(--section-space-mobile);
+  }
+  .self-page-v2 .self-v2-section:last-child{
+    padding-bottom:var(--section-space-major-mobile);
+  }
+  .self-page-v2 .self-v2-hero{
+    padding-top:32px;
+    padding-bottom:var(--section-space-major-mobile);
+  }
+  .self-page-v2 .self-v2-hero-bar{
+    margin-bottom:28px;
+  }
+  .self-page-v2 .self-v2-hero-grid{
+    gap:28px;
+  }
+  .self-page-v2 .self-v2-portrait-frame{
+    max-width:none;
+    border-radius:24px;
+  }
+  .self-page-v2 .self-v2-identity-mark{
+    padding-bottom:20px;
+  }
+  .self-page-v2 .self-v2-name{
+    font-size:clamp(45px,12.8vw,70px);
+    line-height:.88;
+  }
+  .self-page-v2 .self-v2-role{
+    margin-top:15px;
+  }
+  .self-page-v2 .self-v2-lead{
+    margin-top:22px;
+    font-size:16px;
+    line-height:1.62;
+  }
+  .self-page-v2 .self-v2-lead-secondary{
+    margin-top:11px;
+    font-size:13.5px;
+    line-height:1.7;
+  }
+  .self-page-v2 .self-v2-section-head{
+    margin-bottom:var(--section-heading-gap-mobile);
+  }
+  .self-page-v2 .self-v2-statement{
+    margin-left:0;
+  }
+  .self-page-v2 .self-v2-curiosity-row{
+    padding-block:20px;
+  }
+  .self-page-v2 .self-v2-foundation-row{
+    padding-block:21px;
+  }
+  .self-page-v2 .self-v2-direction{
+    gap:24px;
+  }
+  .self-page-v2 .self-v2-closing{
+    margin-top:56px;
+  }
+}
+
+@media (max-width:380px){
+  .self-page-v2{
+    --self-content:calc(100% - 28px);
+  }
+  .self-page-v2 .self-v2-name{
+    font-size:43px;
+  }
+  .self-page-v2 .self-v2-portrait-frame{
+    border-radius:21px;
+  }
+  .self-page-v2 .self-v2-section-head h2{
+    font-size:36px;
+  }
+  .self-page-v2 .self-v2-statement{
+    font-size:26px;
+  }
+}
