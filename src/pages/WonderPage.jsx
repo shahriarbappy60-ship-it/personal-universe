@@ -227,92 +227,66 @@ export default function WonderPage() {
             <p className="wonder-tier-subtitle reveal">Long-form explorations of difficult questions.</p>
           </div>
 
-          {/* FLAGSHIP HEROIC GLASS CARD (now an accordion) */}
-          <div className="reveal">
-            <div className={`wonder-essay-heroic-wrapper ${selectedEssay === essays[0].id ? 'is-expanded' : ''}`}>
-            <div
-              className="wonder-essay-heroic-card"
-              onClick={() => setSelectedEssay(prev => prev === essays[0].id ? null : essays[0].id)}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedEssay(prev => prev === essays[0].id ? null : essays[0].id); } }}
-              tabIndex={0}
-              role="button"
-              aria-expanded={selectedEssay === essays[0].id}
-              aria-controls={`wonder-essay-body-${essays[0].id}`}
-            >
-              <span className="wonder-essay-card-tag">
-                ESSAY · {essays[0].number} · {essays[0].tag}
-              </span>
-              <h2 className="wonder-essay-card-title">
-                {essays[0].titleBase}<br /><em>{essays[0].titleAccent}</em>
-              </h2>
-              <p className="wonder-essay-card-excerpt">{essays[0].excerpt}</p>
-              <span className="wonder-essay-pill-cta" aria-hidden="true">
-                {selectedEssay === essays[0].id ? 'CLOSE ESSAY ↑' : 'ENTER ESSAY ↘'}
-              </span>
-            </div>
-
-            <div id={`wonder-essay-body-${essays[0].id}`} className="archive-row-body" aria-hidden={selectedEssay !== essays[0].id}>
-              <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
-                <article
-                  className="reader-body inline-reader"
-                  dangerouslySetInnerHTML={{ __html: essays[0].body }}
-                />
-                <div className="reader-end" style={{ marginBottom: '40px' }}>
-                  <span>END OF ENTRY · {essays[0].number}</span>
-                  <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
-
-          {/* SUBSEQUENT ESSAY LEDGER */}
+          {/* ESSAY LEDGER — one visual language for every entry */}
           <div className="wonder-essays-ledger">
-            {essays.slice(1).map(e => {
+            {essays.map(e => {
               const isExpanded = selectedEssay === e.id;
               return (
                 <div key={e.id} className="reveal">
                   <div className={`wonder-essay-wrapper ${isExpanded ? 'is-expanded' : ''}`}>
                     <article
-                    className="wonder-editorial-row"
-                    onClick={() => setSelectedEssay(prev => prev === e.id ? null : e.id)}
-                    onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); setSelectedEssay(prev => prev === e.id ? null : e.id); } }}
-                    tabIndex={0}
-                    role="button"
-                    aria-expanded={isExpanded}
-                    aria-controls={`wonder-essay-body-${e.id}`}
-                  >
-                    <div className="wonder-row-meta">
-                      <span className="wonder-row-number">{e.number}</span>
-                      <span className="wonder-row-sep">—</span>
-                      <span className="wonder-row-category">ESSAY</span>
-                      <span className="wonder-row-sep">·</span>
-                      <span className="wonder-row-category">{e.readTime}</span>
-                    </div>
-                    <h3 className="wonder-row-title">
-                      {e.titleBase} <em>{e.titleAccent}</em>
-                    </h3>
-                    <p className="wonder-row-description">{e.excerpt}</p>
-                    <div className="wonder-row-action">
-                      <span className="wonder-read-action">
-                        {isExpanded ? 'Close Essay' : 'Enter Essay'}
-                        <span className="wonder-read-arrow" style={{ transform: isExpanded ? 'rotate(-90deg)' : 'none' }} aria-hidden="true">↘</span>
-                      </span>
-                    </div>
-                  </article>
-                  
-                  <div id={`wonder-essay-body-${e.id}`} className="archive-row-body" aria-hidden={!isExpanded}>
-                    <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
-                      <article
-                        className="reader-body inline-reader"
-                        dangerouslySetInnerHTML={{ __html: e.body }}
-                      />
-                      <div className="reader-end" style={{ marginBottom: '40px' }}>
-                        <span>END OF ENTRY · {e.number}</span>
-                        <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
+                      className="wonder-editorial-row"
+                      onClick={() => setSelectedEssay(prev => prev === e.id ? null : e.id)}
+                      onKeyDown={ev => {
+                        if (ev.key === 'Enter' || ev.key === ' ') {
+                          ev.preventDefault();
+                          setSelectedEssay(prev => prev === e.id ? null : e.id);
+                        }
+                      }}
+                      tabIndex={0}
+                      role="button"
+                      aria-expanded={isExpanded}
+                      aria-controls={`wonder-essay-body-${e.id}`}
+                    >
+                      <div className="wonder-row-meta">
+                        <span className="wonder-row-number">{e.number}</span>
+                        <span className="wonder-row-sep">—</span>
+                        <span className="wonder-row-category">ESSAY</span>
+                        <span className="wonder-row-sep">·</span>
+                        <span className="wonder-row-category">{e.readTime}</span>
+                      </div>
+                      <h3 className="wonder-row-title">
+                        {e.titleBase} <em>{e.titleAccent}</em>
+                      </h3>
+                      <p className="wonder-row-description">{e.excerpt}</p>
+                      <div className="wonder-row-action">
+                        <span className="wonder-read-action">
+                          {isExpanded ? 'Close Essay' : 'Enter Essay'}
+                          <span
+                            className="wonder-read-arrow"
+                            style={{ transform: isExpanded ? 'rotate(-90deg)' : 'none' }}
+                            aria-hidden="true"
+                          >↘</span>
+                        </span>
+                      </div>
+                    </article>
+
+                    <div
+                      id={`wonder-essay-body-${e.id}`}
+                      className="archive-row-body"
+                      aria-hidden={!isExpanded}
+                    >
+                      <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
+                        <article
+                          className="reader-body inline-reader"
+                          dangerouslySetInnerHTML={{ __html: e.body }}
+                        />
+                        <div className="reader-end" style={{ marginBottom: '40px' }}>
+                          <span>END OF ENTRY · {e.number}</span>
+                          <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
                   </div>
                 </div>
               );
