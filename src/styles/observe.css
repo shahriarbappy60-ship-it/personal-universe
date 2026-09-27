@@ -4159,3 +4159,38 @@ html[data-theme="light"] .transition-btn-primary:hover {
         border-radius: 12px !important;
     }
 }
+
+
+.observe-stream-index {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    z-index: 2;
+    color: rgba(255,255,255,.88);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .08em;
+    pointer-events: none;
+}
+
+.observe-gallery.mode-stream {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.observe-gallery.mode-stream .observe-stream-card {
+    opacity: 1;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .observe-stream-index {
+        left: 9px;
+        top: 9px;
+        font-size: 7px;
+    }
+
+    .observe-gallery.mode-stream .observe-stream-frame {
+        cursor: pointer;
+    }
+}
