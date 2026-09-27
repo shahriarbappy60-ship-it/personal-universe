@@ -4,3 +4,38 @@
 @media (max-width:560px){.self-page-v2{--self-content:calc(100% - 32px);--self-gap:72px}.self-page-v2 .self-v2-hero{padding-top:36px;padding-bottom:80px}.self-page-v2 .self-v2-hero-bar{margin-bottom:48px}.self-page-v2 .self-v2-hero-bar span:last-child{display:none}.self-page-v2 .self-v2-name{font-size:clamp(50px,15vw,76px);line-height:.9}.self-page-v2 .self-v2-role{font-size:9px;gap:7px 10px}.self-page-v2 .self-v2-lead{font-size:19px;line-height:1.5}.self-page-v2 .self-v2-lead-secondary{font-size:14px}.self-page-v2 .self-v2-actions{margin-top:28px}.self-page-v2 .self-v2-actions .btn{width:100%;justify-content:center}.self-page-v2 .self-v2-section-head h2{font-size:clamp(35px,11vw,52px)}.self-page-v2 .self-v2-statement{font-size:clamp(25px,8vw,38px)}.self-page-v2 .self-v2-statement::before{font-size:54px;margin-bottom:20px}.self-page-v2 .self-v2-explore-grid{grid-template-columns:1fr}.self-page-v2 .self-v2-explore-item,.self-page-v2 .self-v2-explore-item:first-child,.self-page-v2 .self-v2-explore-item:last-child{border-right:0;padding:22px 0}.self-page-v2 .self-v2-explore-item:nth-child(n+2){border-top:1px solid var(--line)}.self-page-v2 .self-v2-life-row{grid-template-columns:1fr;gap:9px}.self-page-v2 .self-v2-edu-row{grid-template-columns:1fr;gap:9px;padding:23px 0}.self-page-v2 .self-v2-status{grid-column:auto}.self-page-v2 .self-v2-skill-row{grid-template-columns:42px minmax(0,1fr);gap:8px 16px}.self-page-v2 .self-v2-skill-status{grid-column:2}.self-page-v2 .self-v2-skill-note{grid-column:2}.self-page-v2 .self-v2-project-row{grid-template-columns:36px minmax(0,1fr);gap:16px;padding:25px 0}.self-page-v2 .self-v2-project-meta{grid-column:2}.self-page-v2 .self-v2-direction-statement{font-size:clamp(29px,9vw,42px)}.self-page-v2 .self-v2-cv{padding:26px 20px}}
 @media (max-width:360px){.self-page-v2{--self-content:calc(100% - 28px)}.self-page-v2 .self-v2-name{font-size:48px}.self-page-v2 .self-v2-lead{font-size:18px}.self-page-v2 .self-v2-project-row h3{font-size:22px}}
 @media (prefers-reduced-motion:reduce){.self-page-v2 *{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+
+
+/* =========================================================
+   SELF — MOTHER DESIGN REFINEMENT
+========================================================= */
+.self-page-v2{overflow:hidden}
+.self-page-v2 .self-v2-container{width:min(1180px,calc(100% - 40px));margin:0 auto}
+.self-page-v2 .self-v2-section{position:relative;padding:clamp(72px,9vw,128px) 0;border-bottom:1px solid var(--line-soft)}
+.self-page-v2 .self-v2-section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,360px);gap:40px;align-items:end;margin-bottom:clamp(38px,5vw,64px)}
+.self-page-v2 .self-v2-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
+.self-page-v2 .self-v2-section-head h2{margin:12px 0 0;font-family:var(--sans);font-size:clamp(34px,5vw,68px);line-height:.98;letter-spacing:-.045em;font-weight:500;color:var(--text)}
+.self-page-v2 .self-v2-section-head h2 em{font-family:var(--serif);font-weight:400}
+.self-page-v2 .self-v2-section-intro{margin:0;color:var(--muted);font-size:14px;line-height:1.75;max-width:34ch}
+.self-page-v2 .self-v2-edu-list,.self-page-v2 .self-v2-skill-list{border-top:1px solid var(--line-soft)}
+.self-page-v2 .self-v2-edu-row{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:30px;align-items:start;padding:28px 0;border-bottom:1px solid var(--line-soft)}
+.self-page-v2 .self-v2-period,.self-page-v2 .self-v2-status,.self-page-v2 .self-v2-skill-status,.self-page-v2 .self-v2-index{font-family:var(--font-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.self-page-v2 .self-v2-edu-row h3{margin:0 0 7px;font-size:clamp(18px,2vw,23px);font-weight:500;letter-spacing:-.02em}
+.self-page-v2 .self-v2-edu-row p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.self-page-v2 .self-v2-skill-row{display:grid;grid-template-columns:40px minmax(180px,.8fr) 100px minmax(220px,1fr);gap:20px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-soft)}
+.self-page-v2 .self-v2-skill-name{font-size:16px;color:var(--text)}
+.self-page-v2 .self-v2-skill-note{font-size:13px;line-height:1.65;color:var(--muted)}
+.self-page-v2 .self-v2-photo-card{background:var(--glass-bg);border:1px solid var(--glass-border);box-shadow:var(--shadow-deep),inset 0 1px 0 rgba(255,255,255,.08);border-radius:22px;overflow:hidden}
+.self-page-v2 .self-v2-photo-card img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+html[data-theme="light"] .self-page-v2 .self-v2-photo-card{box-shadow:var(--shadow-deep),inset 0 1px 0 rgba(255,255,255,.5)}
+@media(max-width:760px){
+ .self-page-v2 .self-v2-container{width:min(100% - 28px,1180px)}
+ .self-page-v2 .self-v2-section{padding:58px 0}
+ .self-page-v2 .self-v2-section-head{grid-template-columns:1fr;gap:16px;margin-bottom:34px}
+ .self-page-v2 .self-v2-section-head h2{font-size:clamp(34px,10vw,52px)}
+ .self-page-v2 .self-v2-edu-row{grid-template-columns:1fr;gap:10px;padding:22px 0}
+ .self-page-v2 .self-v2-status{order:3}
+ .self-page-v2 .self-v2-skill-row{grid-template-columns:30px 1fr auto;gap:10px;padding:18px 0}
+ .self-page-v2 .self-v2-skill-note{grid-column:2/-1}
+ .self-page-v2 .self-v2-photo-card{border-radius:18px}
+}
