@@ -39,3 +39,28 @@ html[data-theme="light"] .self-page-v2 .self-v2-photo-card{box-shadow:var(--shad
  .self-page-v2 .self-v2-skill-note{grid-column:2/-1}
  .self-page-v2 .self-v2-photo-card{border-radius:18px}
 }
+
+/* SELF — MOTHER DESIGN PHOTO + SOCIAL REFINEMENT */
+.self-page-v2 .self-v2-portrait-frame{
+  border-color:var(--glass-border);background:var(--glass-bg);
+  border-radius:22px;padding:7px;
+  box-shadow:var(--glass-shadow),inset 0 1px 0 rgba(255,255,255,.055);
+}
+.self-page-v2 .self-v2-photo-media{position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:16px;background:var(--bg-deep)}
+.self-page-v2 .self-v2-photo-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.045),transparent 35%,rgba(0,0,0,.12));mix-blend-mode:screen}
+.self-page-v2 .self-v2-photo-media img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.9) contrast(.98)}
+.self-page-v2 .self-v2-portrait-caption{position:relative;inset:auto;padding:17px 14px 9px;background:none;color:var(--text)}
+.self-page-v2 .self-v2-portrait-caption strong{font-size:11px;letter-spacing:.11em}
+.self-page-v2 .self-v2-portrait-caption span{color:var(--faint);opacity:1}
+.self-page-v2 .self-v2-link{position:relative;transition:padding-left .3s var(--ease),color .25s var(--ease)}
+.self-page-v2 .self-v2-link:hover{padding-left:8px}
+.self-page-v2 .self-v2-link-main{display:inline-flex;align-items:center;gap:13px;min-width:0}
+.self-page-v2 .self-v2-link-main svg{width:17px;height:17px;flex:0 0 17px;fill:currentColor;stroke:currentColor;stroke-width:1.5;opacity:.72}
+.self-page-v2 .self-v2-link-main svg rect{fill:none}.self-page-v2 .self-v2-link-main svg circle{fill:none}
+.self-page-v2 .self-v2-link.is-disabled{color:var(--faint);cursor:default}.self-page-v2 .self-v2-link.is-disabled:hover{padding-left:0}
+@media(max-width:760px){
+ .self-page-v2 .self-v2-portrait-frame{border-radius:18px;padding:6px}
+ .self-page-v2 .self-v2-photo-media{border-radius:13px}
+ .self-page-v2 .self-v2-portrait-caption{padding:15px 12px 8px}
+ .self-page-v2 .self-v2-link:hover{padding-left:0}
+}
