@@ -50,8 +50,7 @@ export default function ContactModal({ isOpen, onClose }) {
     setErrorMessage('');
 
     try {
-      // Prepared for Django REST / API endpoint POST /api/messages/
-      const response = await fetch('/api/messages/', {
+      const response = await fetch('/api/messages', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,27 +62,20 @@ export default function ContactModal({ isOpen, onClose }) {
         })
       });
 
-      if (response.ok) {
-        setStatus('sent');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => {
-          onClose();
-        }, 2000);
-      } else {
-        throw new Error(`Server returned ${response.status}`);
+      if (!response.ok) {
+        const payload = await response.json().catch(() => null);
+        throw new Error(payload?.error || `Server returned ${response.status}`);
       }
-    } catch (err) {
-      // Graceful fallback to mailto: if API endpoint is not yet connected
-      console.warn('API unavailable, activating mailto fallback:', err);
-      const subject = encodeURIComponent(trimmedName ? `Message from ${trimmedName}` : 'Personal Universe Inquiry');
-      const body = encodeURIComponent(
-        `Name: ${trimmedName || 'Not specified'}\nEmail: ${trimmedEmail}\n\nMessage:\n${trimmedMessage}`
-      );
-      window.location.href = `mailto:khanshahriar102@gmail.com?subject=${subject}&body=${body}`;
+
       setStatus('sent');
+      setFormData({ name: '', email: '', message: '' });
       setTimeout(() => {
         onClose();
-      }, 1500);
+      }, 2000);
+    } catch (err) {
+      console.error('Message submission failed:', err);
+      setErrorMessage(err instanceof Error ? err.message : 'Unable to send your message. Please try again.');
+      setStatus('error');
     }
   };
 
