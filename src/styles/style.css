@@ -9635,3 +9635,25 @@ html.js-ready .hero [class*="hero"] .reveal-item.visible{
   transform:translate3d(0,0,0) !important;
   opacity:1 !important;
 }
+
+/* Initial hero visual — fade in without directional movement */
+html.js-ready .hero-celestial-stage{
+  opacity:0;
+  animation:hero-visual-arrival 1.6s cubic-bezier(.22,1,.36,1) .28s forwards;
+}
+@keyframes hero-visual-arrival{
+  from{opacity:0}
+  to{opacity:1}
+}
+@media(max-width:768px){
+  html.js-ready .hero-celestial-stage{
+    animation-delay:.42s;
+    animation-duration:1.8s;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html.js-ready .hero-celestial-stage{
+    opacity:1;
+    animation:none;
+  }
+}
