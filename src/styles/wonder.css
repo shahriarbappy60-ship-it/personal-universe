@@ -1212,7 +1212,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 ========================================================= */
 .wonder-page .wonder-row-meta{flex-wrap:wrap;min-width:0}
 .wonder-page .wonder-row-title,.wonder-page .wonder-row-description,.wonder-page .wonder-essay-card-title,.wonder-page .wonder-essay-card-excerpt,.wonder-page .wonder-reflection-body-inner,.wonder-page .archive-row-body-inner{min-width:0;overflow-wrap:anywhere;word-break:normal}
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner,.wonder-page .wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner{overflow:visible}
+
 .wonder-page .wonder-reflection-body p,.wonder-page .wonder-reflection-body blockquote,.wonder-page .reader-body p,.wonder-page .reader-body blockquote{max-width:65ch;overflow-wrap:anywhere}
 .wonder-page .wonder-reflection-end{flex-wrap:wrap}
 .wonder-page .wonder-essay-card-title{text-wrap:balance}
