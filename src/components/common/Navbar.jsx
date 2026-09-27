@@ -69,7 +69,6 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
 
       {/* DESKTOP NAVIGATION */}
       <nav className="desktop-nav" aria-label="Primary navigation">
-        <Link to="/" className="universe-home-link" aria-label="Universe home">UNIVERSE</Link>
         <Link to="/observe" className={isObserve ? 'active' : ''}>Observe</Link>
         <Link to="/wonder" className={isWonder ? 'active' : ''}>Wonder</Link>
         <Link to="/create" className={isCreate ? 'active' : ''}>Create</Link>
