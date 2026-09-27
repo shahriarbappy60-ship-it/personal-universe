@@ -4194,3 +4194,92 @@ html[data-theme="light"] .transition-btn-primary:hover {
         cursor: pointer;
     }
 }
+
+
+/* LIGHTBOX — physical two-image slide transition */
+#lightboxModal .lightbox-image-stage {
+    overflow: hidden;
+}
+
+#lightboxModal .lightbox-slide-track {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    max-width: 100%;
+    transform: translate3d(0,0,0);
+    will-change: transform;
+}
+
+#lightboxModal .lightbox-slide-track > img {
+    display: block;
+    flex: 0 0 auto;
+}
+
+#lightboxModal .lightbox-slide-track .lightbox-slide-incoming {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#lightboxModal .lightbox-slide-track.slide-next {
+    animation: lightboxSlideNext .42s cubic-bezier(.22,.8,.22,1) both;
+}
+
+#lightboxModal .lightbox-slide-track.slide-prev {
+    animation: lightboxSlidePrev .42s cubic-bezier(.22,.8,.22,1) both;
+}
+
+#lightboxModal .lightbox-slide-track.slide-next .lightbox-slide-incoming {
+    transform: translateX(100%);
+}
+
+#lightboxModal .lightbox-slide-track.slide-prev .lightbox-slide-incoming {
+    transform: translateX(-100%);
+}
+
+@keyframes lightboxSlideNext {
+    from { transform: translate3d(0,0,0); }
+    to { transform: translate3d(-100%,0,0); }
+}
+
+@keyframes lightboxSlidePrev {
+    from { transform: translate3d(0,0,0); }
+    to { transform: translate3d(100%,0,0); }
+}
+
+@media (max-width: 768px) {
+    #lightboxModal .lightbox-image-stage {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #lightboxModal .lightbox-slide-track {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+    }
+
+    #lightboxModal .lightbox-slide-track > img {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #lightboxModal .lightbox-slide-track .lightbox-slide-incoming {
+        width: 100%;
+    }
+
+    #lightboxModal .lightbox-slide-track.slide-next,
+    #lightboxModal .lightbox-slide-track.slide-prev {
+        animation-duration: .46s;
+        animation-timing-function: cubic-bezier(.22,.8,.22,1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #lightboxModal .lightbox-slide-track.slide-next,
+    #lightboxModal .lightbox-slide-track.slide-prev {
+        animation-duration: .01ms;
+    }
+}
