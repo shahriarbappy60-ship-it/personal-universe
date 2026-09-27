@@ -87,7 +87,7 @@ export default function ObservePage() {
   const viewModes = {
     grid: {
       name: 'Grid',
-      nextName: 'Album',
+      nextName: 'Stream',
       icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="3" width="7" height="7" rx="1.5" />
@@ -97,25 +97,25 @@ export default function ObservePage() {
         </svg>
       )
     },
+    stream: {
+      name: 'Stream',
+      nextName: 'Album',
+      icon: (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="6" rx="1.5" />
+          <rect x="3" y="14" width="18" height="6" rx="1.5" />
+        </svg>
+      )
+    },
     album: {
       name: 'Album',
-      nextName: 'Stream',
+      nextName: 'Grid',
       icon: (
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="3" width="7" height="11" rx="1.5" />
           <rect x="14" y="3" width="7" height="6" rx="1.5" />
           <rect x="14" y="12" width="7" height="9" rx="1.5" />
           <rect x="3" y="17" width="7" height="4" rx="1.5" />
-        </svg>
-      )
-    },
-    stream: {
-      name: 'Stream',
-      nextName: 'Grid',
-      icon: (
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <rect x="3" y="4" width="18" height="6" rx="1.5" />
-          <rect x="3" y="14" width="18" height="6" rx="1.5" />
         </svg>
       )
     }
@@ -126,8 +126,8 @@ export default function ObservePage() {
   const handleCycleView = () => {
     setSelectedAlbumId(null);
     setActiveView(prev => {
-      if (prev === 'grid') return 'album';
-      if (prev === 'album') return 'stream';
+      if (prev === 'grid') return 'stream';
+      if (prev === 'stream') return 'album';
       return 'grid';
     });
   };
@@ -360,14 +360,67 @@ export default function ObservePage() {
           ) : (
             /* REGULAR PHOTO ARCHIVE GALLERY (GRID OR STREAM) */
             <div className={`observe-gallery mode-${activeView}`} id="galleryGrid">
-              {filteredPhotos.map((photo, idx) => (
-                <PhotoCard
-                  key={photo.id}
-                  photo={photo}
-                  index={idx}
-                  onClick={() => openLightboxForPhoto(photo, idx)}
-                />
-              ))}
+              {activeView === 'stream' ? (
+                filteredPhotos.map((photo, idx) => (
+                  <article
+                    key={photo.id}
+                    className="observe-stream-card"
+                    onClick={() => openLightboxForPhoto(photo, idx)}
+                    tabIndex="0"
+                    role="button"
+                    aria-label={`View ${photo.title || 'photograph'}`}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightboxForPhoto(photo, idx);
+                      }
+                    }}
+                  >
+                    <div className="observe-stream-frame">
+                      <img
+                        src={photo.src}
+                        alt={photo.alt || photo.title || 'Photograph'}
+                        loading={idx < 2 ? 'eager' : 'lazy'}
+                      />
+                      <span className="observe-stream-index">
+                        {String(idx + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <div className="observe-stream-body">
+                      <div className="observe-stream-meta-top">
+                        <h3>{photo.title}</h3>
+                        <span className="observe-stream-badge">
+                          {(photo.category || 'Archive').toUpperCase()}
+                        </span>
+                      </div>
+                      {photo.story && (
+                        <p className="observe-stream-story">“{photo.story}”</p>
+                      )}
+                      <div className="observe-stream-exif-bar">
+                        {photo.location && (
+                          <div className="observe-stream-exif-item">
+                            <span>Location</span><strong>{photo.location}</strong>
+                          </div>
+                        )}
+                        {photo.year && (
+                          <div className="observe-stream-exif-item">
+                            <span>Year</span><strong>{photo.year}</strong>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                ))
+              ) : (
+                filteredPhotos.map((photo, idx) => (
+                  <PhotoCard
+                    key={photo.id}
+                    photo={photo}
+                    index={idx}
+                    onClick={() => openLightboxForPhoto(photo, idx)}
+                  />
+                ))
+              )}
             </div>
           )}
 
