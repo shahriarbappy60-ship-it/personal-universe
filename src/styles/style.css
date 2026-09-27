@@ -9827,3 +9827,33 @@ html.js-ready .hero-celestial-stage{
     box-shadow: none !important;
   }
 }
+
+
+/* OBSERVE PAGE — mobile light mode filters match Home's editorial treatment */
+@media (max-width: 768px) {
+  html[data-theme="light"] body:not(:has(#observe .observe-slider-header)) .filter,
+  html[data-theme="light"] #observe-page .filter,
+  html[data-theme="light"] .observe-page .filter,
+  html[data-theme="light"] .observe-page .filter-bar .filter {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  html[data-theme="light"] #observe-page .filter.active,
+  html[data-theme="light"] .observe-page .filter.active,
+  html[data-theme="light"] .observe-page .filter-bar .filter.active {
+    background: transparent !important;
+    color: var(--text) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+}
