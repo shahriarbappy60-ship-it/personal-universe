@@ -932,13 +932,27 @@ html[data-theme="light"] .wonder-reflection-row.is-expanded .wonder-read-action 
 .wonder-reflection-body {
     display: grid;
     grid-template-rows: 0fr;
+    height: 0;
     overflow: hidden;
-    transition: grid-template-rows 0.65s var(--ease);
+    padding-top: 0 !important;
+    transition: grid-template-rows .65s var(--ease), height .65s var(--ease);
 }
-
-.wonder-reflection-row.is-expanded .wonder-reflection-body {
+.wonder-reflection-body:not([hidden]).is-open {
     grid-template-rows: 1fr;
-    padding-top: 4px;
+    height: auto;
+    overflow: visible;
+}
+.wonder-reflection-body[hidden] {
+    display: grid !important;
+    height: 0 !important;
+    visibility: hidden;
+}
+.wonder-reflection-body-inner {
+    min-height: 0;
+    overflow: hidden;
+}
+.wonder-reflection-body:not([hidden]).is-open .wonder-reflection-body-inner {
+    overflow: visible;
 }
 
 /* In-place serene glass reading enclosure */
