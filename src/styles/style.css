@@ -9695,3 +9695,40 @@ html.js-ready .hero-celestial-stage{
     overflow: hidden;
   }
 }
+
+
+/* HOME / MOBILE / LIGHT MODE — RESONANCE ROW CALIBRATION */
+@media (max-width: 768px) {
+  html[data-theme="light"] .resonance-section .resonance-item-row {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    color: #141414 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.10) !important;
+    border-left: 2px solid transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+  html[data-theme="light"] .resonance-section .resonance-item-row:hover,
+  html[data-theme="light"] .resonance-section .resonance-item-row.is-active {
+    background: rgba(0, 0, 0, 0.035) !important;
+    color: #141414 !important;
+    box-shadow: none !important;
+  }
+  html[data-theme="light"] .resonance-section .resonance-item-row.is-selected {
+    background: rgba(0, 0, 0, 0.045) !important;
+    color: #141414 !important;
+    border-left: 2px solid #141414 !important;
+    border-bottom-color: rgba(0, 0, 0, 0.12) !important;
+    box-shadow: none !important;
+  }
+  html[data-theme="light"] .resonance-section .resonance-item-title {
+    color: #141414 !important;
+  }
+  html[data-theme="light"] .resonance-section .resonance-item-creator,
+  html[data-theme="light"] .resonance-section .resonance-item-idx {
+    color: #525252 !important;
+  }
+}
