@@ -102,7 +102,7 @@ export default function HeroSection() {
       if (celestialStageRef.current) {
         if (isMobile) {
           // CSS owns the mobile stage position; JS only adds a tiny drift.
-          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0)`;
+          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0) rotate(-12deg)`;
         } else {
           celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 5}px), calc(-50% + ${currentY * 5}px), 0) rotate(-12deg)`;
         }
