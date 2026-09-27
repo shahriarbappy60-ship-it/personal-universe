@@ -5,7 +5,6 @@ import WonderSection from '../components/home/WonderSection';
 import CreateSection from '../components/home/CreateSection';
 import SelfSection from '../components/home/SelfSection';
 import ResonanceSection from '../components/home/ResonanceSection';
-import BecomingSection from '../components/home/BecomingSection';
 import GetInTouchSection from '../components/home/GetInTouchSection';
 import LightboxModal from '../components/modals/LightboxModal';
 import EssayModal from '../components/modals/EssayModal';
@@ -83,7 +82,6 @@ export default function HomePage({ onOpenContact, setActiveSection }) {
       <WonderSection onOpenEssay={() => setIsEssayOpen(true)} />
       <CreateSection />
       <SelfSection />
-      <BecomingSection />
       <ResonanceSection />
       <GetInTouchSection onOpenContact={onOpenContact} />
 
