@@ -64,7 +64,6 @@ function ReflectionRow({ reflection }) {
 export default function WonderPage() {
   const [selectedEssay, setSelectedEssay] = useState(null);
   const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
-  const [isQuoteFading, setIsQuoteFading] = useState(false);
 
   useScrollReveal();
   useMagnetic();
@@ -73,8 +72,6 @@ export default function WonderPage() {
     document.title = "Wonder — Shahriar's Personal Universe";
     window.scrollTo(0, 0);
   }, []);
-
-  const activeQuote = contemplationQuotes[activeQuoteIndex] || contemplationQuotes[0];
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
@@ -180,7 +177,7 @@ export default function WonderPage() {
                     key={item.id}
                     type="button"
                     className={`wonder-anchor-item ${isActive ? 'is-active' : ''}`}
-                    aria-selected={isActive}
+                    aria-current={isActive ? 'true' : undefined}
                     onClick={() => handleSelectQuote(index)}
                   >
                     <span>{item.title}</span>
