@@ -928,21 +928,25 @@ html[data-theme="light"] .wonder-reflection-row.is-expanded .wonder-read-action 
     transition: transform 0.35s var(--ease);
 }
 
-/* Reflection reader — closed by default, expands to its real content height */
+/* Reflection reader — layout-driven accordion; no measured height or giant max-height */
 .wonder-reflection-body{
-    max-height:0;
+    display:grid;
+    grid-template-rows:0fr;
     overflow:hidden;
     padding:0 !important;
     opacity:0;
     visibility:hidden;
-    transition:max-height .55s var(--ease), opacity .25s ease, visibility 0s linear .55s;
+    transition:grid-template-rows .55s var(--ease), opacity .25s ease, visibility 0s linear .55s;
 }
 .wonder-reflection-body.is-open{
-    max-height:var(--reflection-height, 20000px);
-    overflow:hidden;
+    grid-template-rows:1fr;
     opacity:1;
     visibility:visible;
-    transition:max-height .65s var(--ease), opacity .3s ease;
+    transition:grid-template-rows .65s var(--ease), opacity .3s ease;
+}
+.wonder-reflection-body-clip{
+    min-height:0;
+    overflow:hidden;
 }
 .wonder-reflection-body-inner{
     min-width:0;
