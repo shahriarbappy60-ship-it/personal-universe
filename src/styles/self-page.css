@@ -126,3 +126,16 @@
  .self-page-v2 .self-v2-role{margin-top:18px}
  .self-page-v2 .self-v2-lead{margin-top:28px}
 }
+
+/* Portrait caption refinement: identity lives below the photograph */
+.self-page-v2 .self-v2-portrait-frame{overflow:visible;background:transparent;border:0;box-shadow:none}
+.self-page-v2 .self-v2-photo-media{position:relative;inset:auto;width:100%;aspect-ratio:4/5;overflow:hidden;border:1px solid var(--glass-border);border-radius:30px;background:var(--bg);box-shadow:var(--shadow-deep)}
+.self-page-v2 .self-v2-photo-media::after{background:linear-gradient(180deg,transparent 70%,rgba(4,5,7,.12) 100%)}
+.self-page-v2 .self-v2-portrait-caption{position:relative;inset:auto;padding:18px 2px 0;background:none;color:var(--text)}
+.self-page-v2 .self-v2-portrait-caption strong{font-family:var(--sans);font-size:13px;line-height:1.2;font-weight:600;letter-spacing:.01em}
+.self-page-v2 .self-v2-portrait-caption span{margin-top:6px;font-size:9px;letter-spacing:.16em;color:var(--faint)}
+@media(max-width:560px){
+ .self-page-v2 .self-v2-photo-media{border-radius:24px}
+ .self-page-v2 .self-v2-portrait-caption{padding-top:15px}
+ .self-page-v2 .self-v2-portrait-caption strong{font-size:12px}
+}
