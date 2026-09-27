@@ -9657,3 +9657,41 @@ html.js-ready .hero-celestial-stage{
     transform:translateY(0);
   }
 }
+
+
+/* =========================================================
+   MOBILE MENU — FINAL VISIBILITY FIX
+   Keep the navigation independent from page transforms.
+========================================================= */
+@media (max-width: 768px) {
+  #mobileMenu.mobile-menu {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translate3d(0, -105%, 0) !important;
+    will-change: transform, opacity;
+    transition:
+      transform .65s var(--ease),
+      opacity .35s ease,
+      visibility 0s linear .65s !important;
+  }
+
+  #mobileMenu.mobile-menu.open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: translate3d(0, 0, 0) !important;
+    transition:
+      transform .65s var(--ease),
+      opacity .35s ease,
+      visibility 0s linear 0s !important;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
+}
