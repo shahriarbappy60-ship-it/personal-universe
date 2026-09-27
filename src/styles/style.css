@@ -9200,3 +9200,89 @@ html[data-theme="light"] .project-archive-row:hover .archive-row-title {
 @media(max-width:420px){
   .create-page .archive-side-rail{grid-template-columns:1fr}
 }
+
+/* =========================================================
+   WONDER / CREATE — CENTERED MOBILE RHYTHM
+   Shared with Self's refined mobile composition.
+========================================================= */
+@media (max-width:768px){
+  .wonder-page .observe-hero,
+  .create-page .observe-hero{
+    text-align:center;
+  }
+  .wonder-page .observe-hero-content,
+  .create-page .observe-hero-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .wonder-page .observe-hero h1,
+  .create-page .observe-hero h1{
+    margin-inline:auto;
+  }
+  .wonder-page .observe-hero-copy,
+  .create-page .observe-hero-copy{
+    max-width:540px;
+    margin-inline:auto;
+  }
+  .wonder-page .observe-hero-actions,
+  .create-page .observe-hero-actions{
+    justify-content:center;
+  }
+  .wonder-page .observe-hero-meta,
+  .create-page .observe-hero-meta{
+    justify-content:center;
+    text-align:center;
+  }
+
+  .wonder-page .wonder-tier-header{
+    text-align:center;
+    align-items:center;
+  }
+  .wonder-page .wonder-tier-subtitle{
+    margin-inline:auto;
+  }
+  .wonder-page .wonder-centerpiece-stage{
+    text-align:center;
+  }
+
+  .create-page .wonder-tier-header{
+    text-align:center;
+    align-items:center;
+  }
+  .create-page .wonder-tier-subtitle{
+    margin-inline:auto;
+  }
+  .create-page .archive-row-header{
+    align-items:flex-start;
+  }
+}
+
+@media (max-width:430px){
+  .wonder-page .observe-hero,
+  .create-page .observe-hero{
+    padding-top:32px;
+    padding-bottom:72px;
+  }
+  .wonder-page .observe-hero h1,
+  .create-page .observe-hero h1{
+    max-width:350px;
+  }
+  .wonder-page .observe-hero-copy,
+  .create-page .observe-hero-copy{
+    font-size:15px;
+    line-height:1.65;
+  }
+  .wonder-page .observe-hero-actions,
+  .create-page .observe-hero-actions{
+    margin-top:24px;
+  }
+  .wonder-page .observe-hero-meta,
+  .create-page .observe-hero-meta{
+    margin-top:28px;
+  }
+  .wonder-page .wonder-tier-header,
+  .create-page .wonder-tier-header{
+    gap:10px;
+  }
+}
