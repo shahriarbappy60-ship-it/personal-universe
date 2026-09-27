@@ -24,7 +24,7 @@ export default function SelfPage() {
       <section className="self-v2-section self-v2-hero" id="identity">
         <div className="self-v2-container">
           <div className="self-v2-hero-bar reveal">
-            <span className="self-v2-eyebrow">01 / IDENTITY</span>
+            <span className="self-v2-eyebrow">IDENTITY</span>
             <span className="self-v2-rule" aria-hidden="true" />
             <span>A GLIMPSE BEHIND THE WORK</span>
           </div>
@@ -38,10 +38,10 @@ export default function SelfPage() {
                 </div>
               </div>
               <p className="self-v2-lead">
-                I’m interested in what exists beneath the obvious — perception, creativity, technology, and the questions that shape how we experience the world.
+                I’m drawn to what lies beneath the obvious — perception, creativity, technology, and the questions behind experience.
               </p>
               <p className="self-v2-lead-secondary">
-                I build, observe, and question. Sometimes through code. Sometimes through a photograph. Sometimes through nothing more than a thought.
+                I build, observe, and question — through code, photography, and thought.
               </p>
             </div>
 
@@ -63,7 +63,7 @@ export default function SelfPage() {
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
             <div>
-              <span className="self-v2-eyebrow">02 / PERSPECTIVE</span>
+              <span className="self-v2-eyebrow">PERSPECTIVE</span>
               <h2>The way I <em>see things.</em></h2>
             </div>
             <p className="self-v2-section-intro">I’m interested in the space between what happens and how we experience it.</p>
@@ -78,7 +78,7 @@ export default function SelfPage() {
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
             <div>
-              <span className="self-v2-eyebrow">03 / CURIOSITY</span>
+              <span className="self-v2-eyebrow">CURIOSITY</span>
               <h2>What keeps me <em>curious.</em></h2>
             </div>
             <p className="self-v2-section-intro">Different subjects, one recurring impulse: look beneath the surface.</p>
@@ -99,7 +99,7 @@ export default function SelfPage() {
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
             <div>
-              <span className="self-v2-eyebrow">04 / LIFE</span>
+              <span className="self-v2-eyebrow">LIFE</span>
               <h2>Beyond the <em>screen.</em></h2>
             </div>
           </div>
@@ -113,7 +113,7 @@ export default function SelfPage() {
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
             <div>
-              <span className="self-v2-eyebrow">05 / FOUNDATION</span>
+              <span className="self-v2-eyebrow">FOUNDATION</span>
               <h2>A foundation, not a <em>definition.</em></h2>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function SelfPage() {
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
             <div>
-              <span className="self-v2-eyebrow">06 / DIRECTION</span>
+              <span className="self-v2-eyebrow">DIRECTION</span>
               <h2>Still <em>becoming.</em></h2>
             </div>
           </div>
