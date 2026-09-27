@@ -3829,3 +3829,51 @@ html[data-theme="light"] .transition-btn-primary:hover {
         line-height: 1 !important;
     }
 }
+
+
+/* MOBILE 3-COLUMN OBSERVE GRID — image-first information hierarchy.
+   Keep the grid/card structure; reduce only the internal metadata density. */
+@media (max-width: 768px) {
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-integrated-caption {
+        padding: 8px 7px 7px !important;
+        gap: 0 !important;
+    }
+
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-caption-main {
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-title {
+        display: block !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        font-size: 7px !important;
+        line-height: 1.2 !important;
+        letter-spacing: .08em !important;
+    }
+
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-meta,
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-arrow {
+        display: none !important;
+    }
+
+    #archive .observe-gallery.mode-grid .photo-card-item .photo-integrated-caption {
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,.72) 0%,
+            rgba(0,0,0,.32) 62%,
+            transparent 100%
+        ) !important;
+    }
+
+    html[data-theme="light"] #archive .observe-gallery.mode-grid .photo-card-item .photo-integrated-caption {
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,.58) 0%,
+            rgba(0,0,0,.22) 62%,
+            transparent 100%
+        ) !important;
+    }
+}
