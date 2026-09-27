@@ -7,7 +7,6 @@ import { useMagnetic } from '../hooks/useMagnetic';
 // ─── TIER 2: REFLECTION ROW — in-place accordion with glass enclosure ─────────
 function ReflectionRow({ reflection }) {
   const [expanded, setExpanded] = useState(false);
-  const bodyRef = useRef(null);
   const toggle  = () => setExpanded(v => !v);
   const onKey   = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
 
@@ -46,8 +45,10 @@ function ReflectionRow({ reflection }) {
       </div>
 
       {/* Accordion body — in-place serene glass enclosure */}
-      <div id={`wonder-reflection-body-${reflection.id}`} className={`wonder-reflection-body${expanded ? ' is-open' : ''}`} aria-hidden={!expanded} style={{ maxHeight: expanded ? `${bodyRef.current?.scrollHeight || 0}px` : '0px' }}>
-        <div ref={bodyRef} className="wonder-reflection-body-inner" dangerouslySetInnerHTML={{ __html: reflection.body }} />
+      <div id={`wonder-reflection-body-${reflection.id}`} className="wonder-reflection-body" aria-hidden={!expanded}>
+        <div className="wonder-reflection-body-clip">
+          <div className="wonder-reflection-body-inner" dangerouslySetInnerHTML={{ __html: reflection.body }} />
+        </div>
       </div>
 
       {expanded && (
