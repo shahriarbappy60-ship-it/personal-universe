@@ -565,3 +565,83 @@
     font-size:8.5px;
   }
 }
+
+
+/* Practice — professional context, kept editorial and distinct from Resume */
+.self-page-v2 .self-v2-practice{
+  max-width:980px;
+  margin-inline:auto;
+}
+.self-page-v2 .self-v2-practice-statement{
+  max-width:760px;
+  margin:0 0 42px;
+  font-size:clamp(20px,2.3vw,30px);
+  line-height:1.5;
+  letter-spacing:-.02em;
+  color:var(--text);
+}
+.self-page-v2 .self-v2-practice-list{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.self-page-v2 .self-v2-practice-row{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:28px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line-soft);
+  align-items:baseline;
+}
+.self-page-v2 .self-v2-practice-row:last-child{border-bottom:0}
+.self-page-v2 .self-v2-practice-label,
+.self-page-v2 .self-v2-practice-current > span{
+  font:500 10px/1.4 var(--font-mono);
+  letter-spacing:.13em;
+  color:var(--faint);
+}
+.self-page-v2 .self-v2-practice-row p{
+  margin:0;
+  font-size:14px;
+  line-height:1.7;
+  color:var(--muted);
+}
+.self-page-v2 .self-v2-practice-current{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:28px;
+  margin-top:26px;
+  align-items:baseline;
+}
+.self-page-v2 .self-v2-practice-current p{
+  margin:0;
+  font:500 11px/1.6 var(--font-mono);
+  letter-spacing:.05em;
+  color:var(--muted);
+}
+@media(max-width:768px){
+  .self-page-v2 .self-v2-practice-statement{
+    max-width:620px;
+    margin-bottom:34px;
+    font-size:20px;
+    line-height:1.55;
+  }
+  .self-page-v2 .self-v2-practice-row{
+    grid-template-columns:1fr;
+    gap:7px;
+    padding:18px 0;
+  }
+  .self-page-v2 .self-v2-practice-current{
+    grid-template-columns:1fr;
+    gap:7px;
+    margin-top:22px;
+  }
+  .self-page-v2 .self-v2-practice-current p{
+    font-size:10px;
+    line-height:1.65;
+  }
+}
+@media(max-width:430px){
+  .self-page-v2 .self-v2-practice-statement{
+    font-size:18px;
+  }
+}
