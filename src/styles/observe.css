@@ -4319,3 +4319,83 @@ html[data-theme="light"] .transition-btn-primary:hover {
         animation-duration: .01ms;
     }
 }
+
+/* Lightbox — stable editorial slide */
+#lightboxModal .lightbox-image-stage {
+  position: relative;
+  width: min(900px, 100%);
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#lightboxModal .lightbox-slide-stage {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+#lightboxModal .lightbox-slide-stage > img {
+  grid-area: 1 / 1;
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 66vh;
+  object-fit: contain;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  will-change: transform;
+}
+#lightboxModal .lightbox-slide-stage .lightbox-slide-incoming {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  margin: 0;
+}
+#lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-current { animation: lbOutL .46s cubic-bezier(.22,.72,.2,1) both; }
+#lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-incoming { animation: lbInR .46s cubic-bezier(.22,.72,.2,1) both; }
+#lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-current { animation: lbOutR .46s cubic-bezier(.22,.72,.2,1) both; }
+#lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-incoming { animation: lbInL .46s cubic-bezier(.22,.72,.2,1) both; }
+@keyframes lbOutL { from { transform:translate3d(0,0,0) } to { transform:translate3d(-100%,0,0) } }
+@keyframes lbInR { from { transform:translate3d(100%,0,0) } to { transform:translate3d(0,0,0) } }
+@keyframes lbOutR { from { transform:translate3d(0,0,0) } to { transform:translate3d(100%,0,0) } }
+@keyframes lbInL { from { transform:translate3d(-100%,0,0) } to { transform:translate3d(0,0,0) } }
+
+@media (max-width:768px) {
+  #lightboxModal { overflow:hidden; overscroll-behavior:contain; }
+  #lightboxModal .lightbox-fluid-content {
+    width:100%;
+    max-width:100%;
+    max-height:calc(100dvh - 24px);
+  }
+  #lightboxModal .lightbox-image-stage {
+    width:100%;
+    max-height:58dvh;
+    touch-action:pan-x;
+  }
+  #lightboxModal .lightbox-slide-stage {
+    width:100%;
+    max-width:100%;
+    min-height:1px;
+  }
+  #lightboxModal .lightbox-slide-stage > img.lightbox-slide-current {
+    width:auto;
+    max-width:100%;
+    max-height:58dvh;
+  }
+  #lightboxModal .lightbox-slide-stage .lightbox-slide-incoming {
+    width:100%;
+    height:100%;
+    max-height:58dvh;
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  #lightboxModal .lightbox-slide-stage > img { animation:none !important; }
+}
