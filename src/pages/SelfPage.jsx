@@ -41,10 +41,6 @@ export default function SelfPage() {
               <p className="self-v2-lead-secondary">
                 I build with code, photograph what catches my eye, think through ideas that stay with me, and keep learning by following my curiosity. Different forms, same instinct: to observe, understand, and create.
               </p>
-              <div className="self-v2-actions">
-                <Button href="#perspective" variant="glass" icon="↓">The way I see things</Button>
-                <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
-              </div>
             </div>
 
             <div className="self-v2-portrait reveal delay-2">
@@ -146,7 +142,11 @@ export default function SelfPage() {
               I’m building a life around curiosity rather than a fixed definition of who I should become. Software gives me a way to build. Photography gives me a way to notice. Thought gives me a way to question. I’m still learning how these parts fit together — and I’m in no hurry to make them separate.
             </p>
             <div className="self-v2-direction-action">
-              <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
+              <div className="self-v2-socials" aria-label="Social profiles">
+                <a href="https://github.com/shahriarbappy60-ship-it" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">GITHUB <span>↗</span></a>
+                <a href="https://instagram.com/_shahriar.bappy_" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">INSTAGRAM <span>↗</span></a>
+                <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
+              </div>
             </div>
           </div>
           <p className="self-v2-closing reveal">Still observing. Still becoming.</p>
