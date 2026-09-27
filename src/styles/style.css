@@ -9732,3 +9732,45 @@ html.js-ready .hero-celestial-stage{
     color: #525252 !important;
   }
 }
+
+
+/* FINAL — HOME RESONANCE MOBILE LIGHT MODE
+   Rows are editorial list items, never dark/solid buttons. */
+@media (max-width: 768px) {
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row,
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row.is-selected,
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row.is-active {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-radius: 0 !important;
+    border-top: 0 !important;
+    border-right: 0 !important;
+    border-left: 0 !important;
+    border-bottom: 1px solid rgba(20, 20, 20, .10) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding-left: 6px !important;
+    color: #141414 !important;
+  }
+
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row.is-selected {
+    border-left: 2px solid #141414 !important;
+    padding-left: 4px !important;
+  }
+
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row:hover,
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row:active {
+    background: rgba(20, 20, 20, .025) !important;
+    background-color: rgba(20, 20, 20, .025) !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row.is-selected:hover,
+  html[data-theme="light"] .resonance-section .resonance-returning-list .resonance-item-row.is-selected:active {
+    background: rgba(20, 20, 20, .025) !important;
+    border-left: 2px solid #141414 !important;
+  }
+}
