@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { useDhakaClock } from '../../hooks/useDhakaClock';
 
@@ -32,7 +33,7 @@ export default function MobileMenu({ isOpen, onClose }) {
     { label: 'Profile', path: '/self' },
   ];
 
-  return (
+  const menu = (
     <aside
       className={`mobile-menu ${isOpen ? 'open' : ''}`}
       id="mobileMenu"
@@ -85,4 +86,6 @@ export default function MobileMenu({ isOpen, onClose }) {
       </div>
     </aside>
   );
+
+  return typeof document !== 'undefined' ? createPortal(menu, document.body) : null;
 }
