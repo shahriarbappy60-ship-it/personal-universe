@@ -1720,3 +1720,41 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-right:15px;
   }
 }
+
+
+/* =========================================================
+   WONDER — FINAL INNER GUTTER
+   Expanded surfaces must never let reading text touch walls.
+========================================================= */
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  padding-left:clamp(24px,4vw,52px);
+  padding-right:clamp(24px,4vw,52px);
+}
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body p,
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body blockquote,
+.wonder-page .wonder-essay-wrapper.is-expanded .reader-body p,
+.wonder-page .wonder-essay-wrapper.is-expanded .reader-body blockquote{
+  margin-left:0;
+  margin-right:0;
+}
+
+@media(max-width:768px){
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:22px;
+    padding-right:22px;
+  }
+}
+
+@media(max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:18px;
+    padding-right:18px;
+  }
+}
