@@ -34,7 +34,7 @@ export default function SelfPage() {
               <div className="self-v2-identity-mark">
                 <h1 className="self-v2-name">SHAHRIAR <em>KHAN.</em></h1>
                 <div className="self-v2-role">
-                  <span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span>
+                  <span>CSE UNDERGRADUATE</span>
                 </div>
               </div>
               <p className="self-v2-lead">
