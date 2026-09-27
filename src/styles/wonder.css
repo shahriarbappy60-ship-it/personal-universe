@@ -1923,3 +1923,31 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     transition:none !important;
   }
 }
+
+
+/* =========================================================
+   WONDER — QUIET METADATA
+   Keep the archive focused on title + thought.
+   Mobile removes secondary metadata entirely.
+========================================================= */
+.wonder-page .wonder-row-number{
+  font-variant-numeric:tabular-nums;
+}
+
+@media (max-width:768px){
+  /* The phone archive keeps only the simple entry number. */
+  .wonder-page .wonder-row-meta .wonder-row-sep,
+  .wonder-page .wonder-row-meta .wonder-row-category{
+    display:none;
+  }
+
+  .wonder-page .wonder-row-meta{
+    margin-bottom:12px;
+  }
+
+  /* Expanded reflection footer is useful as a quiet endpoint,
+     but not as repeated metadata on small screens. */
+  .wonder-page .wonder-reflection-end span:not(:first-child){
+    display:none;
+  }
+}
