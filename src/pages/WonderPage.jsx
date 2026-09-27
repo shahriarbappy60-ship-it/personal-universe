@@ -45,7 +45,7 @@ function ReflectionRow({ reflection }) {
       </div>
 
       {/* Accordion body — in-place serene glass enclosure */}
-      <div id={`wonder-reflection-body-${reflection.id}`} className="wonder-reflection-body" aria-hidden={!expanded}>
+      <div id={`wonder-reflection-body-${reflection.id}`} className={`wonder-reflection-body${expanded ? ' is-open' : ''}`} aria-hidden={!expanded}>
         <div className="wonder-reflection-body-clip">
           <div className="wonder-reflection-body-inner" dangerouslySetInnerHTML={{ __html: reflection.body }} />
         </div>
