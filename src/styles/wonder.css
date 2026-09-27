@@ -1810,3 +1810,116 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-right:14px;
   }
 }
+
+
+/* =========================================================
+   WONDER — INTERACTION POLISH
+   Keep the visual language quiet; improve only response,
+   state transitions and tactile feedback.
+========================================================= */
+
+/* Touch devices should feel deliberate rather than browser-default. */
+.wonder-page .wonder-reflection-header,
+.wonder-page .wonder-editorial-row,
+.wonder-page .wonder-centerpiece-stage,
+.wonder-page .wonder-anchor-item,
+.wonder-page .wonder-read-action{
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+/* Reflection accordion: fade the reader in/out while the grid opens/closes.
+   This avoids the abrupt "content appears after the box" feeling. */
+.wonder-page .wonder-reflection-body{
+  will-change:grid-template-rows,opacity;
+  contain:layout paint;
+}
+
+.wonder-page .wonder-reflection-body-inner{
+  opacity:0;
+  transform:translateY(-7px);
+  transition:opacity .28s var(--ease),transform .48s var(--ease);
+  will-change:opacity,transform;
+}
+
+.wonder-page .wonder-reflection-body.is-open .wonder-reflection-body-inner{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.08s;
+}
+
+/* Keep the closing state clean: the content disappears before the enclosure
+   finishes collapsing, so there is no visual snap. */
+.wonder-page .wonder-reflection-body:not(.is-open) .wonder-reflection-body-inner{
+  transition-delay:0s;
+}
+
+/* Reflection action responds subtly to press, not just hover. */
+.wonder-page .wonder-reflection-header:active .wonder-read-action,
+.wonder-page .wonder-editorial-row:active .wonder-read-action{
+  transform:translateX(2px);
+}
+
+.wonder-page .wonder-read-action{
+  transition:color .22s var(--ease),transform .22s var(--ease);
+}
+
+/* Essay accordion gets the same calm reveal language. */
+.wonder-page .wonder-essay-wrapper .archive-row-body{
+  display:grid;
+  grid-template-rows:0fr;
+  overflow:hidden;
+  opacity:0;
+  visibility:hidden;
+  transition:grid-template-rows .58s var(--ease),opacity .24s ease,visibility 0s linear .58s;
+  will-change:grid-template-rows,opacity;
+  contain:layout paint;
+}
+
+.wonder-page .wonder-essay-wrapper .archive-row-body-inner{
+  min-height:0;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease),transform .5s var(--ease);
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body{
+  grid-template-rows:1fr;
+  opacity:1;
+  visibility:visible;
+  transition:grid-template-rows .62s var(--ease),opacity .28s ease;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.08s;
+}
+
+/* Preview rows feel responsive without turning into cards. */
+.wonder-page .wonder-editorial-row,
+.wonder-page .wonder-reflection-row{
+  transition:background-color .24s var(--ease),border-color .24s var(--ease),color .24s var(--ease);
+}
+
+.wonder-page .wonder-editorial-row:active,
+.wonder-page .wonder-reflection-header:active{
+  transition-duration:.08s;
+}
+
+/* Keep the mobile experience quiet: no sticky/hover-like visual jump. */
+@media (hover:none){
+  .wonder-page .wonder-editorial-row:hover,
+  .wonder-page .wonder-reflection-row:hover{
+    transform:none;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wonder-page .wonder-reflection-body-inner,
+  .wonder-page .wonder-essay-wrapper .archive-row-body-inner{
+    transform:none !important;
+    transition:none !important;
+  }
+}
