@@ -64,3 +64,16 @@ html[data-theme="light"] .self-page-v2 .self-v2-photo-card{box-shadow:var(--shad
  .self-page-v2 .self-v2-portrait-caption{padding:15px 12px 8px}
  .self-page-v2 .self-v2-link:hover{padding-left:0}
 }
+
+/* SELF — CV ACTION REFINEMENT */
+.self-page-v2 .self-v2-actions{align-items:center}
+.self-page-v2 .self-v2-cv-download{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  text-decoration:none;white-space:nowrap;
+}
+.self-page-v2 .self-v2-cv-download .btn-icon{font-size:15px;line-height:1;transition:transform .25s var(--ease)}
+.self-page-v2 .self-v2-cv-download:hover .btn-icon{transform:translate(2px,-2px)}
+.self-page-v2 .self-v2-footer-grid{grid-template-columns:1fr}
+@media(max-width:560px){
+ .self-page-v2 .self-v2-cv-download{width:100%}
+}
