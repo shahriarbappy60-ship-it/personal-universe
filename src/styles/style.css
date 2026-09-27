@@ -9857,3 +9857,40 @@ html.js-ready .hero-celestial-stage{
     box-shadow: none !important;
   }
 }
+
+
+/* OBSERVE PAGE — MOBILE ONLY: filters are quiet editorial labels.
+   Desktop styling remains completely untouched. */
+@media (max-width: 768px) {
+  html[data-theme="light"] .filter-bar .filter,
+  html[data-theme="light"] .filter-bar .filter:hover,
+  html[data-theme="light"] .filter-bar .filter:active,
+  html[data-theme="light"] .filter-bar .filter:focus,
+  html[data-theme="light"] .filter-bar .filter:focus-visible,
+  html[data-theme="light"] .filter-bar .filter.active {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    outline: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  html[data-theme="light"] .filter-bar .filter {
+    color: #777 !important;
+  }
+
+  html[data-theme="light"] .filter-bar .filter.active {
+    color: #161616 !important;
+    font-weight: 500 !important;
+  }
+}
