@@ -131,40 +131,6 @@ export default function SelfPage() {
       </section>
 
 
-      <section className="self-v2-section self-v2-becoming-section" id="becoming">
-        <div className="self-v2-container">
-          <div className="self-v2-section-head reveal">
-            <div>
-              <span className="self-v2-eyebrow">BECOMING</span>
-              <h2>Still <em>becoming.</em></h2>
-            </div>
-            <p className="self-v2-section-intro">
-              I don’t see life the way I used to. I’m still figuring out who I am and where I’m going.
-            </p>
-          </div>
-
-          <div className="self-v2-becoming-flow reveal delay-1">
-            <article className="self-v2-becoming-stage">
-              <span className="self-v2-becoming-kicker">BEFORE</span>
-              <h3>I used to move through life without asking much of it.</h3>
-              <p>Fear felt like something to escape, and uncertainty felt like something to solve.</p>
-            </article>
-            <article className="self-v2-becoming-stage">
-              <span className="self-v2-becoming-kicker">THE SHIFT</span>
-              <h3>Then I started asking different questions.</h3>
-              <p>Who am I? Why am I here? What does it mean to experience a world from inside one particular mind?</p>
-            </article>
-            <article className="self-v2-becoming-stage">
-              <span className="self-v2-becoming-kicker">STILL UNFOLDING</span>
-              <h3>I’m not trying to arrive at a final version of myself.</h3>
-              <p>I’m learning, building, questioning, and letting the answer change as I do.</p>
-            </article>
-          </div>
-
-          <p className="self-v2-becoming-closing reveal delay-2">For now, I’m okay with not knowing.</p>
-        </div>
-      </section>
-
       <section className="self-v2-section self-v2-direction-section" id="direction">
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
@@ -173,10 +139,13 @@ export default function SelfPage() {
               <h2>Still <em>becoming.</em></h2>
             </div>
           </div>
+
           <div className="self-v2-direction reveal">
-            <p className="self-v2-direction-statement">
-              I’m building a life around curiosity rather than a fixed definition of who I should become. Software lets me build, photography lets me notice, and thought lets me question. Somewhere between all three is the person I’m becoming — still changing, still learning, still observing.
-            </p>
+            <div className="self-v2-direction-narrative">
+              <p>I used to move through life without asking much of it. Then I started asking different questions — about who I am, why I’m here, and what it means to experience life from inside one particular mind.</p>
+              <p>I’m still learning, building, and questioning. I don’t think I need to have it all figured out yet.</p>
+              <p className="self-v2-direction-closing">For now, I’m okay with not knowing.</p>
+            </div>
             <div className="self-v2-direction-action">
               <div className="self-v2-socials" aria-label="Social profiles">
                 <a href="https://github.com/shahriarbappy60-ship-it" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">GITHUB <span>↗</span></a>
@@ -185,9 +154,8 @@ export default function SelfPage() {
               </div>
             </div>
           </div>
-          <p className="self-v2-closing reveal">Still observing. Still becoming.</p>
         </div>
       </section>
-    </main>
+ </main>
   );
 }
