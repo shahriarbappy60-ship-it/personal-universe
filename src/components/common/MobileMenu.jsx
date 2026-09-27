@@ -40,6 +40,15 @@ export default function MobileMenu({ isOpen, onClose }) {
     >
       {/* 4 CORE COMPACT GLASS PILL BUTTONS */}
       <nav className="mobile-nav-list" aria-label="Mobile navigation">
+        <Link
+          to="/"
+          className="mobile-universe-home"
+          onClick={onClose}
+          aria-label="Universe home"
+        >
+          <span className="mobile-universe-mark" aria-hidden="true" />
+          <span>UNIVERSE</span>
+        </Link>
         {navItems.map(item => {
           const isCurrentRoute = location.pathname.startsWith(item.path);
 
