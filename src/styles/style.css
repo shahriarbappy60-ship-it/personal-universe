@@ -9774,3 +9774,40 @@ html.js-ready .hero-celestial-stage{
     border-left: 2px solid #141414 !important;
   }
 }
+
+
+/* FINAL FIX — HOME OBSERVE FILTERS ON MOBILE LIGHT MODE
+   All / Scenes / Moments / Atmosphere are editorial labels, not buttons. */
+@media (max-width: 768px) {
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter,
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter.active,
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter:hover,
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter:active,
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter:focus,
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter:focus-visible {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    transform: none !important;
+    outline: none !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 0 !important;
+  }
+
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter {
+    color: #777 !important;
+  }
+
+  html[data-theme="light"] .observe-slider-header .filter-bar .filter.active {
+    color: #161616 !important;
+    font-weight: 500 !important;
+  }
+}
