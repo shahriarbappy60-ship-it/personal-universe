@@ -74,6 +74,7 @@ export default function LightboxModal({
   // Touch Swipe Handling for Mobile
   const handleTouchStart = e => {
     touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = touchStartX.current;
   };
 
   const handleTouchMove = e => {
