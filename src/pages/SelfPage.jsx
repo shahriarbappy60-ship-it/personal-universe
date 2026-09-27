@@ -21,10 +21,6 @@ export default function SelfPage() {
     ['CINEMA','I’m drawn to films that entertain me first and leave me thinking afterward.'],
     ['EXPLORATION','I can disappear into a completely new topic simply because something made me curious.']
   ];
-  const selectedProjects = projectsData.map(proj => ({
-    index: proj.index, title: proj.title, type: proj.selfType || proj.type, desc: proj.description,
-    tech: proj.selfTech || proj.technologies.join(' · '), note: proj.selfNote, link: proj.selfLink
-  }));
 
   return (
     <main className="self-page self-page-v2" id="mainContent">
@@ -39,7 +35,7 @@ export default function SelfPage() {
               <p className="self-v2-lead-secondary">I learn by building and exploring. Sometimes that becomes software. Sometimes a photograph. Sometimes, simply, another question.</p>
               <div className="self-v2-actions"><Button href="#perspective" variant="glass" icon="↓">The way I see things</Button><Button href="#cv" variant="outline">Curriculum Vitae</Button></div>
             </div>
-            <div className="self-v2-portrait reveal delay-2"><figure className="self-v2-portrait-frame"><img src="/images/portrait.jpg" alt="Shahriar Khan" /><figcaption className="self-v2-portrait-caption"><strong>SHAHRIAR KHAN</strong><span>OBSERVER · DEVELOPER</span></figcaption></figure></div>
+            <div className="self-v2-portrait reveal delay-2"><figure className="self-v2-portrait-frame"><img src="/images/portrait.jpg" alt="Shahriar Khan" /><figcaption className="self-v2-portrait-caption"><strong>SHAHRIAR KHAN</strong><span>THE OBSERVER</span></figcaption></figure></div>
           </div>
         </div>
       </section>
