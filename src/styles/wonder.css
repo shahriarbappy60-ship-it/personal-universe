@@ -1389,3 +1389,114 @@ html[data-theme="light"] .wonder-essay-pill-cta {
     padding-right:14px;
   }
 }
+
+
+/* =========================================================
+   WONDER READING SURFACES — final responsive correction
+   Preview and reading remain separate systems.
+========================================================= */
+
+/* Reflections: text needs breathing room on BOTH sides. */
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  padding:0 clamp(20px,3vw,32px) 28px clamp(20px,3vw,32px);
+  margin:0;
+  border-left:1px solid var(--glass-border);
+  border-right:1px solid var(--glass-border);
+  border-radius:0 0 14px 14px;
+  background:rgba(255,255,255,.018);
+}
+
+html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  background:rgba(0,0,0,.018);
+}
+
+/* Essays: the entire reader area is the reading surface, not just the text. */
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body{
+  width:100%;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  padding:clamp(28px,4vw,48px) clamp(24px,4vw,48px) clamp(32px,4vw,48px);
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-top:0;
+  border-radius:0 0 16px 16px;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body > *{
+  max-width:65ch;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-end{
+  width:100%;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+@media(max-width:768px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding:0 16px 24px;
+    border-left:1px solid var(--glass-border);
+    border-right:1px solid var(--glass-border);
+    border-radius:0 0 12px 12px;
+  }
+
+  .wonder-page .wonder-reflection-body p{
+    max-width:100%;
+  }
+
+  .wonder-page .wonder-reflection-body blockquote{
+    max-width:100%;
+    margin-left:0;
+    margin-right:0;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding:26px 18px 30px;
+    border-radius:0 0 12px 12px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body > *{
+    max-width:100%;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body p{
+    font-size:16px;
+    line-height:1.78;
+  }
+}
+
+@media(max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding-left:14px;
+    padding-right:14px;
+    padding-bottom:22px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:15px;
+    padding-right:15px;
+    padding-bottom:26px;
+  }
+}
