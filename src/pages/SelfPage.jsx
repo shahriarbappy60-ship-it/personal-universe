@@ -136,38 +136,37 @@ export default function SelfPage() {
           <div className="self-v2-section-head reveal">
             <div>
               <span className="self-v2-eyebrow">PRACTICE</span>
-              <h2>Building toward <em>what’s next.</em></h2>
+              <h2>Learning through <em>practice.</em></h2>
             </div>
-            <p className="self-v2-section-intro">A practical view of what I’m learning and working with.</p>
+            <p className="self-v2-section-intro">A quiet look at what I’m learning, building, and working toward.</p>
           </div>
 
           <div className="self-v2-practice reveal">
-            <div className="self-v2-practice-intro">
-              <p>I’m a CSE undergraduate building a foundation in software and web development through coursework and personal projects.</p>
-            </div>
+            <p className="self-v2-practice-statement">
+              I’m a CSE undergraduate building my foundation in software and web development through coursework and personal projects.
+            </p>
 
-            <div className="self-v2-practice-grid">
-              <div className="self-v2-practice-item">
-                <span>WEB</span>
+            <div className="self-v2-practice-list">
+              <div className="self-v2-practice-row">
+                <span>WEB DEVELOPMENT</span>
                 <p>HTML · CSS · JavaScript · React</p>
               </div>
-              <div className="self-v2-practice-item">
+              <div className="self-v2-practice-row">
                 <span>BACKEND</span>
                 <p>Python · Django · Databases</p>
               </div>
-              <div className="self-v2-practice-item">
+              <div className="self-v2-practice-row">
                 <span>TOOLS</span>
                 <p>Git · GitHub · Figma · Canva</p>
               </div>
-              <div className="self-v2-practice-item">
-                <span>FOCUS</span>
-                <p>Web development · Full-stack fundamentals</p>
-              </div>
             </div>
 
-            <div className="self-v2-practice-current">
-              <span>CURRENTLY</span>
-              <p>Studying Computer Science &amp; Engineering · Developing Personal Universe · Continuing React and full-stack learning</p>
+            <div className="self-v2-practice-foot">
+              <div>
+                <span>CURRENT FOCUS</span>
+                <p>Web development · React · Full-stack fundamentals</p>
+              </div>
+              <Button to="/create" variant="outline" icon="↗" ariaLabel="Explore Shahriar Khan's projects">EXPLORE MY WORK</Button>
             </div>
           </div>
         </div>
