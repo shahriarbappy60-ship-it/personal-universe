@@ -3780,3 +3780,52 @@ html[data-theme="light"] .transition-btn-primary:hover {
         line-height: 1 !important;
     }
 }
+
+
+/* FINAL MOBILE OBSERVE GRID — keep the desktop 3-column rhythm on phones,
+   with compact cards rather than a single oversized column. */
+@media (max-width: 768px) {
+    #archive .observe-gallery.mode-grid,
+    #archive .observe-gallery.mode-grid#galleryGrid {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+        margin-top: 24px !important;
+        align-items: start !important;
+    }
+
+    #archive .observe-gallery.mode-grid .observe-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding: 5px !important;
+        border-radius: 11px !important;
+        box-sizing: border-box !important;
+    }
+
+    #archive .observe-gallery.mode-grid .observe-card-frame {
+        width: 100% !important;
+        aspect-ratio: 4 / 5 !important;
+        border-radius: 8px !important;
+    }
+
+    #archive .observe-gallery.mode-grid .observe-card-caption {
+        padding: 7px 1px 1px !important;
+    }
+
+    /* Keep the archive heading counter compact on mobile.
+       It is the source of the visible CURATED FRAGMENTS 09 metadata. */
+    #archive .archive-heading-meta {
+        display: flex !important;
+        align-items: baseline !important;
+        gap: 6px !important;
+    }
+
+    #archive .archive-heading-meta span {
+        font-size: 8px !important;
+        letter-spacing: .14em !important;
+    }
+
+    #archive .archive-heading-meta strong {
+        font-size: 12px !important;
+        line-height: 1 !important;
+    }
+}
