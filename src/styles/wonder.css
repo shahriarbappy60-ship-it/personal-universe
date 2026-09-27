@@ -928,33 +928,44 @@ html[data-theme="light"] .wonder-reflection-row.is-expanded .wonder-read-action 
     transition: transform 0.35s var(--ease);
 }
 
-/* Reflection accordion — grid avoids fixed-height text clipping */
-.wonder-reflection-body {
-    display: grid;
-    grid-template-rows: 0fr;
-    height: 0;
-    overflow: hidden;
-    padding-top: 0 !important;
-    transition: grid-template-rows .65s var(--ease), height .65s var(--ease);
+/* Reflection reader — closed by default, expands to its real content height */
+.wonder-reflection-body{
+    max-height:0;
+    overflow:hidden;
+    padding:0 !important;
+    opacity:0;
+    visibility:hidden;
+    transition:max-height .55s var(--ease), opacity .25s ease, visibility 0s linear .55s;
 }
-.wonder-reflection-body:not([hidden]).is-open {
-    grid-template-rows: 1fr;
-    height: auto;
-    overflow: visible;
+.wonder-reflection-body.is-open{
+    max-height:var(--reflection-height, 20000px);
+    overflow:hidden;
+    opacity:1;
+    visibility:visible;
+    transition:max-height .65s var(--ease), opacity .3s ease;
 }
-.wonder-reflection-body[hidden] {
-    display: grid !important;
-    height: 0 !important;
-    visibility: hidden;
+.wonder-reflection-body-inner{
+    min-width:0;
+    overflow:hidden;
 }
-.wonder-reflection-body-inner {
-    min-height: 0;
-    overflow: hidden;
+.wonder-reflection-row.is-expanded{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    border-radius:18px;
+    padding:0 clamp(14px,2vw,24px);
+    margin:12px 0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
 }
-.wonder-reflection-body:not([hidden]).is-open .wonder-reflection-body-inner {
-    overflow: visible;
+.wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding-bottom:20px;
 }
-
+.wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    border-left:1px solid var(--glass-border);
+    padding:0 0 24px clamp(16px,3vw,28px);
+    margin:0;
+    background:transparent;
+    border-radius:0;
+}
 /* In-place serene glass reading enclosure */
 .wonder-reflection-body-inner {
     background: rgba(255, 255, 255, 0.02);
