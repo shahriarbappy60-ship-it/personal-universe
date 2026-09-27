@@ -1758,3 +1758,25 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-right:18px;
   }
 }
+
+
+/* =========================================================
+   WONDER — MOBILE PREVIEWS MUST REMAIN QUIET
+   Remove preview surface highlight only on mobile.
+   Typography, spacing, layout and expanded readers stay unchanged.
+========================================================= */
+@media (max-width:768px){
+  .wonder-page .wonder-essay-wrapper .wonder-editorial-row,
+  .wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
+    background:transparent;
+    border-color:transparent;
+    border-bottom-color:var(--line-soft);
+    border-radius:0;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded{
+    background:transparent;
+    border-color:transparent;
+    border-radius:0;
+  }
+}
