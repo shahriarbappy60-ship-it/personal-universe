@@ -100,3 +100,29 @@
 /* Final refinement: keep Self editorial, quiet and identity-led. */
 .self-page-v2 .self-v2-portrait-caption strong{letter-spacing:-.045em}
 .self-page-v2 .self-v2-socials .btn-master{margin-left:4px}
+
+/* Hero composition refinement */
+.self-page-v2 .self-v2-hero-grid{grid-template-columns:minmax(0,1.15fr) minmax(340px,430px);gap:clamp(64px,10vw,148px);align-items:center}
+.self-page-v2 .self-v2-hero-copy{padding-block:clamp(10px,2vw,28px)}
+.self-page-v2 .self-v2-identity-mark{padding-bottom:clamp(28px,3.5vw,46px);border-bottom:1px solid var(--line-soft)}
+.self-page-v2 .self-v2-name{font-size:clamp(62px,8vw,118px);line-height:.84;letter-spacing:-.068em}
+.self-page-v2 .self-v2-role{margin-top:22px}
+.self-page-v2 .self-v2-lead{margin-top:clamp(34px,4vw,52px)}
+.self-page-v2 .self-v2-portrait-frame{max-width:430px;aspect-ratio:4/5;border-radius:30px}
+.self-page-v2 .self-v2-portrait-caption{padding:34px 30px 28px}
+@media(max-width:900px){
+ .self-page-v2 .self-v2-hero-grid{grid-template-columns:1fr;gap:38px;align-items:start}
+ .self-page-v2 .self-v2-hero-copy{display:contents}
+ .self-page-v2 .self-v2-portrait{order:-1}
+ .self-page-v2 .self-v2-identity-mark{padding-bottom:26px}
+ .self-page-v2 .self-v2-name{font-size:clamp(56px,12vw,88px)}
+ .self-page-v2 .self-v2-lead{margin-top:30px}
+}
+@media(max-width:560px){
+ .self-page-v2 .self-v2-hero-grid{gap:30px}
+ .self-page-v2 .self-v2-portrait-frame{aspect-ratio:4/5;border-radius:24px}
+ .self-page-v2 .self-v2-identity-mark{padding-bottom:22px}
+ .self-page-v2 .self-v2-name{font-size:clamp(47px,13.7vw,72px);white-space:nowrap}
+ .self-page-v2 .self-v2-role{margin-top:18px}
+ .self-page-v2 .self-v2-lead{margin-top:28px}
+}
