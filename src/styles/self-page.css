@@ -87,3 +87,11 @@
  .self-page-v2 .self-v2-name em{letter-spacing:-.07em}
  .self-page-v2 .self-v2-role{max-width:34rem}
 }
+
+/* Social links: quiet utility treatment, not competing with the identity */
+.self-page-v2 .self-v2-socials{display:flex;align-items:center;justify-content:flex-end;gap:18px;flex-wrap:wrap}
+.self-page-v2 .self-v2-social-link{font:500 10px/1.4 var(--font-mono);letter-spacing:.12em;color:var(--muted);text-decoration:none;transition:color .25s var(--ease),transform .25s var(--ease)}
+.self-page-v2 .self-v2-social-link span{margin-left:4px;color:var(--faint)}
+.self-page-v2 .self-v2-social-link:hover{color:var(--text);transform:translateY(-1px)}
+@media(max-width:900px){.self-page-v2 .self-v2-socials{justify-content:flex-start}}
+@media(max-width:560px){.self-page-v2 .self-v2-socials{gap:14px 18px}.self-page-v2 .self-v2-social-link{font-size:9px}}
