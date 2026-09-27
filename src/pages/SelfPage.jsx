@@ -147,9 +147,11 @@ export default function SelfPage() {
               <p className="self-v2-direction-closing">For now, I’m okay with not knowing.</p>
             </div>
             <div className="self-v2-direction-action">
-              <div className="self-v2-socials" aria-label="Social profiles">
+              <div className="self-v2-socials" aria-label="Social profiles and CV">
                 <a href="https://github.com/shahriarbappy60-ship-it" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">GITHUB <span>↗</span></a>
                 <a href="https://instagram.com/_shahriar.bappy_" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">INSTAGRAM <span>↗</span></a>
+                <a href="https://www.facebook.com/shahriarbappy2016" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">FACEBOOK <span>↗</span></a>
+                <a href="https://www.linkedin.com/in/shahriar-khan-7985742a9/" target="_blank" rel="noopener noreferrer" className="self-v2-social-link">LINKEDIN <span>↗</span></a>
                 <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
               </div>
             </div>
