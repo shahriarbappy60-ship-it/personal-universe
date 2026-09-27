@@ -16,6 +16,8 @@ export default function LightboxModal({
   const toastTimeoutRef = useRef(null);
   const [toastMessage, setToastMessage] = useState('');
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [slide, setSlide] = useState(null);
+  const slideTimerRef = useRef(null);
 
   const activePhoto = (photos.length > 0 && currentIndex >= 0 && currentIndex < photos.length)
     ? photos[currentIndex]
@@ -37,8 +39,10 @@ export default function LightboxModal({
     } else {
       document.body.classList.remove('modal-open');
       setIsShareOpen(false);
+    setSlide(null);
     }
     return () => {
+      if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
       document.body.classList.remove('modal-open');
       if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
     };
@@ -57,10 +61,10 @@ export default function LightboxModal({
         onClose();
       } else if (e.key === 'ArrowLeft' && hasMultiple && onPrev) {
         e.preventDefault();
-        onPrev();
+        triggerSlide('prev');
       } else if (e.key === 'ArrowRight' && hasMultiple && onNext) {
         e.preventDefault();
-        onNext();
+        triggerSlide('next');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -82,12 +86,28 @@ export default function LightboxModal({
     const minSwipeDistance = 45;
 
     if (distance > minSwipeDistance && hasMultiple && onNext) {
-      onNext();
+      triggerSlide('next');
     } else if (distance < -minSwipeDistance && hasMultiple && onPrev) {
-      onPrev();
+      triggerSlide('prev');
     }
     touchStartX.current = 0;
     touchEndX.current = 0;
+  };
+
+  const triggerSlide = direction => {
+    if (slide || !hasMultiple) return;
+    const nextIndex = direction === 'next'
+      ? (currentIndex + 1) % photos.length
+      : (currentIndex - 1 + photos.length) % photos.length;
+    const incoming = photos[nextIndex];
+    if (!incoming) return;
+    setSlide({ direction, photo: incoming });
+    if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
+    slideTimerRef.current = setTimeout(() => {
+      if (direction === 'next') onNext?.();
+      else onPrev?.();
+      setSlide(null);
+    }, 420);
   };
 
   if (!isOpen || !activePhoto) return null;
@@ -183,7 +203,7 @@ export default function LightboxModal({
 
         {/* Dynamic Fluid Content Column: Natural Aspect Image + Docked Metadata Tray */}
         <div
-          className="lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full"
+          className={`lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full ${slide ? 'is-sliding' : ''}`"
           onClick={e => e.stopPropagation()}
         >
           {/* Naturally scaling image without rigid box walls */}
@@ -193,12 +213,20 @@ export default function LightboxModal({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <img
-              id="lightboxImage"
-              src={activePhoto.src}
-              alt={activePhoto.title || activePhoto.alt || 'Photograph'}
-              className="lightbox-fluid-image max-h-[66vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300 select-none"
-            />
+            <div className={`lightbox-slide-track ${slide ? `slide-${slide.direction}` : ''}`}>
+              <img
+                src={activePhoto.src}
+                alt={activePhoto.title || activePhoto.alt || 'Photograph'}
+                className="lightbox-fluid-image lightbox-slide-current max-h-[66vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl select-none"
+              />
+              {slide && (
+                <img
+                  src={slide.photo.src}
+                  alt={slide.photo.title || slide.photo.alt || 'Photograph'}
+                  className="lightbox-fluid-image lightbox-slide-incoming max-h-[66vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl select-none"
+                />
+              )}
+            </div>
           </div>
 
           {/* Floating frosted glass metadata tray docked directly beneath the image */}
