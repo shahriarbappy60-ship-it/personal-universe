@@ -4283,3 +4283,66 @@ html[data-theme="light"] .transition-btn-primary:hover {
         animation-duration: .01ms;
     }
 }
+
+
+/* Lightbox mobile: stable viewport + intentional horizontal gesture */
+#lightboxModal {
+    overscroll-behavior: contain;
+    overflow: hidden;
+    touch-action: none;
+}
+
+#lightboxModal .lightbox-fluid-content {
+    width: min(100%, 900px);
+    max-height: calc(100dvh - 32px);
+    overflow: visible;
+}
+
+#lightboxModal .lightbox-image-stage {
+    touch-action: pan-x;
+    overscroll-behavior-x: contain;
+    overflow: hidden;
+}
+
+#lightboxModal .lightbox-metadata-tray {
+    flex: 0 1 auto;
+    max-height: 30dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+    #lightboxModal {
+        padding: max(12px, env(safe-area-inset-top)) 12px max(12px, env(safe-area-inset-bottom)) !important;
+    }
+
+    #lightboxModal .lightbox-fluid-content {
+        width: 100%;
+        max-height: calc(100dvh - 24px);
+    }
+
+    #lightboxModal .lightbox-image-stage {
+        width: 100%;
+        max-height: 58dvh;
+        touch-action: pan-x;
+    }
+
+    #lightboxModal .lightbox-metadata-tray {
+        max-height: 27dvh;
+        overflow-y: auto;
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Preserve album identity in the viewer */
+#lightboxModal .lightbox-category-tag {
+    text-transform: none;
+    white-space: nowrap;
+}
+
+#lightboxModal .lightbox-title {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
