@@ -33,7 +33,7 @@ export default function SelfPage() {
               <div className="self-v2-role"><span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span></div>
               <p className="self-v2-lead">I’m a Computer Science student drawn to the space between technology, creativity, perception, and the questions that make us look at life differently.</p>
               <p className="self-v2-lead-secondary">I learn by building and exploring. Sometimes that becomes software. Sometimes a photograph. Sometimes, simply, another question.</p>
-              <div className="self-v2-actions"><Button href="#perspective" variant="glass" icon="↓">The way I see things</Button><Button href="#cv" variant="outline">Curriculum Vitae</Button></div>
+              <div className="self-v2-actions"><Button href="#perspective" variant="glass" icon="↓">The way I see things</Button><a className="self-v2-cv-download btn btn-outline" href="/assets/Shahriar_Khan_CV.pdf" download="Shahriar_Khan_CV.pdf" aria-label="Download Shahriar Khan's ATS-friendly Curriculum Vitae as PDF"><span>DOWNLOAD CV</span><span className="btn-icon" aria-hidden="true">↗</span></a></div>
             </div>
             <div className="self-v2-portrait reveal delay-2"><figure className="self-v2-portrait-frame self-v2-photo-card"><div className="self-v2-photo-media"><img src="/images/portrait.jpg" alt="Shahriar Khan" /></div><figcaption className="self-v2-portrait-caption"><strong>SHAHRIAR KHAN</strong><span>THE OBSERVER</span></figcaption></figure></div>
           </div>
