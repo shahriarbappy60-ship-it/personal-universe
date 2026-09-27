@@ -128,3 +128,92 @@ html[data-theme="light"] .self-page-v2 .self-v2-photo-card{box-shadow:var(--shad
   .self-page-v2 .self-v2-actions{align-items:stretch}
   .self-page-v2 .self-v2-cv-download{justify-content:center}
 }
+
+
+/* SELF — FINAL MOTHER DESIGN CALIBRATION */
+.self-page-v2 .self-v2-actions .btn-master{
+  min-height:46px;
+  padding:0 17px;
+  border-radius:999px;
+  letter-spacing:.075em;
+}
+.self-page-v2 .self-v2-actions .btn-master.btn-outline{
+  background:var(--glass-bg);
+  border-color:var(--glass-border);
+  box-shadow:var(--glass-highlight),var(--glass-shadow);
+  backdrop-filter:blur(18px) saturate(125%);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+}
+.self-page-v2 .self-v2-actions .btn-master.btn-outline:hover{
+  background:var(--glass-bg-hover);
+  border-color:var(--glass-border-hover);
+}
+.self-page-v2 .self-v2-actions .btn-master.btn-glass{
+  background:var(--glass-bg);
+  border-color:var(--glass-border);
+  box-shadow:var(--glass-highlight),var(--glass-shadow);
+  backdrop-filter:blur(18px) saturate(125%);
+  -webkit-backdrop-filter:blur(18px) saturate(125%);
+}
+.self-page-v2 .self-v2-portrait-frame{
+  border:1px solid var(--glass-border);
+  background:var(--glass-bg);
+  padding:7px;
+  border-radius:24px;
+  box-shadow:var(--glass-shadow),inset 0 1px 0 rgba(255,255,255,.055);
+}
+.self-page-v2 .self-v2-photo-media{
+  position:relative;
+  overflow:hidden;
+  aspect-ratio:4/5;
+  border-radius:17px;
+  background:var(--bg-deep);
+}
+.self-page-v2 .self-v2-photo-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:none;
+}
+.self-page-v2 .self-v2-photo-media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.06),transparent 30%,rgba(0,0,0,.08));
+  mix-blend-mode:screen;
+}
+.self-page-v2 .self-v2-portrait-caption{
+  position:relative;
+  inset:auto;
+  padding:15px 12px 8px;
+  background:none;
+  color:var(--text);
+}
+.self-page-v2 .self-v2-portrait-caption .self-v2-photo-index{
+  display:block;
+  margin-bottom:10px;
+  font:9px/1.3 var(--font-mono);
+  letter-spacing:.14em;
+  color:var(--faint);
+}
+.self-page-v2 .self-v2-portrait-caption strong{
+  display:block;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.11em;
+}
+.self-page-v2 .self-v2-portrait-caption > span:last-child{
+  display:block;
+  margin-top:5px;
+  font:9px/1.4 var(--font-mono);
+  letter-spacing:.14em;
+  color:var(--faint);
+}
+@media(max-width:760px){
+  .self-page-v2 .self-v2-actions{gap:10px}
+  .self-page-v2 .self-v2-actions .btn-master{width:100%;justify-content:center}
+  .self-page-v2 .self-v2-portrait-frame{padding:6px;border-radius:20px}
+  .self-page-v2 .self-v2-photo-media{border-radius:14px}
+}
