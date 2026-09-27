@@ -713,3 +713,93 @@
   .self-page-v2 .self-v2-practice-item{padding:18px 18px}
   .self-page-v2 .self-v2-practice-item p{font-size:13px}
 }
+
+
+/* Practice — mother-design editorial treatment */
+.self-page-v2 .self-v2-practice{
+  max-width:900px;
+  margin-left:clamp(0px,4vw,56px);
+}
+.self-page-v2 .self-v2-practice-statement{
+  max-width:680px;
+  margin:0 0 42px;
+  font-size:clamp(19px,2vw,25px);
+  line-height:1.6;
+  letter-spacing:-.018em;
+  color:var(--text);
+}
+.self-page-v2 .self-v2-practice-list{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.self-page-v2 .self-v2-practice-row{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:28px;
+  align-items:baseline;
+  padding:19px 0;
+  border-bottom:1px solid var(--line-soft);
+}
+.self-page-v2 .self-v2-practice-row:last-child{border-bottom:0}
+.self-page-v2 .self-v2-practice-row > span,
+.self-page-v2 .self-v2-practice-foot > div > span{
+  font:500 9px/1.4 var(--font-mono);
+  letter-spacing:.16em;
+  color:var(--faint);
+}
+.self-page-v2 .self-v2-practice-row p{
+  margin:0;
+  font-size:14px;
+  line-height:1.65;
+  color:var(--muted);
+}
+.self-page-v2 .self-v2-practice-foot{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:32px;
+  margin-top:34px;
+}
+.self-page-v2 .self-v2-practice-foot > div p{
+  margin:8px 0 0;
+  font-size:13px;
+  line-height:1.6;
+  color:var(--muted);
+}
+.self-page-v2 .self-v2-practice-foot .btn-master{
+  flex:0 0 auto;
+}
+@media(max-width:768px){
+  .self-page-v2 .self-v2-practice{
+    max-width:680px;
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-practice-statement{
+    margin-bottom:32px;
+    font-size:18px;
+    line-height:1.58;
+  }
+  .self-page-v2 .self-v2-practice-row{
+    grid-template-columns:1fr;
+    gap:7px;
+    padding:18px 0;
+  }
+  .self-page-v2 .self-v2-practice-foot{
+    align-items:center;
+    flex-direction:column;
+    gap:24px;
+    margin-top:30px;
+  }
+  .self-page-v2 .self-v2-practice-foot > div{
+    width:100%;
+    text-align:center;
+  }
+  .self-page-v2 .self-v2-practice-foot .btn-master{
+    align-self:center;
+  }
+}
+@media(max-width:430px){
+  .self-page-v2 .self-v2-practice-statement{font-size:17px}
+  .self-page-v2 .self-v2-practice-row p{font-size:13px}
+  .self-page-v2 .self-v2-practice-foot > div p{font-size:12px}
+}
