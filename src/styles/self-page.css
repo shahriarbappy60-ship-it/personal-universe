@@ -100,3 +100,12 @@
  .self-page-v2 .self-v2-social-link{font-size:9px}
  .self-page-v2 .self-v2-direction-action .btn-master{margin-left:0}
 }
+
+/* Final hero copy + unnumbered section labels */
+.self-page-v2 .self-v2-lead{max-width:590px;margin-top:clamp(27px,3vw,38px);font-size:clamp(16px,1.55vw,19px);line-height:1.65;letter-spacing:-.012em}
+.self-page-v2 .self-v2-lead-secondary{max-width:500px;margin-top:13px;font-size:14px;line-height:1.7}
+.self-page-v2 .self-v2-eyebrow{letter-spacing:.18em}
+@media(max-width:560px){
+ .self-page-v2 .self-v2-lead{max-width:100%;margin-top:24px;font-size:16px;line-height:1.62}
+ .self-page-v2 .self-v2-lead-secondary{margin-top:12px;font-size:13.5px;line-height:1.7}
+}
