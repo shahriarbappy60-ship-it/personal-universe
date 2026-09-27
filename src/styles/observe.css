@@ -3653,3 +3653,130 @@ html[data-theme="light"] .transition-btn-primary:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
 }
 
+
+
+/* FINAL MOBILE ARCHIVE TOOLBAR REFINEMENT
+   Filters stay editorial; search + view icon share one row; archive meta sits below. */
+.archive-mobile-meta {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* All / Scenes / Moments / Atmosphere — mobile only */
+    #archive .filter-categories .filter-btn,
+    #archive .filter-categories .filter-btn:hover,
+    #archive .filter-categories .filter-btn:active,
+    #archive .filter-categories .filter-btn:focus,
+    #archive .filter-categories .filter-btn:focus-visible,
+    #archive .filter-categories .filter-btn.active {
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        background-image: none !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transform: none !important;
+        outline: none !important;
+        color: var(--faint) !important;
+        font-family: var(--font-mono) !important;
+        font-size: 8.5px !important;
+        font-weight: 500 !important;
+        letter-spacing: .14em !important;
+        line-height: 1.4 !important;
+        text-transform: uppercase !important;
+    }
+
+    #archive .filter-categories .filter-btn.active {
+        color: var(--text) !important;
+        font-weight: 600 !important;
+    }
+
+    #archive .filter-categories .filter-btn small {
+        display: none !important;
+    }
+
+    #archive .filter-categories {
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 18px !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* Search and grid icon are one deliberate row */
+    #archive .archive-controls-right {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 42px !important;
+        grid-template-rows: 42px auto !important;
+        align-items: center !important;
+        column-gap: 10px !important;
+        row-gap: 9px !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+    }
+
+    #archive .archive-controls-right .archive-tools {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+    }
+
+    #archive .archive-controls-right .archive-search {
+        width: 100% !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        margin: 0 !important;
+    }
+
+    #archive .archive-controls-right .observe-view-switch-single {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 42px !important;
+        height: 42px !important;
+        margin: 0 !important;
+    }
+
+    #archive .archive-controls-right .observe-dynamic-view-btn {
+        width: 42px !important;
+        height: 42px !important;
+        min-width: 42px !important;
+        min-height: 42px !important;
+        margin: 0 !important;
+    }
+
+    #archive .archive-mobile-meta {
+        grid-column: 1 / -1 !important;
+        grid-row: 2 !important;
+        display: flex !important;
+        align-items: baseline !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        color: var(--faint) !important;
+        font-family: var(--font-mono) !important;
+        font-size: 8px !important;
+        font-weight: 500 !important;
+        letter-spacing: .14em !important;
+        line-height: 1 !important;
+        text-transform: uppercase !important;
+    }
+
+    #archive .archive-mobile-meta strong {
+        color: var(--text) !important;
+        font-size: 11px !important;
+        font-weight: 500 !important;
+        letter-spacing: .06em !important;
+        line-height: 1 !important;
+    }
+}
