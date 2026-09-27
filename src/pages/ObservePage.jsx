@@ -260,7 +260,11 @@ export default function ObservePage() {
                   />
                 </label>
               </div>
-            </div>
+               <div className="archive-mobile-meta" aria-hidden="true">
+                <span>CURATED FRAGMENTS</span>
+                <strong>{String(filteredPhotos.length).padStart(2, '0')}</strong>
+              </div>
+           </div>
           </div>
 
           {/* DYNAMIC PHOTO ARCHIVE GALLERY / ALBUMS */}
