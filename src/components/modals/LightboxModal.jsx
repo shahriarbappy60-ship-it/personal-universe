@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import ShareModal from './ShareModal';
 
 export default function LightboxModal({
@@ -90,12 +91,13 @@ export default function LightboxModal({
   };
 
   if (!isOpen || !activePhoto) return null;
+  if (typeof document === 'undefined') return null;
 
   const formattedCounter = hasMultiple && currentIndex >= 0
     ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`
     : '';
 
-  return (
+  return createPortal(
     <>
       <div
         className="modal-lightbox-overlay fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 md:p-8"
@@ -243,6 +245,7 @@ export default function LightboxModal({
         isOpen={isShareOpen}
         onClose={() => setIsShareOpen(false)}
       />
-    </>
+    </>,
+    document.body
   );
 }
