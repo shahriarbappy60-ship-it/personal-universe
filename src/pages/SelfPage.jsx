@@ -31,9 +31,11 @@ export default function SelfPage() {
 
           <div className="self-v2-hero-grid">
             <div className="self-v2-hero-copy reveal delay-1">
-              <h1 className="self-v2-name">SHAHRIAR <em>KHAN.</em></h1>
-              <div className="self-v2-role">
-                <span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span>
+              <div className="self-v2-identity-mark">
+                <h1 className="self-v2-name">SHAHRIAR <em>KHAN.</em></h1>
+                <div className="self-v2-role">
+                  <span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span>
+                </div>
               </div>
               <p className="self-v2-lead">
                 I’m a Computer Science student, but I’ve never felt that technology is the whole story. I’m drawn to perception, consciousness, creativity, and the quiet questions that sit underneath ordinary life.
@@ -49,8 +51,8 @@ export default function SelfPage() {
                   <img src="/images/portrait.jpg" alt="Shahriar Khan — The Observer" />
                 </div>
                 <figcaption className="self-v2-portrait-caption">
-                  <strong>THE OBSERVER</strong>
-                  <span>SHAHRIAR KHAN</span>
+                  <strong>SHAHRIAR KHAN</strong>
+                  <span>THE OBSERVER</span>
                 </figcaption>
               </figure>
             </div>
