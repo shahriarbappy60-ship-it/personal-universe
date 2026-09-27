@@ -136,34 +136,38 @@ export default function SelfPage() {
           <div className="self-v2-section-head reveal">
             <div>
               <span className="self-v2-eyebrow">PRACTICE</span>
-              <h2>Learning by <em>building.</em></h2>
+              <h2>Building toward <em>what’s next.</em></h2>
             </div>
-            <p className="self-v2-section-intro">What I’m developing professionally, through study, projects, and practice.</p>
+            <p className="self-v2-section-intro">A practical view of what I’m learning and working with.</p>
           </div>
 
           <div className="self-v2-practice reveal">
-            <p className="self-v2-practice-statement">
-              I’m developing myself as a software developer, with a growing focus on web development and digital experiences. I’m learning through coursework, personal projects, and the process of turning ideas into something real.
-            </p>
+            <div className="self-v2-practice-intro">
+              <p>I’m a CSE undergraduate building a foundation in software and web development through coursework and personal projects.</p>
+            </div>
 
-            <div className="self-v2-practice-list">
-              <div className="self-v2-practice-row">
-                <span className="self-v2-practice-label">WEB DEVELOPMENT</span>
+            <div className="self-v2-practice-grid">
+              <div className="self-v2-practice-item">
+                <span>WEB</span>
                 <p>HTML · CSS · JavaScript · React</p>
               </div>
-              <div className="self-v2-practice-row">
-                <span className="self-v2-practice-label">BACKEND / SYSTEMS</span>
+              <div className="self-v2-practice-item">
+                <span>BACKEND</span>
                 <p>Python · Django · Databases</p>
               </div>
-              <div className="self-v2-practice-row">
-                <span className="self-v2-practice-label">TOOLS</span>
+              <div className="self-v2-practice-item">
+                <span>TOOLS</span>
                 <p>Git · GitHub · Figma · Canva</p>
+              </div>
+              <div className="self-v2-practice-item">
+                <span>FOCUS</span>
+                <p>Web development · Full-stack fundamentals</p>
               </div>
             </div>
 
             <div className="self-v2-practice-current">
               <span>CURRENTLY</span>
-              <p>CSE Undergraduate · Building Personal Universe · Learning React &amp; Full-Stack Development</p>
+              <p>Studying Computer Science &amp; Engineering · Developing Personal Universe · Continuing React and full-stack learning</p>
             </div>
           </div>
         </div>
