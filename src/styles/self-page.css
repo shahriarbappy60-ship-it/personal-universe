@@ -29,8 +29,8 @@
 .self-page-v2 .self-v2-photo-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 25%,rgba(255,255,255,.08) 0%,transparent 60%)}
 .self-page-v2 .self-v2-portrait-frame:hover .self-v2-photo-media img{transform:scale(1.04)}
 .self-page-v2 .self-v2-portrait-caption{position:absolute;inset:auto 0 0;z-index:2;padding:36px 32px 30px;background:linear-gradient(transparent 0%,rgba(4,5,7,.7) 40%,rgba(4,5,7,.96) 100%);color:#fff}
-.self-page-v2 .self-v2-portrait-caption strong{display:block;font-family:var(--sans);font-size:clamp(24px,2.6vw,32px);font-weight:600;line-height:1;letter-spacing:-.02em}
-.self-page-v2 .self-v2-portrait-caption span{display:block;margin-top:6px;font:11px/1.4 var(--sans);letter-spacing:.03em;color:rgba(255,255,255,.72)}
+.self-page-v2 .self-v2-portrait-caption strong{display:block;font-family:var(--sans);font-size:clamp(22px,2.4vw,30px);font-weight:600;line-height:1;letter-spacing:-.035em}
+.self-page-v2 .self-v2-portrait-caption span{display:block;margin-top:7px;font:500 10px/1.4 var(--font-mono);letter-spacing:.12em;color:rgba(255,255,255,.68);text-transform:uppercase}
 .self-page-v2 .self-v2-statement{max-width:900px;margin:0;margin-left:clamp(0px,5vw,72px);font-family:var(--font-serif);font-size:clamp(28px,4vw,54px);line-height:1.12;letter-spacing:-.035em}
 .self-page-v2 .self-v2-statement::before{content:"“";display:block;margin-bottom:26px;font-family:var(--font-serif);font-size:70px;line-height:.5;color:var(--faint)}
 .self-page-v2 .self-v2-curiosity-list{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
