@@ -9681,3 +9681,32 @@ html.js-ready .hero-celestial-stage{
     transform:rotate(-12deg);
   }
 }
+
+/* Mobile menu — explicit visibility state so the open panel cannot get visually stuck */
+@media(max-width:768px){
+  .mobile-menu{
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-105%) !important;
+    transition:
+      transform .65s var(--ease),
+      opacity .35s ease,
+      visibility 0s linear .65s;
+  }
+  .mobile-menu.open{
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0) !important;
+    transition:
+      transform .65s var(--ease),
+      opacity .35s ease,
+      visibility 0s linear 0s;
+  }
+  .mobile-menu.open .mobile-nav-list,
+  .mobile-menu.open .mobile-menu-bottom{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
