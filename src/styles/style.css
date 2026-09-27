@@ -9287,59 +9287,6 @@ html[data-theme="light"] .project-archive-row:hover .archive-row-title {
   }
 }
 
-/* Universe home — primary navigation origin */
-.site-header .desktop-nav .universe-home-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  margin-right:8px;
-  padding:7px 0;
-  color:var(--text);
-  font:500 10px/1 var(--font-mono);
-  letter-spacing:.18em;
-  text-decoration:none;
-  opacity:.9;
-  transition:opacity .25s var(--ease),transform .25s var(--ease);
-}
-.site-header .desktop-nav .universe-home-link::before{
-  content:"";
-  width:5px;
-  height:5px;
-  margin-right:8px;
-  border:1px solid currentColor;
-  border-radius:50%;
-  opacity:.65;
-}
-.site-header .desktop-nav .universe-home-link:hover{
-  opacity:1;
-  transform:translateY(-1px);
-}
-.mobile-menu .mobile-universe-home{
-  display:flex;
-  align-items:center;
-  gap:11px;
-  width:100%;
-  margin-bottom:18px;
-  padding:4px 2px 18px;
-  border-bottom:1px solid var(--line-soft);
-  color:var(--text);
-  text-decoration:none;
-  font:500 10px/1 var(--font-mono);
-  letter-spacing:.2em;
-}
-.mobile-menu .mobile-universe-mark{
-  width:7px;
-  height:7px;
-  border:1px solid currentColor;
-  border-radius:50%;
-  opacity:.7;
-  box-shadow:0 0 0 3px rgba(255,255,255,.025);
-}
-@media(max-width:768px){
-  .site-header .desktop-nav .universe-home-link{display:none}
-}
-
 /* =========================================================
    MOBILE MENU — COMPACT EDITORIAL NAVIGATION
    Keep the menu quiet, precise and proportionate.
