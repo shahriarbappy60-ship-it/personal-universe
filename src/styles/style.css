@@ -9811,3 +9811,19 @@ html.js-ready .hero-celestial-stage{
     font-weight: 500 !important;
   }
 }
+
+
+/* HOME / OBSERVE — remove only the faint outer halo on mobile light mode.
+   The photocard itself remains unchanged. */
+@media (max-width: 768px) {
+  html[data-theme="light"] #observe .photo-card-item,
+  html[data-theme="light"] #observe .photo-card-item:hover,
+  html[data-theme="light"] #observe .photo-card-item:focus,
+  html[data-theme="light"] #observe .photo-card-item:active {
+    box-shadow: none !important;
+  }
+
+  html[data-theme="light"] #observe .photo-card-item:focus-visible {
+    box-shadow: none !important;
+  }
+}
