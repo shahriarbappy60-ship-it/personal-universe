@@ -57,7 +57,7 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
           
           <div className="archive-row-arrow-wrap">
             <span className="archive-row-arrow" aria-hidden="true">
-              {isExpanded ? '↑' : '↗'}
+              {isExpanded ? 'VIEW LESS ↑' : 'VIEW MORE ↗'}
             </span>
           </div>
         </div>
