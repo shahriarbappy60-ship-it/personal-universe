@@ -101,7 +101,8 @@ export default function HeroSection() {
       // All rings and the ball share one exact geometric center and never drift apart
       if (celestialStageRef.current) {
         if (isMobile) {
-          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0) rotate(-12deg)`;
+          // CSS owns the mobile stage position; JS only adds a tiny drift.
+          celestialStageRef.current.style.transform = `translate3d(${currentX * 2}px, ${currentY * 2}px, 0)`;
         } else {
           celestialStageRef.current.style.transform = `translate3d(calc(-50% + ${currentX * 5}px), calc(-50% + ${currentY * 5}px), 0) rotate(-12deg)`;
         }
