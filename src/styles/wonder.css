@@ -1627,3 +1627,96 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-right:15px;
   }
 }
+
+
+/* =========================================================
+   WONDER — FINAL PREVIEW / EXPANDED STATE CORRECTION
+========================================================= */
+
+/* Essay previews stay quiet until opened. */
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row{
+  background:transparent;
+  border:1px solid transparent;
+  border-bottom-color:var(--line-soft);
+  border-radius:0;
+}
+
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
+  background:var(--glass-bg);
+  border-color:var(--glass-border);
+  border-radius:16px;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded{
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  background:var(--glass-bg);
+  overflow:hidden;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+
+/* Reflection preview: the highlight belongs to the whole row,
+   while the text keeps a real inner gutter on mobile. */
+.wonder-page .wonder-reflection-row.is-expanded{
+  box-sizing:border-box;
+  width:100%;
+  padding:0 clamp(14px,2vw,24px);
+  margin:12px 0;
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  background:var(--glass-bg);
+  overflow:hidden;
+}
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+  padding-left:0;
+  padding-right:0;
+}
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  padding:0 0 28px;
+  border:0;
+  background:transparent;
+  margin:0;
+}
+
+@media(max-width:768px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding-left:16px;
+    padding-right:16px;
+    border-radius:14px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding-bottom:24px;
+  }
+
+  .wonder-page .wonder-essay-wrapper .wonder-editorial-row{
+    padding-left:0;
+    padding-right:0;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:17px;
+    padding-right:17px;
+  }
+}
+
+@media(max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+}
