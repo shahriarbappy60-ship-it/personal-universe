@@ -1265,3 +1265,64 @@ html[data-theme="light"] .wonder-essay-pill-cta {
  .wonder-page .wonder-reflection-body-inner{padding:18px 16px}
  .wonder-page .wonder-essay-heroic-card{padding:22px 17px}
 }
+
+/* WONDER — expanded reader: give the text a deliberate inner breathing zone */
+.wonder-page .wonder-reflection-row.is-expanded{
+  padding:0 clamp(24px,4vw,52px);
+  margin:16px 0;
+  border-radius:20px;
+  overflow:hidden;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+  padding:24px 0 26px;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body{
+  width:100%;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  max-width:900px;
+  margin:0 auto 32px;
+  padding:38px clamp(24px,4vw,52px) 42px;
+  border-left:1px solid var(--glass-border);
+  border-right:1px solid var(--glass-border);
+  border-radius:2px;
+  background:rgba(255,255,255,.018);
+}
+html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  background:rgba(0,0,0,.018);
+}
+.wonder-page .wonder-reflection-body p,
+.wonder-page .wonder-reflection-body blockquote{
+  max-width:65ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+@media(max-width:768px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding:0 14px;
+    margin:12px 0;
+    border-radius:18px;
+  }
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding:20px 4px 22px;
+  }
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    max-width:none;
+    margin:0 0 22px;
+    padding:28px 20px 30px;
+    border-left:0;
+    border-right:0;
+    border-top:1px solid var(--glass-border);
+    border-bottom:1px solid var(--glass-border);
+    background:rgba(255,255,255,.018);
+  }
+  .wonder-page .wonder-reflection-body p{font-size:16px;line-height:1.78}
+}
+@media(max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded{padding:0 10px}
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding:26px 17px 28px;
+  }
+}
