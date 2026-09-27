@@ -508,3 +508,60 @@
     font-size:8.5px;
   }
 }
+
+/* Direction actions — balanced social constellation */
+.self-page-v2 .self-v2-socials{
+  gap:8px;
+  align-items:center;
+}
+.self-page-v2 .self-v2-social-link{
+  min-height:38px;
+  padding:0 12px;
+  font-size:9px;
+  letter-spacing:.11em;
+  color:var(--muted);
+  border:1px solid var(--line-soft);
+  background:rgba(255,255,255,.012);
+}
+.self-page-v2 .self-v2-social-link span{
+  margin-left:5px;
+}
+.self-page-v2 .self-v2-direction-action .btn-master{
+  min-height:38px;
+  height:38px;
+  padding:0 14px;
+  margin-left:2px;
+}
+@media(max-width:900px){
+  .self-page-v2 .self-v2-socials{
+    justify-content:flex-start;
+  }
+}
+@media(max-width:768px){
+  .self-page-v2 .self-v2-socials{
+    justify-content:center;
+    gap:8px;
+  }
+  .self-page-v2 .self-v2-social-link,
+  .self-page-v2 .self-v2-direction-action .btn-master{
+    min-height:36px;
+    height:36px;
+  }
+}
+@media(max-width:430px){
+  .self-page-v2 .self-v2-socials{
+    max-width:340px;
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-social-link{
+    min-height:34px;
+    padding:0 10px;
+    font-size:8.5px;
+  }
+  .self-page-v2 .self-v2-direction-action .btn-master{
+    min-height:34px;
+    height:34px;
+    padding-inline:12px;
+    font-size:8.5px;
+  }
+}
