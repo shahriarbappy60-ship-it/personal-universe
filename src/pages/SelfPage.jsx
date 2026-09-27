@@ -26,7 +26,7 @@ export default function SelfPage() {
           <div className="self-v2-hero-bar reveal">
             <span className="self-v2-eyebrow">01 / IDENTITY</span>
             <span className="self-v2-rule" aria-hidden="true" />
-            <span>THE PERSON BEHIND IT ALL</span>
+            <span>A GLIMPSE BEHIND THE WORK</span>
           </div>
 
           <div className="self-v2-hero-grid">
@@ -36,10 +36,10 @@ export default function SelfPage() {
                 <span>THE OBSERVER</span><span>·</span><span>CSE UNDERGRADUATE</span><span>·</span><span>DHAKA · BANGLADESH</span>
               </div>
               <p className="self-v2-lead">
-                I’m a Computer Science student, but I’ve never felt that technology is the whole story. I’m equally drawn to how people see, what we notice, what we overlook, and the questions that remain after the obvious answers are gone.
+                I’m a Computer Science student, but I’ve never felt that technology is the whole story. I’m drawn to perception, consciousness, creativity, and the quiet questions that sit underneath ordinary life.
               </p>
               <p className="self-v2-lead-secondary">
-                I build with code, photograph what catches my eye, think through ideas that stay with me, and keep learning by following my curiosity. Different forms, same instinct: to observe, understand, and create.
+                Code is one way I make things. Photography is one way I notice them. Thought is one way I make sense of them. They may look like different paths, but they come from the same instinct: to observe, question, and create.
               </p>
             </div>
 
@@ -68,7 +68,7 @@ export default function SelfPage() {
             <p className="self-v2-section-intro">I’m interested in the space between what happens and how we experience it.</p>
           </div>
           <p className="self-v2-statement reveal">
-            I tend to look a little longer than necessary. At people, places, ideas, and the things most of us pass without noticing. I question what feels obvious, try to see beyond a single perspective, and follow a thought even when it leads somewhere I did not expect. For me, observing is not standing outside life; it is a way of being present in it.
+            I tend to look a little longer than necessary. At people, places, ideas, and the things most of us pass without noticing. I’m fascinated by the gap between reality and perception — by how the same world can become completely different depending on the mind experiencing it. I question what feels obvious, not because I need everything to have an answer, but because the question itself can change the way I see.
           </p>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function SelfPage() {
               <span className="self-v2-eyebrow">03 / CURIOSITY</span>
               <h2>What keeps me <em>curious.</em></h2>
             </div>
-            <p className="self-v2-section-intro">Different subjects, one recurring impulse: understand what is beneath the surface.</p>
+            <p className="self-v2-section-intro">Different subjects, one recurring impulse: look beneath the surface.</p>
           </div>
           <div className="self-v2-curiosity-list reveal">
             {curiosity.map(([index, title, text]) => (
@@ -103,7 +103,7 @@ export default function SelfPage() {
             </div>
           </div>
           <p className="self-v2-life-statement reveal">
-            I’m drawn to quiet moments, music, photography, cinema, unfamiliar places, and conversations that go somewhere deeper than small talk. These things shape how I notice, feel, question, and create. They are part of the same inner world that shows up in my work.
+            I’m drawn to quiet moments, music, photography, cinema, unfamiliar places, and conversations that go somewhere deeper than small talk. I like things that leave something behind — a feeling, an image, a question, a new way of looking. These are not side interests to me; they are part of the inner world I bring into everything I make.
           </p>
         </div>
       </section>
@@ -113,7 +113,7 @@ export default function SelfPage() {
           <div className="self-v2-section-head reveal">
             <div>
               <span className="self-v2-eyebrow">05 / FOUNDATION</span>
-              <h2>Where the <em>journey began.</em></h2>
+              <h2>A foundation, not a <em>definition.</em></h2>
             </div>
           </div>
           <div className="self-v2-foundation-list reveal">
@@ -139,7 +139,7 @@ export default function SelfPage() {
           </div>
           <div className="self-v2-direction reveal">
             <p className="self-v2-direction-statement">
-              I’m building a life around curiosity rather than a fixed definition of who I should become. Software gives me a way to build. Photography gives me a way to notice. Thought gives me a way to question. I’m still learning how these parts fit together — and I’m in no hurry to make them separate.
+              I’m building a life around curiosity rather than a fixed definition of who I should become. Software lets me build, photography lets me notice, and thought lets me question. Somewhere between all three is the person I’m becoming — still changing, still learning, still observing.
             </p>
             <div className="self-v2-direction-action">
               <div className="self-v2-socials" aria-label="Social profiles">
