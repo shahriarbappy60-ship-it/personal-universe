@@ -103,10 +103,9 @@ export default function LightboxModal({
         role="dialog"
         aria-modal="true"
         aria-label="Photograph viewer"
-        onClick={onClose}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        onClick={e => {
+          if (e.target === e.currentTarget) onClose();
+        }}
       >
         {/* Top Floating Controls Bar */}
         <div className="lightbox-top-bar fixed top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2.5 z-[10002]">
@@ -186,7 +185,12 @@ export default function LightboxModal({
           onClick={e => e.stopPropagation()}
         >
           {/* Naturally scaling image without rigid box walls */}
-          <div className="lightbox-image-stage flex items-center justify-center max-w-full">
+          <div
+            className="lightbox-image-stage flex items-center justify-center max-w-full"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <img
               id="lightboxImage"
               src={activePhoto.src}
