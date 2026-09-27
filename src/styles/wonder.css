@@ -928,15 +928,16 @@ html[data-theme="light"] .wonder-reflection-row.is-expanded .wonder-read-action 
     transition: transform 0.35s var(--ease);
 }
 
-/* Accordion body — max-height transition */
+/* Reflection accordion — grid avoids fixed-height text clipping */
 .wonder-reflection-body {
-    max-height: 0;
+    display: grid;
+    grid-template-rows: 0fr;
     overflow: hidden;
-    transition: max-height 0.65s var(--ease);
+    transition: grid-template-rows 0.65s var(--ease);
 }
 
 .wonder-reflection-row.is-expanded .wonder-reflection-body {
-    max-height: 2400px;
+    grid-template-rows: 1fr;
     padding-top: 4px;
 }
 
@@ -1202,22 +1203,6 @@ html[data-theme="light"] .wonder-essay-pill-cta {
     padding-top: 20px;
 }
 
-/* UPDATE REFLECTION ACCORDION TO CSS GRID FOR INFINITE HEIGHT */
-.wonder-reflection-body {
-    display: grid !important;
-    grid-template-rows: 0fr !important;
-    max-height: none !important;
-    transition: grid-template-rows 0.65s var(--ease) !important;
-}
-
-.wonder-reflection-row.is-expanded .wonder-reflection-body {
-    grid-template-rows: 1fr !important;
-    max-height: none !important;
-}
-
-.wonder-reflection-body-inner {
-    min-height: 0;
-}
 
 
 /* =========================================================
