@@ -23,7 +23,7 @@ function ReflectionRow({ reflection }) {
         aria-label={`${expanded ? 'Collapse' : 'Read'} reflection: ${reflection.titleBase} ${reflection.titleAccent}`}
       >
         <div className="wonder-row-meta">
-          <span className="wonder-row-number">{reflection.number}</span>
+          <span className="wonder-row-number">{Number(reflection.number)}</span>
           <span className="wonder-row-sep">—</span>
           <span className="wonder-row-category">{reflection.tag}</span>
           <span className="wonder-row-sep">·</span>
@@ -54,7 +54,7 @@ function ReflectionRow({ reflection }) {
       {expanded && (
         <div className="wonder-reflection-end">
           <span>{reflection.tag}</span>
-          <span>{reflection.readTime} · {reflection.date}</span>
+          <span>{reflection.readTime}</span>
         </div>
       )}
     </article>
@@ -249,7 +249,7 @@ export default function WonderPage() {
                       aria-controls={`wonder-essay-body-${e.id}`}
                     >
                       <div className="wonder-row-meta">
-                        <span className="wonder-row-number">{e.number}</span>
+                        <span className="wonder-row-number">{Number(e.number)}</span>
                         <span className="wonder-row-sep">—</span>
                         <span className="wonder-row-category">ESSAY</span>
                         <span className="wonder-row-sep">·</span>
