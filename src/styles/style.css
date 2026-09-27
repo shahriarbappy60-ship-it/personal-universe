@@ -9657,3 +9657,27 @@ html.js-ready .hero-celestial-stage{
     animation:none;
   }
 }
+
+/* Mobile navigation interaction — closed menu never intercepts the page */
+@media(max-width:768px){
+  .mobile-menu{
+    pointer-events:none;
+  }
+  .mobile-menu.open{
+    pointer-events:auto;
+    transform:translateY(0) !important;
+  }
+  .mobile-menu a,
+  .mobile-menu button{
+    pointer-events:auto;
+  }
+
+  /* Preserve the original angled celestial composition on mobile. */
+  .hero-celestial-stage{
+    transform:rotate(-12deg);
+    transform-origin:50% 50%;
+  }
+  html.js-ready .hero-celestial-stage{
+    transform:rotate(-12deg);
+  }
+}
