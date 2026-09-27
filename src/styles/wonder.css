@@ -1500,3 +1500,130 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-bottom:26px;
   }
 }
+
+
+/* =========================================================
+   WONDER — SINGLE SURFACE PASS
+   One preview surface, one contiguous expanded surface.
+========================================================= */
+
+/* Essay previews: both entries use the exact same highlighted surface. */
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:clamp(28px,3.2vw,40px) clamp(22px,3vw,36px);
+}
+
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
+  background:var(--glass-bg-hover);
+  border-color:var(--glass-border);
+}
+
+/* Expanded essay = ONE box. Header and reader are parts of that same surface. */
+.wonder-page .wonder-essay-wrapper.is-expanded{
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  background:var(--glass-bg);
+  overflow:hidden;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
+  border:0;
+  border-radius:0;
+  background:transparent;
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+  border:0;
+  border-top:1px solid var(--line-soft);
+  border-radius:0;
+  background:transparent;
+  width:100%;
+  padding:clamp(28px,4vw,48px) clamp(24px,4vw,48px) clamp(32px,4vw,48px);
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body{
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+}
+
+/* Reflection expanded state = ONE surface too; text sits inside it, not on its wall. */
+.wonder-page .wonder-reflection-row.is-expanded{
+  box-sizing:border-box;
+  width:100%;
+  padding:0;
+  overflow:hidden;
+}
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+  padding-left:clamp(20px,3vw,32px);
+  padding-right:clamp(20px,3vw,32px);
+}
+
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  padding:4px clamp(20px,3vw,32px) 28px;
+  border:0;
+  border-top:1px solid var(--line-soft);
+  border-radius:0;
+  background:transparent;
+  margin:0;
+}
+
+@media(max-width:768px){
+  .wonder-page .wonder-essay-wrapper .wonder-editorial-row{
+    padding:24px 17px 22px;
+    border-radius:13px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded{
+    border-radius:13px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
+    padding:24px 17px 22px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding:24px 17px 28px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded{
+    border-radius:13px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding-left:17px;
+    padding-right:17px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding:4px 17px 24px;
+  }
+}
+
+@media(max-width:420px){
+  .wonder-page .wonder-essay-wrapper .wonder-editorial-row,
+  .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding-left:15px;
+    padding-right:15px;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding-left:15px;
+    padding-right:15px;
+  }
+}
