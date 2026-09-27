@@ -35,6 +35,10 @@ export default function PhotoCard({
         />
         <div className="photo-frame-overlay" aria-hidden="true" />
 
+        <span className="photo-grid-index" aria-hidden="true">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
         {/* Integrated Luminous Overlay Caption — No Disconnected Bottom Box */}
         <div className="photo-integrated-caption">
           <div className="photo-caption-main">
