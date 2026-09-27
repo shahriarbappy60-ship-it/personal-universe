@@ -38,7 +38,7 @@ export default function MobileMenu({ isOpen, onClose }) {
       id="mobileMenu"
       aria-hidden={!isOpen}
     >
-      {/* 4 CORE COMPACT GLASS PILL BUTTONS */}
+      {/* PRIMARY NAVIGATION */}
       <nav className="mobile-nav-list" aria-label="Mobile navigation">
         <Link
           to="/"
