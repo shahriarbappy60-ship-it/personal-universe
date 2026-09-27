@@ -9088,3 +9088,50 @@ html[data-theme="light"] .project-archive-row:hover .archive-row-title {
         animation-delay: 1.5s; /* Wait a bit after appearing */
     }
 }
+
+
+/* =========================================================
+   CREATE CONTENT REFINEMENT — v1.0.12
+   Responsive editorial archive; no text clipping.
+   Create Hero and celestial visual remain untouched.
+========================================================= */
+.create-page .create-vertical-archive,.create-page .project-archive-row{width:100%;min-width:0}
+.create-page .archive-row-header,.create-page .archive-row-main,.create-page .archive-row-side,.create-page .archive-side-rail,.create-page .archive-expanded-grid,.create-page .expanded-main-col,.create-page .expanded-side-col,.create-page .expanded-block{min-width:0}
+.create-page .archive-row-title,.create-page .archive-row-type,.create-page .archive-row-desc,.create-page .rail-value,.create-page .expanded-block p,.create-page .expanded-list li{overflow-wrap:anywhere;word-break:normal}
+.create-page .archive-row-body-inner{min-width:0}
+.create-page .project-archive-row.is-expanded .archive-row-body-inner{overflow:visible}
+.create-page .archive-row-actions{flex-wrap:wrap;gap:16px 24px}
+@media (max-width:900px){
+ .create-page .project-archive-row{padding-left:0;padding-right:0}
+ .create-page .archive-row-header{gap:24px}
+ .create-page .archive-row-main{width:100%;max-width:none}
+ .create-page .archive-row-side{align-items:flex-start;gap:20px}
+ .create-page .archive-side-rail{width:100%;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .create-page .archive-expanded-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px}
+ .create-page .archive-row-title{line-height:1.12}
+}
+@media (max-width:640px){
+ .create-page .create-vertical-archive{margin-top:44px}
+ .create-page .project-archive-row,.create-page .project-archive-row.is-featured{padding-top:34px;padding-bottom:34px}
+ .create-page .project-archive-row.is-featured .archive-row-title{font-size:clamp(32px,9vw,44px)}
+ .create-page .archive-row-meta{gap:8px;margin-bottom:18px;flex-wrap:wrap}
+ .create-page .archive-row-title-block{margin-bottom:14px}
+ .create-page .archive-row-title{font-size:clamp(28px,8.5vw,38px);line-height:1.12}
+ .create-page .archive-row-desc{max-width:none;font-size:14px;line-height:1.72}
+ .create-page .archive-row-side{width:100%;margin-top:8px;padding-top:20px;align-items:flex-start}
+ .create-page .archive-side-rail{grid-template-columns:1fr;gap:14px}
+ .create-page .rail-value{font-size:13px;line-height:1.55}
+ .create-page .archive-row-arrow-wrap{flex:0 0 auto;padding-top:2px}
+ .create-page .archive-expanded-grid{grid-template-columns:1fr;gap:28px}
+ .create-page .archive-row-body-inner{padding-top:24px!important}
+ .create-page .archive-row-divider{margin-bottom:26px}
+ .create-page .expanded-block{margin-bottom:28px}
+ .create-page .expanded-eyebrow{margin-bottom:10px}
+ .create-page .expanded-block p,.create-page .expanded-list li{font-size:14px;line-height:1.72}
+ .create-page .archive-row-actions{justify-content:flex-start;margin-top:24px;padding-top:24px}
+}
+@media (max-width:420px){
+ .create-page .project-archive-row,.create-page .project-archive-row.is-featured{padding-top:30px;padding-bottom:30px}
+ .create-page .archive-row-title{font-size:clamp(26px,8.5vw,34px)}
+ .create-page .archive-row-side{gap:14px}
+}

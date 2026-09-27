@@ -19,6 +19,7 @@ function ReflectionRow({ reflection }) {
         tabIndex={0}
         role="button"
         aria-expanded={expanded}
+        aria-controls={`wonder-reflection-body-${reflection.id}`}
         aria-label={`${expanded ? 'Collapse' : 'Read'} reflection: ${reflection.titleBase} ${reflection.titleAccent}`}
       >
         <div className="wonder-row-meta">
@@ -44,7 +45,7 @@ function ReflectionRow({ reflection }) {
       </div>
 
       {/* Accordion body — in-place serene glass enclosure */}
-      <div className="wonder-reflection-body" aria-hidden={!expanded}>
+      <div id={`wonder-reflection-body-${reflection.id}`} className="wonder-reflection-body" aria-hidden={!expanded}>
         <div
           className="wonder-reflection-body-inner"
           dangerouslySetInnerHTML={{ __html: reflection.body }}
@@ -240,6 +241,7 @@ export default function WonderPage() {
               tabIndex={0}
               role="button"
               aria-expanded={selectedEssay === essays[0].id}
+              aria-controls={`wonder-essay-body-${essays[0].id}`}
             >
               <span className="wonder-essay-card-tag">
                 ESSAY · {essays[0].number} · {essays[0].tag}
@@ -253,7 +255,7 @@ export default function WonderPage() {
               </span>
             </div>
 
-            <div className="archive-row-body" aria-hidden={selectedEssay !== essays[0].id}>
+            <div id={`wonder-essay-body-${essays[0].id}`} className="archive-row-body" aria-hidden={selectedEssay !== essays[0].id}>
               <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
                 <article
                   className="reader-body inline-reader"
@@ -282,6 +284,7 @@ export default function WonderPage() {
                     tabIndex={0}
                     role="button"
                     aria-expanded={isExpanded}
+                    aria-controls={`wonder-essay-body-${e.id}`}
                   >
                     <div className="wonder-row-meta">
                       <span className="wonder-row-number">{e.number}</span>
@@ -302,7 +305,7 @@ export default function WonderPage() {
                     </div>
                   </article>
                   
-                  <div className="archive-row-body" aria-hidden={!isExpanded}>
+                  <div id={`wonder-essay-body-${e.id}`} className="archive-row-body" aria-hidden={!isExpanded}>
                     <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
                       <article
                         className="reader-body inline-reader"

@@ -1218,3 +1218,40 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 .wonder-reflection-body-inner {
     min-height: 0;
 }
+
+
+/* =========================================================
+   WONDER CONTENT REFINEMENT — v1.0.12
+   Content remains readable at every viewport.
+   Hero remains untouched.
+========================================================= */
+.wonder-page .wonder-row-meta{flex-wrap:wrap;min-width:0}
+.wonder-page .wonder-row-title,.wonder-page .wonder-row-description,.wonder-page .wonder-essay-card-title,.wonder-page .wonder-essay-card-excerpt,.wonder-page .wonder-reflection-body-inner,.wonder-page .archive-row-body-inner{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner,.wonder-page .wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner{overflow:visible}
+.wonder-page .wonder-reflection-body p,.wonder-page .wonder-reflection-body blockquote,.wonder-page .reader-body p,.wonder-page .reader-body blockquote{max-width:65ch;overflow-wrap:anywhere}
+.wonder-page .wonder-reflection-end{flex-wrap:wrap}
+.wonder-page .wonder-essay-card-title{text-wrap:balance}
+@media (max-width:768px){
+ .wonder-page .wonder-tier-section{padding-top:56px;padding-bottom:56px}
+ .wonder-page .wonder-tier-header{margin-bottom:32px}
+ .wonder-page .wonder-reflection-row{padding-left:0;padding-right:0}
+ .wonder-page .wonder-reflection-header{padding:24px 0 26px}
+ .wonder-page .wonder-row-title{font-size:clamp(22px,7vw,30px);line-height:1.14;margin-bottom:14px}
+ .wonder-page .wonder-row-description{max-width:none;margin-bottom:18px;line-height:1.72}
+ .wonder-page .wonder-reflection-body-inner{width:100%;padding:20px 18px;margin-bottom:20px}
+ .wonder-page .wonder-reflection-body p{font-size:15.5px;line-height:1.82;margin-bottom:22px}
+ .wonder-page .wonder-reflection-body p.lead{font-size:20px;line-height:1.42}
+ .wonder-page .wonder-reflection-body blockquote{margin:28px 0;padding:12px 0 12px 16px;font-size:18px;line-height:1.5}
+ .wonder-page .wonder-reflection-end{gap:8px 16px;padding-bottom:26px}
+ .wonder-page .wonder-essay-heroic-card{padding:26px 20px;margin-bottom:30px;border-radius:20px}
+ .wonder-page .wonder-essay-card-title{font-size:clamp(28px,8vw,40px);line-height:1.08}
+ .wonder-page .wonder-essay-card-excerpt{max-width:none;line-height:1.72;margin-bottom:26px}
+ .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner,.wonder-page .wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner{padding-top:12px}
+ .wonder-page .wonder-editorial-row{padding-top:26px;padding-bottom:26px}
+ .wonder-page .wonder-gateway{padding-left:8px;padding-right:8px}
+}
+@media (max-width:420px){
+ .wonder-page .wonder-row-meta{gap:6px;font-size:9px;letter-spacing:.11em}
+ .wonder-page .wonder-reflection-body-inner{padding:18px 16px}
+ .wonder-page .wonder-essay-heroic-card{padding:22px 17px}
+}

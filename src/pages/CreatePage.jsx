@@ -16,6 +16,7 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
       role="button"
       tabIndex={0}
       aria-expanded={isExpanded}
+      aria-controls={`project-archive-body-${project.id}`}
       onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
     >
       <div className="archive-row-header">
@@ -62,7 +63,7 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
         </div>
       </div>
 
-      <div className="archive-row-body" aria-hidden={!isExpanded}>
+      <div id={`project-archive-body-${project.id}`} className="archive-row-body" aria-hidden={!isExpanded}>
         <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
           <div className="archive-row-divider" />
           
