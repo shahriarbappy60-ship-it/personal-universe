@@ -1780,3 +1780,33 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     border-radius:0;
   }
 }
+
+
+/* =========================================================
+   WONDER — REFLECTION MOBILE STATE REPAIR
+   Closed preview stays quiet; expanded reflection keeps its
+   intentional reading surface. Do not flatten the reader.
+========================================================= */
+@media (max-width:768px){
+  /* Mobile preview: remove only the hover/tap surface highlight. */
+  .wonder-page .wonder-reflection-row:not(.is-expanded):hover{
+    background-color:transparent;
+  }
+
+  /* Expanded reflection: restore the actual reading enclosure. */
+  .wonder-page .wonder-reflection-row.is-expanded{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    border-radius:14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+@media (max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding-left:14px;
+    padding-right:14px;
+  }
+}
