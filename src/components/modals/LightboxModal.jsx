@@ -176,7 +176,7 @@ export default function LightboxModal({
             type="button"
             onClick={e => {
               e.stopPropagation();
-              onPrev();
+              triggerSlide('prev');
             }}
             aria-label="Previous photograph"
           >
@@ -192,7 +192,7 @@ export default function LightboxModal({
             type="button"
             onClick={e => {
               e.stopPropagation();
-              onNext();
+              triggerSlide('next');
             }}
             aria-label="Next photograph"
           >
@@ -204,7 +204,7 @@ export default function LightboxModal({
 
         {/* Dynamic Fluid Content Column: Natural Aspect Image + Docked Metadata Tray */}
         <div
-          className={`lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full ${slide ? 'is-sliding' : ''}`"
+          className={`lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full ${slide ? 'is-sliding' : ''}`}
           onClick={e => e.stopPropagation()}
         >
           {/* Naturally scaling image without rigid box walls */}
@@ -214,7 +214,7 @@ export default function LightboxModal({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className={`lightbox-slide-track ${slide ? `slide-${slide.direction}` : ''}`}>
+            <div className={`lightbox-slide-stage ${slide ? `slide-${slide.direction}` : ''}`}>
               <img
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
