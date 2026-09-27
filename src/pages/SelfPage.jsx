@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { projectsData } from '../data/projectsData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
@@ -13,7 +13,8 @@ export default function SelfPage() {
   const exploringAreas = [
     ['01','MIND',['Consciousness','Perception','Identity','Human behaviour']],
     ['02','IDEAS',['Philosophy','Existence','Reality','Time']],
-    ['03','CREATIVE',['Photography','Cinema','Music','Writing']]
+    ['03','TECHNOLOGY',['Software','Interfaces','Systems','Experimentation']],
+    ['04','CREATIVE',['Photography','Cinema','Music','Writing']]
   ];
   const outsidePursuits = [
     ['MUSIC','I listen to music frequently and return to songs because of the feelings they leave behind.'],
@@ -51,10 +52,30 @@ export default function SelfPage() {
 
 
 
+      <section className="self-v2-section" id="observation">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div><span className="self-v2-eyebrow">05 / OBSERVATION</span><h2>I notice <em>things.</em></h2></div>
+            <p className="self-v2-section-intro">Photography gives me another way to slow down and pay attention.</p>
+          </div>
+          <div className="self-v2-observe reveal">
+            <figure>
+              <div className="self-v2-observe-image"><img src="/images/quiet-horizon.jpg" alt="The Quiet Horizon" loading="lazy" /></div>
+              <figcaption className="self-v2-image-caption">THE QUIET HORIZON · OBSERVE</figcaption>
+            </figure>
+            <div className="self-v2-observe-copy">
+              <p>I like photographs that leave enough room for the viewer to bring something of themselves into the frame.</p>
+              <p className="self-v2-small">I’m interested in light, atmosphere, distance, geometry, and the small details that make an ordinary moment feel worth remembering.</p>
+              <Button to="/observe" variant="glass" icon="↗" className="rounded-full">EXPLORE OBSERVE</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="self-v2-section" id="education">
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
-            <div><span className="self-v2-eyebrow">05 / FOUNDATION</span><h2>Where I’ve <em>learned.</em></h2></div>
+            <div><span className="self-v2-eyebrow">06 / FOUNDATION</span><h2>Where I’ve <em>learned.</em></h2></div>
             <p className="self-v2-section-intro">The academic foundation behind the person and the work.</p>
           </div>
           <div className="self-v2-edu-list reveal">
@@ -68,7 +89,7 @@ export default function SelfPage() {
       <section className="self-v2-section" id="skills">
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
-            <div><span className="self-v2-eyebrow">06 / PRACTICE</span><h2>What I’m <em>building with.</em></h2></div>
+            <div><span className="self-v2-eyebrow">07 / TECHNICAL CRAFT</span><h2>What I’m <em>building with.</em></h2></div>
             <p className="self-v2-section-intro">A concise view of the technologies I’m learning and using.</p>
           </div>
           <div className="self-v2-skill-list reveal">
@@ -80,14 +101,76 @@ export default function SelfPage() {
         </div>
       </section>
 
-      <section className="self-v2-section" id="direction"><div className="self-v2-container"><div className="self-v2-section-head reveal"><div><span className="self-v2-eyebrow">07 / DIRECTION</span><h2>Where I’m <em>heading.</em></h2></div><p className="self-v2-section-intro">The direction is still taking shape.</p></div><div className="self-v2-direction reveal"><p className="self-v2-direction-statement">I’m still figuring out exactly where I want to take all of this. For now, I’m building a foundation in software, learning through real projects, and looking for opportunities that let me grow through people, problems, and experience.</p><div className="self-v2-direction-meta"><div className="self-v2-meta-row"><span>CURRENTLY LEARNING</span><strong>Web development · Software · Backend fundamentals</strong></div><div className="self-v2-meta-row"><span>BUILDING TOWARD</span><strong>Full-stack web development</strong></div><div className="self-v2-meta-row"><span>BASED IN</span><strong>Dhaka, Bangladesh</strong></div></div></div></div></section>
+      <section className="self-v2-section" id="works">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div><span className="self-v2-eyebrow">08 / SELECTED WORKS</span><h2>Things I’ve <em>made.</em></h2></div>
+            <p className="self-v2-section-intro">A few projects that mark where curiosity has become something tangible.</p>
+          </div>
+          <div className="self-v2-project-list reveal">
+            {projectsData.map(project => (
+              <article className="self-v2-project-row" key={project.id}>
+                <span className="self-v2-index">{project.index}</span>
+                <div>
+                  <h3>{project.title}</h3>
+                  <p className="self-v2-project-desc">{project.description}</p>
+                </div>
+                <div className="self-v2-project-meta">
+                  <span>{project.selfType}</span>
+                  <span className="self-v2-project-tech">{project.selfTech}{project.selfNote ? ` · ${project.selfNote}` : ''}</span>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="self-v2-inline-action reveal"><Button to="/create" variant="glass" icon="↗" className="rounded-full">SEE ALL PROJECTS</Button></div>
+        </div>
+      </section>
 
-      <section className="self-v2-section" id="elsewhere"><div className="self-v2-container"><div className="self-v2-section-head reveal"><div><span className="self-v2-eyebrow">08 / ELSEWHERE</span><h2>Find me <em>online.</em></h2></div><p className="self-v2-section-intro">A few places beyond this universe.</p></div><div className="self-v2-footer-grid reveal"><nav className="self-v2-links" aria-label="Online profiles">
-<a className="self-v2-link" href="https://github.com/shahriarbappy60-ship-it" target="_blank" rel="noopener noreferrer"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M12 .7a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.4.7-4.1-1.6-4.1-1.6-.5-1.4-1.3-1.7-1.3-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.4-5.5-6.1 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.8-5.5 6.1.4.3.8 1 .8 2v2.9c0 .3.2.7.8.6A12 12 0 0 0 12 .7Z"/></svg><span>GitHub</span></span><small>ACTIVE ↗</small></a>
-<a className="self-v2-link" href="https://instagram.com/_shahriar.bappy_" target="_blank" rel="noopener noreferrer"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1"/></svg><span>Instagram</span></span><small>ACTIVE ↗</small></a>
-<span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v2H7v3h3v5h3v-5h3l1-3h-4V9c0-.6.4-1 1-1Z"/></svg><span>Facebook</span></span><small>SOON</small></span>
-<span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><svg viewBox="0 0 24 24" aria-hidden="true" ><path d="M6.5 8.5A2 2 0 1 0 6.5 4a2 2 0 0 0 0 4.5ZM4.5 20h4V10h-4v10Zm6 0h4v-5.2c0-1.4.3-2.8 2-2.8s2 1.6 2 2.8V20h4v-5.8c0-3.1-.7-5.5-4.6-5.5-1.9 0-3.2 1-3.7 2h-.1v-1.7h-3.8V20Z"/></svg><span>LinkedIn</span></span><small>SOON</small></span>
-</nav></div></div></section>
+      <section className="self-v2-section" id="direction">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div><span className="self-v2-eyebrow">09 / DIRECTION</span><h2>Where I’m <em>heading.</em></h2></div>
+            <p className="self-v2-section-intro">The direction is still taking shape.</p>
+          </div>
+          <div className="self-v2-direction reveal">
+            <p className="self-v2-direction-statement">I’m still figuring out exactly where I want to take all of this. For now, I’m building a foundation in software, learning through real projects, and looking for opportunities that let me grow through people, problems, and experience.</p>
+            <div className="self-v2-direction-meta">
+              <div className="self-v2-meta-row"><span>CURRENTLY LEARNING</span><strong>Web development · Software · Backend fundamentals</strong></div>
+              <div className="self-v2-meta-row"><span>BUILDING TOWARD</span><strong>Full-stack web development</strong></div>
+              <div className="self-v2-meta-row"><span>BASED IN</span><strong>Dhaka, Bangladesh</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="self-v2-section self-v2-cv-section" id="cv">
+        <div className="self-v2-container">
+          <div className="self-v2-cv reveal">
+            <span className="self-v2-eyebrow">10 / PROFESSIONAL SNAPSHOT</span>
+            <h2>Curriculum <em>Vitae.</em></h2>
+            <p>A concise overview of my academic background, skills, and current direction.</p>
+            <Button href="/assets/Shahriar_Khan_CV.pdf" variant="outline" icon="↗" ariaLabel="Download Shahriar Khan's Curriculum Vitae as PDF">DOWNLOAD CV</Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="self-v2-section" id="elsewhere">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div><span className="self-v2-eyebrow">11 / ELSEWHERE</span><h2>Find me <em>online.</em></h2></div>
+            <p className="self-v2-section-intro">A few places beyond this universe.</p>
+          </div>
+          <div className="self-v2-footer-grid reveal">
+            <nav className="self-v2-links" aria-label="Online profiles">
+              <a className="self-v2-link" href="https://github.com/shahriarbappy60-ship-it" target="_blank" rel="noopener noreferrer"><span className="self-v2-link-main"><span>GitHub</span></span><small>ACTIVE ↗</small></a>
+              <a className="self-v2-link" href="https://instagram.com/_shahriar.bappy_" target="_blank" rel="noopener noreferrer"><span className="self-v2-link-main"><span>Instagram</span></span><small>ACTIVE ↗</small></a>
+              <span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><span>Facebook</span></span><small>SOON</small></span>
+              <span className="self-v2-link is-disabled" aria-disabled="true"><span className="self-v2-link-main"><span>LinkedIn</span></span><small>SOON</small></span>
+            </nav>
+          </div>
+          <p className="self-v2-closing reveal">Still observing. Still becoming.</p>
+        </div>
+      </section>
     </main>
   );
 }
