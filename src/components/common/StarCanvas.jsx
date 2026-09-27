@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { useLocation } from 'react-router-dom';
 
 export default function StarCanvas() {
   const canvasRef = useRef(null);
   const { theme } = useTheme();
+  const { pathname } = useLocation();
+  const isObserve = pathname === '/observe';
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,7 +25,9 @@ export default function StarCanvas() {
     let animationFrame = null;
 
     function createStars() {
-      const density = window.innerWidth < 700 ? 45 : 85;
+      const density = isObserve
+        ? (window.innerWidth < 700 ? 52 : 105)
+        : (window.innerWidth < 700 ? 45 : 85);
       stars = Array.from({ length: density }, () => ({
         x: Math.random(),
         y: Math.random(),
@@ -50,7 +55,9 @@ export default function StarCanvas() {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
       const isLight = document.documentElement.dataset.theme === 'light';
-      canvas.style.opacity = isLight ? '.32' : '.72';
+      canvas.style.opacity = isLight
+        ? (isObserve ? '.40' : '.32')
+        : (isObserve ? '.82' : '.72');
 
       stars.forEach(star => {
         star.y -= star.speed;
@@ -82,7 +89,7 @@ export default function StarCanvas() {
       window.removeEventListener('resize', resizeCanvas);
       if (animationFrame) cancelAnimationFrame(animationFrame);
     };
-  }, [theme]);
+  }, [theme, isObserve]);
 
   return <canvas id="spaceCanvas" ref={canvasRef} aria-hidden="true" />;
 }
