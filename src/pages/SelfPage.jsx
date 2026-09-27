@@ -60,7 +60,7 @@ export default function SelfPage() {
           </div>
           <div className="self-v2-observe reveal">
             <figure>
-              <div className="self-v2-observe-image"><img src="/images/quiet-horizon.jpg" alt="The Quiet Horizon" loading="lazy" /></div>
+              <div className="self-v2-observe-image"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85" alt="The Quiet Horizon" loading="lazy" /></div>
               <figcaption className="self-v2-image-caption">THE QUIET HORIZON · OBSERVE</figcaption>
             </figure>
             <div className="self-v2-observe-copy">
