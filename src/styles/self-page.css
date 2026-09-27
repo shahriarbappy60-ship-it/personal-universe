@@ -275,3 +275,109 @@
     font-size:26px;
   }
 }
+
+
+/* =========================================================
+   SELF HERO — REFINED CENTERED MOBILE COMPOSITION
+========================================================= */
+@media (max-width:768px){
+  .self-page-v2 .self-v2-hero{
+    text-align:center;
+  }
+  .self-page-v2 .self-v2-hero-bar{
+    justify-content:center;
+  }
+  .self-page-v2 .self-v2-hero-grid{
+    align-items:center;
+  }
+  .self-page-v2 .self-v2-portrait{
+    width:min(100%,430px);
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-hero-copy{
+    width:min(100%,620px);
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-identity-mark{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .self-page-v2 .self-v2-name{
+    white-space:normal;
+    font-size:clamp(44px,12.4vw,68px);
+    line-height:.9;
+  }
+  .self-page-v2 .self-v2-role{
+    margin-top:14px;
+  }
+  .self-page-v2 .self-v2-lead,
+  .self-page-v2 .self-v2-lead-secondary{
+    max-width:540px;
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-section-head{
+    text-align:center;
+  }
+  .self-page-v2 .self-v2-section-head > div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .self-page-v2 .self-v2-section-intro{
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-statement,
+  .self-page-v2 .self-v2-life-statement{
+    margin-inline:auto;
+    text-align:center;
+  }
+  .self-page-v2 .self-v2-curiosity-list,
+  .self-page-v2 .self-v2-foundation-list{
+    text-align:left;
+  }
+  .self-page-v2 .self-v2-direction{
+    text-align:center;
+  }
+  .self-page-v2 .self-v2-direction-statement{
+    margin-inline:auto;
+  }
+  .self-page-v2 .self-v2-socials{
+    justify-content:center;
+  }
+  .self-page-v2 .self-v2-closing{
+    text-align:center;
+  }
+}
+
+@media (max-width:430px){
+  .self-page-v2 .self-v2-hero{
+    padding-top:28px;
+    padding-bottom:72px;
+  }
+  .self-page-v2 .self-v2-hero-bar{
+    margin-bottom:24px;
+  }
+  .self-page-v2 .self-v2-portrait{
+    width:min(100%,390px);
+  }
+  .self-page-v2 .self-v2-hero-grid{
+    gap:25px;
+  }
+  .self-page-v2 .self-v2-name{
+    font-size:clamp(41px,12vw,58px);
+    letter-spacing:-.065em;
+  }
+  .self-page-v2 .self-v2-identity-mark{
+    padding-bottom:18px;
+  }
+  .self-page-v2 .self-v2-lead{
+    margin-top:20px;
+    font-size:15.5px;
+    line-height:1.62;
+  }
+  .self-page-v2 .self-v2-lead-secondary{
+    font-size:13px;
+    line-height:1.68;
+  }
+}
