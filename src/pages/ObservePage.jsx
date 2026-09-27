@@ -10,7 +10,7 @@ import { useMagnetic } from '../hooks/useMagnetic';
 export default function ObservePage() {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
-  const [activeView, setActiveView] = useState('grid'); // 'grid' | 'album' | 'stream'
+  const [activeView, setActiveView] = useState(() => (window.innerWidth <= 700 ? 'stream' : 'grid')); // 'grid' | 'album' | 'stream'
   const [selectedAlbumId, setSelectedAlbumId] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
