@@ -130,6 +130,41 @@ export default function SelfPage() {
         </div>
       </section>
 
+
+      <section className="self-v2-section self-v2-becoming-section" id="becoming">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div>
+              <span className="self-v2-eyebrow">BECOMING</span>
+              <h2>Still <em>becoming.</em></h2>
+            </div>
+            <p className="self-v2-section-intro">
+              I don’t see life the way I used to. I’m still figuring out who I am and where I’m going.
+            </p>
+          </div>
+
+          <div className="self-v2-becoming-flow reveal delay-1">
+            <article className="self-v2-becoming-stage">
+              <span className="self-v2-becoming-kicker">BEFORE</span>
+              <h3>I used to move through life without asking much of it.</h3>
+              <p>Fear felt like something to escape, and uncertainty felt like something to solve.</p>
+            </article>
+            <article className="self-v2-becoming-stage">
+              <span className="self-v2-becoming-kicker">THE SHIFT</span>
+              <h3>Then I started asking different questions.</h3>
+              <p>Who am I? Why am I here? What does it mean to experience a world from inside one particular mind?</p>
+            </article>
+            <article className="self-v2-becoming-stage">
+              <span className="self-v2-becoming-kicker">STILL UNFOLDING</span>
+              <h3>I’m not trying to arrive at a final version of myself.</h3>
+              <p>I’m learning, building, questioning, and letting the answer change as I do.</p>
+            </article>
+          </div>
+
+          <p className="self-v2-becoming-closing reveal delay-2">For now, I’m okay with not knowing.</p>
+        </div>
+      </section>
+
       <section className="self-v2-section self-v2-direction-section" id="direction">
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
