@@ -3891,16 +3891,16 @@ html[data-theme="light"] .transition-btn-primary:hover {
         top: 8px !important;
         left: 8px !important;
         z-index: 4 !important;
-        width: 21px !important;
-        height: 21px !important;
+        width: auto !important;
+        height: auto !important;
         align-items: center !important;
         justify-content: center !important;
-        color: rgba(255,255,255,.92) !important;
-        background: rgba(0,0,0,.34) !important;
-        border: 1px solid rgba(255,255,255,.14) !important;
-        border-radius: 50% !important;
-        backdrop-filter: blur(8px) !important;
-        -webkit-backdrop-filter: blur(8px) !important;
+        color: rgba(255,255,255,.9) !important;
+        background: transparent !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
         font-family: var(--font-mono) !important;
         font-size: 7px !important;
         font-weight: 500 !important;
@@ -3910,9 +3910,9 @@ html[data-theme="light"] .transition-btn-primary:hover {
     }
 
     html[data-theme="light"] #archive .observe-gallery.mode-grid .photo-card-item .photo-grid-index {
-        color: rgba(255,255,255,.96) !important;
-        background: rgba(0,0,0,.30) !important;
-        border-color: rgba(255,255,255,.20) !important;
+        color: rgba(30,30,30,.82) !important;
+        background: transparent !important;
+        border-color: transparent !important;
     }
 
     #archive .observe-gallery.mode-grid .photo-card-item .photo-frame {
@@ -3998,5 +3998,164 @@ html[data-theme="light"] .transition-btn-primary:hover {
     #lightboxModal .lightbox-action-btn {
         width: 38px !important;
         height: 38px !important;
+    }
+}
+
+
+/* STREAM VIEW — editorial archive rhythm, not another card grid. */
+.observe-gallery.mode-stream {
+    max-width: 920px;
+    gap: 56px;
+}
+
+.observe-stream-card {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    gap: 18px;
+}
+
+.observe-stream-card:hover {
+    border-color: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+.observe-stream-frame {
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+}
+
+.observe-stream-body {
+    gap: 14px;
+    padding: 0 2px;
+}
+
+.observe-stream-meta-top {
+    padding-bottom: 11px;
+}
+
+.observe-stream-meta-top h3 {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -.02em;
+}
+
+.observe-stream-story {
+    max-width: 680px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.observe-stream-exif-bar {
+    padding: 10px 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+    gap: 22px;
+}
+
+@media (max-width: 768px) {
+    .observe-gallery.mode-stream {
+        width: 100%;
+        max-width: none;
+        gap: 38px;
+        margin-top: 28px;
+    }
+
+    .observe-stream-card {
+        gap: 13px;
+    }
+
+    .observe-stream-frame {
+        aspect-ratio: 4 / 3;
+        border-radius: 10px;
+    }
+
+    .observe-stream-body {
+        gap: 11px;
+        padding: 0;
+    }
+
+    .observe-stream-meta-top {
+        padding-bottom: 9px;
+        gap: 12px;
+    }
+
+    .observe-stream-meta-top h3 {
+        font-size: 14px;
+        line-height: 1.25;
+    }
+
+    .observe-stream-badge {
+        font-size: 7px;
+        letter-spacing: .12em;
+        flex: 0 0 auto;
+    }
+
+    .observe-stream-story {
+        font-size: 11px;
+        line-height: 1.7;
+    }
+
+    .observe-stream-exif-bar {
+        gap: 14px;
+        padding: 9px 0 0;
+    }
+
+    .observe-stream-exif-item span {
+        font-size: 7px;
+    }
+
+    .observe-stream-exif-item strong {
+        font-size: 9px;
+    }
+
+    #lightboxModal {
+        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        touch-action: none !important;
+    }
+
+    #lightboxModal .lightbox-top-bar {
+        top: max(12px, env(safe-area-inset-top)) !important;
+        right: max(12px, env(safe-area-inset-right)) !important;
+        z-index: 10003 !important;
+    }
+
+    #lightboxModal .lightbox-fluid-content {
+        width: min(100%, 520px) !important;
+        max-width: 520px !important;
+        max-height: calc(100svh - 80px) !important;
+        justify-content: center !important;
+    }
+
+    #lightboxModal .lightbox-image-stage {
+        width: 100% !important;
+        max-height: 62svh !important;
+        touch-action: pan-x !important;
+    }
+
+    #lightboxModal .lightbox-fluid-image {
+        max-width: 100% !important;
+        max-height: 62svh !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        border-radius: 8px !important;
+    }
+
+    #lightboxModal .lightbox-metadata-tray {
+        max-height: 20svh !important;
+        margin-top: 9px !important;
+        padding: 11px 12px !important;
+        overflow-y: auto !important;
+        border-radius: 12px !important;
     }
 }
