@@ -332,6 +332,22 @@ export const essays = [
   }
 ];
 
+// Derive reading time from the actual rendered body instead of manually maintained labels.
+const calculateReadingTime = body => {
+  const plainText = body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const wordCount = plainText ? plainText.split(' ').length : 0;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
+  return `${String(minutes).padStart(2, '0')} MIN READ`;
+};
+
+reflections.forEach(entry => {
+  entry.readTime = calculateReadingTime(entry.body);
+});
+
+essays.forEach(entry => {
+  entry.readTime = calculateReadingTime(entry.body);
+});
+
 // =========================================================
 // BACKWARD-COMPATIBLE ALIASES FOR HOME WONDER SECTION
 // ── DO NOT REMOVE ──
