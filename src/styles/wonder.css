@@ -1758,3 +1758,81 @@ html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder
     padding-right:18px;
   }
 }
+
+
+/* =========================================================
+   WONDER — QUIET PREVIEWS, HIGHLIGHT ONLY THE ENTRY ACTION
+========================================================= */
+
+/* Remove preview-surface highlighting entirely. */
+.wonder-page .wonder-reflection-row.is-expanded,
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row,
+.wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
+  background:transparent;
+  border-color:transparent;
+}
+
+/* The action is the only preview element that receives emphasis. */
+.wonder-page .wonder-row-action{
+  display:flex;
+  align-items:center;
+  margin-top:20px;
+}
+
+.wonder-page .wonder-read-action{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  min-height:32px;
+  padding:7px 11px;
+  border:1px solid var(--glass-border);
+  border-radius:999px;
+  background:var(--glass-bg);
+  color:var(--text);
+  font-family:var(--font-mono);
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:.13em;
+  line-height:1;
+  text-transform:uppercase;
+  transition:background .22s var(--ease),border-color .22s var(--ease),transform .22s var(--ease);
+}
+
+.wonder-page .wonder-read-action:hover{
+  background:var(--glass-bg-hover);
+  border-color:var(--line-strong);
+  transform:translateX(2px);
+}
+
+.wonder-page .wonder-read-arrow{
+  display:inline-block;
+  transition:transform .25s var(--ease);
+}
+
+.wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
+  background:transparent;
+}
+
+/* Keep expanded reading surfaces untouched by preview styling. */
+.wonder-page .wonder-essay-wrapper.is-expanded{
+  background:var(--glass-bg);
+}
+
+@media(max-width:768px){
+  .wonder-page .wonder-row-action{
+    margin-top:18px;
+  }
+
+  .wonder-page .wonder-read-action{
+    min-height:30px;
+    padding:7px 10px;
+    font-size:8.5px;
+  }
+}
+
+@media(max-width:420px){
+  .wonder-page .wonder-read-action{
+    padding:7px 9px;
+    font-size:8px;
+  }
+}
