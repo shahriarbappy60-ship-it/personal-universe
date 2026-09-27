@@ -131,6 +131,44 @@ export default function SelfPage() {
       </section>
 
 
+      <section className="self-v2-section" id="practice">
+        <div className="self-v2-container">
+          <div className="self-v2-section-head reveal">
+            <div>
+              <span className="self-v2-eyebrow">PRACTICE</span>
+              <h2>Learning by <em>building.</em></h2>
+            </div>
+            <p className="self-v2-section-intro">What I’m developing professionally, through study, projects, and practice.</p>
+          </div>
+
+          <div className="self-v2-practice reveal">
+            <p className="self-v2-practice-statement">
+              I’m developing myself as a software developer, with a growing focus on web development and digital experiences. I’m learning through coursework, personal projects, and the process of turning ideas into something real.
+            </p>
+
+            <div className="self-v2-practice-list">
+              <div className="self-v2-practice-row">
+                <span className="self-v2-practice-label">WEB DEVELOPMENT</span>
+                <p>HTML · CSS · JavaScript · React</p>
+              </div>
+              <div className="self-v2-practice-row">
+                <span className="self-v2-practice-label">BACKEND / SYSTEMS</span>
+                <p>Python · Django · Databases</p>
+              </div>
+              <div className="self-v2-practice-row">
+                <span className="self-v2-practice-label">TOOLS</span>
+                <p>Git · GitHub · Figma · Canva</p>
+              </div>
+            </div>
+
+            <div className="self-v2-practice-current">
+              <span>CURRENTLY</span>
+              <p>CSE Undergraduate · Building Personal Universe · Learning React &amp; Full-Stack Development</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="self-v2-section self-v2-direction-section" id="direction">
         <div className="self-v2-container">
           <div className="self-v2-section-head reveal">
