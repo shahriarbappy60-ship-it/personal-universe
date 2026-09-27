@@ -75,3 +75,15 @@
  .self-page-v2 .self-v2-portrait-frame{border-radius:24px}
  .self-page-v2 .self-v2-portrait-caption{padding:30px 24px 24px}
 }
+
+/* Mobile identity-first composition */
+@media(max-width:560px){
+ .self-page-v2 .self-v2-hero-grid{display:flex;flex-direction:column;gap:34px}
+ .self-page-v2 .self-v2-portrait{order:-1;width:100%}
+ .self-page-v2 .self-v2-hero-copy{order:1}
+ .self-page-v2 .self-v2-portrait-frame{width:100%;max-width:none;aspect-ratio:4/5;border-radius:24px}
+ .self-page-v2 .self-v2-photo-media img{object-position:center 18%}
+ .self-page-v2 .self-v2-name{font-size:clamp(48px,14.2vw,72px);line-height:.9;letter-spacing:-.065em;white-space:nowrap;overflow-wrap:normal}
+ .self-page-v2 .self-v2-name em{letter-spacing:-.07em}
+ .self-page-v2 .self-v2-role{max-width:34rem}
+}
