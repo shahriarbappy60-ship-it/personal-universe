@@ -16,10 +16,6 @@ export default function CreateSection() {
             What I <em>build.</em>
           </h2>
         </div>
-        <p className="section-intro">
-          Turning curiosity into interfaces, experiments,
-          software and things that can exist beyond an idea.
-        </p>
       </div>
 
       {/* CURATED CREATE COMPOSITION: one hero build + two quiet supporting previews */}
