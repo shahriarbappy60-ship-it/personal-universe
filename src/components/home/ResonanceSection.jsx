@@ -226,9 +226,6 @@ export default function ResonanceSection() {
             What stays <em>with me.</em>
           </h2>
         </div>
-        <p className="section-intro">
-          The sounds, stories, and fragments I keep returning to.
-        </p>
       </div>
 
       <div className="resonance-composition reveal delay-1">
