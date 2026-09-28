@@ -9894,3 +9894,72 @@ html.js-ready .hero-celestial-stage{
     font-weight: 500 !important;
   }
 }
+
+
+/* Phase 01 polish — stable Observe lightbox viewport.
+   Keep the viewer visually identical while preventing aspect-ratio changes
+   from resizing the slide stage during navigation. */
+#lightboxModal .lightbox-image-stage {
+  width: min(900px, 100%);
+  height: min(70vh, 720px);
+  min-height: 240px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightboxModal .lightbox-slide-stage {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-incoming {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#lightboxModal .lightbox-slide-stage .lightbox-slide-incoming {
+  position: absolute;
+  inset: 0;
+}
+
+#lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-incoming,
+#lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-incoming {
+  animation-duration: .58s;
+  animation-timing-function: cubic-bezier(.22,.78,.22,1);
+}
+
+@media (max-width: 768px) {
+  #lightboxModal .lightbox-image-stage {
+    width: 100%;
+    height: min(58dvh, 620px);
+    min-height: 180px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-current,
+  #lightboxModal .lightbox-slide-stage.slide-next .lightbox-slide-incoming,
+  #lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-current,
+  #lightboxModal .lightbox-slide-stage.slide-prev .lightbox-slide-incoming {
+    animation-duration: .01ms;
+  }
+}
