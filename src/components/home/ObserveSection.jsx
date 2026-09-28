@@ -89,9 +89,6 @@ export default function ObserveSection({ onSelectPhoto }) {
             What I <em>see.</em>
           </h2>
         </div>
-        <p className="section-intro">
-          Places, light, architecture, silence and the small moments that become difficult to forget.
-        </p>
       </div>
 
       <div className="observe-slider-wrapper reveal">
