@@ -195,26 +195,17 @@ export default function LightboxModal({
                 />
               )}
             </div>
-          {hasMultiple && (
-            <>
-              <button
-                className="lightbox-nav-btn lightbox-nav-prev"
-                type="button"
-                onClick={e => { e.stopPropagation(); triggerSlide('prev'); }}
-                aria-label="Previous photograph"
-              >
-                <span aria-hidden="true">←</span>
-              </button>
-              <button
-                className="lightbox-nav-btn lightbox-nav-next"
-                type="button"
-                onClick={e => { e.stopPropagation(); triggerSlide('next'); }}
-                aria-label="Next photograph"
-              >
-                <span aria-hidden="true">→</span>
-              </button>
-            </>
-          )}
+
+            {hasMultiple && (
+              <div className="lightbox-nav-controls" aria-label="Photograph navigation">
+                <button className="lightbox-nav-btn lightbox-nav-prev" type="button" onClick={e => { e.stopPropagation(); triggerSlide('prev'); }} aria-label="Previous photograph">
+                  <span aria-hidden="true">←</span>
+                </button>
+                <button className="lightbox-nav-btn lightbox-nav-next" type="button" onClick={e => { e.stopPropagation(); triggerSlide('next'); }} aria-label="Next photograph">
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
+            )}
 
           {/* Floating frosted glass metadata tray docked directly beneath the image */}
           <div className="lightbox-metadata-tray w-full max-w-xl sm:max-w-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl rounded-2xl p-4 sm:p-5 mt-3 sm:mt-4 shadow-xl">
