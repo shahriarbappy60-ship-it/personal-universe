@@ -5,6 +5,7 @@ import { projectsData } from '../../data/projectsData';
 
 export default function CreateSection() {
   const featuredProject = projectsData.find(p => p.featured) || projectsData[0];
+  const supportingProjects = projectsData.filter(p => p.id !== featuredProject.id).slice(0, 2);
 
   return (
     <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="create">
@@ -21,7 +22,7 @@ export default function CreateSection() {
         </p>
       </div>
 
-      {/* ASYMMETRIC CREATE COMPOSITION: PORTRAIT FEATURED ON LEFT, DUAL STACKED ON RIGHT */}
+      {/* CURATED CREATE COMPOSITION: one hero build + two quiet supporting previews */}
       <div className="create-composition create-composition-featured-only reveal">
         {/* LEFT: PORTRAIT PERSONAL UNIVERSE CARD */}
         <article className="project-feature project-feature-portrait">
@@ -101,6 +102,25 @@ export default function CreateSection() {
           </div>
         </article>
 
+        <div className="create-supporting-projects">
+          {supportingProjects.map((project, index) => (
+            <article className="create-support-card" key={project.id}>
+              <div className="create-support-meta">
+                <span>0{index + 2} / {project.status.toUpperCase()}</span>
+                <span>{project.year}</span>
+              </div>
+              <div>
+                <span className="create-support-type">{project.type}</span>
+                <h3>{project.title}</h3>
+                <p>{project.cardDescription || project.description}</p>
+              </div>
+              <div className="create-support-footer">
+                <span>{project.categoryTag || project.technologies.slice(0, 3).join(' · ')}</span>
+                <span>VIEW IN ARCHIVE</span>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
 
       {/* UNIFIED ARCHIVE CTA — INHERITS MOTHER BUTTON SYSTEM */}
