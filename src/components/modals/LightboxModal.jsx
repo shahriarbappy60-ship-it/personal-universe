@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import ShareModal from './ShareModal';
 
@@ -12,240 +12,222 @@ export default function LightboxModal({
 }) {
   const closeBtnRef = useRef(null);
   const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
   const toastTimeoutRef = useRef(null);
-  const [toastMessage, setToastMessage] = useState('');
-  const [isShareOpen, setIsShareOpen] = useState(false);
-  const [slide, setSlide] = useState(null);
   const slideTimerRef = useRef(null);
+  const [slide, setSlide] = useState(null);
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
-  const activePhoto = (photos.length > 0 && currentIndex >= 0 && currentIndex < photos.length)
+  const activePhoto = photos.length && currentIndex >= 0 && currentIndex < photos.length
     ? photos[currentIndex]
     : photo;
-
   const isOpen = Boolean(activePhoto);
   const hasMultiple = photos.length > 1;
 
-  const showToast = msg => {
-    if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
-    setToastMessage(msg);
+  const showToast = message => {
+    clearTimeout(toastTimeoutRef.current);
+    setToastMessage(message);
     toastTimeoutRef.current = setTimeout(() => setToastMessage(''), 2400);
   };
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('modal-open');
-      setTimeout(() => closeBtnRef.current?.focus(), 50);
-    } else {
-      document.body.classList.remove('modal-open');
-      setIsShareOpen(false);
+  const finishSlide = direction => {
+    if (direction === 'next') onNext?.();
+    else onPrev?.();
     setSlide(null);
-    }
-    return () => {
-      if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
-      document.body.classList.remove('modal-open');
-      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
-    };
-  }, [isOpen]);
-
-  // Reset share modal on index change
-  useEffect(() => {
-    setIsShareOpen(false);
-  }, [currentIndex]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleKeyDown = e => {
-      if (isShareOpen) return; // Share modal handles its own ESC
-      if (e.key === 'Escape') {
-        onClose();
-      } else if (e.key === 'ArrowLeft' && hasMultiple && onPrev) {
-        e.preventDefault();
-        triggerSlide('prev');
-      } else if (e.key === 'ArrowRight' && hasMultiple && onNext) {
-        e.preventDefault();
-        triggerSlide('next');
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose, onPrev, onNext, hasMultiple, isShareOpen]);
-
-  // Touch Swipe Handling for Mobile
-  const handleTouchStart = e => {
-    touchStartX.current = e.targetTouches[0].clientX;
-    touchEndX.current = touchStartX.current;
-  };
-
-  const handleTouchMove = e => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const distance = touchStartX.current - touchEndX.current;
-    const minSwipeDistance = 45;
-
-    if (distance > minSwipeDistance && hasMultiple && onNext) {
-      triggerSlide('next');
-    } else if (distance < -minSwipeDistance && hasMultiple && onPrev) {
-      triggerSlide('prev');
-    }
-    touchStartX.current = 0;
-    touchEndX.current = 0;
   };
 
   const triggerSlide = direction => {
     if (slide || !hasMultiple) return;
+
     const nextIndex = direction === 'next'
       ? (currentIndex + 1) % photos.length
       : (currentIndex - 1 + photos.length) % photos.length;
+
     const incoming = photos[nextIndex];
     if (!incoming) return;
+
+    clearTimeout(slideTimerRef.current);
     setSlide({ direction, photo: incoming });
-    if (slideTimerRef.current) clearTimeout(slideTimerRef.current);
-    slideTimerRef.current = setTimeout(() => {
-      if (direction === 'next') onNext?.();
-      else onPrev?.();
-      setSlide(null);
-    }, 580);
+    slideTimerRef.current = setTimeout(() => finishSlide(direction), 420);
   };
 
-  if (!isOpen || !activePhoto) return null;
-  if (typeof document === 'undefined') return null;
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.classList.remove('modal-open');
+      setSlide(null);
+      setIsShareOpen(false);
+      return undefined;
+    }
 
-  const formattedCounter = hasMultiple && currentIndex >= 0
+    document.body.classList.add('modal-open');
+    const focusTimer = setTimeout(() => closeBtnRef.current?.focus(), 60);
+
+    return () => {
+      clearTimeout(focusTimer);
+      clearTimeout(slideTimerRef.current);
+      document.body.classList.remove('modal-open');
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    setIsShareOpen(false);
+    setSlide(null);
+    clearTimeout(slideTimerRef.current);
+  }, [currentIndex]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleKeyDown = event => {
+      if (isShareOpen) return;
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+      } else if (event.key === 'ArrowLeft' && hasMultiple) {
+        event.preventDefault();
+        triggerSlide('prev');
+      } else if (event.key === 'ArrowRight' && hasMultiple) {
+        event.preventDefault();
+        triggerSlide('next');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, isShareOpen, hasMultiple, currentIndex, photos.length, onClose, onPrev, onNext, slide]);
+
+  const handleTouchStart = event => {
+    touchStartX.current = event.touches[0]?.clientX || 0;
+  };
+
+  const handleTouchEnd = event => {
+    if (!touchStartX.current) return;
+    const endX = event.changedTouches[0]?.clientX || touchStartX.current;
+    const distance = touchStartX.current - endX;
+    touchStartX.current = 0;
+
+    if (Math.abs(distance) < 45 || !hasMultiple) return;
+    triggerSlide(distance > 0 ? 'next' : 'prev');
+  };
+
+  if (!isOpen || !activePhoto || typeof document === 'undefined') return null;
+
+  const counter = hasMultiple && currentIndex >= 0
     ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`
     : '';
 
   return createPortal(
     <>
       <div
-        className="modal-lightbox-overlay fixed inset-0 z-[99999] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 md:p-8"
         id="lightboxModal"
+        className="modal-lightbox-overlay"
         role="dialog"
         aria-modal="true"
         aria-label="Photograph viewer"
-        onClick={e => {
-          if (e.target === e.currentTarget) onClose();
+        onClick={event => {
+          if (event.target === event.currentTarget) onClose();
         }}
       >
-        {/* Top Floating Controls Bar */}
-        <div className="lightbox-top-bar fixed top-4 right-4 sm:top-6 sm:right-6 flex items-center gap-2.5 z-[10002]">
-          {/* Share Button beside Close Button */}
+        <div className="lightbox-top-bar" onClick={event => event.stopPropagation()}>
           <button
-            className="lightbox-action-btn w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer shadow-lg active:scale-95"
             type="button"
-            onClick={e => {
-              e.stopPropagation();
-              setIsShareOpen(true);
-            }}
-            aria-label="Share photocard"
-            title="Share photocard"
+            className="lightbox-action-btn"
+            aria-label="Share photograph"
+            onClick={() => setIsShareOpen(true)}
           >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="18" cy="5" r="3" />
               <circle cx="6" cy="12" r="3" />
               <circle cx="18" cy="19" r="3" />
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" strokeLinecap="round" strokeLinejoin="round" />
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M8.6 13.5 15.4 17.5M15.4 6.5 8.6 10.5" fill="none" />
             </svg>
           </button>
 
           <button
             ref={closeBtnRef}
-            className="lightbox-action-btn lightbox-close-pill w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/[0.08] hover:bg-white/[0.18] border border-white/10 hover:border-white/25 text-white flex items-center justify-center backdrop-blur-md transition-all cursor-pointer shadow-lg active:scale-95"
             type="button"
-            onClick={e => {
-              e.stopPropagation();
-              onClose();
-            }}
-            aria-label="Close image viewer (ESC)"
-            title="Close (ESC)"
+            className="lightbox-action-btn"
+            aria-label="Close image viewer"
+            onClick={onClose}
           >
-            <svg viewBox="0 0 24 24" className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18" fill="none" />
             </svg>
           </button>
         </div>
 
-        {/* Stable viewer stage: fixed viewport prevents layout jumps between portrait/landscape images */}
         <div
-          className="lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full"
-          onClick={e => e.stopPropagation()}
+          className="lightbox-viewer"
+          onClick={event => event.stopPropagation()}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          {/* Naturally scaling image without rigid box walls */}
-          <div
-            className="lightbox-image-stage flex items-center justify-center max-w-full"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div className={`lightbox-slide-stage ${slide ? `has-transition slide-${slide.direction}` : ''}`}>
+          <div className={`lightbox-image-stage ${slide ? `is-sliding slide-${slide.direction}` : ''}`}>
+            <div className="lightbox-slide-track">
               <img
+                className="lightbox-slide-image lightbox-slide-current"
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
-                className="lightbox-fluid-image lightbox-slide-current max-h-[66vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl select-none"
+                draggable="false"
               />
               {slide && (
                 <img
+                  className="lightbox-slide-image lightbox-slide-incoming"
                   src={slide.photo.src}
                   alt={slide.photo.title || slide.photo.alt || 'Photograph'}
-                  className="lightbox-fluid-image lightbox-slide-incoming max-h-[66vh] sm:max-h-[70vh] w-auto max-w-full object-contain rounded-xl shadow-2xl select-none"
+                  draggable="false"
                 />
               )}
             </div>
 
             {hasMultiple && (
-              <div className="lightbox-nav-controls" aria-label="Photograph navigation">
-                <button className="lightbox-nav-btn lightbox-nav-prev" type="button" onClick={e => { e.stopPropagation(); triggerSlide('prev'); }} aria-label="Previous photograph">
+              <div className="lightbox-nav-layer" aria-label="Photograph navigation">
+                <button
+                  type="button"
+                  className="lightbox-nav-btn lightbox-nav-prev"
+                  aria-label="Previous photograph"
+                  onClick={() => triggerSlide('prev')}
+                  disabled={Boolean(slide)}
+                >
                   <span aria-hidden="true">←</span>
                 </button>
-                <button className="lightbox-nav-btn lightbox-nav-next" type="button" onClick={e => { e.stopPropagation(); triggerSlide('next'); }} aria-label="Next photograph">
+                <button
+                  type="button"
+                  className="lightbox-nav-btn lightbox-nav-next"
+                  aria-label="Next photograph"
+                  onClick={() => triggerSlide('next')}
+                  disabled={Boolean(slide)}
+                >
                   <span aria-hidden="true">→</span>
                 </button>
               </div>
             )}
+          </div>
 
-          {/* Floating frosted glass metadata tray docked directly beneath the image */}
-          <div className="lightbox-metadata-tray w-full max-w-xl sm:max-w-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl rounded-2xl p-4 sm:p-5 mt-3 sm:mt-4 shadow-xl">
-            {/* Top Row: Title & Category on Left, Pure Tabular Counter on Right */}
-            <div className="lightbox-metadata-top flex items-center justify-between gap-4 flex-wrap">
-              <div className="flex flex-col gap-0.5 min-w-0">
-                <h3 className="lightbox-title font-sans text-base sm:text-lg font-medium text-white tracking-tight truncate m-0">
-                  {activePhoto.title}
-                </h3>
-                <span className="lightbox-category-tag font-sans text-xs text-zinc-400 tracking-wider uppercase">
-                  {activePhoto.category || activePhoto.meta}
+          <div className="lightbox-metadata-tray">
+            <div className="lightbox-metadata-top">
+              <div className="lightbox-title-group">
+                <h3 className="lightbox-title">{activePhoto.title}</h3>
+                <span className="lightbox-category-tag">
+                  {activePhoto.category || activePhoto.meta || 'STILLS'}
                 </span>
               </div>
-
-              {formattedCounter && (
-                <span className="lightbox-index-counter font-sans text-zinc-400 text-xs tracking-widest tabular-nums shrink-0">
-                  {formattedCounter}
-                </span>
-              )}
+              {counter && <span className="lightbox-index-counter">{counter}</span>}
             </div>
 
-            {/* Editorial italic reflection caption in high-contrast crisp off-white */}
             {activePhoto.story && (
-              <p className="lightbox-editorial-caption mt-2.5 text-xs sm:text-sm text-zinc-100 font-serif italic leading-relaxed tracking-wide opacity-95">
-                “{activePhoto.story}”
-              </p>
+              <p className="lightbox-editorial-caption">“{activePhoto.story}”</p>
             )}
           </div>
         </div>
 
-        {/* Subtle Toast Feedback */}
         {toastMessage && (
-          <div className="lightbox-toast fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#121212]/95 text-zinc-100 border border-white/15 px-4 py-2 rounded-full text-xs font-mono shadow-2xl backdrop-blur-xl z-[10002] transition-all flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="lightbox-toast" role="status">
             <span>{toastMessage}</span>
           </div>
         )}
       </div>
 
-      {/* Rich Photocard Share Modal */}
       <ShareModal
         photo={activePhoto}
         isOpen={isShareOpen}
