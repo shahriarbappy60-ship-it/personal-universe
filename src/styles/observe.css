@@ -3713,51 +3713,6 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
         font-size: 9px;
     }
 
-    #lightboxModal {
-        padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)) !important;
-        justify-content: center !important;
-        overflow: hidden !important;
-        touch-action: none !important;
-    }
-
-    #lightboxModal .lightbox-top-bar {
-        top: max(12px, env(safe-area-inset-top)) !important;
-        right: max(12px, env(safe-area-inset-right)) !important;
-        z-index: 10003 !important;
-    }
-
-    #lightboxModal .lightbox-fluid-content {
-        width: min(100%, 520px) !important;
-        max-width: 520px !important;
-        max-height: calc(100svh - 80px) !important;
-        justify-content: center !important;
-    }
-
-    #lightboxModal .lightbox-image-stage {
-        width: 100% !important;
-        max-height: 62svh !important;
-        touch-action: pan-x !important;
-    }
-
-    #lightboxModal .lightbox-fluid-image {
-        max-width: 100% !important;
-        max-height: 62svh !important;
-        width: auto !important;
-        height: auto !important;
-        object-fit: contain !important;
-        border-radius: 8px !important;
-    }
-
-    #lightboxModal .lightbox-metadata-tray {
-        max-height: 20svh !important;
-        margin-top: 9px !important;
-        padding: 11px 12px !important;
-        overflow-y: auto !important;
-        border-radius: 12px !important;
-    }
-}
-
-
 .observe-stream-index {
     position: absolute;
     left: 12px;
