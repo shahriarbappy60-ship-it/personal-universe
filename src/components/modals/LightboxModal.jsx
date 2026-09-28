@@ -169,9 +169,9 @@ export default function LightboxModal({
           </button>
         </div>
 
-        {/* Dynamic Fluid Content Column: Natural Aspect Image + Docked Metadata Tray */}
+        {/* Stable viewer stage: fixed viewport prevents layout jumps between portrait/landscape images */}
         <div
-          className={`lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full ${slide ? 'is-sliding' : ''}`}
+          className="lightbox-fluid-content flex flex-col items-center justify-center max-w-full max-h-full"
           onClick={e => e.stopPropagation()}
         >
           {/* Naturally scaling image without rigid box walls */}
@@ -181,7 +181,7 @@ export default function LightboxModal({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className={`lightbox-slide-stage ${slide ? `slide-${slide.direction}` : ''}`}>
+            <div className={`lightbox-slide-stage ${slide ? 'has-transition' : ''}`}>
               <img
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
@@ -195,7 +195,26 @@ export default function LightboxModal({
                 />
               )}
             </div>
-          </div>
+          {hasMultiple && (
+            <>
+              <button
+                className="lightbox-nav-btn lightbox-nav-prev"
+                type="button"
+                onClick={e => { e.stopPropagation(); triggerSlide('prev'); }}
+                aria-label="Previous photograph"
+              >
+                <span aria-hidden="true">←</span>
+              </button>
+              <button
+                className="lightbox-nav-btn lightbox-nav-next"
+                type="button"
+                onClick={e => { e.stopPropagation(); triggerSlide('next'); }}
+                aria-label="Next photograph"
+              >
+                <span aria-hidden="true">→</span>
+              </button>
+            </>
+          )}
 
           {/* Floating frosted glass metadata tray docked directly beneath the image */}
           <div className="lightbox-metadata-tray w-full max-w-xl sm:max-w-2xl bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl rounded-2xl p-4 sm:p-5 mt-3 sm:mt-4 shadow-xl">
