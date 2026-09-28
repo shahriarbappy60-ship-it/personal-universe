@@ -79,7 +79,7 @@ export default function LightboxModal({
     setIsShareOpen(false);
     setSlide(null);
     clearTimeout(slideTimerRef.current);
-  }, [currentIndex]);
+  }, [activePhoto, currentIndex]);
 
   useEffect(() => {
     if (!isOpen) return undefined;
