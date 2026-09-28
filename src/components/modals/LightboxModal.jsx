@@ -15,12 +15,20 @@ export default function LightboxModal({
   const slideTimerRef = useRef(null);
   const [slide, setSlide] = useState(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [imageRatio, setImageRatio] = useState(16 / 9);
 
   const activePhoto = photos.length && currentIndex >= 0 && currentIndex < photos.length
     ? photos[currentIndex]
     : photo;
   const isOpen = Boolean(activePhoto);
   const hasMultiple = photos.length > 1;
+
+  const handleImageLoad = event => {
+    const { naturalWidth, naturalHeight } = event.currentTarget;
+    if (naturalWidth > 0 && naturalHeight > 0) {
+      setImageRatio(naturalWidth / naturalHeight);
+    }
+  };
 
   const counter = hasMultiple && currentIndex >= 0
     ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`
@@ -66,6 +74,8 @@ export default function LightboxModal({
   }, [isOpen]);
 
   useEffect(() => {
+    const knownRatio = activePhoto?.aspectRatio === 'portrait' ? 3 / 4 : 16 / 9;
+    setImageRatio(knownRatio);
     setIsShareOpen(false);
     setSlide(null);
     clearTimeout(slideTimerRef.current);
@@ -159,6 +169,7 @@ export default function LightboxModal({
               <img
                 className="lightbox-slide-image lightbox-slide-current"
                 src={activePhoto.src}
+                onLoad={handleImageLoad}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
                 draggable="false"
               />
@@ -166,6 +177,7 @@ export default function LightboxModal({
                 <img
                   className="lightbox-slide-image lightbox-slide-incoming"
                   src={slide.photo.src}
+                  onLoad={handleImageLoad}
                   alt={slide.photo.title || slide.photo.alt || 'Photograph'}
                   draggable="false"
                 />
