@@ -15,12 +15,18 @@ export default function LightboxModal({
   const slideTimerRef = useRef(null);
   const [slide, setSlide] = useState(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [imageRatio, setImageRatio] = useState(4 / 3);
 
   const activePhoto = photos.length && currentIndex >= 0 && currentIndex < photos.length
     ? photos[currentIndex]
     : photo;
   const isOpen = Boolean(activePhoto);
   const hasMultiple = photos.length > 1;
+  
+  useEffect(() => {
+    const fallback = activePhoto?.aspectRatio === 'portrait' ? 3 / 4 : activePhoto?.aspectRatio === 'square' ? 1 : 4 / 3;
+    setImageRatio(fallback);
+  }, [activePhoto?.id]);
 
 
 
@@ -152,13 +158,20 @@ export default function LightboxModal({
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          <div className={`lightbox-image-stage ${slide ? `is-sliding slide-${slide.direction}` : ''}`} style={{ '--lightbox-ratio': activePhoto.aspectRatio === 'portrait' ? '3 / 4' : activePhoto.aspectRatio === 'square' ? '1 / 1' : '4 / 3' }}>
+          <div className={`lightbox-image-stage ${slide ? `is-sliding slide-${slide.direction}` : ''}`} style={{ '--lightbox-ratio': imageRatio }}>
             <div className="lightbox-slide-track">
               <img
                 className="lightbox-slide-image lightbox-slide-current"
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
                 draggable="false"
+                onLoad={event => {
+                  const { naturalWidth, naturalHeight } = event.currentTarget;
+                  if (naturalWidth && naturalHeight) {
+                    const ratio = naturalWidth / naturalHeight;
+                    setImageRatio(previous => Math.abs(previous - ratio) < 0.001 ? previous : ratio);
+                  }
+                }}
               />
               {slide && (
                 <img
