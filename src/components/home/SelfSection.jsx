@@ -11,9 +11,6 @@ export default function SelfSection() {
             Who I <em>am.</em>
           </h2>
         </div>
-        <p className="section-intro">
-          A personal space exploring identity, curiosity, and the craft of seeing.
-        </p>
       </div>
 
       <div className="about-grid reveal">
