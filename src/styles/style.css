@@ -10054,3 +10054,130 @@ html.js-ready .hero-celestial-stage{
         min-height: 150px;
     }
 }
+
+
+/* Lightbox v2 — stable viewport + simple timeless navigation */
+#lightboxModal .lightbox-fluid-content {
+    position: relative;
+    width: min(1100px, 100%);
+}
+#lightboxModal .lightbox-image-stage {
+    position: relative;
+    width: min(960px, calc(100vw - 48px));
+    height: min(72vh, 760px);
+    min-height: 280px;
+}
+#lightboxModal .lightbox-slide-stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-incoming {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    margin: 0;
+    border-radius: 0.75rem;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-incoming {
+    position: absolute;
+    inset: 0;
+}
+#lightboxModal .lightbox-slide-stage.has-transition > img.lightbox-slide-current {
+    transition: transform .46s cubic-bezier(.22,.78,.22,1);
+}
+#lightboxModal .lightbox-slide-stage.has-transition > img.lightbox-slide-incoming {
+    transition: transform .46s cubic-bezier(.22,.78,.22,1);
+}
+#lightboxModal .lightbox-slide-stage.has-transition.slide-next > img.lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage.has-transition.slide-prev > img.lightbox-slide-current {
+    animation: none;
+}
+#lightboxModal .lightbox-slide-stage.has-transition.slide-next > img.lightbox-slide-incoming {
+    transform: translateX(100%);
+    animation: lightbox-slide-next-in .46s cubic-bezier(.22,.78,.22,1) forwards;
+}
+#lightboxModal .lightbox-slide-stage.has-transition.slide-next > img.lightbox-slide-current {
+    animation: lightbox-slide-next-out .46s cubic-bezier(.22,.78,.22,1) forwards;
+}
+#lightboxModal .lightbox-slide-stage.has-transition.slide-prev > img.lightbox-slide-incoming {
+    transform: translateX(-100%);
+    animation: lightbox-slide-prev-in .46s cubic-bezier(.22,.78,.22,1) forwards;
+}
+#lightboxModal .lightbox-slide-stage.has-transition.slide-prev > img.lightbox-slide-current {
+    animation: lightbox-slide-prev-out .46s cubic-bezier(.22,.78,.22,1) forwards;
+}
+@keyframes lightbox-slide-next-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+@keyframes lightbox-slide-next-out {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+}
+@keyframes lightbox-slide-prev-in {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+@keyframes lightbox-slide-prev-out {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+#lightboxModal .lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 50%;
+    background: rgba(0,0,0,.28);
+    color: rgba(255,255,255,.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 20;
+    backdrop-filter: blur(8px);
+    transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+#lightboxModal .lightbox-nav-btn:hover {
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.42);
+    color: #fff;
+}
+#lightboxModal .lightbox-nav-prev { left: 12px; }
+#lightboxModal .lightbox-nav-next { right: 12px; }
+@media (max-width: 768px) {
+    #lightboxModal .lightbox-image-stage {
+        width: calc(100vw - 28px);
+        height: min(58dvh, 560px);
+        min-height: 220px;
+    }
+    #lightboxModal .lightbox-nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
+    }
+    #lightboxModal .lightbox-nav-prev { left: 5px; }
+    #lightboxModal .lightbox-nav-next { right: 5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #lightboxModal .lightbox-slide-stage.has-transition > img {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
