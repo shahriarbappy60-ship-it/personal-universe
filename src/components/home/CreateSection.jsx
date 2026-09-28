@@ -5,7 +5,6 @@ import { projectsData } from '../../data/projectsData';
 
 export default function CreateSection() {
   const featuredProject = projectsData.find(p => p.featured) || projectsData[0];
-  const secondaryProjects = projectsData.filter(p => !p.featured);
 
   return (
     <section className="section section-pad pt-32 md:pt-36 scroll-mt-28" id="create">
@@ -23,7 +22,7 @@ export default function CreateSection() {
       </div>
 
       {/* ASYMMETRIC CREATE COMPOSITION: PORTRAIT FEATURED ON LEFT, DUAL STACKED ON RIGHT */}
-      <div className="create-composition reveal">
+      <div className="create-composition create-composition-featured-only reveal">
         {/* LEFT: PORTRAIT PERSONAL UNIVERSE CARD */}
         <article className="project-feature project-feature-portrait">
           <div className="project-visual" id="projectVisual">
@@ -102,30 +101,6 @@ export default function CreateSection() {
           </div>
         </article>
 
-        {/* RIGHT: TWO SECONDARY PROJECT CARDS STACKED VERTICALLY */}
-        <div className="project-secondary-column">
-          {secondaryProjects.map((project, idx) => (
-            <Link
-              key={project.id}
-              to="/create"
-              className={`project-card reveal-item ${idx > 0 ? `delay-${idx}` : ''}`}
-              aria-label={`Explore ${project.title}`}
-            >
-              <div className="project-card-header">
-                <span className="project-index">{project.index} / {project.cardCategory}</span>
-                <span className="project-card-arrow" aria-hidden="true">↗</span>
-              </div>
-              <h3>{project.title}</h3>
-              <p>
-                {project.cardDescription}
-              </p>
-              <div className="project-bottom">
-                <span>{project.categoryTag}</span>
-                <span>{project.year}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
       </div>
 
       {/* UNIFIED ARCHIVE CTA — INHERITS MOTHER BUTTON SYSTEM */}
