@@ -10055,6 +10055,13 @@ html.js-ready .hero-celestial-stage{
     }
 }
 
+/* Home Create — mobile keeps the section focused on the primary build only. */
+@media (max-width: 768px) {
+    .create-supporting-projects {
+        display: none;
+    }
+}
+
 
 /* Lightbox v2 — stable viewport + simple timeless navigation */
 #lightboxModal .lightbox-fluid-content {
