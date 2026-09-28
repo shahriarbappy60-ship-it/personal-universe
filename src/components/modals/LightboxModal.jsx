@@ -12,11 +12,9 @@ export default function LightboxModal({
 }) {
   const closeBtnRef = useRef(null);
   const touchStartX = useRef(0);
-  const toastTimeoutRef = useRef(null);
   const slideTimerRef = useRef(null);
   const [slide, setSlide] = useState(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
 
   const activePhoto = photos.length && currentIndex >= 0 && currentIndex < photos.length
     ? photos[currentIndex]
@@ -24,11 +22,9 @@ export default function LightboxModal({
   const isOpen = Boolean(activePhoto);
   const hasMultiple = photos.length > 1;
 
-  const showToast = message => {
-    clearTimeout(toastTimeoutRef.current);
-    setToastMessage(message);
-    toastTimeoutRef.current = setTimeout(() => setToastMessage(''), 2400);
-  };
+  const counter = hasMultiple && currentIndex >= 0
+    ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`
+    : '';
 
   const finishSlide = direction => {
     if (direction === 'next') onNext?.();
@@ -111,10 +107,6 @@ export default function LightboxModal({
   };
 
   if (!isOpen || !activePhoto || typeof document === 'undefined') return null;
-
-  const counter = hasMultiple && currentIndex >= 0
-    ? `${String(currentIndex + 1).padStart(2, '0')} / ${String(photos.length).padStart(2, '0')}`
-    : '';
 
   return createPortal(
     <>
@@ -202,7 +194,13 @@ export default function LightboxModal({
                 </button>
               </div>
             )}
-          </div>
+
+
+            {counter && (
+              <div className="lightbox-slide-counter" aria-hidden="true">
+                ${counter}
+              </div>
+            )}          </div>
 
           <div className="lightbox-metadata-tray">
             <div className="lightbox-metadata-top">
@@ -221,11 +219,6 @@ export default function LightboxModal({
           </div>
         </div>
 
-        {toastMessage && (
-          <div className="lightbox-toast" role="status">
-            <span>{toastMessage}</span>
-          </div>
-        )}
       </div>
 
       <ShareModal
