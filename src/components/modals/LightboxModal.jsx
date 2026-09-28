@@ -181,7 +181,7 @@ export default function LightboxModal({
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className={`lightbox-slide-stage ${slide ? 'has-transition' : ''}`}>
+            <div className={`lightbox-slide-stage ${slide ? `has-transition slide-${slide.direction}` : ''}`}>
               <img
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
