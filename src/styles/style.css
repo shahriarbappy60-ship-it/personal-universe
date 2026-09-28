@@ -10203,7 +10203,52 @@ html.js-ready .hero-celestial-stage{
     #lightboxModal .lightbox-nav-btn { display: flex !important; }
 }
 
-/* Lightbox mobile natural-ratio correction — preserve the actual photo shape. */
+/* Lightbox motion polish — compositor-first, stable geometry.
+   The photo frame keeps its natural ratio; only the slide layer moves. */
+#lightboxModal .lightbox-slide-stage {
+    contain: layout paint;
+    transform: translateZ(0);
+}
+
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-current,
+#lightboxModal .lightbox-slide-stage > img.lightbox-slide-incoming {
+    transform: translate3d(0,0,0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+#lightboxModal .lightbox-image-stage.slide-next .lightbox-slide-current {
+    animation: lightbox-premium-next-out .40s cubic-bezier(.22,.78,.22,1) both;
+}
+#lightboxModal .lightbox-image-stage.slide-next .lightbox-slide-incoming {
+    animation: lightbox-premium-next-in .40s cubic-bezier(.22,.78,.22,1) both;
+}
+#lightboxModal .lightbox-image-stage.slide-prev .lightbox-slide-current {
+    animation: lightbox-premium-prev-out .40s cubic-bezier(.22,.78,.22,1) both;
+}
+#lightboxModal .lightbox-image-stage.slide-prev .lightbox-slide-incoming {
+    animation: lightbox-premium-prev-in .40s cubic-bezier(.22,.78,.22,1) both;
+}
+
+@keyframes lightbox-premium-next-out {
+    from { transform: translate3d(0,0,0); opacity: 1; }
+    to { transform: translate3d(-100%,0,0); opacity: .985; }
+}
+@keyframes lightbox-premium-next-in {
+    from { transform: translate3d(100%,0,0); opacity: .985; }
+    to { transform: translate3d(0,0,0); opacity: 1; }
+}
+@keyframes lightbox-premium-prev-out {
+    from { transform: translate3d(0,0,0); opacity: 1; }
+    to { transform: translate3d(100%,0,0); opacity: .985; }
+}
+@keyframes lightbox-premium-prev-in {
+    from { transform: translate3d(-100%,0,0); opacity: .985; }
+    to { transform: translate3d(0,0,0); opacity: 1; }
+}
+
+/* Keep the mobile natural-ratio behavior that is already correct. */
 @media (max-width: 768px) {
     #lightboxModal .lightbox-image-stage {
         width: min(
@@ -10214,5 +10259,16 @@ html.js-ready .hero-celestial-stage{
         aspect-ratio: var(--lightbox-ratio);
         min-height: 0;
         max-height: none;
+    }
+
+    #lightboxModal .lightbox-slide-stage {
+        contain: layout paint;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #lightboxModal .lightbox-slide-stage > img.lightbox-slide-current,
+    #lightboxModal .lightbox-slide-stage > img.lightbox-slide-incoming {
+        animation-duration: .01ms !important;
     }
 }
