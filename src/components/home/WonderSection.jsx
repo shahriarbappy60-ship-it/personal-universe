@@ -45,9 +45,6 @@ export default function WonderSection({ onOpenEssay }) {
             What I <em>wonder.</em>
           </h2>
         </div>
-        <p className="section-intro">
-          Ideas do not always need answers. Some are valuable simply because they refuse to leave.
-        </p>
       </div>
 
       {/* QUIET EDITORIAL STAGE: THOUGHT DIRECTLY ON THE DARK PAGE (NO LARGE CARD) */}
