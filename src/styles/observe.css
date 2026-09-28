@@ -3234,8 +3234,8 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 #lightboxModal .lightbox-image-stage {
   position: relative;
   width: min(100%, 980px);
-  height: min(70dvh, 680px);
-  min-height: 240px;
+  height: min(68dvh, 680px);
+  min-height: 0;
   margin: 0 auto;
   flex: 0 1 auto;
   overflow: hidden;
@@ -3526,13 +3526,13 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
   #lightboxModal .lightbox-viewer {
     width: 100%;
     height: min(88svh, 760px);
-    gap: 11px;
+    gap: 10px;
   }
 
   #lightboxModal .lightbox-image-stage {
     width: 100%;
-    height: min(59svh, 560px);
-    min-height: 210px;
+    height: min(62svh, 620px);
+    min-height: 0;
     border-radius: 15px;
   }
 
@@ -3558,7 +3558,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
   #lightboxModal .lightbox-metadata-tray {
     width: 100%;
-    max-height: 22svh;
+    max-height: 19svh;
     padding: 12px 13px;
     border-radius: 13px;
   }
@@ -3599,6 +3599,54 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
   }
 }
 
+
+@media (max-width: 480px) {
+  #lightboxModal.modal-lightbox-overlay {
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  }
+
+  #lightboxModal .lightbox-viewer {
+    height: 94svh;
+    gap: 9px;
+  }
+
+  #lightboxModal .lightbox-image-stage {
+    width: 100%;
+    height: min(65svh, 620px);
+    border-radius: 13px;
+  }
+
+  #lightboxModal .lightbox-slide-image {
+    border-radius: 12px;
+  }
+
+  #lightboxModal .lightbox-nav-btn {
+    width: 34px;
+    height: 34px;
+  }
+
+  #lightboxModal .lightbox-nav-prev { left: 7px; }
+  #lightboxModal .lightbox-nav-next { right: 7px; }
+
+  #lightboxModal .lightbox-metadata-tray {
+    max-height: 20svh;
+    padding: 11px 12px;
+    border-radius: 12px;
+  }
+
+  #lightboxModal .lightbox-title {
+    font-size: 13px;
+  }
+
+  #lightboxModal .lightbox-category-tag {
+    font-size: 7px;
+  }
+
+  #lightboxModal .lightbox-editorial-caption {
+    font-size: 10.5px;
+    line-height: 1.55;
+  }
+}
 /* STREAM VIEW — editorial archive rhythm, not another card grid. */
 .observe-gallery.mode-stream {
     max-width: 920px;
