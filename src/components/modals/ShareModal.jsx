@@ -24,8 +24,19 @@ export default function ShareModal({
 
   if (!isOpen || !photo) return null;
 
-  const currentUrl = window.location.href.split('#')[0];
   const photoTitle = photo.title || 'Photograph';
+  const photoKey = photo.slug || photo.id || photo.number || photoTitle
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  const currentUrl = (() => {
+    const url = new URL(window.location.href);
+    url.hash = '';
+    url.searchParams.set('photo', photoKey);
+    return url.toString();
+  })();
   const category = (photo.category || 'SCENES').toUpperCase();
   const locationText = photo.location ? `${photo.location}${photo.year ? ` · ${photo.year}` : ''}` : (photo.year || '');
   const storyText = photo.story || '';
