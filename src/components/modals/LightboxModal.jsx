@@ -198,9 +198,10 @@ export default function LightboxModal({
 
             {counter && (
               <div className="lightbox-slide-counter" aria-hidden="true">
-                ${counter}
+                {counter}
               </div>
-            )}          </div>
+            )}
+          </div>
 
           <div className="lightbox-metadata-tray">
             <div className="lightbox-metadata-top">
@@ -210,7 +211,6 @@ export default function LightboxModal({
                   {activePhoto.category || activePhoto.meta || 'STILLS'}
                 </span>
               </div>
-              {counter && <span className="lightbox-index-counter">{counter}</span>}
             </div>
 
             {activePhoto.story && (
