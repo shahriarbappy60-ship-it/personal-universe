@@ -51,8 +51,17 @@ export default function LightboxModal({
     if (!incoming) return;
 
     clearTimeout(slideTimerRef.current);
+
+    const fallbackRatio =
+      incoming.aspectRatio === 'portrait' ? 3 / 4 :
+      incoming.aspectRatio === 'square' ? 1 :
+      typeof incoming.aspectRatio === 'number' && incoming.aspectRatio > 0 ? incoming.aspectRatio :
+      4 / 3;
+
+    setImageRatio(fallbackRatio);
     setSlide({ direction, photo: incoming });
-    slideTimerRef.current = setTimeout(() => finishSlide(direction), 420);
+
+    slideTimerRef.current = setTimeout(() => finishSlide(direction), 400);
   };
 
   useEffect(() => {
