@@ -3233,7 +3233,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
 #lightboxModal .lightbox-image-stage {
   position: relative;
-  width: min(100%, 980px);
+  width: min(100%, 980px, calc(68dvh * var(--lightbox-ratio, 16 / 9)));
   height: auto;
   aspect-ratio: var(--lightbox-ratio, 16 / 9);
   max-height: min(68dvh, 680px);
@@ -3267,7 +3267,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
   height: 100%;
   margin: 0;
   padding: 0;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   border-radius: 18px;
   background: #080808;
