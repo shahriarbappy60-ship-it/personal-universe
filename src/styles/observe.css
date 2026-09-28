@@ -3221,7 +3221,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
   position: relative;
   z-index: 1;
   width: min(1080px, 100%);
-  height: min(88dvh, 860px);
+  max-height: calc(100dvh - 32px);
   min-width: 0;
   min-height: 0;
   display: flex;
@@ -3232,15 +3232,20 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 #lightboxModal .lightbox-image-stage {
+  --lightbox-ratio: 4 / 3;
   position: relative;
-  width: min(100%, 980px, calc(68dvh * var(--lightbox-ratio, 4 / 3)));
-  height: auto;
-  aspect-ratio: var(--lightbox-ratio, 4 / 3);
-  max-height: min(68dvh, 680px);
+  width: min(
+    980px,
+    calc(min(68dvh, 680px) * var(--lightbox-ratio)),
+    calc(100vw - 48px)
+  );
+  aspect-ratio: var(--lightbox-ratio);
+  flex: 0 0 auto;
+  min-width: 0;
   min-height: 0;
   margin: 0 auto;
-  flex: 0 1 auto;
   overflow: hidden;
+  box-sizing: border-box;
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 20px;
   background: #080808;
@@ -3263,6 +3268,7 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 #lightboxModal .lightbox-slide-image {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -3280,15 +3286,12 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 #lightboxModal .lightbox-slide-current {
+  z-index: 1;
   transform: translate3d(0,0,0);
 }
 
 #lightboxModal .lightbox-slide-incoming {
   z-index: 2;
-}
-
-#lightboxModal .lightbox-slide-current {
-  z-index: 1;
 }
 
 #lightboxModal .lightbox-image-stage.slide-next .lightbox-slide-current {
@@ -3527,16 +3530,16 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
   #lightboxModal .lightbox-viewer {
     width: 100%;
-    height: min(88svh, 760px);
+    max-height: calc(100svh - 24px);
     gap: 10px;
   }
 
   #lightboxModal .lightbox-image-stage {
-    width: min(100%, calc(62svh * var(--lightbox-ratio, 16 / 9)));
-    height: auto;
-    aspect-ratio: var(--lightbox-ratio, 16 / 9);
-    max-height: 62svh;
-    min-height: 0;
+    width: min(
+      100%,
+      calc(min(62svh, 560px) * var(--lightbox-ratio)),
+      calc(100vw - 24px)
+    );
     border-radius: 15px;
   }
 
@@ -3594,31 +3597,22 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  #lightboxModal .lightbox-slide-image,
-  #lightboxModal .lightbox-nav-btn,
-  #lightboxModal .lightbox-action-btn {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-
 @media (max-width: 480px) {
   #lightboxModal.modal-lightbox-overlay {
     padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
   }
 
   #lightboxModal .lightbox-viewer {
-    height: 94svh;
+    max-height: calc(100svh - 20px);
     gap: 9px;
   }
 
   #lightboxModal .lightbox-image-stage {
-    width: min(100%, calc(65svh * var(--lightbox-ratio, 16 / 9)));
-    height: auto;
-    aspect-ratio: var(--lightbox-ratio, 16 / 9);
-    max-height: 65svh;
+    width: min(
+      100%,
+      calc(min(65svh, 520px) * var(--lightbox-ratio)),
+      calc(100vw - 20px)
+    );
     border-radius: 13px;
   }
 
@@ -3653,6 +3647,16 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     line-height: 1.55;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  #lightboxModal .lightbox-slide-image,
+  #lightboxModal .lightbox-nav-btn,
+  #lightboxModal .lightbox-action-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* STREAM VIEW — editorial archive rhythm, not another card grid. */
 .observe-gallery.mode-stream {
     max-width: 920px;
