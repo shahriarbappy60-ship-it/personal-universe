@@ -17,19 +17,12 @@ export default function Button({
 }) {
   const baseClass = `btn-master btn-${variant} magnetic ${className}`.trim();
 
-  // Extract trailing arrow from string children if present, so it is cleanly managed by .btn-icon
-  let cleanChildren = children;
-  let detectedIcon = null;
-  if (typeof children === 'string') {
-    const arrowMatch = children.match(/[\s\u00A0]*([→←↑↓↗↘])[\s\u00A0]*$/);
-    if (arrowMatch) {
-      detectedIcon = arrowMatch[1];
-      cleanChildren = children.replace(/[\s\u00A0]*[→←↑↓↗↘][\s\u00A0]*$/, '').trim();
-    }
-  }
-
-  const effectiveIcon = icon !== undefined ? icon : (detectedIcon || '→');
-  const isDown = effectiveIcon === '↓';
+  // Buttons use clean typography only; decorative arrows are intentionally omitted site-wide.
+  const cleanChildren = typeof children === 'string'
+    ? children.replace(/[\s\u00A0]*[→←↑↓↗↘][\s\u00A0]*$/, '').trim()
+    : children;
+  const effectiveIcon = null;
+  const isDown = false;
 
   const content = (
     <>
