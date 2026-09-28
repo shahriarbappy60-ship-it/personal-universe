@@ -9963,3 +9963,94 @@ html.js-ready .hero-celestial-stage{
     animation-duration: .01ms;
   }
 }
+
+
+/* Home Create — curated density without becoming a project catalogue */
+.create-composition {
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
+    gap: 18px;
+}
+.create-supporting-projects {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+.create-support-card {
+    min-height: 166px;
+    padding: 22px 22px 18px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color .3s var(--ease), transform .3s var(--ease), background-color .3s var(--ease);
+}
+.create-support-card:hover {
+    border-color: var(--line-strong);
+    transform: translateY(-2px);
+}
+.create-support-meta,
+.create-support-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.create-support-type {
+    display: block;
+    margin: 14px 0 8px;
+    color: var(--faint);
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+.create-support-card h3 {
+    margin: 0 0 7px;
+    font-size: clamp(18px, 1.7vw, 23px);
+    line-height: 1.15;
+    letter-spacing: -.025em;
+}
+.create-support-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11.5px;
+    line-height: 1.55;
+    max-width: 42ch;
+}
+.create-support-footer {
+    margin-top: 18px;
+    color: var(--faint);
+}
+.create-support-footer span:last-child {
+    color: var(--muted);
+}
+.arrow-link {
+    gap: 0;
+}
+.arrow-link .arrow-icon {
+    display: none !important;
+}
+@media (max-width: 900px) {
+    .create-composition {
+        grid-template-columns: 1fr;
+    }
+    .create-supporting-projects {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: none;
+    }
+}
+@media (max-width: 600px) {
+    .create-supporting-projects {
+        grid-template-columns: 1fr;
+    }
+    .create-support-card {
+        min-height: 150px;
+    }
+}
