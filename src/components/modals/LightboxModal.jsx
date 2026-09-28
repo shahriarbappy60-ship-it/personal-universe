@@ -15,8 +15,7 @@ export default function LightboxModal({
   const slideTimerRef = useRef(null);
   const [slide, setSlide] = useState(null);
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [imageRatio, setImageRatio] = useState(16 / 9);
-  const activeImageIdRef = useRef(null);
+  const [imageRatio, setImageRatio] = useState(4 / 3);
 
   const activePhoto = photos.length && currentIndex >= 0 && currentIndex < photos.length
     ? photos[currentIndex]
@@ -24,13 +23,10 @@ export default function LightboxModal({
   const isOpen = Boolean(activePhoto);
   const hasMultiple = photos.length > 1;
 
-  const handleImageLoad = (event, photoId) => {
-    if (photoId !== activePhoto?.id) return;
-
-    const { naturalWidth, naturalHeight } = event.currentTarget;
-    if (naturalWidth > 0 && naturalHeight > 0) {
-      setImageRatio(naturalWidth / naturalHeight);
-    }
+  const getPhotoRatio = currentPhoto => {
+    if (currentPhoto?.aspectRatio === 'portrait') return 3 / 4;
+    if (currentPhoto?.aspectRatio === 'square') return 1;
+    return 4 / 3;
   };
 
   const counter = hasMultiple && currentIndex >= 0
@@ -77,13 +73,11 @@ export default function LightboxModal({
   }, [isOpen]);
 
   useEffect(() => {
-    const knownRatio = activePhoto?.aspectRatio === 'portrait' ? 3 / 4 : 16 / 9;
-    activeImageIdRef.current = activePhoto?.id ?? null;
-    setImageRatio(knownRatio);
+    setImageRatio(getPhotoRatio(activePhoto));
     setIsShareOpen(false);
     setSlide(null);
     clearTimeout(slideTimerRef.current);
-  }, [activePhoto?.id, currentIndex]);
+  }, [activePhoto?.id, currentIndex]);;
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -173,7 +167,6 @@ export default function LightboxModal({
               <img
                 className="lightbox-slide-image lightbox-slide-current"
                 src={activePhoto.src}
-                onLoad={event => handleImageLoad(event, activePhoto.id)}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
                 draggable="false"
               />
@@ -181,7 +174,6 @@ export default function LightboxModal({
                 <img
                   className="lightbox-slide-image lightbox-slide-incoming"
                   src={slide.photo.src}
-                  onLoad={event => handleImageLoad(event, slide.photo.id)}
                   alt={slide.photo.title || slide.photo.alt || 'Photograph'}
                   draggable="false"
                 />
