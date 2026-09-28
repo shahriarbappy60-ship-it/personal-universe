@@ -10202,3 +10202,17 @@ html.js-ready .hero-celestial-stage{
 @media (max-width: 768px) {
     #lightboxModal .lightbox-nav-btn { display: flex !important; }
 }
+
+/* Lightbox mobile natural-ratio correction — preserve the actual photo shape. */
+@media (max-width: 768px) {
+    #lightboxModal .lightbox-image-stage {
+        width: min(
+            calc(min(65svh, 520px) * var(--lightbox-ratio)),
+            calc(100vw - 20px)
+        );
+        height: auto;
+        aspect-ratio: var(--lightbox-ratio);
+        min-height: 0;
+        max-height: none;
+    }
+}
