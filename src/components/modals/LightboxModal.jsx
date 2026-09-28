@@ -73,7 +73,6 @@ export default function LightboxModal({
     };
   }, [isOpen]);
 
- }, [activePhoto?.id, currentIndex]);;
 
   useEffect(() => {
     if (!isOpen) return undefined;
