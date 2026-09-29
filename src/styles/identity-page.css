@@ -870,3 +870,12 @@
     gap:22px;
   }
 }
+
+
+/* MOBILE — hero copy begins below the first viewport */
+@media (max-width:430px){
+  .identity-page-v2 .self-v2-hero-copy .self-v2-lead,
+  .identity-page-v2 .self-v2-hero-copy .self-v2-lead-secondary{
+    display:none !important;
+  }
+}
