@@ -9,7 +9,7 @@ import ContactModal from './components/modals/ContactModal';
 import HomePage from './pages/HomePage';
 import ObservePage from './pages/ObservePage';
 import WonderPage from './pages/WonderPage';
-import SelfPage from './pages/SelfPage';
+import IdentityPage from './pages/IdentityPage';
 import CreatePage from './pages/CreatePage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -79,7 +79,7 @@ export default function App() {
         <Route path="/observe" element={<ObservePage />} />
         <Route path="/wonder" element={<WonderPage />} />
         <Route path="/create" element={<CreatePage />} />
-        <Route path="/self" element={<SelfPage />} />
+        <Route path="/identity" element={<IdentityPage />} />
         <Route
           path="/contact"
           element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
