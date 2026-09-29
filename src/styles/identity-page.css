@@ -803,3 +803,52 @@
   .identity-page-v2 .self-v2-practice-row p{font-size:13px}
   .identity-page-v2 .self-v2-practice-foot > div p{font-size:12px}
 }
+
+
+/* Mobile Identity hero — keep navbar clear and restore the intended editorial order */
+@media (max-width:768px){
+  .identity-page-v2 .self-v2-hero{
+    padding-top:86px;
+  }
+  .identity-page-v2 .self-v2-hero-bar{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:24px;
+    text-align:left;
+  }
+  .identity-page-v2 .self-v2-hero-bar .self-v2-eyebrow{
+    flex:0 0 auto;
+    font-size:9px;
+    letter-spacing:.16em;
+  }
+  .identity-page-v2 .self-v2-hero-bar .self-v2-rule{
+    flex:1 1 auto;
+    min-width:18px;
+  }
+  .identity-page-v2 .self-v2-hero-bar>span:last-child{
+    display:block;
+    flex:0 0 auto;
+    font-size:8px;
+    letter-spacing:.10em;
+  }
+}
+
+@media (max-width:430px){
+  .identity-page-v2 .self-v2-hero{
+    padding-top:82px;
+  }
+  .identity-page-v2 .self-v2-hero-bar{
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .identity-page-v2 .self-v2-hero-bar .self-v2-eyebrow{
+    font-size:8.5px;
+  }
+  .identity-page-v2 .self-v2-hero-bar>span:last-child{
+    font-size:7.5px;
+    letter-spacing:.08em;
+  }
+}
