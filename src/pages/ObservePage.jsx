@@ -193,7 +193,6 @@ export default function ObservePage() {
         <div className="archive-container">
           <div className="archive-heading reveal">
             <div>
-              <div className="eyebrow">THE VISUAL ARCHIVE</div>
               <h2>
                 Ways of <em>seeing.</em>
               </h2>
