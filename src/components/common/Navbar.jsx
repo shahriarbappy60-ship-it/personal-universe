@@ -15,7 +15,7 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
   const isObserve = location.pathname.startsWith('/observe');
   const isWonder = location.pathname.startsWith('/wonder');
   const isCreate = location.pathname.startsWith('/create');
-  const isSelf = location.pathname.startsWith('/self');
+  const isIdentity = location.pathname.startsWith('/identity');
   const isContact = location.pathname.startsWith('/contact') || location.pathname.startsWith('/get-in-touch');
 
   const handleBack = e => {
@@ -72,7 +72,7 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
         <Link to="/observe" className={isObserve ? 'active' : ''}>Observe</Link>
         <Link to="/wonder" className={isWonder ? 'active' : ''}>Wonder</Link>
         <Link to="/create" className={isCreate ? 'active' : ''}>Create</Link>
-        <Link to="/self" className={isSelf ? 'active' : ''}>Profile</Link>
+        <Link to="/identity" className={isIdentity ? 'active' : ''}>Identity</Link>
       </nav>
 
       {/* HEADER RIGHT */}
