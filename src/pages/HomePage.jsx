@@ -3,7 +3,7 @@ import HeroSection from '../components/home/HeroSection';
 import ObserveSection from '../components/home/ObserveSection';
 import WonderSection from '../components/home/WonderSection';
 import CreateSection from '../components/home/CreateSection';
-import SelfSection from '../components/home/SelfSection';
+import IdentitySection from '../components/home/IdentitySection';
 import ResonanceSection from '../components/home/ResonanceSection';
 import GetInTouchSection from '../components/home/GetInTouchSection';
 import LightboxModal from '../components/modals/LightboxModal';
@@ -81,7 +81,7 @@ export default function HomePage({ onOpenContact, setActiveSection }) {
       <ObserveSection onSelectPhoto={handleSelectPhoto} />
       <WonderSection onOpenEssay={() => setIsEssayOpen(true)} />
       <CreateSection />
-      <SelfSection />
+      <IdentitySection />
       <ResonanceSection />
       <GetInTouchSection onOpenContact={onOpenContact} />
 
