@@ -837,12 +837,14 @@
 }
 
 @media (max-width:430px){
+  /* Mobile first viewport: navbar stays above the identity hero; the portrait leads. */
   .identity-page-v2 .self-v2-hero{
-    padding-top:82px;
+    padding-top:92px;
+    padding-bottom:64px;
   }
   .identity-page-v2 .self-v2-hero-bar{
     gap:10px;
-    margin-bottom:22px;
+    margin-bottom:18px;
   }
   .identity-page-v2 .self-v2-hero-bar .self-v2-eyebrow{
     font-size:8.5px;
@@ -850,5 +852,21 @@
   .identity-page-v2 .self-v2-hero-bar>span:last-child{
     font-size:7.5px;
     letter-spacing:.08em;
+  }
+
+  /* The first screen should contain only the portrait + name/role. */
+  .identity-page-v2 .self-v2-lead,
+  .identity-page-v2 .self-v2-lead-secondary{
+    display:none;
+  }
+
+  /* Keep the portrait completely below the fixed navbar. */
+  .identity-page-v2 .self-v2-portrait-frame{
+    margin-top:0;
+  }
+
+  /* Prevent the following Perspective section from leaking into the first screen. */
+  .identity-page-v2 .self-v2-hero-grid{
+    gap:22px;
   }
 }
