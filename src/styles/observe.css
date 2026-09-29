@@ -3806,3 +3806,95 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 
+
+
+/* =========================================================
+   OBSERVE ARCHIVE MOBILE CLEANUP
+   Keeps the mother design intact while removing redundant
+   controls and excess vertical spacing on small screens.
+========================================================= */
+@media (max-width: 768px) {
+    .archive-heading-meta {
+        align-self: flex-start;
+        margin-top: 6px;
+    }
+
+    .archive-toolbar {
+        gap: 14px !important;
+        margin-top: 14px !important;
+    }
+
+    .archive-controls-right {
+        gap: 10px !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .archive-controls-right .archive-tools {
+        min-width: 0 !important;
+    }
+
+    .observe-gallery {
+        margin-top: 30px !important;
+    }
+
+    .observe-gallery.mode-stream {
+        padding-top: 0 !important;
+        margin-top: 30px !important;
+    }
+}
+
+@media (max-width: 580px) {
+    .archive-heading {
+        gap: 8px !important;
+        margin-bottom: 22px !important;
+    }
+
+    .archive-heading-meta {
+        gap: 10px !important;
+    }
+
+    .archive-heading-meta span {
+        font-size: 7.5px !important;
+        letter-spacing: .14em !important;
+    }
+
+    .archive-heading-meta strong {
+        font-size: 28px !important;
+    }
+
+    .archive-toolbar {
+        gap: 14px !important;
+        margin-top: 12px !important;
+    }
+
+    .filter-categories {
+        justify-content: flex-start !important;
+        gap: 18px !important;
+    }
+
+    .archive-controls-right {
+        width: 100% !important;
+    }
+
+    .archive-controls-right .archive-search {
+        height: 44px !important;
+        min-height: 44px !important;
+    }
+
+    .observe-dynamic-view-btn {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+    }
+
+    .observe-gallery {
+        margin-top: 28px !important;
+    }
+
+    .observe-gallery.mode-stream {
+        padding-top: 0 !important;
+        margin-top: 28px !important;
+        gap: 34px !important;
+    }
+}
