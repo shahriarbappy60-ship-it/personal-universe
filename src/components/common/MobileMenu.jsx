@@ -30,7 +30,7 @@ export default function MobileMenu({ isOpen, onClose }) {
     { label: 'Observe', path: '/observe' },
     { label: 'Wonder', path: '/wonder' },
     { label: 'Create', path: '/create' },
-    { label: 'Profile', path: '/self' },
+    { label: 'Identity', path: '/identity' },
   ];
 
   const menu = (
