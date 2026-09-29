@@ -66,7 +66,6 @@ export default function IdentityPage() {
               <span className="self-v2-eyebrow">PERSPECTIVE</span>
               <h2>The way I <em>see things.</em></h2>
             </div>
-            <p className="self-v2-section-intro">I’m interested in the space between what happens and how we experience it.</p>
           </div>
           <p className="self-v2-statement reveal">
             I tend to look a little longer than necessary. At people, places, ideas, and the things most of us pass without noticing. I’m fascinated by the gap between reality and perception — by how the same world can become completely different depending on the mind experiencing it. I question what feels obvious, not because I need everything to have an answer, but because the question itself can change the way I see.
@@ -81,7 +80,6 @@ export default function IdentityPage() {
               <span className="self-v2-eyebrow">CURIOSITY</span>
               <h2>What keeps me <em>curious.</em></h2>
             </div>
-            <p className="self-v2-section-intro">Different subjects, one recurring impulse: look beneath the surface.</p>
           </div>
           <div className="self-v2-curiosity-list reveal">
             {curiosity.map(([index, title, text]) => (
@@ -138,7 +136,6 @@ export default function IdentityPage() {
               <span className="self-v2-eyebrow">PRACTICE</span>
               <h2>Learning through <em>practice.</em></h2>
             </div>
-            <p className="self-v2-section-intro">A quiet look at what I’m learning, building, and working toward.</p>
           </div>
 
           <div className="self-v2-practice reveal">
