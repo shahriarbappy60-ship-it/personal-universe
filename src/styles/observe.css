@@ -3898,3 +3898,94 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
         gap: 34px !important;
     }
 }
+
+/* Mobile archive hierarchy refinement */
+@media (max-width: 580px) {
+    .archive-heading {
+        flex-direction: row !important;
+        align-items: flex-end !important;
+        justify-content: space-between !important;
+        gap: 16px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .archive-heading > div:first-child { min-width: 0; }
+
+    .archive-heading-meta {
+        align-self: flex-end !important;
+        margin-top: 0 !important;
+        gap: 0 !important;
+        flex: 0 0 auto;
+    }
+
+    .archive-heading-meta span { display: none !important; }
+
+    .archive-heading-meta strong {
+        font-size: 22px !important;
+        line-height: 1 !important;
+        letter-spacing: -.02em !important;
+        font-weight: 400 !important;
+    }
+
+    .archive-controls-right {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 44px !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+        flex-wrap: nowrap !important;
+    }
+
+    .archive-controls-right .archive-tools {
+        grid-column: 1 !important;
+        grid-row: 1 !important;
+        width: auto !important;
+        min-width: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-direction: row !important;
+        gap: 0 !important;
+    }
+
+    .archive-controls-right .observe-view-switch-single {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        width: 44px !important;
+        height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .archive-search {
+        width: 100% !important;
+        height: 44px !important;
+        min-height: 44px !important;
+    }
+
+    .observe-dynamic-view-btn {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        justify-content: center !important;
+        gap: 0 !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-label,
+    .observe-dynamic-view-btn .view-btn-cycle-hint {
+        display: none !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-icon-box {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .observe-dynamic-view-btn .view-btn-icon-box svg {
+        width: 17px !important;
+        height: 17px !important;
+    }
+}
