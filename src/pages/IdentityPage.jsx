@@ -24,6 +24,7 @@ export default function IdentityPage() {
       <section className="self-v2-section self-v2-hero" id="identity">
         <div className="self-v2-container">
           <div className="self-v2-hero-bar reveal">
+            <span className="self-v2-eyebrow">IDENTITY</span>
             <span className="self-v2-rule" aria-hidden="true" />
             <span>A GLIMPSE BEHIND THE WORK</span>
           </div>
