@@ -3989,3 +3989,9 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
         height: 17px !important;
     }
 }
+
+@media (max-width: 580px) {
+    .archive-heading-label {
+        display: none !important;
+    }
+}
