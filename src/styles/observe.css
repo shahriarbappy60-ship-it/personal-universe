@@ -3995,3 +3995,36 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
         display: none !important;
     }
 }
+
+/* Mobile archive control hierarchy:
+   search + view first, category filters centered underneath. */
+@media (max-width: 580px) {
+    .archive-toolbar {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 18px !important;
+    }
+
+    .archive-controls-right {
+        order: 1 !important;
+        width: 100% !important;
+    }
+
+    .filter-categories {
+        order: 2 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 20px !important;
+        flex-wrap: wrap !important;
+        padding: 2px 4px 0 !important;
+    }
+
+    .filter-btn {
+        flex: 0 0 auto !important;
+        padding: 0 !important;
+        min-height: 24px !important;
+    }
+}
