@@ -2,23 +2,36 @@ import React, { useState, useEffect, useRef } from 'react';
 
 export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose }) {
   const [progress, setProgress] = useState(0);
+  const [displayArticle, setDisplayArticle] = useState(article || null);
+  const [visible, setVisible] = useState(Boolean(isOpenProp !== undefined ? (isOpenProp && Boolean(article)) : Boolean(article)));
   const readerRef = useRef(null);
   const closeBtnRef = useRef(null);
   const isOpen = isOpenProp !== undefined ? (isOpenProp && Boolean(article)) : Boolean(article);
 
   useEffect(() => {
-    if (isOpen) {
+    let closeTimer;
+
+    if (isOpen && article) {
+      setDisplayArticle(article);
+      setVisible(true);
       document.body.classList.add('modal-open', 'reader-open');
       setProgress(0);
-      if (readerRef.current) readerRef.current.scrollTop = 0;
-      setTimeout(() => closeBtnRef.current?.focus(), 50);
-    } else {
+
+      requestAnimationFrame(() => {
+        if (readerRef.current) readerRef.current.scrollTop = 0;
+        closeBtnRef.current?.focus();
+      });
+    } else if (!isOpen) {
       document.body.classList.remove('modal-open', 'reader-open');
+      setVisible(false);
+      closeTimer = window.setTimeout(() => setDisplayArticle(null), 520);
     }
+
     return () => {
+      if (closeTimer) window.clearTimeout(closeTimer);
       document.body.classList.remove('modal-open', 'reader-open');
     };
-  }, [isOpen]);
+  }, [isOpen, article]);
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -43,10 +56,11 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
     setProgress(currentProgress);
   };
 
-  if (!isOpen || !article) return null;
+  if (!visible || !displayArticle) return null;
 
-  const imageCaptionTitle = article.imageCaption?.title || article.title;
-  const imageCaptionMeta = article.imageCaption?.meta || `${article.category} · ${article.date || '2026'}`;
+  const activeArticle = displayArticle;
+  const imageCaptionTitle = activeArticle.imageCaption?.title || activeArticle.title;
+  const imageCaptionMeta = activeArticle.imageCaption?.meta || `${activeArticle.category} · ${activeArticle.date || '2026'}`;
 
   return (
     <div
@@ -55,7 +69,7 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
       aria-hidden="false"
       role="dialog"
       aria-modal="true"
-      aria-label={`Reading: ${article.title}`}
+      aria-label={`Reading: ${activeArticle.title}`}
     >
       <div className="reader-backdrop" onClick={onClose} aria-hidden="true" />
 
@@ -71,9 +85,9 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
 
         <div className="reader-top">
           <div className="reader-meta">
-            <span id="readerCategory">{article.category}</span>
-            {article.time && <span id="readerTime">{article.time}</span>}
-            {article.date && <span id="readerDate">{article.date}</span>}
+            <span id="readerCategory">{activeArticle.category}</span>
+            {activeArticle.time && <span id="readerTime">{activeArticle.time}</span>}
+            {activeArticle.date && <span id="readerDate">{activeArticle.date}</span>}
           </div>
 
           <button
@@ -91,16 +105,16 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
         <div className="reader-content">
           <div className="reader-heading">
             <span className="reader-number" id="readerNumber">
-              {article.number}
+              {activeArticle.number}
             </span>
-            <h2 id="readerTitle">{article.title}</h2>
-            <p id="readerExcerpt">{article.excerpt}</p>
+            <h2 id="readerTitle">{activeArticle.title}</h2>
+            <p id="readerExcerpt">{activeArticle.excerpt}</p>
           </div>
 
-          {article.image && (
+          {activeArticle.image && (
             <div className="reader-photocard-wrap" id="readerImageWrap">
               <div className="reader-photocard-frame">
-                <img id="readerImage" src={article.image} alt={article.title} loading="lazy" />
+                <img id="readerImage" src={activeArticle.image} alt={activeArticle.title} loading="lazy" />
               </div>
               <div className="reader-photocard-caption">
                 <span>{imageCaptionTitle}</span>
@@ -112,11 +126,11 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
           <article
             className="reader-body"
             id="readerBody"
-            dangerouslySetInnerHTML={{ __html: article.body }}
+            dangerouslySetInnerHTML={{ __html: activeArticle.body }}
           />
 
           <div className="reader-end">
-            <span>END OF ENTRY · {article.number}</span>
+            <span>END OF ENTRY · {activeArticle.number}</span>
             <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
           </div>
         </div>
