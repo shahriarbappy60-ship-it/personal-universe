@@ -1167,13 +1167,11 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 
 .wonder-writing-reading-shell{
   display:grid;
-  grid-template-rows:0fr;
+  grid-template-rows:0fr auto;
   transition:grid-template-rows .78s var(--ease);
 }
-.wonder-writing-reading-shell.is-expanded{grid-template-rows:1fr}
-.wonder-writing-reading-shell.is-closing{
-  grid-template-rows:0fr;
-}
+.wonder-writing-reading-shell.is-expanded{grid-template-rows:1fr auto}
+.wonder-writing-reading-shell.is-closing{grid-template-rows:0fr auto}
 .wonder-writing-expand{
   min-height:0;
   overflow:hidden;
