@@ -19,7 +19,6 @@ export default function ObservePage() {
 
   useEffect(() => {
     document.title = "Observe — Shahriar's Visual Archive";
-    window.scrollTo(0, 0);
   }, []);
 
   const normalize = val =>
