@@ -38,19 +38,23 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const isLong = writing.length === 'long';
   const title = getWritingTitle(writing);
   const [isClosing, setIsClosing] = useState(false);
-  const footerRef = useRef(null);
   const closeTimerRef = useRef(null);
 
   useEffect(() => () => {
     if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
   }, []);
 
+  const handleOpen = e => {
+    e?.stopPropagation?.();
+    if (!isClosing) onOpen(writing);
+  };
+
   const handleClose = e => {
     e?.stopPropagation?.();
     if (!isOpen || isClosing) return;
 
-    // Keep focus from participating in the layout change. The row itself
-    // owns the close animation; the actual React collapse happens after it.
+    // The footer is the visual anchor. Do not scroll or correct the viewport.
+    // First animate the body away while the footer remains in normal flow.
     e?.currentTarget?.blur?.();
     setIsClosing(true);
 
@@ -60,77 +64,54 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
     }, 780);
   };
 
-  const handleOpen = e => {
-    e?.stopPropagation?.();
-    if (!isClosing) onOpen(writing);
-  };
-
-  const handleToggle = e => {
-    if (isLong && isOpen) handleClose(e);
-    else if (isLong && !isOpen) handleOpen(e);
-  };
-
   return (
     <article
       id={`writing-${writing.id}`}
       className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}${isClosing ? ' is-closing' : ''}`}
     >
-      <div
-        className={`wonder-writing-main${isLong ? ' is-preview-clickable' : ''}`}
-        onClick={isLong && !isClosing ? handleToggle : undefined}
-      >
+      <div className="wonder-writing-main">
         <div className="wonder-writing-meta">
           <span>{String(index + 1).padStart(2, '0')}</span>
           <span>{writing.tag || 'WRITING'}</span>
           <span>{writing.date}</span>
         </div>
 
-        <h3 className="wonder-writing-title">
+        <h3
+          className={`wonder-writing-title${isLong ? ' is-preview-clickable' : ''}`}
+          onClick={isLong && !isOpen ? handleOpen : undefined}
+        >
           {writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}
         </h3>
 
-        <div className={`wonder-writing-expand${isOpen && !isClosing ? ' is-expanded' : ''}`}>
-          <div id={`writing-body-${writing.id}`} className="wonder-writing-expand-inner">
-            <div
-              className="wonder-writing-body"
-              dangerouslySetInnerHTML={{ __html: writing.body }}
-            />
-          </div>
-        </div>
+        {isLong ? (
+          <div className={`wonder-writing-reading-shell${isOpen ? ' is-expanded' : ''}${isClosing ? ' is-closing' : ''}`}>
+            <div className="wonder-writing-expand">
+              <div id={`writing-body-${writing.id}`} className="wonder-writing-expand-inner">
+                <div
+                  className="wonder-writing-body"
+                  dangerouslySetInnerHTML={{ __html: writing.body }}
+                />
+              </div>
+            </div>
 
-        <div ref={footerRef} className={`wonder-writing-footer${!isLong ? " is-single-action" : ""}`}>
-          {isLong ? (
-            isOpen ? (
-              <>
-                <button
-                  type="button"
-                  className={isClosing ? "wonder-writing-read is-closing-read" : "wonder-writing-close"}
-                  onClick={isClosing ? undefined : handleClose}
-                  aria-expanded={!isClosing}
-                  aria-controls={`writing-body-${writing.id}`}
-                >
-                  {isClosing ? <>READ <span aria-hidden="true">↓</span></> : <>CLOSE <span aria-hidden="true">×</span></>}
-                </button>
-                <ShareButton entry={writing} />
-              </>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  className="wonder-writing-read"
-                  onClick={handleOpen}
-                  aria-expanded="false"
-                  aria-controls={`writing-body-${writing.id}`}
-                >
-                  READ <span aria-hidden="true">↓</span>
-                </button>
-                <ShareButton entry={writing} />
-              </>
-            )
-          ) : (
+            <div className="wonder-writing-footer">
+              <button
+                type="button"
+                className={isClosing ? "wonder-writing-read is-closing-read" : "wonder-writing-close"}
+                onClick={isClosing ? undefined : handleClose}
+                aria-expanded={!isClosing}
+                aria-controls={`writing-body-${writing.id}`}
+              >
+                {isClosing ? <>READ <span aria-hidden="true">↓</span></> : <>CLOSE <span aria-hidden="true">×</span></>}
+              </button>
+              <ShareButton entry={writing} />
+            </div>
+          </div>
+        ) : (
+          <div className="wonder-writing-footer is-single-action">
             <ShareButton entry={writing} />
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </article>
   );
