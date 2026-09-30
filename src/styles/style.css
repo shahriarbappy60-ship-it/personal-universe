@@ -10306,3 +10306,196 @@ html.js-ready .hero-celestial-stage{
         animation-duration: .01ms !important;
     }
 }
+
+
+/* =========================================================
+   CINEMATIC SPATIAL PAGE TRANSITION
+   Pages shift through the same universe instead of sliding
+   vertically like a scroll.
+========================================================= */
+.page-transition {
+    position: relative;
+    isolation: isolate;
+}
+
+.page-transition__stage {
+    position: relative;
+    transform-origin: 50% 50%;
+    will-change: transform, opacity, filter;
+}
+
+.page-transition__veil {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,.025), transparent 42%),
+        rgba(0,0,0,.12);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .32s var(--ease);
+}
+
+.page-transition__veil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(112deg, transparent 20%, rgba(255,255,255,.028) 48%, transparent 74%);
+    transform: translate3d(-18%,0,0);
+    opacity: 0;
+}
+
+.page-transition__chapter {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(243,243,239,.58);
+    opacity: 0;
+    transform: translateY(5px);
+}
+
+.page-transition--exit .page-transition__stage {
+    animation: universe-page-exit .14s var(--ease) both;
+}
+
+.page-transition--exit .page-transition__veil {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-transition--exit .page-transition__chapter {
+    opacity: .45;
+    transform: translateY(0);
+    transition: opacity .12s ease, transform .12s var(--ease);
+}
+
+.page-transition--enter .page-transition__stage {
+    animation: universe-page-enter .50s var(--ease-soft) both;
+}
+
+.page-transition--enter .page-transition__veil {
+    opacity: 1;
+    visibility: visible;
+    animation: universe-veil-out .50s var(--ease-soft) .08s both;
+}
+
+.page-transition--enter .page-transition__veil::after {
+    opacity: 1;
+    animation: universe-light-sweep .58s var(--ease-soft) both;
+}
+
+.page-transition--enter .page-transition__chapter {
+    opacity: 0;
+    transform: translateY(-4px);
+    animation: universe-chapter-out .36s var(--ease) .04s both;
+}
+
+@keyframes universe-page-exit {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: .76;
+        transform: scale(.985);
+        filter: blur(3px);
+    }
+}
+
+@keyframes universe-page-enter {
+    from {
+        opacity: .72;
+        transform: scale(.985);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes universe-veil-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes universe-light-sweep {
+    from {
+        transform: translate3d(-18%,0,0);
+        opacity: 0;
+    }
+    35% {
+        opacity: .55;
+    }
+    to {
+        transform: translate3d(18%,0,0);
+        opacity: 0;
+    }
+}
+
+@keyframes universe-chapter-out {
+    from {
+        opacity: .48;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-transition--exit .page-transition__stage {
+        animation-duration: .12s;
+    }
+
+    .page-transition--enter .page-transition__stage {
+        animation-duration: .38s;
+    }
+
+    .page-transition__chapter {
+        font-size: 8px;
+        letter-spacing: .18em;
+    }
+
+    .page-transition__veil::after {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-transition--exit .page-transition__stage,
+    .page-transition--enter .page-transition__stage,
+    .page-transition--enter .page-transition__veil,
+    .page-transition--enter .page-transition__veil::after,
+    .page-transition--enter .page-transition__chapter {
+        animation: none !important;
+    }
+
+    .page-transition--exit .page-transition__stage,
+    .page-transition--enter .page-transition__stage {
+        opacity: 1;
+        transform: none;
+        filter: none;
+    }
+
+    .page-transition__veil {
+        display: none;
+    }
+}
