@@ -188,12 +188,12 @@ export default function CreatePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 3: ENDING GATEWAY (TO SELF)
+          SECTION 3: ENDING GATEWAY (TO IDENTITY)
       ═══════════════════════════════════════════════════ */}
       <section className="section-pad" style={{ paddingBottom: '120px' }}>
         <div className="wonder-shell">
           <div className="wonder-gateway reveal">
-            <span className="gateway-eyebrow">NEXT CHAPTER · 04 / SELF</span>
+            <span className="gateway-eyebrow">NEXT CHAPTER · 04 / IDENTITY</span>
             <h2 className="gateway-title">
               The observer behind<br />
               <em>the craft.</em>
@@ -202,8 +202,8 @@ export default function CreatePage() {
               Exploring identity, curriculum vitae, and the questions that shape each build.
             </p>
             <div className="gateway-actions">
-              <Button to="/self" variant="glass">
-                VIEW PROFILE →
+              <Button to="/identity" variant="glass">
+                VIEW IDENTITY →
               </Button>
               <Button to="/contact" variant="outline">
                 GET IN TOUCH →
