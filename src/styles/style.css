@@ -10499,3 +10499,110 @@ html.js-ready .hero-celestial-stage{
         display: none;
     }
 }
+
+
+/* =========================================================
+   MOBILE MASTER POLISH + UNIFIED CV BUTTON LANGUAGE
+   All standard pill CTAs use the same restrained outline
+   treatment as the Identity DOWNLOAD CV control.
+========================================================= */
+.btn-master.btn-solid,
+.btn-master.btn-outline,
+.btn-master.btn-glass {
+    background: transparent !important;
+    color: var(--text) !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.btn-master.btn-solid:hover,
+.btn-master.btn-outline:hover,
+.btn-master.btn-glass:hover {
+    background: var(--glass-bg) !important;
+    color: var(--text) !important;
+    border-color: var(--line-strong) !important;
+    box-shadow: none !important;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .btn-master {
+        height: 36px !important;
+        min-height: 36px !important;
+        width: fit-content !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        flex: 0 0 auto !important;
+        padding: 0 14px !important;
+        border-radius: 999px !important;
+        font-size: 9px !important;
+        font-weight: 600 !important;
+        letter-spacing: .105em !important;
+        line-height: 1 !important;
+        gap: 0 !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-master:active {
+        transform: scale(.985) !important;
+        opacity: .82;
+    }
+
+    .btn-master:focus-visible {
+        outline-width: 1px;
+        outline-offset: 2px;
+    }
+
+    /* Gateway buttons stay compact and centered on narrow screens. */
+    .gateway-actions {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+    }
+
+    .gateway-actions .btn-master {
+        height: 36px !important;
+        min-height: 36px !important;
+        padding-inline: 13px !important;
+    }
+
+    /* Identity actions use the same compact CV treatment. */
+    .identity-page-v2 .self-v2-direction-action .btn-master,
+    .identity-page-v2 .self-v2-practice-foot .btn-master {
+        height: 36px !important;
+        min-height: 36px !important;
+        padding-inline: 13px !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .btn-master {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding-inline: 12px !important;
+        font-size: 8.5px !important;
+        letter-spacing: .09em !important;
+    }
+
+    .gateway-actions {
+        gap: 7px !important;
+    }
+
+    .gateway-actions .btn-master {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding-inline: 12px !important;
+    }
+
+    .identity-page-v2 .self-v2-direction-action .btn-master,
+    .identity-page-v2 .self-v2-practice-foot .btn-master {
+        height: 34px !important;
+        min-height: 34px !important;
+        padding-inline: 12px !important;
+    }
+}
