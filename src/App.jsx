@@ -22,13 +22,43 @@ export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [displayLocation, setDisplayLocation] = useState(null);
+  const [transitionPhase, setTransitionPhase] = useState('idle');
   const location = useLocation();
 
   useEffect(() => {
     document.documentElement.classList.add('js-ready');
   }, []);
 
-  // Resilient hash navigation smoothly handling cross-page transitions
+  useEffect(() => {
+    if (!displayLocation) {
+      setDisplayLocation(location);
+      return;
+    }
+
+    if (
+      location.pathname === displayLocation.pathname &&
+      location.search === displayLocation.search &&
+      location.hash === displayLocation.hash
+    ) {
+      return;
+    }
+
+    setTransitionPhase('exit');
+
+    const swapTimer = window.setTimeout(() => {
+      setDisplayLocation(location);
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setTransitionPhase('enter'));
+      });
+    }, 140);
+
+    return () => window.clearTimeout(swapTimer);
+  }, [location, displayLocation]);
+
+  // Resilient hash navigation smoothly handling cross-page transitions.
   useEffect(() => {
     if (location.hash) {
       const id = location.hash.replace('#', '');
@@ -48,6 +78,9 @@ export default function App() {
     }
   }, [location.pathname, location.hash]);
 
+  const renderedLocation = displayLocation || location;
+  const chapter = getChapterLabel(renderedLocation.pathname);
+
   return (
     <>
       <div className="noise" aria-hidden="true" />
@@ -66,30 +99,43 @@ export default function App() {
         onClose={() => setIsMobileMenuOpen(false)}
       />
 
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              onOpenContact={() => setIsContactOpen(true)}
-              setActiveSection={setActiveSection}
+      <main
+        className={`page-transition page-transition--${transitionPhase}`}
+        data-route={renderedLocation.pathname}
+      >
+        <div className="page-transition__veil" aria-hidden="true">
+          {chapter && (
+            <span className="page-transition__chapter">{chapter}</span>
+          )}
+        </div>
+
+        <div className="page-transition__stage">
+          <Routes location={renderedLocation}>
+            <Route
+              path="/"
+              element={
+                <HomePage
+                  onOpenContact={() => setIsContactOpen(true)}
+                  setActiveSection={setActiveSection}
+                />
+              }
             />
-          }
-        />
-        <Route path="/observe" element={<ObservePage />} />
-        <Route path="/wonder" element={<WonderPage />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/identity" element={<IdentityPage />} />
-        <Route
-          path="/contact"
-          element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
-        />
-        <Route
-          path="/get-in-touch"
-          element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+            <Route path="/observe" element={<ObservePage />} />
+            <Route path="/wonder" element={<WonderPage />} />
+            <Route path="/create" element={<CreatePage />} />
+            <Route path="/identity" element={<IdentityPage />} />
+            <Route
+              path="/contact"
+              element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
+            />
+            <Route
+              path="/get-in-touch"
+              element={<ContactPage onOpenContact={() => setIsContactOpen(true)} />}
+            />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </div>
+      </main>
 
       <Footer />
 
@@ -99,4 +145,17 @@ export default function App() {
       />
     </>
   );
+}
+
+function getChapterLabel(pathname) {
+  const chapters = {
+    '/observe': '01 / OBSERVE',
+    '/wonder': '02 / THINK',
+    '/create': '03 / CREATE',
+    '/identity': '04 / IDENTITY',
+    '/contact': '05 / CONNECT',
+    '/get-in-touch': '05 / CONNECT',
+  };
+
+  return chapters[pathname] || '';
 }
