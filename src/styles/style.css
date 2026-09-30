@@ -6464,6 +6464,28 @@ html[data-theme="light"] .arch-plane {
     justify-content: center;
 }
 
+/* Gateway CTAs — slightly more deliberate than inline page actions.
+   Keep both Create gateway buttons optically identical on desktop and mobile. */
+.gateway-actions .btn-master {
+    min-width: 156px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+@media (max-width: 768px) {
+    .gateway-actions {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .gateway-actions .btn-master {
+        min-width: 144px;
+        height: 38px;
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+    }
+}
+
 /* 6. OBSERVE HERO (UNIFIED CLEAN CANVAS - NO HERO IMAGE) */
 .observe-hero-photo-backdrop {
     display: none !important;
