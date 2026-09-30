@@ -60,7 +60,23 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
 
   const activeArticle = displayArticle;
   const imageCaptionTitle = activeArticle.imageCaption?.title || activeArticle.title;
-  const imageCaptionMeta = activeArticle.imageCaption?.meta || `${activeArticle.category} · ${activeArticle.date || '2026'}`;
+  const imageCaptionMeta = activeArticle.imageCaption?.meta || `${activeArticle.tag || activeArticle.category || 'WRITING'} · ${activeArticle.date || '2026'}`;
+
+  const handleShare = async () => {
+    const url = `${window.location.origin}/wonder#writing-${activeArticle.id}`;
+    const shareData = { title: activeArticle.title, text: activeArticle.excerpt || '', url };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      }
+    } catch (error) {
+      if (error?.name !== 'AbortError' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+      }
+    }
+  };
 
   return (
     <div
@@ -85,12 +101,16 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
 
         <div className="reader-top">
           <div className="reader-meta">
-            <span id="readerCategory">{activeArticle.category}</span>
+            <span id="readerCategory">{activeArticle.tag || activeArticle.category || 'WRITING'}</span>
             {activeArticle.time && <span id="readerTime">{activeArticle.time}</span>}
             {activeArticle.date && <span id="readerDate">{activeArticle.date}</span>}
           </div>
 
-          <button
+          <div className="reader-top-actions">
+            <button type="button" className="reader-share" onClick={handleShare} aria-label={`Share: ${activeArticle.title}`}>
+              SHARE <span aria-hidden="true">↗</span>
+            </button>
+            <button
             ref={closeBtnRef}
             type="button"
             className="reader-close"
@@ -99,7 +119,8 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
             onClick={onClose}
           >
             ×
-          </button>
+            </button>
+          </div>
         </div>
 
         <div className="reader-content">
