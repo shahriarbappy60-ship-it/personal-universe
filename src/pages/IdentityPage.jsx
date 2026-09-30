@@ -9,7 +9,6 @@ export default function IdentityPage() {
   useMagnetic([]);
   useEffect(() => {
     document.title = 'Identity — Shahriar Khan';
-    window.scrollTo(0, 0);
   }, []);
 
   const curiosity = [
