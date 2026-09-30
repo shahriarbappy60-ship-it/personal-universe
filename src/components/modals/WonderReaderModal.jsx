@@ -64,9 +64,9 @@ export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose
 
   return (
     <div
-      className="reader open"
+      className={`reader${visible ? ' open' : ''}`}
       id="reader"
-      aria-hidden="false"
+      aria-hidden={!visible}
       role="dialog"
       aria-modal="true"
       aria-label={`Reading: ${activeArticle.title}`}
