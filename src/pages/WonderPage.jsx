@@ -52,12 +52,8 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const handleClose = e => {
     e?.stopPropagation?.();
     if (!isOpen || isClosing) return;
-
-    // The footer is the visual anchor. Do not scroll or correct the viewport.
-    // First animate the body away while the footer remains in normal flow.
     e?.currentTarget?.blur?.();
     setIsClosing(true);
-
     closeTimerRef.current = window.setTimeout(() => {
       onClose(writing);
       setIsClosing(false);
@@ -77,7 +73,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
         </div>
 
         <h3
-          className={`wonder-writing-title${isLong ? ' is-preview-clickable' : ''}`}
+          className={`wonder-writing-title${isLong && !isOpen ? ' is-preview-clickable' : ''}`}
           onClick={isLong && !isOpen ? handleOpen : undefined}
         >
           {writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}
@@ -95,15 +91,27 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
             </div>
 
             <div className="wonder-writing-footer">
-              <button
-                type="button"
-                className={isClosing ? "wonder-writing-read is-closing-read" : "wonder-writing-close"}
-                onClick={isClosing ? undefined : handleClose}
-                aria-expanded={!isClosing}
-                aria-controls={`writing-body-${writing.id}`}
-              >
-                {isClosing ? <>READ <span aria-hidden="true">↓</span></> : <>CLOSE <span aria-hidden="true">×</span></>}
-              </button>
+              {isOpen ? (
+                <button
+                  type="button"
+                  className={isClosing ? "wonder-writing-read is-closing-read" : "wonder-writing-close"}
+                  onClick={isClosing ? undefined : handleClose}
+                  aria-expanded={!isClosing}
+                  aria-controls={`writing-body-${writing.id}`}
+                >
+                  {isClosing ? <>READ <span aria-hidden="true">↓</span></> : <>CLOSE <span aria-hidden="true">×</span></>}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="wonder-writing-read"
+                  onClick={handleOpen}
+                  aria-expanded="false"
+                  aria-controls={`writing-body-${writing.id}`}
+                >
+                  READ <span aria-hidden="true">↓</span>
+                </button>
+              )}
               <ShareButton entry={writing} />
             </div>
           </div>
