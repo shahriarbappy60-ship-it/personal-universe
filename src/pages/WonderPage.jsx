@@ -35,7 +35,7 @@ function ShareButton({ entry, className = '' }) {
   return <button type="button" className={`wonder-share-action ${className}`} onClick={handleShare} aria-label={`Share: ${getWritingTitle(entry)}`}>{shared ? 'COPIED' : 'SHARE'} <span aria-hidden="true">↗</span></button>;
 }
 
-function WritingRow({ writing, index, onOpen }) {
+function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const isLong = writing.length === 'long';
   const title = getWritingTitle(writing);
   const handleOpen = () => { if (isLong) onOpen(writing); };
@@ -45,7 +45,7 @@ function WritingRow({ writing, index, onOpen }) {
   return (
     <article id={`writing-${writing.id}`} className={`wonder-writing-row wonder-writing-${writing.length}`}>
       <div className={`wonder-writing-main${isLong ? ' is-readable' : ''}`} onClick={handleOpen} onKeyDown={handleKeyDown} role={isLong ? 'button' : undefined} tabIndex={isLong ? 0 : undefined} aria-label={isLong ? `Read: ${title}` : undefined}>
-        <div className="wonder-writing-meta"><span>{String(index + 1).padStart(2, '0')}</span><span>{writing.date}</span></div>
+        <div className="wonder-writing-meta"><span>{String(index + 1).padStart(2, '0')}</span><span>{writing.tag || 'WRITING'}</span><span>{writing.date}</span></div>
         <h3 className="wonder-writing-title">{writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}</h3>
         {isLong ? <div className="wonder-writing-preview"><p>{writing.excerpt}</p></div> : <div className="wonder-writing-full" dangerouslySetInnerHTML={{ __html: writing.body }} />}
         <div className="wonder-writing-footer">
@@ -53,6 +53,9 @@ function WritingRow({ writing, index, onOpen }) {
           <ShareButton entry={writing} />
         </div>
       </div>
+      {isLong && isOpen && (
+        <WonderReaderModal article={writing} isOpen={isOpen} onClose={onClose} />
+      )}
     </article>
   );
 }
@@ -73,6 +76,9 @@ export default function WonderPage() {
     window.requestAnimationFrame(() => {
       if (entry?.length === 'long') {
         setSelectedWriting(entry);
+        window.setTimeout(() => {
+          document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }, 80);
       } else {
         document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center', behavior: 'smooth' });
       }
@@ -217,14 +223,16 @@ export default function WonderPage() {
           </div>
           <div className="wonder-writings-ledger">
             {writings.map((writing, index) => (
-              <WritingRow key={writing.id} writing={writing} index={index} onOpen={setSelectedWriting} />
+              <WritingRow
+                key={writing.id}
+                writing={writing}
+                index={index}
+                onOpen={setSelectedWriting}
+                isOpen={selectedWriting?.id === writing.id}
+                onClose={() => setSelectedWriting(null)}
+              />
             ))}
           </div>
-          <WonderReaderModal
-            article={selectedWriting}
-            isOpen={Boolean(selectedWriting)}
-            onClose={() => setSelectedWriting(null)}
-          />
         {/* ═══════════════════════════════════════════════════
               SECTION 4: FOOTER TRANSITION (CHAPTER 03: CREATE)
           ═══════════════════════════════════════════════════ */}
