@@ -349,6 +349,29 @@ essays.forEach(entry => {
 });
 
 // =========================================================
+// UNIFIED WRITINGS ARCHIVE
+// One stream for short and long personal writing.
+// Short entries are complete in the archive; long entries open the reader.
+// =========================================================
+const shortWritingIds = new Set([
+  "on-becoming-quiet"
+]);
+
+export const writings = [
+  ...reflections.map(entry => ({
+    ...entry,
+    title: `${entry.titleBase} ${entry.titleAccent}`,
+    length: shortWritingIds.has(entry.id) ? "short" : "long",
+    image: entry.image || "",
+    imageCaption: entry.imageCaption
+  })),
+  ...essays.map(entry => ({
+    ...entry,
+    length: "long"
+  }))
+];
+
+// =========================================================
 // BACKWARD-COMPATIBLE ALIASES FOR HOME WONDER SECTION
 // ── DO NOT REMOVE ──
 // Consumed by WonderSection.jsx to preserve Home rotating quotes
