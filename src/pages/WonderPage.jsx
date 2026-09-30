@@ -1,74 +1,75 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { contemplationQuotes, reflections, essays } from '../data/wonderData';
+import { contemplationQuotes, writings } from '../data/wonderData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
 import WonderReaderModal from '../components/modals/WonderReaderModal';
 
-// ─── TIER 2: REFLECTION ROW — in-place accordion with glass enclosure ─────────
-function ReflectionRow({ reflection }) {
-  const [expanded, setExpanded] = useState(false);
-  const toggle  = () => setExpanded(v => !v);
-  const onKey   = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } };
+// ─── UNIFIED WRITING ROW ─────────────────────────────────────────────────────
+function getWritingTitle(entry) {
+  if (entry.title) return entry.title;
+  return [entry.titleBase, entry.titleAccent].filter(Boolean).join(' ');
+}
 
+function ShareButton({ entry, className = '' }) {
+  const [shared, setShared] = useState(false);
+  const handleShare = async e => {
+    e?.stopPropagation?.();
+    const url = `${window.location.origin}/wonder#writing-${entry.id}`;
+    const shareData = { title: getWritingTitle(entry), text: entry.excerpt || '', url };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        setShared(true);
+        window.setTimeout(() => setShared(false), 1800);
+      }
+    } catch (error) {
+      if (error?.name !== 'AbortError' && navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        setShared(true);
+        window.setTimeout(() => setShared(false), 1800);
+      }
+    }
+  };
+  return <button type="button" className={`wonder-share-action ${className}`} onClick={handleShare} aria-label={`Share: ${getWritingTitle(entry)}`}>{shared ? 'COPIED' : 'SHARE'} <span aria-hidden="true">↗</span></button>;
+}
+
+function WritingRow({ writing, index, onOpen }) {
+  const isLong = writing.length === 'long';
+  const title = getWritingTitle(writing);
+  const handleOpen = () => { if (isLong) onOpen(writing); };
+  const handleKeyDown = e => {
+    if (isLong && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); handleOpen(); }
+  };
   return (
-    <article className={`wonder-reflection-row${expanded ? ' is-expanded' : ''}`}>
-      <div
-        className="wonder-reflection-header"
-        onClick={toggle}
-        onKeyDown={onKey}
-        tabIndex={0}
-        role="button"
-        aria-expanded={expanded}
-        aria-controls={`wonder-reflection-body-${reflection.id}`}
-        aria-label={`${expanded ? 'Collapse' : 'Read'} reflection: ${reflection.titleBase} ${reflection.titleAccent}`}
-      >
-        <div className="wonder-row-meta">
-          <span className="wonder-row-number">{Number(reflection.number)}</span>
-          <span className="wonder-row-sep">—</span>
-          <span className="wonder-row-category">{reflection.tag}</span>
-          <span className="wonder-row-sep">·</span>
-          <span className="wonder-row-category">{reflection.readTime}</span>
-        </div>
-
-        <h3 className="wonder-row-title">
-          {reflection.titleBase} <em>{reflection.titleAccent}</em>
-        </h3>
-
-        <p className="wonder-row-description">{reflection.excerpt}</p>
-
-        <div className="wonder-row-action">
-          <span className="wonder-read-action">
-            {expanded ? 'CLOSE' : 'READ REFLECTION'}
-            <span className={`wonder-read-arrow${expanded ? ' is-open' : ''}`} aria-hidden="true"> ↘</span>
-          </span>
+    <article id={`writing-${writing.id}`} className={`wonder-writing-row wonder-writing-${writing.length}`}>
+      <div className={`wonder-writing-main${isLong ? ' is-readable' : ''}`} onClick={handleOpen} onKeyDown={handleKeyDown} role={isLong ? 'button' : undefined} tabIndex={isLong ? 0 : undefined} aria-label={isLong ? `Read: ${title}` : undefined}>
+        <div className="wonder-writing-meta"><span>{String(index + 1).padStart(2, '0')}</span><span>{writing.date}</span></div>
+        <h3 className="wonder-writing-title">{writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}</h3>
+        {isLong ? <div className="wonder-writing-preview"><p>{writing.excerpt}</p></div> : <div className="wonder-writing-full" dangerouslySetInnerHTML={{ __html: writing.body }} />}
+        <div className="wonder-writing-footer">
+          {isLong && <span className="wonder-writing-read">READ <span aria-hidden="true">↗</span></span>}
+          <ShareButton entry={writing} />
         </div>
       </div>
-
-      {/* Accordion body — in-place serene glass enclosure */}
-      <div id={`wonder-reflection-body-${reflection.id}`} className={`wonder-reflection-body${expanded ? ' is-open' : ''}`} aria-hidden={!expanded}>
-        <div className="wonder-reflection-body-clip">
-          <div className="wonder-reflection-body-inner" dangerouslySetInnerHTML={{ __html: reflection.body }} />
-        </div>
-      </div>
-
-      {expanded && (
-        <div className="wonder-reflection-end">
-          <span>{reflection.tag}</span>
-          <span>{reflection.readTime}</span>
-        </div>
-      )}
     </article>
   );
 }
 
 // ─── WONDER PAGE MASTER COMPONENT ───────────────────────────────────────────
 export default function WonderPage() {
-  const [selectedEssay, setSelectedEssay] = useState(null);
+  const [selectedWriting, setSelectedWriting] = useState(null);
   const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
 
   useScrollReveal();
   useMagnetic();
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash.startsWith('#writing-')) return;
+    window.requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
+  }, []);
 
   useEffect(() => {
     document.title = "Wonder — Shahriar's Personal Universe";
@@ -189,8 +190,8 @@ export default function WonderPage() {
 
             {/* Action Trigger */}
             <div className="wonder-centerpiece-action">
-              <Button href="#wonderReflections" variant="glass" icon="↓">
-                READ REFLECTIONS
+              <Button href="#wonderWritings" variant="glass" icon="↓">
+                READ WRITINGS
               </Button>
             </div>
           </div>
@@ -198,74 +199,28 @@ export default function WonderPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 3: SCROLLABLE REFLECTIONS
-          Focused Notes Feed with in-place accordion reader
+          SECTION 3: WRITINGS — ONE CONTINUOUS THOUGHT ARCHIVE
       ═══════════════════════════════════════════════════ */}
-      <section className="wonder-tier-section wonder-reflections-section section-pad" id="wonderReflections">
+      <section className="wonder-tier-section wonder-writings-section section-pad" id="wonderWritings">
         <div className="wonder-shell">
           <div className="wonder-tier-header">
-            <span className="wonder-tier-eyebrow reveal">REFLECTIONS</span>
-            <p className="wonder-tier-subtitle reveal">Things worth sitting with.</p>
+            <span className="wonder-tier-eyebrow reveal">WRITINGS</span>
+            <p className="wonder-tier-subtitle reveal">Thoughts, questions, and things worth sitting with.</p>
           </div>
-
-          <div className="wonder-reflections-ledger">
-            {reflections.map(r => (
-              <ReflectionRow key={r.id} reflection={r} />
+          <div className="wonder-writings-ledger">
+            {writings.map((writing, index) => (
+              <WritingRow key={writing.id} writing={writing} index={index} onOpen={setSelectedWriting} />
             ))}
           </div>
+          <WonderReaderModal
+            article={selectedWriting}
+            isOpen={Boolean(selectedWriting)}
+            onClose={() => setSelectedWriting(null)}
+          />
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 4: ESSAYS (THE LONG-FORM CHAMBER)
-          Flagship tactile glass card + subsequent ledger rows
-      ═══════════════════════════════════════════════════ */}
-      <section className="wonder-tier-section wonder-essays-section section-pad" id="wonderEssays">
-        <div className="wonder-shell">
-          <div className="wonder-tier-header">
-            <span className="wonder-tier-eyebrow reveal">ESSAYS</span>
-            <p className="wonder-tier-subtitle reveal">Long-form explorations of difficult questions.</p>
-          </div>
-
-          {/* ESSAY LEDGER — quiet editorial entries; full reading opens in the modal */}
-          <div className="wonder-essays-ledger">
-            {essays.map(e => (
-              <div key={e.id} className="reveal">
-                <button
-                  type="button"
-                  className="wonder-editorial-row wonder-essay-trigger"
-                  onClick={() => setSelectedEssay(e)}
-                  aria-label={`Open essay: ${e.title}`}
-                >
-                  <div className="wonder-row-meta">
-                    <span className="wonder-row-number">{Number(e.number)}</span>
-                    <span className="wonder-row-sep">—</span>
-                    <span className="wonder-row-category">ESSAY</span>
-                    <span className="wonder-row-sep">·</span>
-                    <span className="wonder-row-category">{e.readTime}</span>
-                  </div>
-                  <h3 className="wonder-row-title">
-                    {e.titleBase} <em>{e.titleAccent}</em>
-                  </h3>
-                  <p className="wonder-row-description">{e.excerpt}</p>
-                  <div className="wonder-row-action">
-                    <span className="wonder-read-action">
-                      READ ESSAY
-                      <span className="wonder-read-arrow" aria-hidden="true">↗</span>
-                    </span>
-                  </div>
-                </button>
-              </div>
-            ))}
-          </div>
-
-          <WonderReaderModal
-            article={selectedEssay}
-            isOpen={Boolean(selectedEssay)}
-            onClose={() => setSelectedEssay(null)}
-          />
-
-          {/* ═══════════════════════════════════════════════════
               SECTION 5: FOOTER TRANSITION (CHAPTER 03: CREATE)
           ═══════════════════════════════════════════════════ */}
           <div className="wonder-gateway reveal">
