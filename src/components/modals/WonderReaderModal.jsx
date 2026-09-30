@@ -1,160 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-export default function WonderReaderModal({ article, isOpen: isOpenProp, onClose }) {
-  const [progress, setProgress] = useState(0);
-  const [displayArticle, setDisplayArticle] = useState(article || null);
-  const [visible, setVisible] = useState(Boolean(isOpenProp !== undefined ? (isOpenProp && Boolean(article)) : Boolean(article)));
+export default function WonderReaderModal({ article, isOpen, onClose }) {
   const readerRef = useRef(null);
-  const closeBtnRef = useRef(null);
-  const isOpen = isOpenProp !== undefined ? (isOpenProp && Boolean(article)) : Boolean(article);
 
   useEffect(() => {
-    let closeTimer;
-
-    if (isOpen && article) {
-      setDisplayArticle(article);
-      setVisible(true);
-      document.body.classList.add('modal-open', 'reader-open');
-      setProgress(0);
-
-      requestAnimationFrame(() => {
-        if (readerRef.current) readerRef.current.scrollTop = 0;
-        closeBtnRef.current?.focus();
-      });
-    } else if (!isOpen) {
-      document.body.classList.remove('modal-open', 'reader-open');
-      setVisible(false);
-      closeTimer = window.setTimeout(() => setDisplayArticle(null), 520);
-    }
-
-    return () => {
-      if (closeTimer) window.clearTimeout(closeTimer);
-      document.body.classList.remove('modal-open', 'reader-open');
-    };
+    if (!isOpen || !article) return;
+    requestAnimationFrame(() => {
+      readerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }, [isOpen, article]);
 
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
+  if (!isOpen || !article) return null;
 
-  const handleScroll = () => {
-    const el = readerRef.current;
-    if (!el) return;
-    const scrollTop = el.scrollTop;
-    const scrollHeight = el.scrollHeight - el.clientHeight;
-    if (scrollHeight <= 0) {
-      setProgress(0);
-      return;
-    }
-    const currentProgress = Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100));
-    setProgress(currentProgress);
-  };
-
-  if (!visible || !displayArticle) return null;
-
-  const activeArticle = displayArticle;
-  const imageCaptionTitle = activeArticle.imageCaption?.title || activeArticle.title;
-  const imageCaptionMeta = activeArticle.imageCaption?.meta || `${activeArticle.tag || activeArticle.category || 'WRITING'} · ${activeArticle.date || '2026'}`;
-
-  const handleShare = async () => {
-    const url = `${window.location.origin}/wonder#writing-${activeArticle.id}`;
-    const shareData = { title: activeArticle.title, text: activeArticle.excerpt || '', url };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-      }
-    } catch (error) {
-      if (error?.name !== 'AbortError' && navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-      }
-    }
-  };
+  const imageCaptionTitle = article.imageCaption?.title || article.title;
+  const imageCaptionMeta = article.imageCaption?.meta || `${article.tag || 'WRITING'} · ${article.date || '2026'}`;
 
   return (
-    <div
-      className={`reader${visible ? ' open' : ''}`}
-      id="reader"
-      aria-hidden={!visible}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Reading: ${activeArticle.title}`}
-    >
-      <div className="reader-backdrop" onClick={onClose} aria-hidden="true" />
-
-      <div
-        ref={readerRef}
-        className="reader-panel"
-        onScroll={handleScroll}
-      >
-        {/* Progress bar lives inside the panel so border-radius clips it cleanly */}
-        <div className="reader-progress" aria-hidden="true">
-          <span id="readerProgress" style={{ width: `${progress}%` }} />
+    <div ref={readerRef} className="wonder-reader-drawer" role="region" aria-label={`Reading: ${article.title}`}>
+      <div className="wonder-reader-drawer-bar">
+        <div className="wonder-reader-drawer-meta">
+          <span>{article.tag || 'WRITING'}</span>
+          <span>{article.date || '2026'}</span>
+          {article.time && <span>{article.time}</span>}
         </div>
-
-        <div className="reader-top">
-          <div className="reader-meta">
-            <span id="readerCategory">{activeArticle.tag || activeArticle.category || 'WRITING'}</span>
-            {activeArticle.time && <span id="readerTime">{activeArticle.time}</span>}
-            {activeArticle.date && <span id="readerDate">{activeArticle.date}</span>}
-          </div>
-
-          <div className="reader-top-actions">
-            <button type="button" className="reader-share" onClick={handleShare} aria-label={`Share: ${activeArticle.title}`}>
-              SHARE <span aria-hidden="true">↗</span>
-            </button>
-            <button
-            ref={closeBtnRef}
-            type="button"
-            className="reader-close"
-            id="readerClose"
-            aria-label="Close reading view"
-            onClick={onClose}
-          >
-            ×
-            </button>
-          </div>
+        <div className="wonder-reader-drawer-actions">
+          <button type="button" className="wonder-reader-share" onClick={async () => {
+            const url = `${window.location.origin}/wonder#writing-${article.id}`;
+            try {
+              if (navigator.share) await navigator.share({ title: article.title, text: article.excerpt || '', url });
+              else if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
+            } catch (error) {
+              if (error?.name !== 'AbortError' && navigator.clipboard?.writeText) await navigator.clipboard.writeText(url);
+            }
+          }}>SHARE <span aria-hidden="true">↗</span></button>
+          <button type="button" className="wonder-reader-close" onClick={onClose} aria-label="Close reading view">CLOSE <span aria-hidden="true">×</span></button>
         </div>
+      </div>
 
-        <div className="reader-content">
-          <div className="reader-heading">
-            <span className="reader-number" id="readerNumber">
-              {activeArticle.number}
-            </span>
-            <h2 id="readerTitle">{activeArticle.title}</h2>
-            <p id="readerExcerpt">{activeArticle.excerpt}</p>
-          </div>
+      <div className="wonder-reader-drawer-content">
+        <header className="wonder-reader-drawer-heading">
+          <div className="wonder-reader-drawer-index">{article.number || '—'} / {article.tag || 'WRITING'}</div>
+          <h2>{article.title}</h2>
+          <p>{article.excerpt}</p>
+        </header>
 
-          {activeArticle.image && (
-            <div className="reader-photocard-wrap" id="readerImageWrap">
-              <div className="reader-photocard-frame">
-                <img id="readerImage" src={activeArticle.image} alt={activeArticle.title} loading="lazy" />
-              </div>
-              <div className="reader-photocard-caption">
-                <span>{imageCaptionTitle}</span>
-                <small>{imageCaptionMeta}</small>
-              </div>
+        {article.image && (
+          <figure className="wonder-reader-drawer-image">
+            <div className="wonder-reader-drawer-image-frame">
+              <img src={article.image} alt={article.title} loading="lazy" />
             </div>
-          )}
+            <figcaption>
+              <span>{imageCaptionTitle}</span>
+              <small>{imageCaptionMeta}</small>
+            </figcaption>
+          </figure>
+        )}
 
-          <article
-            className="reader-body"
-            id="readerBody"
-            dangerouslySetInnerHTML={{ __html: activeArticle.body }}
-          />
+        <article className="wonder-reader-drawer-body" dangerouslySetInnerHTML={{ __html: article.body }} />
 
-          <div className="reader-end">
-            <span>END OF ENTRY · {activeArticle.number}</span>
-            <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
-          </div>
-        </div>
+        <footer className="wonder-reader-drawer-end">
+          <span>END OF ENTRY · {article.number || '—'}</span>
+          <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
+        </footer>
       </div>
     </div>
   );
