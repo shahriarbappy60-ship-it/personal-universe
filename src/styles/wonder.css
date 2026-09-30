@@ -2224,3 +2224,323 @@ html[data-theme="light"] .wonder-essay-pill-cta {
     display:none;
   }
 }
+
+
+/* =========================================================
+   WONDER WRITINGS — UNIFIED PERSONAL ARCHIVE
+   Short writing is complete in-feed. Long writing opens reader.
+========================================================= */
+.wonder-writings-section{
+  border-bottom:none;
+}
+
+.wonder-writings-ledger{
+  width:100%;
+  border-top:1px solid var(--line-soft);
+}
+
+.wonder-writing-row{
+  width:100%;
+  border-bottom:1px solid var(--line-soft);
+}
+
+.wonder-writing-main{
+  position:relative;
+  width:100%;
+  box-sizing:border-box;
+  padding:clamp(30px,3.5vw,48px) clamp(18px,2.5vw,34px);
+}
+
+.wonder-writing-long .wonder-writing-main{
+  cursor:pointer;
+  transition:background-color .28s var(--ease), border-color .28s var(--ease);
+}
+
+.wonder-writing-long .wonder-writing-main:hover{
+  background:var(--glass-bg);
+}
+
+.wonder-writing-long .wonder-writing-main:focus-visible{
+  outline:1px solid var(--line-strong);
+  outline-offset:-1px;
+}
+
+.wonder-writing-meta{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+  color:var(--faint);
+  font-family:var(--font-mono);
+  font-size:8px;
+  font-weight:500;
+  letter-spacing:.13em;
+  line-height:1.4;
+  text-transform:uppercase;
+}
+
+.wonder-writing-meta span:first-child{
+  color:var(--text);
+}
+
+.wonder-writing-title{
+  max-width:920px;
+  margin:0 0 18px;
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:clamp(24px,3vw,42px);
+  font-weight:500;
+  line-height:1.12;
+  letter-spacing:-.028em;
+  text-wrap:balance;
+}
+
+.wonder-writing-title em{
+  font-family:var(--serif);
+  font-weight:400;
+  font-style:italic;
+}
+
+.wonder-writing-full{
+  max-width:68ch;
+  color:var(--text);
+}
+
+.wonder-writing-full p{
+  margin:0 0 16px;
+  color:var(--muted);
+  font-family:var(--sans);
+  font-size:clamp(15px,1.1vw,17px);
+  line-height:1.78;
+  letter-spacing:-.004em;
+}
+
+.wonder-writing-full p:last-child{
+  margin-bottom:0;
+}
+
+.wonder-writing-full p.lead{
+  color:var(--text);
+  font-family:var(--serif);
+  font-size:clamp(20px,1.8vw,26px);
+  line-height:1.42;
+}
+
+.wonder-writing-full blockquote{
+  margin:24px 0;
+  padding:10px 0 10px 18px;
+  border-left:1px solid var(--line-strong);
+  color:var(--text);
+  font-family:var(--serif);
+  font-size:clamp(18px,1.55vw,23px);
+  font-style:italic;
+  line-height:1.45;
+}
+
+.wonder-writing-preview{
+  position:relative;
+  max-width:72ch;
+  max-height:12.2em;
+  overflow:hidden;
+}
+
+.wonder-writing-preview::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:4.5em;
+  pointer-events:none;
+  background:linear-gradient(to bottom, transparent, var(--bg));
+}
+
+.wonder-writing-preview p{
+  margin:0;
+  color:var(--muted);
+  font-size:clamp(15px,1.1vw,17px);
+  line-height:1.72;
+  letter-spacing:-.004em;
+}
+
+.wonder-writing-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  margin-top:26px;
+}
+
+.wonder-writing-read,
+.wonder-share-action{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:0;
+  border:0;
+  background:none;
+  color:var(--faint);
+  font-family:var(--font-mono);
+  font-size:9px;
+  font-weight:600;
+  letter-spacing:.14em;
+  line-height:1;
+  text-transform:uppercase;
+}
+
+.wonder-writing-read{
+  color:var(--text);
+}
+
+.wonder-share-action{
+  margin-left:auto;
+  color:var(--faint);
+  cursor:pointer;
+  transition:color .22s var(--ease), transform .22s var(--ease);
+}
+
+.wonder-share-action:hover,
+.wonder-share-action:focus-visible{
+  color:var(--text);
+  transform:translateX(2px);
+}
+
+.wonder-share-action:focus-visible{
+  outline:1px solid var(--line-strong);
+  outline-offset:5px;
+}
+
+.wonder-writing-long .wonder-writing-main:hover .wonder-writing-read{
+  color:var(--text);
+}
+
+.wonder-writing-long .wonder-writing-main:hover .wonder-writing-title{
+  color:var(--text);
+}
+
+.reader-top-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-shrink:0;
+}
+
+.reader-share{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:0;
+  background:none;
+  color:var(--faint);
+  font-family:var(--font-mono);
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:color .22s var(--ease), transform .22s var(--ease);
+}
+
+.reader-share:hover,
+.reader-share:focus-visible{
+  color:var(--text);
+  transform:translateX(2px);
+}
+
+.reader-share:focus-visible{
+  outline:1px solid var(--line-strong);
+  outline-offset:5px;
+}
+
+@media (max-width:768px){
+  .wonder-writing-main{
+    padding:26px 0 28px;
+  }
+
+  .wonder-writing-meta{
+    margin-bottom:14px;
+    font-size:8px;
+  }
+
+  .wonder-writing-title{
+    max-width:none;
+    font-size:clamp(22px,7vw,31px);
+    line-height:1.13;
+    margin-bottom:14px;
+  }
+
+  .wonder-writing-full{
+    max-width:none;
+  }
+
+  .wonder-writing-full p{
+    font-size:15px;
+    line-height:1.78;
+    margin-bottom:14px;
+  }
+
+  .wonder-writing-full p.lead{
+    font-size:20px;
+    line-height:1.45;
+  }
+
+  .wonder-writing-full blockquote{
+    margin:22px 0;
+    padding-left:15px;
+    font-size:18px;
+  }
+
+  .wonder-writing-preview{
+    max-height:12.1em;
+    max-width:none;
+  }
+
+  .wonder-writing-preview p{
+    font-size:14px;
+    line-height:1.72;
+  }
+
+  .wonder-writing-footer{
+    margin-top:22px;
+  }
+
+  .wonder-share-action{
+    min-height:32px;
+    padding:7px 0;
+  }
+
+  .reader-top-actions{
+    gap:9px;
+  }
+
+  .reader-share{
+    font-size:7.5px;
+  }
+}
+
+@media (max-width:420px){
+  .wonder-writing-main{
+    padding-top:24px;
+    padding-bottom:26px;
+  }
+
+  .wonder-writing-title{
+    font-size:clamp(21px,7.1vw,28px);
+  }
+
+  .wonder-writing-full p{
+    font-size:14.5px;
+  }
+
+  .wonder-writing-preview p{
+    font-size:13.5px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .wonder-writing-long .wonder-writing-main,
+  .wonder-share-action,
+  .reader-share{
+    transition:none;
+  }
+}
