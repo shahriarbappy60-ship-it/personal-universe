@@ -37,36 +37,73 @@ function ShareButton({ entry, className = '' }) {
 function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const isLong = writing.length === 'long';
   const title = getWritingTitle(writing);
+  const [isClosing, setIsClosing] = useState(false);
+  const footerRef = useRef(null);
+  const closeFrameRef = useRef(null);
+
+  useEffect(() => () => {
+    if (closeFrameRef.current) window.cancelAnimationFrame(closeFrameRef.current);
+  }, []);
+
+  const handleClose = e => {
+    e?.stopPropagation?.();
+    if (!isOpen || isClosing) return;
+
+    e?.currentTarget?.blur?.();
+
+    const footer = footerRef.current;
+    const anchorTop = footer?.getBoundingClientRect().top ?? null;
+    const startTime = performance.now();
+    const duration = 780;
+
+    setIsClosing(true);
+
+    const keepAnchor = now => {
+      if (!footer || anchorTop == null) return;
+
+      const currentTop = footer.getBoundingClientRect().top;
+      const delta = currentTop - anchorTop;
+
+      if (Math.abs(delta) > 0.1) {
+        window.scrollBy(0, delta);
+      }
+
+      if (now - startTime < duration) {
+        closeFrameRef.current = window.requestAnimationFrame(keepAnchor);
+      } else {
+        const finalTop = footer.getBoundingClientRect().top;
+        if (Math.abs(finalTop - anchorTop) > 0.1) {
+          window.scrollBy(0, finalTop - anchorTop);
+        }
+        setIsClosing(false);
+        onClose(writing);
+      }
+    };
+
+    closeFrameRef.current = window.requestAnimationFrame(keepAnchor);
+  };
+
+  const handleOpen = e => {
+    e?.stopPropagation?.();
+    if (!isClosing) onOpen(writing);
+  };
 
   const handleToggle = e => {
-    e?.stopPropagation?.();
-    if (isLong) {
-      if (isOpen) {
-        // Closing must never move the user's viewport. Release focus first,
-        // then preserve the exact scroll position while the accordion collapses.
-        e?.currentTarget?.blur?.();
-        const scrollY = window.scrollY;
-        onClose(writing);
-        window.requestAnimationFrame(() => {
-          window.scrollTo({ top: scrollY, left: window.scrollX, behavior: 'auto' });
-          window.requestAnimationFrame(() => {
-            window.scrollTo({ top: scrollY, left: window.scrollX, behavior: 'auto' });
-          });
-        });
-      } else {
-        onOpen(writing);
-      }
+    if (isLong && isOpen) {
+      handleClose(e);
+    } else if (isLong && !isOpen) {
+      handleOpen(e);
     }
   };
 
   return (
     <article
       id={`writing-${writing.id}`}
-      className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}`}
+      className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}${isClosing ? ' is-closing' : ''}`}
     >
       <div
         className={`wonder-writing-main${isLong ? ' is-preview-clickable' : ''}`}
-        onClick={isLong ? handleToggle : undefined}
+        onClick={isLong && !isClosing ? handleToggle : undefined}
       >
         <div className="wonder-writing-meta">
           <span>{String(index + 1).padStart(2, '0')}</span>
@@ -78,7 +115,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
           {writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}
         </h3>
 
-        <div className={`wonder-writing-expand${isOpen ? ' is-expanded' : ''}`}>
+        <div className={`wonder-writing-expand${isOpen && !isClosing ? ' is-expanded' : ''}`}>
           <div id={`writing-body-${writing.id}`} className="wonder-writing-expand-inner">
             <div
               className="wonder-writing-body"
@@ -87,18 +124,18 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
           </div>
         </div>
 
-        <div className={`wonder-writing-footer${!isLong ? " is-single-action" : ""}`}>
+        <div ref={footerRef} className={`wonder-writing-footer${!isLong ? " is-single-action" : ""}`}>
           {isLong ? (
             isOpen ? (
               <>
                 <button
                   type="button"
-                  className="wonder-writing-close"
-                  onClick={handleToggle}
-                  aria-expanded="true"
+                  className={isClosing ? "wonder-writing-read is-closing-read" : "wonder-writing-close"}
+                  onClick={isClosing ? undefined : handleClose}
+                  aria-expanded={!isClosing}
                   aria-controls={`writing-body-${writing.id}`}
                 >
-                  CLOSE <span aria-hidden="true">×</span>
+                  {isClosing ? <>READ <span aria-hidden="true">↓</span></> : <>CLOSE <span aria-hidden="true">×</span></>}
                 </button>
                 <ShareButton entry={writing} />
               </>
@@ -107,7 +144,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
                 <button
                   type="button"
                   className="wonder-writing-read"
-                  onClick={handleToggle}
+                  onClick={handleOpen}
                   aria-expanded="false"
                   aria-controls={`writing-body-${writing.id}`}
                 >
