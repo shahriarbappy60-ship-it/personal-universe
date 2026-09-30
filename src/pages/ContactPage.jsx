@@ -9,7 +9,6 @@ export default function ContactPage({ onOpenContact }) {
 
   useEffect(() => {
     document.title = "Get In Touch — Shahriar's Personal Universe";
-    window.scrollTo(0, 0);
   }, []);
 
   return (
