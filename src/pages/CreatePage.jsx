@@ -203,10 +203,10 @@ export default function CreatePage() {
             </p>
             <div className="gateway-actions">
               <Button to="/identity" variant="glass">
-                VIEW IDENTITY →
+                VIEW IDENTITY
               </Button>
               <Button to="/contact" variant="outline">
-                GET IN TOUCH →
+                GET IN TOUCH
               </Button>
             </div>
           </div>
