@@ -1655,3 +1655,156 @@ html[data-theme="light"] .wonder-essay-pill-cta {
     display:none;
   }
 }
+
+
+/* =========================================================
+   WONDER — FINAL DESKTOP REFINEMENT
+   Desktop-only authority. Mobile state remains untouched.
+   Based on the 4d03a6b mobile-preserved baseline.
+========================================================= */
+@media (min-width: 769px) {
+  .wonder-page {
+    overflow-x: clip;
+  }
+
+  /* Keep every post-hero section on the same mother-design rail. */
+  .wonder-page > .wonder-centerpiece-section,
+  .wonder-page > .wonder-tier-section {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .wonder-page > .wonder-centerpiece-section > .wonder-shell,
+  .wonder-page > .wonder-tier-section > .wonder-shell {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  /* Hero uses the same centered rail without changing its locked composition. */
+  .wonder-page #wonderHero {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    padding-left: max(24px, 5vw) !important;
+    padding-right: max(24px, 5vw) !important;
+  }
+
+  .wonder-page #wonderHero > .wonder-shell {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  /* Centerpiece remains a controlled editorial stage. */
+  .wonder-page .wonder-centerpiece-stage {
+    width: min(900px, 100%);
+    max-width: 900px;
+    margin-inline: auto;
+    box-sizing: border-box;
+  }
+
+  .wonder-page .wonder-centerpiece-quote {
+    width: 100%;
+    max-width: 840px;
+    box-sizing: border-box;
+  }
+
+  .wonder-page .wonder-centerpiece-anchors {
+    width: min(820px, 100%);
+    box-sizing: border-box;
+  }
+
+  /* Reflections: one clean ledger rail on desktop. */
+  .wonder-page .wonder-reflections-ledger {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .wonder-page .wonder-reflection-row {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded {
+    padding-left: clamp(24px, 3vw, 40px);
+    padding-right: clamp(24px, 3vw, 40px);
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner {
+    width: min(900px, 100%);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding-left: clamp(24px, 3vw, 36px);
+    padding-right: clamp(24px, 3vw, 36px);
+  }
+
+  /* Essays: keep preview and expanded reader inside one coordinate system. */
+  .wonder-page .wonder-essays-ledger,
+  .wonder-page .wonder-essay-wrapper,
+  .wonder-page .wonder-editorial-row {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .wonder-page .wonder-editorial-row {
+    padding-left: clamp(24px, 2.8vw, 36px);
+    padding-right: clamp(24px, 2.8vw, 36px);
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row {
+    border-radius: 16px 16px 0 0;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: clamp(30px, 4vw, 48px) clamp(24px, 4vw, 48px) clamp(36px, 4vw, 52px);
+    border-top: 1px solid var(--line-soft);
+    background: transparent;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body {
+    width: min(900px, 100%);
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body > * {
+    max-width: 65ch;
+  }
+
+  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-end {
+    width: min(900px, 100%);
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Gateway stays aligned to the same rail and never creates horizontal spill. */
+  .wonder-page .wonder-gateway {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+  }
+}
