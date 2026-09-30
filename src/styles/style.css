@@ -6467,21 +6467,26 @@ html[data-theme="light"] .arch-plane {
 /* Gateway CTAs — compact, content-led sizing. */
 .gateway-actions .btn-master {
     min-width: 0;
-    padding-left: 20px;
-    padding-right: 20px;
+    height: 40px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 9.5px;
+    letter-spacing: .10em;
 }
 
 @media (max-width: 768px) {
     .gateway-actions {
         width: 100%;
-        gap: 10px;
+        gap: 8px;
     }
 
     .gateway-actions .btn-master {
         min-width: 0;
-        height: 36px;
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+        height: 34px;
+        padding-left: 11px !important;
+        padding-right: 11px !important;
+        font-size: 8.5px;
+        letter-spacing: .08em;
     }
 }
 
