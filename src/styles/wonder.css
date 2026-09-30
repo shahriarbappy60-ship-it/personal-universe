@@ -1120,7 +1120,6 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 
 /* =========================================================
    WONDER WRITINGS — QUIET EDITORIAL ARCHIVE
-   One writing. One DOM. Expand in place.
 ========================================================= */
 .wonder-writings-section{border-bottom:none}
 .wonder-writings-ledger{
@@ -1131,7 +1130,6 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 .wonder-writing-row{
   width:100%;
   border-bottom:1px solid var(--line-soft);
-  overflow-anchor:auto;
 }
 .wonder-writing-main{
   position:relative;
@@ -1164,28 +1162,38 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   letter-spacing:-.027em;
   text-wrap:balance;
 }
-.wonder-writing-title em{
-  font-family:var(--serif);
-  font-weight:400;
-  font-style:italic;
-}
-.wonder-writing-expand{
+.wonder-writing-title em{font-family:var(--serif);font-weight:400;font-style:italic}
+.wonder-writing-title.is-preview-clickable{cursor:pointer}
+
+.wonder-writing-reading-shell{
   display:grid;
   grid-template-rows:0fr;
   transition:grid-template-rows .78s var(--ease);
 }
-.wonder-writing-expand.is-expanded{grid-template-rows:1fr}
+.wonder-writing-reading-shell.is-expanded{grid-template-rows:1fr}
+.wonder-writing-reading-shell.is-closing{
+  grid-template-rows:0fr;
+}
+.wonder-writing-expand{
+  min-height:0;
+  overflow:hidden;
+}
 .wonder-writing-expand-inner{
   min-height:0;
   overflow:hidden;
   opacity:0;
-  transform:translateY(-12px);
+  transform:translateY(-14px);
   transition:opacity .56s var(--ease),transform .78s var(--ease);
 }
-.wonder-writing-expand.is-expanded .wonder-writing-expand-inner{
+.wonder-writing-reading-shell.is-expanded .wonder-writing-expand-inner{
   opacity:1;
   transform:translateY(0);
   transition-delay:.04s;
+}
+.wonder-writing-reading-shell.is-closing .wonder-writing-expand-inner{
+  opacity:0;
+  transform:translateY(-14px);
+  transition-delay:0s;
 }
 .wonder-writing-body{
   width:min(100%,64ch);
@@ -1217,7 +1225,6 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   line-height:1.5;
 }
 .wonder-writing-footer{
-  overflow-anchor:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -1250,9 +1257,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 .wonder-writing-read span,
 .wonder-writing-close span,
 .wonder-writing-read.is-closing-read span,
-.wonder-share-action span{
-  transition:transform .35s var(--ease),opacity .35s var(--ease);
-}
+.wonder-share-action span{transition:transform .35s var(--ease),opacity .35s var(--ease)}
 .wonder-writing-read:hover span,
 .wonder-writing-read:focus-visible span{transform:translateY(2px)}
 .wonder-writing-close:hover span,
@@ -1274,39 +1279,13 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   outline:1px solid var(--line-strong);
   outline-offset:5px;
 }
-.wonder-writing-main.is-preview-clickable{cursor:pointer}
-.wonder-writing-row.is-open .wonder-writing-title{color:var(--text)}
-.wonder-writing-row.is-closing .wonder-writing-expand-inner{
-  opacity:0;
-  transform:translateY(-12px);
-  transition-delay:0s;
-}
-.wonder-writing-row.is-closing .wonder-writing-expand{
-  grid-template-rows:0fr;
-}
-.wonder-writing-row.is-closing .wonder-writing-close{
-  color:var(--text);
-}
-.wonder-writing-row.is-closing .wonder-writing-share,
-.wonder-writing-row.is-closing .wonder-share-action{
-  pointer-events:none;
-}
 
 @media(max-width:768px){
   .wonder-writings-ledger{margin-top:34px}
   .wonder-writing-main{padding:28px 0 30px}
   .wonder-writing-meta{margin-bottom:15px;gap:9px;font-size:8px}
-  .wonder-writing-title{
-    max-width:none;
-    font-size:clamp(23px,7vw,31px);
-    line-height:1.13;
-    margin-bottom:0;
-  }
-  .wonder-writing-body{
-    width:100%;
-    max-width:none;
-    padding-top:26px;
-  }
+  .wonder-writing-title{max-width:none;font-size:clamp(23px,7vw,31px);line-height:1.13}
+  .wonder-writing-body{width:100%;max-width:none;padding-top:26px}
   .wonder-writing-body p{font-size:15px;line-height:1.8;margin-bottom:15px}
   .wonder-writing-body p.lead{font-size:20px;line-height:1.45}
   .wonder-writing-body blockquote{margin:23px 0;padding-left:15px;font-size:18px}
@@ -1314,14 +1293,8 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   .wonder-writing-read,
   .wonder-writing-close,
   .wonder-writing-read.is-closing-read,
-  .wonder-share-action{
-    font-size:8px;
-    min-height:34px;
-    padding:8px 0;
-  }
-  .wonder-writing-close{margin-left:0}
-  .wonder-share-action{margin-left:auto}
-  .wonder-writing-footer.is-single-action{justify-content:flex-end}
+  .wonder-share-action{font-size:8px;min-height:34px;padding:8px 0}
+  .wonder-writing-share{margin-left:auto}
 }
 @media(max-width:420px){
   .wonder-writing-main{padding-top:25px;padding-bottom:27px}
