@@ -6466,10 +6466,13 @@ html[data-theme="light"] .arch-plane {
 
 /* Gateway CTAs — compact, content-led sizing. */
 .gateway-actions .btn-master {
-    min-width: 0;
+    width: fit-content !important;
+    min-width: fit-content !important;
+    max-width: max-content !important;
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
     height: 40px;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding: 0 14px !important;
     font-size: 9.5px;
     letter-spacing: .10em;
 }
@@ -6481,10 +6484,12 @@ html[data-theme="light"] .arch-plane {
     }
 
     .gateway-actions .btn-master {
-        min-width: 0;
+        width: fit-content !important;
+        min-width: fit-content !important;
+        max-width: max-content !important;
+        flex: 0 0 auto !important;
         height: 34px;
-        padding-left: 11px !important;
-        padding-right: 11px !important;
+        padding: 0 11px !important;
         font-size: 8.5px;
         letter-spacing: .08em;
     }
