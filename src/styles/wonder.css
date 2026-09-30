@@ -1125,7 +1125,11 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 ========================================================= */
 .wonder-writings-section{border-bottom:none}
 .wonder-writings-ledger{width:100%;border-top:1px solid var(--line-soft)}
-.wonder-writing-row{width:100%;border-bottom:1px solid var(--line-soft)}
+.wonder-writing-row{
+  width:100%;
+  border-bottom:1px solid var(--line-soft);
+  overflow-anchor:none;
+}
 .wonder-writing-main{
   position:relative;
   width:100%;
