@@ -41,8 +41,21 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const handleToggle = e => {
     e?.stopPropagation?.();
     if (isLong) {
-      if (isOpen) onClose(writing);
-      else onOpen(writing);
+      if (isOpen) {
+        // Closing must never move the user's viewport. Release focus first,
+        // then preserve the exact scroll position while the accordion collapses.
+        e?.currentTarget?.blur?.();
+        const scrollY = window.scrollY;
+        onClose(writing);
+        window.requestAnimationFrame(() => {
+          window.scrollTo({ top: scrollY, left: window.scrollX, behavior: 'auto' });
+          window.requestAnimationFrame(() => {
+            window.scrollTo({ top: scrollY, left: window.scrollX, behavior: 'auto' });
+          });
+        });
+      } else {
+        onOpen(writing);
+      }
     }
   };
 
