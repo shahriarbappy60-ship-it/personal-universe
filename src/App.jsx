@@ -58,25 +58,26 @@ export default function App() {
     return () => window.clearTimeout(swapTimer);
   }, [location, displayLocation]);
 
-  // Resilient hash navigation smoothly handling cross-page transitions.
+  // Handle hashes only after the incoming page has been mounted.
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      let attempts = 0;
-      const tryScroll = () => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        } else if (attempts < 8) {
-          attempts++;
-          setTimeout(tryScroll, 60);
-        }
-      };
-      setTimeout(tryScroll, 40);
-    } else if (location.pathname === '/' && !location.hash) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [location.pathname, location.hash]);
+    if (!displayLocation || location.pathname !== displayLocation.pathname || location.search !== displayLocation.search || location.hash !== displayLocation.hash) return;
+    if (!location.hash) return;
+
+    const id = location.hash.replace('#', '');
+    let attempts = 0;
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else if (attempts < 8) {
+        attempts++;
+        setTimeout(tryScroll, 60);
+      }
+    };
+
+    const timer = window.setTimeout(tryScroll, 40);
+    return () => window.clearTimeout(timer);
+  }, [location, displayLocation]);
 
   const renderedLocation = displayLocation || location;
   const chapter = getChapterLabel(renderedLocation.pathname);
