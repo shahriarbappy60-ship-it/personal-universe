@@ -39,48 +39,25 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   const title = getWritingTitle(writing);
   const [isClosing, setIsClosing] = useState(false);
   const footerRef = useRef(null);
-  const closeFrameRef = useRef(null);
+  const closeTimerRef = useRef(null);
 
   useEffect(() => () => {
-    if (closeFrameRef.current) window.cancelAnimationFrame(closeFrameRef.current);
+    if (closeTimerRef.current) window.clearTimeout(closeTimerRef.current);
   }, []);
 
   const handleClose = e => {
     e?.stopPropagation?.();
     if (!isOpen || isClosing) return;
 
+    // Keep focus from participating in the layout change. The row itself
+    // owns the close animation; the actual React collapse happens after it.
     e?.currentTarget?.blur?.();
-
-    const footer = footerRef.current;
-    const anchorTop = footer?.getBoundingClientRect().top ?? null;
-    const startTime = performance.now();
-    const duration = 780;
-
     setIsClosing(true);
 
-    const keepAnchor = now => {
-      if (!footer || anchorTop == null) return;
-
-      const currentTop = footer.getBoundingClientRect().top;
-      const delta = currentTop - anchorTop;
-
-      if (Math.abs(delta) > 0.1) {
-        window.scrollBy(0, delta);
-      }
-
-      if (now - startTime < duration) {
-        closeFrameRef.current = window.requestAnimationFrame(keepAnchor);
-      } else {
-        const finalTop = footer.getBoundingClientRect().top;
-        if (Math.abs(finalTop - anchorTop) > 0.1) {
-          window.scrollBy(0, finalTop - anchorTop);
-        }
-        setIsClosing(false);
-        onClose(writing);
-      }
-    };
-
-    closeFrameRef.current = window.requestAnimationFrame(keepAnchor);
+    closeTimerRef.current = window.setTimeout(() => {
+      onClose(writing);
+      setIsClosing(false);
+    }, 780);
   };
 
   const handleOpen = e => {
@@ -89,11 +66,8 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
   };
 
   const handleToggle = e => {
-    if (isLong && isOpen) {
-      handleClose(e);
-    } else if (isLong && !isOpen) {
-      handleOpen(e);
-    }
+    if (isLong && isOpen) handleClose(e);
+    else if (isLong && !isOpen) handleOpen(e);
   };
 
   return (
