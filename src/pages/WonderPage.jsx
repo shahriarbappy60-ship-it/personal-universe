@@ -46,14 +46,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
 
   const handleClose = e => {
     e?.stopPropagation?.();
-    const beforeTop = rowRef.current?.getBoundingClientRect().top ?? null;
     onClose(writing);
-    if (beforeTop === null) return;
-    window.requestAnimationFrame(() => {
-      const afterTop = rowRef.current?.getBoundingClientRect().top ?? beforeTop;
-      const delta = afterTop - beforeTop;
-      if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'auto' });
-    });
   };
 
   return (
@@ -62,7 +55,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
       id={`writing-${writing.id}`}
       className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}`}
     >
-      <div className="wonder-writing-main">
+      <div className={`wonder-writing-main${isLong && !isOpen ? " is-preview-clickable" : ""}`} onClick={isLong && !isOpen ? handleOpen : undefined}>
         <div className="wonder-writing-meta">
           <span>{String(index + 1).padStart(2, '0')}</span>
           <span>{writing.tag || 'WRITING'}</span>
