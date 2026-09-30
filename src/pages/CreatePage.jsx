@@ -125,7 +125,6 @@ export default function CreatePage() {
 
   useEffect(() => {
     document.title = "Create — Shahriar's Personal Universe";
-    window.scrollTo(0, 0);
   }, []);
 
   const handleToggle = (id) => {
