@@ -212,7 +212,7 @@ export default function WonderPage() {
     <section className="wonder-centerpiece-section section-pad" id="wonderCenterpiece">
         <div className="wonder-shell">
           <div 
-            className="wonder-centerpiece-stage reveal swipe-hint-nudge"
+            className="wonder-editorial-stage wonder-centerpiece-stage reveal swipe-hint-nudge"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
@@ -228,13 +228,13 @@ export default function WonderPage() {
                 {contemplationQuotes.map((quote, idx) => (
                   <div key={idx} style={{ flex: '0 0 100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <blockquote
-                      className="wonder-centerpiece-quote"
+                      className="wonder-thought-quote wonder-centerpiece-quote"
                       aria-live="polite"
                     >
                       “{quote.thought}”
                     </blockquote>
-                    <div className="wonder-centerpiece-meta">
-                      <span className="wonder-centerpiece-attribution">{quote.tag}</span>
+                    <div className="wonder-thought-meta wonder-centerpiece-meta">
+                      <span className="wonder-thought-tag wonder-centerpiece-attribution">{quote.tag}</span>
                     </div>
                   </div>
                 ))}
@@ -242,7 +242,7 @@ export default function WonderPage() {
             </div>
 
             {/* Philosophical Focus Anchors */}
-            <nav className="wonder-centerpiece-anchors" aria-label="Contemplation themes">
+            <nav className="wonder-thought-index wonder-centerpiece-anchors" aria-label="Contemplation themes">
               {contemplationQuotes.map((item, index) => {
                 const isActive = index === activeQuoteIndex;
                 return (
@@ -260,7 +260,7 @@ export default function WonderPage() {
             </nav>
 
             {/* Action Trigger */}
-            <div className="wonder-centerpiece-action">
+            <div className="wonder-archive-action wonder-centerpiece-action">
               <Button href="#wonderWritings" variant="glass" icon="↓">
                 READ WRITINGS
               </Button>
