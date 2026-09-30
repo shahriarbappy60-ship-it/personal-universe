@@ -225,11 +225,8 @@ export default function WonderPage() {
             isOpen={Boolean(selectedWriting)}
             onClose={() => setSelectedWriting(null)}
           />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════
-              SECTION 5: FOOTER TRANSITION (CHAPTER 03: CREATE)
+        {/* ═══════════════════════════════════════════════════
+              SECTION 4: FOOTER TRANSITION (CHAPTER 03: CREATE)
           ═══════════════════════════════════════════════════ */}
           <div className="wonder-gateway reveal">
             <span className="gateway-eyebrow">NEXT CHAPTER · 03 / CREATE</span>
