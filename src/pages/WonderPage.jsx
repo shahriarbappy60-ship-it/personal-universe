@@ -307,7 +307,7 @@ export default function WonderPage() {
             </p>
             <div className="gateway-actions">
               <Button to="/create" variant="glass">
-                ENTER CHAPTER 03: CREATE →
+                ENTER CREATE
               </Button>
             </div>
           </div>
