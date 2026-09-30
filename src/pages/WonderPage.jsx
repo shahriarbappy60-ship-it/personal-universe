@@ -71,7 +71,6 @@ export default function WonderPage() {
 
   useEffect(() => {
     document.title = "Wonder — Shahriar's Personal Universe";
-    window.scrollTo(0, 0);
   }, []);
 
   const touchStartX = useRef(0);
