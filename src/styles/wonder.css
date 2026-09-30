@@ -1131,7 +1131,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 .wonder-writing-row{
   width:100%;
   border-bottom:1px solid var(--line-soft);
-  overflow-anchor:none;
+  overflow-anchor:auto;
 }
 .wonder-writing-main{
   position:relative;
@@ -1217,6 +1217,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   line-height:1.5;
 }
 .wonder-writing-footer{
+  overflow-anchor:auto;
   display:flex;
   align-items:center;
   justify-content:space-between;
