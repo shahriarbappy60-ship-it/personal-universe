@@ -68,7 +68,15 @@ export default function WonderPage() {
   useEffect(() => {
     const hash = window.location.hash;
     if (!hash.startsWith('#writing-')) return;
-    window.requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
+    const id = hash.slice('#writing-'.length);
+    const entry = writings.find(item => item.id === id);
+    window.requestAnimationFrame(() => {
+      if (entry?.length === 'long') {
+        setSelectedWriting(entry);
+      } else {
+        document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+    });
   }, []);
 
   useEffect(() => {
