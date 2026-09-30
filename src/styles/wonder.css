@@ -2189,8 +2189,20 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 .wonder-writing-preview{
   position:relative;
   max-width:72ch;
-  max-height:12.2em;
+  min-height:calc(1.72em * 5);
   overflow:hidden;
+}
+
+.wonder-writing-preview p{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:5;
+  overflow:hidden;
+  margin:0;
+  color:var(--muted);
+  font-size:clamp(15px,1.1vw,17px);
+  line-height:1.72;
+  letter-spacing:-.004em;
 }
 
 .wonder-writing-preview::after{
@@ -2199,17 +2211,9 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   left:0;
   right:0;
   bottom:0;
-  height:4.5em;
+  height:2.6em;
   pointer-events:none;
-  background:linear-gradient(to bottom, transparent, var(--bg));
-}
-
-.wonder-writing-preview p{
-  margin:0;
-  color:var(--muted);
-  font-size:clamp(15px,1.1vw,17px);
-  line-height:1.72;
-  letter-spacing:-.004em;
+  background:linear-gradient(to bottom,transparent,var(--bg));
 }
 
 .wonder-writing-footer{
@@ -2340,7 +2344,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   }
 
   .wonder-writing-preview{
-    max-height:12.1em;
+    min-height:calc(1.72em * 5);
     max-width:none;
   }
 
