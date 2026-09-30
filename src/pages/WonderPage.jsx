@@ -276,7 +276,7 @@ export default function WonderPage() {
         <div className="wonder-shell">
           <div className="wonder-tier-header">
             <span className="wonder-tier-eyebrow reveal">WRITINGS</span>
-            <p className="wonder-tier-subtitle reveal">Thoughts, questions, and things worth sitting with.</p>
+            <p className="wonder-tier-subtitle reveal">Some things I never quite finished thinking about.</p>
           </div>
           <div className="wonder-writings-ledger">
             {writings.map((writing, index) => (
