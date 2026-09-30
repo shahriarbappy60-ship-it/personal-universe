@@ -928,6 +928,405 @@ html[data-theme="light"] .wonder-reflection-row.is-expanded .wonder-read-action 
     transition: transform 0.35s var(--ease);
 }
 
+/* Reflection reader — closed by default, expands to its real content height */
+.wonder-reflection-body{
+    max-height:0;
+    overflow:hidden;
+    padding:0 !important;
+    opacity:0;
+    visibility:hidden;
+    transition:max-height .55s var(--ease), opacity .25s ease, visibility 0s linear .55s;
+}
+.wonder-reflection-body.is-open{
+    max-height:var(--reflection-height, 20000px);
+    overflow:hidden;
+    opacity:1;
+    visibility:visible;
+    transition:max-height .65s var(--ease), opacity .3s ease;
+}
+.wonder-reflection-body-inner{
+    min-width:0;
+    overflow:hidden;
+}
+.wonder-reflection-row.is-expanded{
+    background:var(--glass-bg);
+    border:1px solid var(--glass-border);
+    border-radius:18px;
+    padding:0 clamp(14px,2vw,24px);
+    margin:12px 0;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding-bottom:20px;
+}
+.wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    border-left:1px solid var(--glass-border);
+    padding:0 0 24px clamp(16px,3vw,28px);
+    margin:0;
+    background:transparent;
+    border-radius:0;
+}
+/* In-place serene glass reading enclosure */
+.wonder-reflection-body-inner {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid var(--glass-border);
+    padding: 24px 28px;
+    border-radius: 0 14px 14px 0;
+    margin-bottom: 24px;
+}
+
+html[data-theme="light"] .wonder-reflection-body-inner {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+/* Body typography */
+.wonder-reflection-body p {
+    max-width: 65ch;
+    margin: 0 0 26px;
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+}
+
+.wonder-reflection-body p.lead {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(19px, 1.7vw, 24px);
+    line-height: 1.38;
+    color: var(--text);
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+}
+
+.wonder-reflection-body blockquote {
+    max-width: 65ch;
+    margin: 36px 0;
+    padding: 14px 0 14px 22px;
+    border-left: 2px solid var(--line-strong);
+    color: var(--text);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(17px, 1.5vw, 21px);
+    line-height: 1.45;
+    background: var(--atmosphere-primary);
+    border-radius: 0 12px 12px 0;
+}
+
+.wonder-reflection-end {
+    max-width: 65ch;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 0 clamp(24px, 3vw, 36px);
+    border-top: 1px solid var(--line-soft);
+    margin-top: 6px;
+}
+
+.wonder-reflection-end span {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--faint);
+}
+
+/* =========================================================
+   SECTION 4: ESSAYS (THE LONG-FORM CHAMBER)
+   Flagship tactile glass card + subsequent ledger rows
+========================================================= */
+.wonder-essays-section {
+    border-bottom: none;
+}
+
+/* Flagship Heroic Tactile Glass Card */
+.wonder-essay-heroic-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(22px) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(22px) saturate(var(--glass-saturation));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: clamp(32px, 5vw, 48px);
+    cursor: pointer;
+    outline: none;
+    margin-bottom: clamp(32px, 4vw, 48px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+        background .28s var(--ease),
+        border-color .28s var(--ease),
+        transform .35s var(--ease),
+        box-shadow .35s var(--ease);
+}
+
+.wonder-essay-heroic-card:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.wonder-essay-heroic-card:focus-visible {
+    outline: 1px solid var(--line-strong);
+    outline-offset: 6px;
+}
+
+.wonder-essay-card-tag {
+    display: block;
+    margin-bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--faint);
+    transition: color .25s var(--ease);
+}
+
+.wonder-essay-heroic-card:hover .wonder-essay-card-tag {
+    color: var(--muted);
+}
+
+.wonder-essay-card-title {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3.8vw, 52px);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0 0 22px;
+    transition: color 0.25s var(--ease);
+}
+
+.wonder-essay-card-title em {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-style: italic;
+}
+
+.wonder-essay-heroic-card:hover .wonder-essay-card-title {
+    color: #ffffff;
+}
+
+html[data-theme="light"] .wonder-essay-heroic-card:hover .wonder-essay-card-title {
+    color: #000000;
+}
+
+.wonder-essay-card-excerpt {
+    font-family: var(--sans);
+    font-size: clamp(14px, 1.05vw, 15.5px);
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 720px;
+    margin: 0 0 32px;
+    letter-spacing: -0.01em;
+    transition: color 0.25s var(--ease);
+}
+
+.wonder-essay-heroic-card:hover .wonder-essay-card-excerpt {
+    color: var(--text);
+}
+
+/* Pill CTA inside heroic card */
+.wonder-essay-pill-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding: 0 24px;
+    border-radius: 100px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+        background .22s var(--ease),
+        border-color .22s var(--ease),
+        transform .22s var(--ease),
+        color .22s var(--ease);
+    pointer-events: none;
+}
+
+.wonder-essay-heroic-card:hover .wonder-essay-pill-cta {
+    background: var(--glass-bg-hover);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: var(--text);
+    transform: translateX(3px);
+}
+
+.wonder-cta-arrow {
+    display: inline-block;
+    transition: transform 0.25s var(--ease);
+    line-height: 1;
+}
+
+.wonder-essay-heroic-card:hover .wonder-cta-arrow {
+    transform: translate(3px, 3px);
+}
+
+/* Light theme support */
+html[data-theme="light"] .wonder-essay-heroic-card {
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+html[data-theme="light"] .wonder-essay-heroic-card:hover .wonder-essay-card-excerpt {
+    color: #363636;
+}
+
+html[data-theme="light"] .wonder-essay-pill-cta {
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    color: #141414;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Subsequent essay ledger */
+.wonder-essays-ledger {
+    width: 100%;
+    border-top: 1px solid var(--line-soft);
+    margin-bottom: clamp(56px, 7vw, 88px);
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    .wonder-page *,
+    .wonder-page *::before,
+    .wonder-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* WONDER PAGE INLINE ESSAY ACCORDION STATES */
+.wonder-essay-wrapper.is-expanded .archive-row-body,
+.wonder-essay-heroic-wrapper.is-expanded .archive-row-body {
+    grid-template-rows: 1fr;
+}
+
+.wonder-essay-wrapper.is-expanded .archive-row-body-inner,
+.wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner {
+    opacity: 1;
+    transition-delay: 0.2s;
+    padding-top: 20px;
+}
+
+
+
+/* =========================================================
+   WONDER CONTENT REFINEMENT — v1.0.12
+   Content remains readable at every viewport.
+   Hero remains untouched.
+========================================================= */
+.wonder-page .wonder-row-meta{flex-wrap:wrap;min-width:0}
+.wonder-page .wonder-row-title,.wonder-page .wonder-row-description,.wonder-page .wonder-essay-card-title,.wonder-page .wonder-essay-card-excerpt,.wonder-page .wonder-reflection-body-inner,.wonder-page .archive-row-body-inner{min-width:0;overflow-wrap:anywhere;word-break:normal}
+
+.wonder-page .wonder-reflection-body p,.wonder-page .wonder-reflection-body blockquote,.wonder-page .reader-body p,.wonder-page .reader-body blockquote{max-width:65ch;overflow-wrap:anywhere}
+.wonder-page .wonder-reflection-end{flex-wrap:wrap}
+.wonder-page .wonder-essay-card-title{text-wrap:balance}
+@media (max-width:768px){
+ .wonder-page .wonder-tier-section{padding-top:56px;padding-bottom:56px}
+ .wonder-page .wonder-tier-header{margin-bottom:32px}
+ .wonder-page .wonder-reflection-row{padding-left:0;padding-right:0}
+ .wonder-page .wonder-reflection-header{padding:24px 0 26px}
+ .wonder-page .wonder-row-title{font-size:clamp(22px,7vw,30px);line-height:1.14;margin-bottom:14px}
+ .wonder-page .wonder-row-description{max-width:none;margin-bottom:18px;line-height:1.72}
+ .wonder-page .wonder-reflection-body-inner{width:100%;padding:20px 18px;margin-bottom:20px}
+ .wonder-page .wonder-reflection-body p{font-size:15.5px;line-height:1.82;margin-bottom:22px}
+ .wonder-page .wonder-reflection-body p.lead{font-size:20px;line-height:1.42}
+ .wonder-page .wonder-reflection-body blockquote{margin:28px 0;padding:12px 0 12px 16px;font-size:18px;line-height:1.5}
+ .wonder-page .wonder-reflection-end{gap:8px 16px;padding-bottom:26px}
+ .wonder-page .wonder-essay-heroic-card{padding:26px 20px;margin-bottom:30px;border-radius:20px}
+ .wonder-page .wonder-essay-card-title{font-size:clamp(28px,8vw,40px);line-height:1.08}
+ .wonder-page .wonder-essay-card-excerpt{max-width:none;line-height:1.72;margin-bottom:26px}
+ .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner,.wonder-page .wonder-essay-heroic-wrapper.is-expanded .archive-row-body-inner{padding-top:12px}
+ .wonder-page .wonder-editorial-row{padding-top:26px;padding-bottom:26px}
+ .wonder-page .wonder-gateway{padding-left:8px;padding-right:8px}
+}
+@media (max-width:420px){
+ .wonder-page .wonder-row-meta{gap:6px;font-size:9px;letter-spacing:.11em}
+ .wonder-page .wonder-reflection-body-inner{padding:18px 16px}
+ .wonder-page .wonder-essay-heroic-card{padding:22px 17px}
+}
+
+/* WONDER — expanded reader: give the text a deliberate inner breathing zone */
+.wonder-page .wonder-reflection-row.is-expanded{
+  padding:0 clamp(24px,4vw,52px);
+  margin:16px 0;
+  border-radius:20px;
+  overflow:hidden;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+  padding:24px 0 26px;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body{
+  width:100%;
+}
+.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  box-sizing:border-box;
+  width:100%;
+  max-width:900px;
+  margin:0 auto 32px;
+  padding:38px clamp(24px,4vw,52px) 42px;
+  border-left:1px solid var(--glass-border);
+  border-right:1px solid var(--glass-border);
+  border-radius:2px;
+  background:rgba(255,255,255,.018);
+}
+html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+  background:rgba(0,0,0,.018);
+}
+.wonder-page .wonder-reflection-body p,
+.wonder-page .wonder-reflection-body blockquote{
+  max-width:65ch;
+  margin-left:auto;
+  margin-right:auto;
+}
+@media(max-width:768px){
+  .wonder-page .wonder-reflection-row.is-expanded{
+    padding:0 14px;
+    margin:12px 0;
+    border-radius:18px;
+  }
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
+    padding:20px 4px 22px;
+  }
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    max-width:none;
+    margin:0 0 22px;
+    padding:28px 20px 30px;
+    border-left:0;
+    border-right:0;
+    border-top:1px solid var(--glass-border);
+    border-bottom:1px solid var(--glass-border);
+    background:rgba(255,255,255,.018);
+  }
+  .wonder-page .wonder-reflection-body p{font-size:16px;line-height:1.78}
+}
+@media(max-width:420px){
+  .wonder-page .wonder-reflection-row.is-expanded{padding:0 10px}
+  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
+    padding:26px 17px 28px;
+  }
+}
+
 /* Reflection reader — layout-driven accordion; no measured height or giant max-height */
 .wonder-reflection-body{
     display:grid;
@@ -1272,7 +1671,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 
 /* =========================================================
    WONDER ESSAY PREVIEW — unified editorial treatment
-   Mobile is intentionally compact, not a scaled desktop.
+   Reader layout remains owned by the shared archive system.
 ========================================================= */
 .wonder-page .wonder-essays-ledger{
   width:100%;
@@ -1288,11 +1687,13 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   box-sizing:border-box;
   width:100%;
   padding:clamp(30px,3.2vw,40px) clamp(18px,2.4vw,32px);
-  border:1px solid transparent;
-  border-bottom-color:var(--line-soft);
+  border-bottom:1px solid var(--line-soft);
   border-radius:16px;
   background:transparent;
-  transition:background-color .28s var(--ease),border-color .28s var(--ease);
+  transition:
+    background-color .28s var(--ease),
+    border-color .28s var(--ease),
+    padding .28s var(--ease);
 }
 
 .wonder-page .wonder-editorial-row:hover,
@@ -1301,654 +1702,38 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   border-color:var(--glass-border);
 }
 
+.wonder-page .wonder-editorial-row:hover .wonder-row-title,
+.wonder-page .wonder-essay-wrapper.is-expanded .wonder-row-title{
+  color:var(--text);
+}
+
+.wonder-page .wonder-editorial-row:hover .wonder-row-description,
+.wonder-page .wonder-essay-wrapper.is-expanded .wonder-row-description{
+  color:var(--muted);
+}
+
 .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
   border-radius:16px 16px 0 0;
-  border-bottom-color:transparent;
+  border-bottom-color:var(--line-soft);
 }
 
-/* Keep the reading surface independent from the preview surface. */
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-  box-sizing:border-box;
-  width:100%;
-}
-
-@media (max-width:768px){
-  .wonder-page .wonder-essays-ledger{
-    margin-left:0;
-    margin-right:0;
-    width:100%;
-  }
-
+@media(max-width:768px){
   .wonder-page .wonder-editorial-row{
-    padding:24px 16px 22px;
-    border-radius:12px;
+    padding:26px 18px;
+    border-radius:14px;
   }
 
   .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-    padding:24px 16px 20px;
-    border-radius:12px 12px 0 0;
-  }
-
-  .wonder-page .wonder-row-meta{
-    gap:6px 9px;
-    margin-bottom:14px;
-    font-size:9px;
-    line-height:1.35;
-  }
-
-  .wonder-page .wonder-row-title{
-    font-size:clamp(22px,7.4vw,29px);
-    line-height:1.12;
-    letter-spacing:-.025em;
-    margin-bottom:12px;
-    max-width:100%;
-  }
-
-  .wonder-page .wonder-row-description{
-    font-size:14px;
-    line-height:1.68;
-    margin-bottom:18px;
-    max-width:100%;
-  }
-
-  .wonder-page .wonder-row-action{
-    margin-top:2px;
-  }
-
-  .wonder-page .wonder-read-action{
-    font-size:10px;
-    letter-spacing:.12em;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    width:100%;
-    min-width:0;
-    padding-left:16px;
-    padding-right:16px;
+    padding:26px 18px 24px;
+    border-radius:14px 14px 0 0;
   }
 }
 
-@media (max-width:420px){
+@media(max-width:420px){
   .wonder-page .wonder-editorial-row,
   .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .wonder-page .wonder-row-title{
-    font-size:clamp(21px,7.2vw,27px);
-  }
-
-  .wonder-page .wonder-row-description{
-    font-size:13.5px;
-    line-height:1.7;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:14px;
-    padding-right:14px;
-  }
-}
-
-
-/* =========================================================
-   WONDER READING SURFACES — final responsive correction
-   Preview and reading remain separate systems.
-========================================================= */
-
-/* Reflections: text needs breathing room on BOTH sides. */
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-  box-sizing:border-box;
-  width:100%;
-  padding:0 clamp(20px,3vw,32px) 28px clamp(20px,3vw,32px);
-  margin:0;
-  border-left:1px solid var(--glass-border);
-  border-right:1px solid var(--glass-border);
-  border-radius:0 0 14px 14px;
-  background:rgba(255,255,255,.018);
-}
-
-html[data-theme="light"] .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-  background:rgba(0,0,0,.018);
-}
-
-/* Essays: the entire reader area is the reading surface, not just the text. */
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body{
-  width:100%;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-  box-sizing:border-box;
-  width:100%;
-  padding:clamp(28px,4vw,48px) clamp(24px,4vw,48px) clamp(32px,4vw,48px);
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-top:0;
-  border-radius:0 0 16px 16px;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body{
-  width:100%;
-  max-width:900px;
-  margin:0 auto;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body > *{
-  max-width:65ch;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-end{
-  width:100%;
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-@media(max-width:768px){
-  .wonder-page .wonder-reflection-row.is-expanded{
-    padding-left:12px;
-    padding-right:12px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-    padding:0 16px 24px;
-    border-left:1px solid var(--glass-border);
-    border-right:1px solid var(--glass-border);
-    border-radius:0 0 12px 12px;
-  }
-
-  .wonder-page .wonder-reflection-body p{
-    max-width:100%;
-  }
-
-  .wonder-page .wonder-reflection-body blockquote{
-    max-width:100%;
-    margin-left:0;
-    margin-right:0;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding:26px 18px 30px;
-    border-radius:0 0 12px 12px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body > *{
-    max-width:100%;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body p{
-    font-size:16px;
-    line-height:1.78;
-  }
-}
-
-@media(max-width:420px){
-  .wonder-page .wonder-reflection-row.is-expanded{
-    padding-left:10px;
-    padding-right:10px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-    padding-left:14px;
-    padding-right:14px;
-    padding-bottom:22px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:15px;
-    padding-right:15px;
-    padding-bottom:26px;
-  }
-}
-
-
-/* =========================================================
-   WONDER — SINGLE SURFACE PASS
-   One preview surface, one contiguous expanded surface.
-========================================================= */
-
-/* Essay previews: both entries use the exact same highlighted surface. */
-.wonder-page .wonder-essay-wrapper .wonder-editorial-row{
-  background:var(--glass-bg);
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  padding:clamp(28px,3.2vw,40px) clamp(22px,3vw,36px);
-}
-
-.wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
-  background:var(--glass-bg-hover);
-  border-color:var(--glass-border);
-}
-
-/* Expanded essay = ONE box. Header and reader are parts of that same surface. */
-.wonder-page .wonder-essay-wrapper.is-expanded{
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  background:var(--glass-bg);
-  overflow:hidden;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-  border:0;
-  border-radius:0;
-  background:transparent;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-  border:0;
-  border-top:1px solid var(--line-soft);
-  border-radius:0;
-  background:transparent;
-  width:100%;
-  padding:clamp(28px,4vw,48px) clamp(24px,4vw,48px) clamp(32px,4vw,48px);
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner .reader-body{
-  width:100%;
-  max-width:900px;
-  margin:0 auto;
-}
-
-/* Reflection expanded state = ONE surface too; text sits inside it, not on its wall. */
-.wonder-page .wonder-reflection-row.is-expanded{
-  box-sizing:border-box;
-  width:100%;
-  padding:0;
-  overflow:hidden;
-}
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
-  padding-left:clamp(20px,3vw,32px);
-  padding-right:clamp(20px,3vw,32px);
-}
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-  box-sizing:border-box;
-  width:100%;
-  padding:4px clamp(20px,3vw,32px) 28px;
-  border:0;
-  border-top:1px solid var(--line-soft);
-  border-radius:0;
-  background:transparent;
-  margin:0;
-}
-
-@media(max-width:768px){
-  .wonder-page .wonder-essay-wrapper .wonder-editorial-row{
-    padding:24px 17px 22px;
-    border-radius:13px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded{
-    border-radius:13px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-    padding:24px 17px 22px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding:24px 17px 28px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded{
-    border-radius:13px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
-    padding-left:17px;
-    padding-right:17px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-    padding:4px 17px 24px;
-  }
-}
-
-@media(max-width:420px){
-  .wonder-page .wonder-essay-wrapper .wonder-editorial-row,
-  .wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
-    padding-left:15px;
-    padding-right:15px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-    padding-left:15px;
-    padding-right:15px;
-  }
-}
-
-
-/* =========================================================
-   WONDER — FINAL PREVIEW / EXPANDED STATE CORRECTION
-========================================================= */
-
-/* Essay previews stay quiet until opened. */
-.wonder-page .wonder-essay-wrapper .wonder-editorial-row{
-  background:transparent;
-  border:1px solid transparent;
-  border-bottom-color:var(--line-soft);
-  border-radius:0;
-}
-
-.wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
-  background:var(--glass-bg);
-  border-color:var(--glass-border);
-  border-radius:16px;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded{
-  border:1px solid var(--glass-border);
-  border-radius:16px;
-  background:var(--glass-bg);
-  overflow:hidden;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .wonder-editorial-row{
-  background:transparent;
-  border:0;
-  border-radius:0;
-}
-
-/* Reflection preview: the highlight belongs to the whole row,
-   while the text keeps a real inner gutter on mobile. */
-.wonder-page .wonder-reflection-row.is-expanded{
-  box-sizing:border-box;
-  width:100%;
-  padding:0 clamp(14px,2vw,24px);
-  margin:12px 0;
-  border:1px solid var(--glass-border);
-  border-radius:18px;
-  background:var(--glass-bg);
-  overflow:hidden;
-}
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-header{
-  padding-left:0;
-  padding-right:0;
-}
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-  box-sizing:border-box;
-  width:100%;
-  padding:0 0 28px;
-  border:0;
-  background:transparent;
-  margin:0;
-}
-
-@media(max-width:768px){
-  .wonder-page .wonder-reflection-row.is-expanded{
     padding-left:16px;
     padding-right:16px;
-    border-radius:14px;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner{
-    padding-bottom:24px;
-  }
-
-  .wonder-page .wonder-essay-wrapper .wonder-editorial-row{
-    padding-left:0;
-    padding-right:0;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:17px;
-    padding-right:17px;
-  }
-}
-
-@media(max-width:420px){
-  .wonder-page .wonder-reflection-row.is-expanded{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:15px;
-    padding-right:15px;
-  }
-}
-
-
-/* =========================================================
-   WONDER — FINAL INNER GUTTER
-   Expanded surfaces must never let reading text touch walls.
-========================================================= */
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-  box-sizing:border-box;
-  width:100%;
-  padding-left:clamp(24px,4vw,52px);
-  padding-right:clamp(24px,4vw,52px);
-}
-
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body p,
-.wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body blockquote,
-.wonder-page .wonder-essay-wrapper.is-expanded .reader-body p,
-.wonder-page .wonder-essay-wrapper.is-expanded .reader-body blockquote{
-  margin-left:0;
-  margin-right:0;
-}
-
-@media(max-width:768px){
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:22px;
-    padding-right:22px;
-  }
-}
-
-@media(max-width:420px){
-  .wonder-page .wonder-reflection-row.is-expanded .wonder-reflection-body-inner,
-  .wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-    padding-left:18px;
-    padding-right:18px;
-  }
-}
-
-
-/* =========================================================
-   WONDER — MOBILE PREVIEWS MUST REMAIN QUIET
-   Remove preview surface highlight only on mobile.
-   Typography, spacing, layout and expanded readers stay unchanged.
-========================================================= */
-@media (max-width:768px){
-  .wonder-page .wonder-essay-wrapper .wonder-editorial-row,
-  .wonder-page .wonder-essay-wrapper .wonder-editorial-row:hover{
-    background:transparent;
-    border-color:transparent;
-    border-bottom-color:var(--line-soft);
-    border-radius:0;
-  }
-
-  .wonder-page .wonder-reflection-row.is-expanded{
-    background:transparent;
-    border-color:transparent;
-    border-radius:0;
-  }
-}
-
-
-/* =========================================================
-   WONDER — REFLECTION MOBILE STATE REPAIR
-   Closed preview stays quiet; expanded reflection keeps its
-   intentional reading surface. Do not flatten the reader.
-========================================================= */
-@media (max-width:768px){
-  /* Mobile preview: remove only the hover/tap surface highlight. */
-  .wonder-page .wonder-reflection-row:not(.is-expanded):hover{
-    background-color:transparent;
-  }
-
-  /* Expanded reflection: restore the actual reading enclosure. */
-  .wonder-page .wonder-reflection-row.is-expanded{
-    background:var(--glass-bg);
-    border:1px solid var(--glass-border);
-    border-radius:14px;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
-    padding-left:16px;
-    padding-right:16px;
-  }
-}
-
-@media (max-width:420px){
-  .wonder-page .wonder-reflection-row.is-expanded{
-    padding-left:14px;
-    padding-right:14px;
-  }
-}
-
-
-/* =========================================================
-   WONDER — INTERACTION POLISH
-   Keep the visual language quiet; improve only response,
-   state transitions and tactile feedback.
-========================================================= */
-
-/* Touch devices should feel deliberate rather than browser-default. */
-.wonder-page .wonder-reflection-header,
-.wonder-page .wonder-editorial-row,
-.wonder-page .wonder-centerpiece-stage,
-.wonder-page .wonder-anchor-item,
-.wonder-page .wonder-read-action{
-  -webkit-tap-highlight-color:transparent;
-  touch-action:manipulation;
-}
-
-/* Reflection accordion: fade the reader in/out while the grid opens/closes.
-   This avoids the abrupt "content appears after the box" feeling. */
-.wonder-page .wonder-reflection-body{
-  will-change:grid-template-rows,opacity;
-  contain:layout paint;
-}
-
-.wonder-page .wonder-reflection-body-inner{
-  opacity:0;
-  transform:translateY(-7px);
-  transition:opacity .28s var(--ease),transform .48s var(--ease);
-  will-change:opacity,transform;
-}
-
-.wonder-page .wonder-reflection-body.is-open .wonder-reflection-body-inner{
-  opacity:1;
-  transform:translateY(0);
-  transition-delay:.08s;
-}
-
-/* Keep the closing state clean: the content disappears before the enclosure
-   finishes collapsing, so there is no visual snap. */
-.wonder-page .wonder-reflection-body:not(.is-open) .wonder-reflection-body-inner{
-  transition-delay:0s;
-}
-
-/* Reflection action responds subtly to press, not just hover. */
-.wonder-page .wonder-reflection-header:active .wonder-read-action,
-.wonder-page .wonder-editorial-row:active .wonder-read-action{
-  transform:translateX(2px);
-}
-
-.wonder-page .wonder-read-action{
-  transition:color .22s var(--ease),transform .22s var(--ease);
-}
-
-/* Essay accordion gets the same calm reveal language. */
-.wonder-page .wonder-essay-wrapper .archive-row-body{
-  display:grid;
-  grid-template-rows:0fr;
-  overflow:hidden;
-  opacity:0;
-  visibility:hidden;
-  transition:grid-template-rows .58s var(--ease),opacity .24s ease,visibility 0s linear .58s;
-  will-change:grid-template-rows,opacity;
-  contain:layout paint;
-}
-
-.wonder-page .wonder-essay-wrapper .archive-row-body-inner{
-  min-height:0;
-  overflow:hidden;
-  opacity:0;
-  transform:translateY(-8px);
-  transition:opacity .3s var(--ease),transform .5s var(--ease);
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body{
-  grid-template-rows:1fr;
-  opacity:1;
-  visibility:visible;
-  transition:grid-template-rows .62s var(--ease),opacity .28s ease;
-}
-
-.wonder-page .wonder-essay-wrapper.is-expanded .archive-row-body-inner{
-  opacity:1;
-  transform:translateY(0);
-  transition-delay:.08s;
-}
-
-/* Preview rows feel responsive without turning into cards. */
-.wonder-page .wonder-editorial-row,
-.wonder-page .wonder-reflection-row{
-  transition:background-color .24s var(--ease),border-color .24s var(--ease),color .24s var(--ease);
-}
-
-.wonder-page .wonder-editorial-row:active,
-.wonder-page .wonder-reflection-header:active{
-  transition-duration:.08s;
-}
-
-/* Keep the mobile experience quiet: no sticky/hover-like visual jump. */
-@media (hover:none){
-  .wonder-page .wonder-editorial-row:hover,
-  .wonder-page .wonder-reflection-row:hover{
-    transform:none;
-  }
-}
-
-@media (prefers-reduced-motion:reduce){
-  .wonder-page .wonder-reflection-body-inner,
-  .wonder-page .wonder-essay-wrapper .archive-row-body-inner{
-    transform:none !important;
-    transition:none !important;
-  }
-}
-
-
-/* =========================================================
-   WONDER — QUIET METADATA
-   Keep the archive focused on title + thought.
-   Mobile removes secondary metadata entirely.
-========================================================= */
-.wonder-page .wonder-row-number{
-  font-variant-numeric:tabular-nums;
-}
-
-@media (max-width:768px){
-  /* The phone archive keeps only the simple entry number. */
-  .wonder-page .wonder-row-meta .wonder-row-sep,
-  .wonder-page .wonder-row-meta .wonder-row-category{
-    display:none;
-  }
-
-  .wonder-page .wonder-row-meta{
-    margin-bottom:12px;
-  }
-
-  /* Expanded reflection footer is useful as a quiet endpoint,
-     but not as repeated metadata on small screens. */
-  .wonder-page .wonder-reflection-end span:not(:first-child){
-    display:none;
   }
 }
 
