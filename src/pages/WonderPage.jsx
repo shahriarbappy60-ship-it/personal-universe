@@ -74,7 +74,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
           </div>
         </div>
 
-        <div className="wonder-writing-footer">
+        <div className={`wonder-writing-footer${!isLong ? " is-single-action" : ""}`}>
           {isLong ? (
             isOpen ? (
               <>
