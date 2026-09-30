@@ -1168,8 +1168,8 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   min-height:0;
   overflow:hidden;
   opacity:0;
-  transform:translateY(-4px);
-  transition:opacity .5s var(--ease),transform .78s var(--ease);
+  transform:translateY(3px);
+  transition:opacity .58s var(--ease),transform .78s var(--ease);
 }
 .wonder-writing-expand.is-expanded .wonder-writing-expand-inner{
   opacity:1;
