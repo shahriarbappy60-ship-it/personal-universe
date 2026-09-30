@@ -1121,6 +1121,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
 /* =========================================================
    WONDER WRITINGS — UNIFIED PERSONAL ARCHIVE
    One writing. One DOM. Expand in place.
+   Desktop and mobile share the same interaction model.
 ========================================================= */
 .wonder-writings-section{border-bottom:none}
 .wonder-writings-ledger{width:100%;border-top:1px solid var(--line-soft)}
@@ -1157,11 +1158,28 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   text-wrap:balance;
 }
 .wonder-writing-title em{font-family:var(--serif);font-weight:400;font-style:italic}
-.wonder-writing-expand{display:grid;grid-template-rows:0fr;transition:grid-template-rows .72s var(--ease)}
+.wonder-writing-expand{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .78s var(--ease);
+}
 .wonder-writing-expand.is-expanded{grid-template-rows:1fr}
-.wonder-writing-expand-inner{min-height:0;overflow:hidden;opacity:0;transform:translateY(-8px);transition:opacity .42s var(--ease),transform .72s var(--ease)}
-.wonder-writing-expand.is-expanded .wonder-writing-expand-inner{opacity:1;transform:translateY(0);transition-delay:.08s}
-.wonder-writing-body{max-width:68ch;padding-top:2px}
+.wonder-writing-expand-inner{
+  min-height:0;
+  overflow:hidden;
+  opacity:0;
+  transform:translateY(-4px);
+  transition:opacity .5s var(--ease),transform .78s var(--ease);
+}
+.wonder-writing-expand.is-expanded .wonder-writing-expand-inner{
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.04s;
+}
+.wonder-writing-body{
+  max-width:68ch;
+  padding-top:2px;
+}
 .wonder-writing-body p{
   margin:0 0 16px;
   color:var(--muted);
@@ -1195,7 +1213,9 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   min-height:32px;
   margin-top:26px;
 }
-.wonder-writing-read,.wonder-writing-close,.wonder-share-action{
+.wonder-writing-read,
+.wonder-writing-close,
+.wonder-share-action{
   display:inline-flex;
   align-items:center;
   gap:7px;
@@ -1213,28 +1233,57 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   cursor:pointer;
 }
 .wonder-writing-read{color:var(--text)}
-.wonder-writing-close{margin-left:auto}
-.wonder-writing-read span,.wonder-writing-close span,.wonder-share-action span{transition:transform .35s var(--ease)}
-.wonder-writing-read:hover span,.wonder-writing-read:focus-visible span{transform:translateX(3px)}
-.wonder-writing-close:hover span,.wonder-writing-close:focus-visible span{transform:translateY(-1px) rotate(90deg)}
-.wonder-share-action{margin-left:0;color:var(--faint);transition:color .22s var(--ease)}
-.wonder-writing-read:hover,.wonder-writing-read:focus-visible,
-.wonder-writing-close:hover,.wonder-writing-close:focus-visible,
-.wonder-share-action:hover,.wonder-share-action:focus-visible{color:var(--text)}
-.wonder-writing-read:focus-visible,.wonder-writing-close:focus-visible,.wonder-share-action:focus-visible{outline:1px solid var(--line-strong);outline-offset:5px}
+.wonder-writing-close{color:var(--text)}
+.wonder-writing-read span,
+.wonder-writing-close span,
+.wonder-share-action span{transition:transform .35s var(--ease)}
+.wonder-writing-read:hover span,
+.wonder-writing-read:focus-visible span{transform:translateY(2px)}
+.wonder-writing-close:hover span,
+.wonder-writing-close:focus-visible span{transform:rotate(90deg)}
+.wonder-share-action{
+  margin-left:auto;
+  color:var(--faint);
+  transition:color .22s var(--ease);
+}
+.wonder-writing-read:hover,
+.wonder-writing-read:focus-visible,
+.wonder-writing-close:hover,
+.wonder-writing-close:focus-visible,
+.wonder-share-action:hover,
+.wonder-share-action:focus-visible{color:var(--text)}
+.wonder-writing-read:focus-visible,
+.wonder-writing-close:focus-visible,
+.wonder-share-action:focus-visible{
+  outline:1px solid var(--line-strong);
+  outline-offset:5px;
+}
+.wonder-writing-main.is-preview-clickable{cursor:pointer}
 .wonder-writing-row.is-open .wonder-writing-title{color:var(--text)}
-.wonder-writing-row.is-open .wonder-writing-main{padding-bottom:clamp(28px,3vw,40px)}
+
 @media(max-width:768px){
   .wonder-writing-main{padding:26px 0 28px}
   .wonder-writing-meta{margin-bottom:14px;gap:9px;font-size:8px}
-  .wonder-writing-title{max-width:none;font-size:clamp(22px,7vw,31px);line-height:1.13;margin-bottom:14px}
+  .wonder-writing-title{
+    max-width:none;
+    font-size:clamp(22px,7vw,31px);
+    line-height:1.13;
+    margin-bottom:14px;
+  }
   .wonder-writing-body{max-width:none}
   .wonder-writing-body p{font-size:15px;line-height:1.78;margin-bottom:14px}
   .wonder-writing-body p.lead{font-size:20px;line-height:1.45}
   .wonder-writing-body blockquote{margin:22px 0;padding-left:15px;font-size:18px}
   .wonder-writing-footer{margin-top:22px}
-  .wonder-writing-read,.wonder-writing-close,.wonder-share-action{font-size:8px;min-height:34px;padding:8px 0}
-  .wonder-writing-close{margin-left:auto}
+  .wonder-writing-read,
+  .wonder-writing-close,
+  .wonder-share-action{
+    font-size:8px;
+    min-height:34px;
+    padding:8px 0;
+  }
+  .wonder-writing-close{margin-left:0}
+  .wonder-share-action{margin-left:auto}
 }
 @media(max-width:420px){
   .wonder-writing-main{padding-top:24px;padding-bottom:26px}
@@ -1242,18 +1291,10 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   .wonder-writing-body p{font-size:14.5px}
 }
 @media(prefers-reduced-motion:reduce){
-  .wonder-writing-expand,.wonder-writing-expand-inner,
-  .wonder-writing-read span,.wonder-writing-close span{transition:none!important}
+  .wonder-writing-expand,
+  .wonder-writing-expand-inner,
+  .wonder-writing-read span,
+  .wonder-writing-close span{transition:none!important}
   .wonder-writing-expand{grid-template-rows:auto}
   .wonder-writing-expand:not(.is-expanded){display:none}
-}
-
-.wonder-writing-main.is-preview-clickable{cursor:pointer}
-.wonder-writing-main.is-preview-clickable .wonder-writing-title,
-.wonder-writing-main.is-preview-clickable .wonder-writing-meta,
-.wonder-writing-main.is-preview-clickable .wonder-writing-footer{cursor:pointer}
-@media(max-width:768px){
-  .wonder-writing-row.is-open .wonder-writing-footer{justify-content:space-between}
-  .wonder-writing-row.is-open .wonder-writing-close{order:1;margin-left:0}
-  .wonder-writing-row.is-open .wonder-share-action{order:2;margin-left:auto}
 }
