@@ -6462,6 +6462,7 @@ html[data-theme="light"] .arch-plane {
     margin-top: 12px;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
 }
 
 /* Gateway CTAs — compact, content-led sizing. */
@@ -6481,6 +6482,8 @@ html[data-theme="light"] .arch-plane {
     .gateway-actions {
         width: 100%;
         gap: 8px;
+        justify-content: center !important;
+        align-items: center;
     }
 
     .gateway-actions .btn-master {
