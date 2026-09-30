@@ -35,27 +35,26 @@ function ShareButton({ entry, className = '' }) {
 }
 
 function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
-  const rowRef = useRef(null);
   const isLong = writing.length === 'long';
   const title = getWritingTitle(writing);
 
-  const handleOpen = e => {
+  const handleToggle = e => {
     e?.stopPropagation?.();
-    if (isLong) onOpen(writing);
-  };
-
-  const handleClose = e => {
-    e?.stopPropagation?.();
-    onClose(writing);
+    if (isLong) {
+      if (isOpen) onClose(writing);
+      else onOpen(writing);
+    }
   };
 
   return (
     <article
-      ref={rowRef}
       id={`writing-${writing.id}`}
       className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}`}
     >
-      <div className={`wonder-writing-main${isLong && !isOpen ? " is-preview-clickable" : ""}`} onClick={isLong && !isOpen ? handleOpen : undefined}>
+      <div
+        className={`wonder-writing-main${isLong ? ' is-preview-clickable' : ''}`}
+        onClick={isLong ? handleToggle : undefined}
+      >
         <div className="wonder-writing-meta">
           <span>{String(index + 1).padStart(2, '0')}</span>
           <span>{writing.tag || 'WRITING'}</span>
@@ -76,31 +75,37 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
         </div>
 
         <div className="wonder-writing-footer">
-          {!isLong ? null : !isOpen ? (
-            <button
-              type="button"
-              className="wonder-writing-read"
-              onClick={handleOpen}
-              aria-expanded="false"
-              aria-controls={`writing-body-${writing.id}`}
-            >
-              READ <span aria-hidden="true">↗</span>
-            </button>
+          {isLong ? (
+            isOpen ? (
+              <>
+                <button
+                  type="button"
+                  className="wonder-writing-close"
+                  onClick={handleToggle}
+                  aria-expanded="true"
+                  aria-controls={`writing-body-${writing.id}`}
+                >
+                  CLOSE <span aria-hidden="true">×</span>
+                </button>
+                <ShareButton entry={writing} />
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="wonder-writing-read"
+                  onClick={handleToggle}
+                  aria-expanded="false"
+                  aria-controls={`writing-body-${writing.id}`}
+                >
+                  READ <span aria-hidden="true">↓</span>
+                </button>
+                <ShareButton entry={writing} />
+              </>
+            )
           ) : (
-            <>
-              <ShareButton entry={writing} />
-              <button
-                type="button"
-                className="wonder-writing-close"
-                onClick={handleClose}
-                aria-expanded="true"
-                aria-controls={`writing-body-${writing.id}`}
-              >
-                CLOSE <span aria-hidden="true">×</span>
-              </button>
-            </>
+            <ShareButton entry={writing} />
           )}
-          {!isLong && <ShareButton entry={writing} />}
         </div>
       </div>
     </article>
@@ -120,16 +125,9 @@ export default function WonderPage() {
     if (!hash.startsWith('#writing-')) return;
     const id = hash.slice('#writing-'.length);
     const entry = writings.find(item => item.id === id);
-    window.requestAnimationFrame(() => {
-      if (entry?.length === 'long') {
-        setSelectedWriting(entry);
-        window.setTimeout(() => {
-          document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-        }, 80);
-      } else {
-        document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      }
-    });
+    if (entry?.length === 'long') {
+      window.requestAnimationFrame(() => setSelectedWriting(entry));
+    }
   }, []);
 
   useEffect(() => {
