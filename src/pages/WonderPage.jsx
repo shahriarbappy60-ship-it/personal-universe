@@ -3,7 +3,6 @@ import { contemplationQuotes, writings } from '../data/wonderData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
-import WonderReaderModal from '../components/modals/WonderReaderModal';
 
 // ─── UNIFIED WRITING ROW ─────────────────────────────────────────────────────
 function getWritingTitle(entry) {
@@ -36,26 +35,81 @@ function ShareButton({ entry, className = '' }) {
 }
 
 function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
+  const rowRef = useRef(null);
   const isLong = writing.length === 'long';
   const title = getWritingTitle(writing);
-  const handleOpen = () => { if (isLong) onOpen(writing); };
-  const handleKeyDown = e => {
-    if (isLong && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); handleOpen(); }
+
+  const handleOpen = e => {
+    e?.stopPropagation?.();
+    if (isLong) onOpen(writing);
   };
+
+  const handleClose = e => {
+    e?.stopPropagation?.();
+    const beforeTop = rowRef.current?.getBoundingClientRect().top ?? null;
+    onClose(writing);
+    if (beforeTop === null) return;
+    window.requestAnimationFrame(() => {
+      const afterTop = rowRef.current?.getBoundingClientRect().top ?? beforeTop;
+      const delta = afterTop - beforeTop;
+      if (Math.abs(delta) > 1) window.scrollBy({ top: delta, behavior: 'auto' });
+    });
+  };
+
   return (
-    <article id={`writing-${writing.id}`} className={`wonder-writing-row wonder-writing-${writing.length}`}>
-      <div className={`wonder-writing-main${isLong ? ' is-readable' : ''}`} onClick={handleOpen} onKeyDown={handleKeyDown} role={isLong ? 'button' : undefined} tabIndex={isLong ? 0 : undefined} aria-label={isLong ? `Read: ${title}` : undefined}>
-        <div className="wonder-writing-meta"><span>{String(index + 1).padStart(2, '0')}</span><span>{writing.tag || 'WRITING'}</span><span>{writing.date}</span></div>
-        <h3 className="wonder-writing-title">{writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}</h3>
-        {isLong ? <div className="wonder-writing-preview"><p>{writing.excerpt}</p></div> : <div className="wonder-writing-full" dangerouslySetInnerHTML={{ __html: writing.body }} />}
+    <article
+      ref={rowRef}
+      id={`writing-${writing.id}`}
+      className={`wonder-writing-row wonder-writing-${writing.length}${isOpen ? ' is-open' : ''}`}
+    >
+      <div className="wonder-writing-main">
+        <div className="wonder-writing-meta">
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <span>{writing.tag || 'WRITING'}</span>
+          <span>{writing.date}</span>
+        </div>
+
+        <h3 className="wonder-writing-title">
+          {writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}
+        </h3>
+
+        <div className={`wonder-writing-expand${isOpen ? ' is-expanded' : ''}`}>
+          <div id={`writing-body-${writing.id}`} className="wonder-writing-expand-inner">
+            <div
+              className="wonder-writing-body"
+              dangerouslySetInnerHTML={{ __html: writing.body }}
+            />
+          </div>
+        </div>
+
         <div className="wonder-writing-footer">
-          {isLong && <span className="wonder-writing-read">READ <span aria-hidden="true">↗</span></span>}
-          <ShareButton entry={writing} />
+          {!isLong ? null : !isOpen ? (
+            <button
+              type="button"
+              className="wonder-writing-read"
+              onClick={handleOpen}
+              aria-expanded="false"
+              aria-controls={`writing-body-${writing.id}`}
+            >
+              READ <span aria-hidden="true">↗</span>
+            </button>
+          ) : (
+            <>
+              <ShareButton entry={writing} />
+              <button
+                type="button"
+                className="wonder-writing-close"
+                onClick={handleClose}
+                aria-expanded="true"
+                aria-controls={`writing-body-${writing.id}`}
+              >
+                CLOSE <span aria-hidden="true">×</span>
+              </button>
+            </>
+          )}
+          {!isLong && <ShareButton entry={writing} />}
         </div>
       </div>
-      {isLong && isOpen && (
-        <WonderReaderModal article={writing} isOpen={isOpen} onClose={onClose} />
-      )}
     </article>
   );
 }
@@ -91,6 +145,18 @@ export default function WonderPage() {
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+
+  const handleOpenWriting = writing => {
+    setSelectedWriting(writing);
+    window.history.replaceState(null, '', `/wonder#writing-${writing.id}`);
+  };
+
+  const handleCloseWriting = writing => {
+    setSelectedWriting(current => current?.id === writing.id ? null : current);
+    if (window.location.hash === `#writing-${writing.id}`) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  };
 
   const handleSelectQuote = index => {
     if (index === activeQuoteIndex) return;
@@ -227,9 +293,9 @@ export default function WonderPage() {
                 key={writing.id}
                 writing={writing}
                 index={index}
-                onOpen={setSelectedWriting}
+                onOpen={handleOpenWriting}
                 isOpen={selectedWriting?.id === writing.id}
-                onClose={() => setSelectedWriting(null)}
+                onClose={handleCloseWriting}
               />
             ))}
           </div>
