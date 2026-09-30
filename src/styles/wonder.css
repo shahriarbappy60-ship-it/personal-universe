@@ -1284,6 +1284,7 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   }
   .wonder-writing-close{margin-left:0}
   .wonder-share-action{margin-left:auto}
+  .wonder-writing-footer.is-single-action{justify-content:flex-end}
 }
 @media(max-width:420px){
   .wonder-writing-main{padding-top:24px;padding-bottom:26px}
