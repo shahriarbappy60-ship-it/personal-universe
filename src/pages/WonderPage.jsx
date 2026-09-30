@@ -3,6 +3,7 @@ import { contemplationQuotes, reflections, essays } from '../data/wonderData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
+import WonderReaderModal from '../components/modals/WonderReaderModal';
 
 // ─── TIER 2: REFLECTION ROW — in-place accordion with glass enclosure ─────────
 function ReflectionRow({ reflection }) {
@@ -226,71 +227,43 @@ export default function WonderPage() {
             <p className="wonder-tier-subtitle reveal">Long-form explorations of difficult questions.</p>
           </div>
 
-          {/* ESSAY LEDGER — one visual language for every entry */}
+          {/* ESSAY LEDGER — quiet editorial entries; full reading opens in the modal */}
           <div className="wonder-essays-ledger">
-            {essays.map(e => {
-              const isExpanded = selectedEssay === e.id;
-              return (
-                <div key={e.id} className="reveal">
-                  <div className={`wonder-essay-wrapper ${isExpanded ? 'is-expanded' : ''}`}>
-                    <article
-                      className="wonder-editorial-row"
-                      onClick={() => setSelectedEssay(prev => prev === e.id ? null : e.id)}
-                      onKeyDown={ev => {
-                        if (ev.key === 'Enter' || ev.key === ' ') {
-                          ev.preventDefault();
-                          setSelectedEssay(prev => prev === e.id ? null : e.id);
-                        }
-                      }}
-                      tabIndex={0}
-                      role="button"
-                      aria-expanded={isExpanded}
-                      aria-controls={`wonder-essay-body-${e.id}`}
-                    >
-                      <div className="wonder-row-meta">
-                        <span className="wonder-row-number">{Number(e.number)}</span>
-                        <span className="wonder-row-sep">—</span>
-                        <span className="wonder-row-category">ESSAY</span>
-                        <span className="wonder-row-sep">·</span>
-                        <span className="wonder-row-category">{e.readTime}</span>
-                      </div>
-                      <h3 className="wonder-row-title">
-                        {e.titleBase} <em>{e.titleAccent}</em>
-                      </h3>
-                      <p className="wonder-row-description">{e.excerpt}</p>
-                      <div className="wonder-row-action">
-                        <span className="wonder-read-action">
-                          {isExpanded ? 'Close Essay' : 'Enter Essay'}
-                          <span
-                            className="wonder-read-arrow"
-                            style={{ transform: isExpanded ? 'rotate(-90deg)' : 'none' }}
-                            aria-hidden="true"
-                          >↘</span>
-                        </span>
-                      </div>
-                    </article>
-
-                    <div
-                      id={`wonder-essay-body-${e.id}`}
-                      className="archive-row-body"
-                      aria-hidden={!isExpanded}
-                    >
-                      <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
-                        <article
-                          className="reader-body inline-reader"
-                          dangerouslySetInnerHTML={{ __html: e.body }}
-                        />
-                        <div className="reader-end" style={{ marginBottom: '40px' }}>
-                          <span>END OF ENTRY · {e.number}</span>
-                          <span>SHAHRIAR'S PERSONAL UNIVERSE</span>
-                        </div>
-                      </div>
-                    </div>
+            {essays.map(e => (
+              <div key={e.id} className="reveal">
+                <button
+                  type="button"
+                  className="wonder-editorial-row wonder-essay-trigger"
+                  onClick={() => setSelectedEssay(e)}
+                  aria-label={`Open essay: ${e.title}`}
+                >
+                  <div className="wonder-row-meta">
+                    <span className="wonder-row-number">{Number(e.number)}</span>
+                    <span className="wonder-row-sep">—</span>
+                    <span className="wonder-row-category">ESSAY</span>
+                    <span className="wonder-row-sep">·</span>
+                    <span className="wonder-row-category">{e.readTime}</span>
                   </div>
-                </div>
-              );
-            })}
+                  <h3 className="wonder-row-title">
+                    {e.titleBase} <em>{e.titleAccent}</em>
+                  </h3>
+                  <p className="wonder-row-description">{e.excerpt}</p>
+                  <div className="wonder-row-action">
+                    <span className="wonder-read-action">
+                      READ ESSAY
+                      <span className="wonder-read-arrow" aria-hidden="true">↗</span>
+                    </span>
+                  </div>
+                </button>
+              </div>
+            ))}
           </div>
+
+          <WonderReaderModal
+            article={selectedEssay}
+            isOpen={Boolean(selectedEssay)}
+            onClose={() => setSelectedEssay(null)}
+          />
 
           {/* ═══════════════════════════════════════════════════
               SECTION 5: FOOTER TRANSITION (CHAPTER 03: CREATE)
