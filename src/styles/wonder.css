@@ -1247,3 +1247,13 @@ html[data-theme="light"] .wonder-essay-pill-cta {
   .wonder-writing-expand{grid-template-rows:auto}
   .wonder-writing-expand:not(.is-expanded){display:none}
 }
+
+.wonder-writing-main.is-preview-clickable{cursor:pointer}
+.wonder-writing-main.is-preview-clickable .wonder-writing-title,
+.wonder-writing-main.is-preview-clickable .wonder-writing-meta,
+.wonder-writing-main.is-preview-clickable .wonder-writing-footer{cursor:pointer}
+@media(max-width:768px){
+  .wonder-writing-row.is-open .wonder-writing-footer{justify-content:space-between}
+  .wonder-writing-row.is-open .wonder-writing-close{order:1;margin-left:0}
+  .wonder-writing-row.is-open .wonder-share-action{order:2;margin-left:auto}
+}
