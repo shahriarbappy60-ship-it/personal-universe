@@ -1,15 +1,13 @@
 const WRITING_META = {
-  "october": { title: "October", image: "/og/writings/october.png" },
-  "on-becoming-quiet": { title: "On Becoming Quiet", image: "/og/writings/on-becoming-quiet.png" },
-  "the-observer": { title: "The Observer", image: "/og/writings/the-observer.png" },
-  "identity-becoming": { title: "Identity & Becoming", image: "/og/writings/identity-becoming.png" },
-  "time-perception": { title: "Time & Perception", image: "/og/writings/time-perception.png" },
-  "uncertainty": { title: "Uncertainty", image: "/og/writings/uncertainty.png" },
-  "threshold-states": { title: "Threshold States", image: "/og/writings/threshold-states.png" },
-  "universe-experiencing-itself": { title: "What if you are the universe experiencing itself?", image: "/og/writings/universe-experiencing-itself.png" },
-  "consciousness-where": { title: "What If Consciousness Is Not Where We Think It Is?", image: "/og/writings/consciousness-where.png" },
-  "dissolution-and-boundaries": { title: "Dissolution and Boundaries.", image: "/og/writings/dissolution-and-boundaries.png" },
-  "at-the-final-threshold": { title: "At the Final Threshold.", image: "/og/writings/at-the-final-threshold.png" },
+  "october": { title: "October" },
+  "observer-inside-thought": { title: "The Observer Inside the Thought." },
+  "small-argument-with-time": { title: "A Small Argument With Time." },
+  "on-becoming-quiet": { title: "On Becoming Quiet." },
+  "anatomy-of-deja-vu": { title: "The Anatomy of Déjà Vu." },
+  "dissolution-and-boundaries": { title: "Dissolution and Boundaries." },
+  "at-the-final-threshold": { title: "At the Final Threshold." },
+  "universe-experiencing-itself": { title: "What if you are the universe experiencing itself?" },
+  "consciousness-where": { title: "What If Consciousness Is Not Where We Think It Is?" }
 };
 
 function escape(value) {
@@ -30,7 +28,7 @@ export async function onRequest(context) {
 
   const html = await response.text();
   const canonical = `${url.origin}/wonder?writing=${encodeURIComponent(id)}`;
-  const image = `${url.origin}${writing.image}`;
+  const image = `${url.origin}/og/writing?writing=${encodeURIComponent(id)}`;
   const tags = [
     meta("og:title", writing.title),
     meta("og:type", "article"),
