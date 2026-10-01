@@ -1,6 +1,16 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/share/writing/:slug",
+      "destination": "/api/share-writing?slug=:slug"
+    },
+    {
+      "source": "/og/writing",
+      "destination": "/api/og-writing"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
