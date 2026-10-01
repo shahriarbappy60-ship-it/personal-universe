@@ -133,30 +133,26 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
 
 // ─── WONDER PAGE MASTER COMPONENT ───────────────────────────────────────────
 export default function WonderPage() {
-  const [selectedWriting, setSelectedWriting] = useState(null);
+  const initialWritingId = new URLSearchParams(window.location.search).get('writing');
+  const initialWriting = writings.find(item => item.id === initialWritingId && item.length === 'long') || null;
+  const [selectedWriting, setSelectedWriting] = useState(initialWriting);
   const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
 
   useScrollReveal();
   useMagnetic();
 
   useEffect(() => {
-    // Deep links use the writing query as the canonical selector.
-    // Hash support remains for existing internal links/bookmarks.
-    const params = new URLSearchParams(window.location.search);
-    const queryId = params.get('writing');
+    // Hash links remain supported for existing bookmarks.
+    if (selectedWriting) return;
     const hash = window.location.hash;
-    const hashId = hash.startsWith('#writing-') ? hash.slice('#writing-'.length) : '';
-    const id = queryId || hashId;
-    if (!id) return;
-
-    const entry = writings.find(item => item.id === id);
-    if (entry?.length === 'long') {
-      window.requestAnimationFrame(() => setSelectedWriting(entry));
-    }
-  }, []);
+    if (!hash.startsWith('#writing-')) return;
+    const id = hash.slice('#writing-'.length);
+    const entry = writings.find(item => item.id === id && item.length === 'long');
+    if (entry) window.requestAnimationFrame(() => setSelectedWriting(entry));
+  }, [selectedWriting]);
 
   useEffect(() => {
-    document.title = "Wonder — Shahriar's Personal Universe";
+    document.title = selectedWriting ? getWritingTitle(selectedWriting) + " — Shahriar's Personal Universe" : "Wonder — Shahriar's Personal Universe";
   }, []);
 
   const touchStartX = useRef(0);
