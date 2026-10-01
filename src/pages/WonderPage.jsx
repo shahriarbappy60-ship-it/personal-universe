@@ -49,6 +49,12 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
     if (!isClosing) onOpen(writing);
   };
 
+  const handleToggle = e => {
+    e?.stopPropagation?.();
+    if (isOpen) handleClose(e);
+    else handleOpen(e);
+  };
+
   const handleClose = e => {
     e?.stopPropagation?.();
     if (!isOpen || isClosing) return;
@@ -74,7 +80,7 @@ function WritingRow({ writing, index, onOpen, isOpen, onClose }) {
 
         <h3
           className={`wonder-writing-title${isLong && !isOpen ? ' is-preview-clickable' : ''}`}
-          onClick={isLong && !isOpen ? handleOpen : undefined}
+          onClick={isLong ? handleToggle : undefined}
         >
           {writing.titleBase ? <>{writing.titleBase} <em>{writing.titleAccent}</em></> : title}
         </h3>
@@ -152,7 +158,7 @@ export default function WonderPage() {
 
   const handleOpenWriting = writing => {
     setSelectedWriting(writing);
-    window.history.replaceState(null, '', `/wonder#writing-${writing.id}`);
+    window.history.replaceState(null, '', `/wonder?writing=${encodeURIComponent(writing.id)}#writing-${writing.id}`);
   };
 
   const handleCloseWriting = writing => {
