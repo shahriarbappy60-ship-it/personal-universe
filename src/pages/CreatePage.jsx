@@ -88,7 +88,7 @@ function FeaturedProject({ project, isOpen, onToggle }) {
             <span>{isOpen ? 'CLOSE DETAILS' : 'READ THE BUILD'}</span>
             <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
           </button>
-          {project.link && (
+          {project.link && project.id === 'project-01' && (
             <a
               className="create-source-link"
               href={project.link}
