@@ -140,9 +140,15 @@ export default function WonderPage() {
   useMagnetic();
 
   useEffect(() => {
+    // Deep links use the writing query as the canonical selector.
+    // Hash support remains for existing internal links/bookmarks.
+    const params = new URLSearchParams(window.location.search);
+    const queryId = params.get('writing');
     const hash = window.location.hash;
-    if (!hash.startsWith('#writing-')) return;
-    const id = hash.slice('#writing-'.length);
+    const hashId = hash.startsWith('#writing-') ? hash.slice('#writing-'.length) : '';
+    const id = queryId || hashId;
+    if (!id) return;
+
     const entry = writings.find(item => item.id === id);
     if (entry?.length === 'long') {
       window.requestAnimationFrame(() => setSelectedWriting(entry));
