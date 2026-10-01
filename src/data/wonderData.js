@@ -361,16 +361,36 @@ const personalWritings = [
     readTime: "",
     length: "long",
     body: `
-      <p class="lead">October has always felt a little different to me.</p>
-      <p>I can’t really explain the feeling.</p>
-      <p>I don’t really know why… but a lot of the difficult and life changing events of my life happened in this month.</p>
-      <p>Some of the hardest days, some unexpected changes, some things I never thought would happen and some moments that completely changed me.</p>
-      <p>Somehow, October has always been full of plot twists for me, but it’s not just that.</p>
-      <p>October brings out a strange mix of feelings in me. Nostalgia, melancholy, peace, sadness… a little bit of everything.</p>
-      <p>And the strange part is that I still love this month.</p>
-      <p>Maybe because every October has left me with something. A memory. A feeling. Or a version of myself that I had to leave behind.</p>
-      <p>Now it’s October again.</p>
-      <p>Let’s see what this one brings.</p>
+      <p class="lead">
+        October has always felt a little different to me.
+      </p>
+      <p>
+        I can’t really explain the feeling.
+      </p>
+      <p>
+        I don’t really know why… but a lot of the difficult and life changing events of my life happened in this month.
+      </p>
+      <p>
+        Some of the hardest days, some unexpected changes, some things I never thought would happen and some moments that completely changed me.
+      </p>
+      <p>
+        Somehow, October has always been full of plot twists for me, but it’s not just that.
+      </p>
+      <p>
+        October brings out a strange mix of feelings in me. Nostalgia, melancholy, peace, sadness… a little bit of everything.
+      </p>
+      <p>
+        And the strange part is that I still love this month.
+      </p>
+      <p>
+        Maybe because every October has left me with something. A memory. A feeling. Or a version of myself that I had to leave behind.
+      </p>
+      <p>
+        Now it’s October again.
+      </p>
+      <p>
+        Let’s see what this one brings.
+      </p>
     `
   }
 ];
