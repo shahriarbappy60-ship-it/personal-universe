@@ -15,16 +15,18 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
 }[char]));
 
 export async function onRequest(context) {
-  const slug = context.params?.slug;
-  const title = WRITINGS[slug];
+  const rawSlug = context.params?.slug;
+  const slug = Array.isArray(rawSlug) ? rawSlug.join("/") : String(rawSlug || "");
+  const writingId = slug.startsWith("writing/") ? slug.slice("writing/".length) : slug;
+  const title = WRITINGS[writingId];
 
   if (!title) {
     return context.next();
   }
 
   const origin = new URL(context.request.url).origin;
-  const writingUrl = `${origin}/wonder?writing=${encodeURIComponent(slug)}`;
-  const imageUrl = `${origin}/og/writing?writing=${encodeURIComponent(slug)}`;
+  const writingUrl = `${origin}/wonder?writing=${encodeURIComponent(writingId)}`;
+  const imageUrl = `${origin}/og/writing?writing=${encodeURIComponent(writingId)}`;
 
   const html = `<!doctype html>
 <html lang="en">
