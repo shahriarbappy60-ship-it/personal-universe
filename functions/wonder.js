@@ -11,11 +11,11 @@ const WRITING_META = {
 };
 
 function escape(value) {
-  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
 }
 
 function meta(property, content) {
-  return `<meta property="${property}" content="${escape(content)}">`;
+  return \`<meta property="\${property}" content="\${escape(content)}">\`;
 }
 
 export async function onRequest(context) {
@@ -27,8 +27,9 @@ export async function onRequest(context) {
   if (!writing || !response.headers.get("content-type")?.includes("text/html")) return response;
 
   const html = await response.text();
-  const canonical = `${url.origin}/wonder?writing=${encodeURIComponent(id)}`;
-  const image = `${url.origin}/og/writing?writing=${encodeURIComponent(id)}`;
+  const canonical = \`\${url.origin}/wonder?writing=\${encodeURIComponent(id)}\`;
+  const image = \`\${url.origin}/og/writing?writing=\${encodeURIComponent(id)}\`;
+
   const tags = [
     meta("og:title", writing.title),
     meta("og:type", "article"),
@@ -43,10 +44,13 @@ export async function onRequest(context) {
     meta("twitter:card", "summary_large_image"),
     meta("twitter:image", image),
     meta("twitter:image:alt", writing.title)
-  ].join("\\n    ");
+  ].join("\n    ");
 
-  const cleanedHtml = html.replace(/<meta\\s+property="og-[^>]*>\\s*/gi, "").replace(/<meta\\s+name="twitter-[^>]*>\\s*/gi, "");
-  return new Response(cleanedHtml.replace("</head>", `    ${tags}\\n</head>`), {
+  const cleanedHtml = html
+    .replace(/<meta\s+property="og-[^>]*>\s*/gi, "")
+    .replace(/<meta\s+name="twitter-[^>]*>\s*/gi, "");
+
+  return new Response(cleanedHtml.replace("</head>", \`    \${tags}\n</head>\`), {
     status: response.status,
     headers: new Headers(response.headers)
   });
