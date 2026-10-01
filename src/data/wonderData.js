@@ -359,7 +359,7 @@ const personalWritings = [
     titleAccent: "",
     excerpt: "October has always felt a little different to me. I can’t really explain the feeling.",
     readTime: "01 MIN READ",
-    length: "short",
+    length: "long",
     body: `
       <p>October has always felt a little different to me.</p>
       <p>I can’t really explain the feeling.</p>
