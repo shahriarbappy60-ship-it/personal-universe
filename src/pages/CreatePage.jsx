@@ -7,7 +7,7 @@ import '../styles/create-page.css';
 
 const createProjects = projectsData.map(project => ({
   ...project,
-  index: String(project.index).padStart(3, '0')
+  index: String(project.index).padStart(2, '0')
 }));
 
 const setMeta = (name, content, attribute = 'name') => {
@@ -35,19 +35,23 @@ const setCanonical = href => {
 function FeaturedProject({ project, isOpen, onToggle }) {
   return (
     <article className={`create-featured ${isOpen ? 'is-open' : ''}`}>
-      <div className="create-featured-visual" aria-hidden="true">
-        <div className="create-featured-orbit create-featured-orbit-one" />
-        <div className="create-featured-orbit create-featured-orbit-two" />
-        <div className="create-featured-orbit create-featured-orbit-three" />
-        <div className="create-featured-star create-featured-star-one" />
-        <div className="create-featured-star create-featured-star-two" />
-        <div className="create-featured-core">
-          <span>{project.index}</span>
+      <div className="create-featured-visual">
+        <div className="create-celestial-stage" aria-hidden="true">
+          <div className="celestial-corona-aura" />
+          <div className="celestial-rings-layer celestial-rings-rear">
+            <div className="celestial-ring ring-outer"><span className="stellar-satellite node-outer-1" /><span className="stellar-satellite node-outer-2" /></div>
+            <div className="celestial-ring ring-accretion"><div className="accretion-dust-texture" /><span className="stellar-satellite node-mid" /></div>
+            <div className="celestial-ring ring-inner"><span className="stellar-satellite node-inner" /></div>
+          </div>
+          <div className="celestial-body"><div className="celestial-atmosphere" /><div className="celestial-inner-core" /><div className="celestial-rim-light" /></div>
+          <div className="celestial-rings-layer celestial-rings-front">
+            <div className="celestial-ring ring-outer"><span className="stellar-satellite node-outer-1" /><span className="stellar-satellite node-outer-2" /></div>
+            <div className="celestial-ring ring-accretion"><div className="accretion-dust-texture" /><span className="stellar-satellite node-mid" /></div>
+            <div className="celestial-ring ring-inner"><span className="stellar-satellite node-inner" /></div>
+          </div>
         </div>
-        <div className="create-featured-caption">
-          <span>{project.visualLabel}</span>
-          <span>{project.visualCaption}</span>
-        </div>
+        <span className="create-visual-label">{project.visualLabel}</span>
+        <span className="create-visual-caption">{project.visualCaption}</span>
       </div>
 
       <div className="create-featured-content">
