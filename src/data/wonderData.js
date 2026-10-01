@@ -348,6 +348,10 @@ essays.forEach(entry => {
   entry.readTime = calculateReadingTime(entry.body);
 });
 
+personalWritings.forEach(entry => {
+  entry.readTime = calculateReadingTime(entry.body);
+});
+
 const personalWritings = [
   {
     id: "october",
@@ -358,10 +362,10 @@ const personalWritings = [
     titleBase: "October",
     titleAccent: "",
     excerpt: "October has always felt a little different to me. I can’t really explain the feeling.",
-    readTime: "01 MIN READ",
+    readTime: "",
     length: "long",
     body: `
-      <p>October has always felt a little different to me.</p>
+      <p class="lead">October has always felt a little different to me.</p>
       <p>I can’t really explain the feeling.</p>
       <p>I don’t really know why… but a lot of the difficult and life changing events of my life happened in this month. Some of the hardest days, some unexpected changes, some things I never thought would happen and some moments that completely changed me.</p>
       <p>Somehow, October has always been full of plot twists for me, but it’s not just that. October brings out a strange mix of feelings in me. Nostalgia, melancholy, peace, sadness… a little bit of everything.</p>
