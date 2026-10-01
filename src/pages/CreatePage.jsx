@@ -20,7 +20,7 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
     >
       <div className="archive-row-header">
         <div className="archive-row-main">
-          <div className="archive-feature-visual" aria-hidden="true">
+          {isFeatured && (\n          <div className="archive-feature-visual" aria-hidden="true">
             <div className="project-celestial-stage">
               <div className="celestial-corona-aura" />
               <div className="celestial-rings-layer celestial-rings-rear">
@@ -58,7 +58,7 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
             <span className="archive-visual-label">EXPERIMENT / 001</span>
             <span className="archive-visual-caption">A LIVING DIGITAL UNIVERSE</span>
           </div>
-          <div className="archive-row-meta">
+          )}\n          <div className="archive-row-meta">
             <span>{project.index} / {isFeatured ? 'CURRENT BUILD' : project.status.toUpperCase()}</span>
           </div>
           
@@ -140,12 +140,12 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
              <div className="archive-row-actions">
                <a 
                  href={project.link} 
-                 target={isExternal ? '_blank' : '_self'} 
-                 rel={isExternal ? 'noopener noreferrer' : ''}
+                 target="_blank"
+                 rel="noopener noreferrer"
                  className="archive-visit-link"
                  onClick={e => e.stopPropagation()}
                >
-                 VISIT PROJECT ↗
+                 VIEW SOURCE ↗
                </a>
              </div>
           )}
