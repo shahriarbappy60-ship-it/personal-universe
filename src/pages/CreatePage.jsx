@@ -100,7 +100,7 @@ function FeaturedProject({ project, isOpen, onToggle }) {
           )}
         </div>
 
-        <div id={`create-detail-${project.id}`} className="create-featured-details" hidden={!isOpen}>
+        <div id={`create-detail-${project.id}`} className={`create-featured-details ${isOpen ? 'is-visible' : ''}`} aria-hidden={!isOpen}>
           <div className="create-detail-overview">
             <span>OVERVIEW</span>
             <p>{project.overview}</p>
@@ -156,7 +156,7 @@ function ArchiveProject({ project, isOpen, onToggle }) {
         </div>
       </div>
 
-      <div id={`create-detail-${project.id}`} className="create-archive-details" hidden={!isOpen}>
+      <div id={`create-detail-${project.id}`} className={`create-archive-details ${isOpen ? 'is-visible' : ''}`} aria-hidden={!isOpen}>
         <div>
           <span>FOCUS</span>
           <p>{project.focus}</p>
