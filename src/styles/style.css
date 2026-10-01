@@ -10955,3 +10955,80 @@ html.js-ready .hero-celestial-stage{
         transition: none !important;
     }
 }
+
+
+/* CREATE FEATURE VISUAL — mother celestial language, used only on the current build */
+.create-page .archive-feature-visual {
+    position: relative;
+    width: min(100%, 520px);
+    height: 250px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create-page .archive-feature-visual .project-celestial-stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 700px;
+    height: 700px;
+    transform: translate(-50%, -50%) scale(.39);
+    pointer-events: none;
+    opacity: .9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create-page .archive-feature-visual .ring-outer { width:600px; height:600px; }
+.create-page .archive-feature-visual .ring-accretion { width:480px; height:480px; }
+.create-page .archive-feature-visual .ring-inner { width:350px; height:350px; }
+.create-page .archive-feature-visual .celestial-body { width:235px; height:235px; }
+.create-page .archive-feature-visual .celestial-corona-aura { width:420px; height:420px; }
+.create-page .archive-feature-visual::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, transparent 45%, rgba(4,5,7,.35));
+    pointer-events:none;
+}
+.archive-visual-label,
+.archive-visual-caption {
+    position:absolute;
+    z-index:4;
+    font-family:var(--font-mono);
+    font-size:8px;
+    line-height:1;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--text);
+    opacity:.7;
+}
+.archive-visual-label { left:18px; top:17px; }
+.archive-visual-caption { left:18px; bottom:17px; }
+
+@media (min-width:901px) {
+    .create-page .project-archive-row.is-featured .archive-row-header {
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+    }
+    .create-page .project-archive-row.is-featured .archive-feature-visual {
+        width:100%;
+        height:280px;
+        margin-bottom:32px;
+    }
+}
+@media (max-width:640px) {
+    .create-page .archive-feature-visual {
+        width:100%;
+        height:190px;
+        margin-bottom:26px;
+        border-radius:14px;
+    }
+    .create-page .archive-feature-visual .project-celestial-stage {
+        transform:translate(-50%,-50%) scale(.30);
+    }
+}
