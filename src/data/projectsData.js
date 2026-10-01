@@ -39,7 +39,7 @@ export const projectsData = [
     description: 'A university-focused interface engineered for organizing course assignments, tracking deadlines, and structuring academic workflow.',
     status: 'Foundation',
     year: '2025',
-    link: 'https://github.com/shahriarbappy60-ship-it',
+    link: null,
     featured: false,
     highlight: 'Workflow & Layout Design',
     overview: 'A structured digital utility aimed at solving the organizational chaos of academic schedules. It brings clarity to deadlines and submission tracking through a minimal, focused UI.',
