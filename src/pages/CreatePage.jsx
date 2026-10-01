@@ -138,19 +138,31 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
             </div>
           </div>
           
-          {project.link && (
-             <div className="archive-row-actions">
-               <a 
-                 href={project.link} 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="archive-visit-link"
-                 onClick={e => e.stopPropagation()}
-               >
-                 VIEW SOURCE ↗
-               </a>
-             </div>
-          )}
+          <div className="archive-row-actions">
+            {project.link && (
+              <a 
+                href={project.link} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="archive-visit-link"
+                onClick={e => e.stopPropagation()}
+              >
+                VIEW SOURCE ↗
+              </a>
+            )}
+            {isExpanded && (
+              <button
+                type="button"
+                className="archive-close-button"
+                onClick={e => {
+                  e.stopPropagation();
+                  onToggle();
+                }}
+              >
+                CLOSE ×
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </article>
