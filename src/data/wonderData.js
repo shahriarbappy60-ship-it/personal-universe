@@ -382,9 +382,9 @@ const personalWritings = [
       <p>
         And the strange part is that I still love this month.
       </p>
-      <p>
+      <blockquote>
         Maybe because every October has left me with something. A memory. A feeling. Or a version of myself that I had to leave behind.
-      </p>
+      </blockquote>
       <p>
         Now it’s October again.
       </p>
