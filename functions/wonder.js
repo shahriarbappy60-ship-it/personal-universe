@@ -45,7 +45,8 @@ export async function onRequest(context) {
     meta("twitter:image:alt", writing.title)
   ].join("\\n    ");
 
-  return new Response(html.replace("</head>", `    ${tags}\\n</head>`), {
+  const cleanedHtml = html.replace(/<meta\\s+property="og-[^>]*>\\s*/gi, "").replace(/<meta\\s+name="twitter-[^>]*>\\s*/gi, "");
+  return new Response(cleanedHtml.replace("</head>", `    ${tags}\\n</head>`), {
     status: response.status,
     headers: new Headers(response.headers)
   });
