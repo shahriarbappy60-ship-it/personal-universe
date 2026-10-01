@@ -18,6 +18,8 @@ const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
   "'": "&#39;"
 }[char]));
 
+const isCrawler = userAgent => /facebookexternalhit|facebot|twitterbot|linkedinbot|whatsapp|telegrambot|discordbot|slackbot|googlebot|bingbot|pinterestbot/i.test(userAgent || "");
+
 export async function onRequestGet(context) {
   const writingId = String(context.params?.slug || "").trim();
   const title = WRITINGS[writingId];
@@ -32,43 +34,49 @@ export async function onRequestGet(context) {
     });
   }
 
-  const origin = new URL(context.request.url).origin;
+  const requestUrl = new URL(context.request.url);
+  const origin = requestUrl.origin;
+  const shareUrl = origin + requestUrl.pathname;
   const writingUrl = origin + "/wonder?writing=" + encodeURIComponent(writingId) + "#writing-" + encodeURIComponent(writingId);
   const imageUrl = origin + "/og/writing?writing=" + encodeURIComponent(writingId);
 
-  const safeTitle = escapeHtml(title);
-  const safeWritingUrl = escapeHtml(writingUrl);
-  const safeImageUrl = escapeHtml(imageUrl);
+  if (!isCrawler(context.request.headers.get("user-agent"))) {
+    return Response.redirect(writingUrl, 302);
+  }
 
-  const html = `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow">
-<meta property="og:type" content="article">
-<meta property="og:title" content="${safeTitle}">
-<meta property="og:site_name" content="Shahriar's Personal Universe">
-<meta property="og:url" content="${safeWritingUrl}">
-<meta property="og:image" content="${safeImageUrl}">
-<meta property="og:image:url" content="${safeImageUrl}">
-<meta property="og:image:secure_url" content="${safeImageUrl}">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="${safeTitle}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${safeTitle}">
-<meta name="twitter:image" content="${safeImageUrl}">
-<meta name="twitter:image:alt" content="${safeTitle}">
-<link rel="canonical" href="${safeWritingUrl}">
-<meta http-equiv="refresh" content="0;url=${safeWritingUrl}">
-<title>${safeTitle} — Shahriar's Personal Universe</title>
-</head>
-<body>
-<p>Opening <a href="${safeWritingUrl}">${safeTitle}</a>…</p>
-<script>window.location.replace(${JSON.stringify(writingUrl)});</script>
-</body>
-</html>`;
+  const safeTitle = escapeHtml(title);
+  const safeShareUrl = escapeHtml(shareUrl);
+  const safeImageUrl = escapeHtml(imageUrl);
+  const description = escapeHtml("A personal writing by Shahriar.");
+
+  const html = [
+    "<!doctype html>",
+    '<html lang="en">',
+    "<head>",
+    '<meta charset="utf-8">',
+    '<meta name="robots" content="index, follow">',
+    '<meta property="og:type" content="article">',
+    '<meta property="og:title" content="' + safeTitle + '">',
+    '<meta property="og:description" content="' + description + '">',
+    '<meta property="og:site_name" content="Shahriar\'s Personal Universe">',
+    '<meta property="og:url" content="' + safeShareUrl + '">',
+    '<meta property="og:image" content="' + safeImageUrl + '">',
+    '<meta property="og:image:url" content="' + safeImageUrl + '">',
+    '<meta property="og:image:secure_url" content="' + safeImageUrl + '">',
+    '<meta property="og:image:type" content="image/png">',
+    '<meta property="og:image:width" content="1200">',
+    '<meta property="og:image:height" content="630">',
+    '<meta property="og:image:alt" content="' + safeTitle + '">',
+    '<meta name="twitter:card" content="summary_large_image">',
+    '<meta name="twitter:title" content="' + safeTitle + '">',
+    '<meta name="twitter:description" content="' + description + '">',
+    '<meta name="twitter:image" content="' + safeImageUrl + '">',
+    '<meta name="twitter:image:alt" content="' + safeTitle + '">',
+    '<link rel="canonical" href="' + safeShareUrl + '">',
+    "<title>" + safeTitle + " — Shahriar's Personal Universe</title>",
+    '<body><a href="' + writingUrl + '">Open ' + safeTitle + "</a></body>",
+    "</html>"
+  ].join("");
 
   return new Response(html, {
     status: 200,
