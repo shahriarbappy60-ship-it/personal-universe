@@ -348,10 +348,6 @@ essays.forEach(entry => {
   entry.readTime = calculateReadingTime(entry.body);
 });
 
-personalWritings.forEach(entry => {
-  entry.readTime = calculateReadingTime(entry.body);
-});
-
 const personalWritings = [
   {
     id: "october",
@@ -375,6 +371,10 @@ const personalWritings = [
     `
   }
 ];
+
+personalWritings.forEach(entry => {
+  entry.readTime = calculateReadingTime(entry.body);
+});
 
 // =========================================================
 // UNIFIED WRITINGS ARCHIVE
