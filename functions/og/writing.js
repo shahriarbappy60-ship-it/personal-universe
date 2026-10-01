@@ -41,8 +41,8 @@ async function loadFonts() {
       const instrument = files.filter(file => file.url.includes("Instrument"));
 
       const findWeight = (files, weight) =>
-        files.find(file => file.url.includes(\`wght@\${weight}\`)) ||
-        files.find(file => file.url.includes(\`wght=\${weight}\`)) ||
+        files.find(file => file.url.includes("wght@" + weight)) ||
+        files.find(file => file.url.includes("wght=" + weight)) ||
         files[0];
 
       return [
