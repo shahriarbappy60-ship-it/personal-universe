@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { projectsData } from '../data/projectsData';
 import Button from '../components/common/Button';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -21,6 +20,44 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
     >
       <div className="archive-row-header">
         <div className="archive-row-main">
+          <div className="archive-feature-visual" aria-hidden="true">
+            <div className="project-celestial-stage">
+              <div className="celestial-corona-aura" />
+              <div className="celestial-rings-layer celestial-rings-rear">
+                <div className="celestial-ring ring-outer">
+                  <span className="stellar-satellite node-outer-1" />
+                  <span className="stellar-satellite node-outer-2" />
+                </div>
+                <div className="celestial-ring ring-accretion">
+                  <div className="accretion-dust-texture" />
+                  <span className="stellar-satellite node-mid" />
+                </div>
+                <div className="celestial-ring ring-inner">
+                  <span className="stellar-satellite node-inner" />
+                </div>
+              </div>
+              <div className="celestial-body">
+                <div className="celestial-atmosphere" />
+                <div className="celestial-inner-core" />
+                <div className="celestial-rim-light" />
+              </div>
+              <div className="celestial-rings-layer celestial-rings-front">
+                <div className="celestial-ring ring-outer">
+                  <span className="stellar-satellite node-outer-1" />
+                  <span className="stellar-satellite node-outer-2" />
+                </div>
+                <div className="celestial-ring ring-accretion">
+                  <div className="accretion-dust-texture" />
+                  <span className="stellar-satellite node-mid" />
+                </div>
+                <div className="celestial-ring ring-inner">
+                  <span className="stellar-satellite node-inner" />
+                </div>
+              </div>
+            </div>
+            <span className="archive-visual-label">EXPERIMENT / 001</span>
+            <span className="archive-visual-caption">A LIVING DIGITAL UNIVERSE</span>
+          </div>
           <div className="archive-row-meta">
             <span>{project.index} / {isFeatured ? 'CURRENT BUILD' : project.status.toUpperCase()}</span>
           </div>
