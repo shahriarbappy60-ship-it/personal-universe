@@ -153,7 +153,7 @@ export default function WonderPage() {
 
   useEffect(() => {
     document.title = selectedWriting ? getWritingTitle(selectedWriting) + " — Shahriar's Personal Universe" : "Wonder — Shahriar's Personal Universe";
-  }, []);
+  }, [selectedWriting]);
 
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
