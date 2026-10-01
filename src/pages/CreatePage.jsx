@@ -101,15 +101,19 @@ function FeaturedProject({ project, isOpen, onToggle }) {
         </div>
 
         <div id={`create-detail-${project.id}`} className="create-featured-details" hidden={!isOpen}>
+          <div className="create-detail-overview">
+            <span>OVERVIEW</span>
+            <p>{project.overview}</p>
+          </div>
           <div>
             <span>ROLE</span>
             <p>{project.role.join(' · ')}</p>
           </div>
           <div>
-            <span>OVERVIEW</span>
-            <p>{project.overview}</p>
+            <span>BUILT WITH</span>
+            <p>{project.technologies.join(' · ')}</p>
           </div>
-          <div>
+          <div className="create-detail-build">
             <span>BUILD NOTE</span>
             <p>{project.buildNote}</p>
           </div>
