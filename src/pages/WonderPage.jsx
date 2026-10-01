@@ -14,7 +14,7 @@ function ShareButton({ entry, className = '' }) {
   const [shared, setShared] = useState(false);
   const handleShare = async e => {
     e?.stopPropagation?.();
-    const url = `${window.location.origin}/wonder#writing-${entry.id}`;
+    const url = `${window.location.origin}/wonder?writing=${encodeURIComponent(entry.id)}#writing-${entry.id}`;
     const shareData = { title: getWritingTitle(entry), text: entry.excerpt || '', url };
     try {
       if (navigator.share) await navigator.share(shareData);
