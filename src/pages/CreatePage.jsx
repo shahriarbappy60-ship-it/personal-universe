@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Button from '../components/common/Button';
+import { projectsData } from '../data/projectsData';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
 import '../styles/create-page.css';
 
-const createProjects = [
-  {
-    index: '001',
-    title: 'Personal Universe',
-    description:
-      'A personal digital space that brings together my photography, writing, projects, ideas, and evolving identity in one interactive web experience.',
-  },
-  {
-    index: '002',
-    title: 'SEU Tech Event',
-    description:
-      'An event information and registration experience designed for a university technology symposium.',
-  },
-];
+const createProjects = projectsData.map(project => ({
+  ...project,
+  index: String(project.index).padStart(3, '0')
+}));
 
 const setMeta = (name, content, attribute = 'name') => {
   let element = document.head.querySelector(`meta[${attribute}="${name}"][data-create-seo]`);
@@ -30,7 +21,7 @@ const setMeta = (name, content, attribute = 'name') => {
   element.setAttribute('content', content);
 };
 
-const setCanonical = (href) => {
+const setCanonical = href => {
   let link = document.head.querySelector('link[data-create-seo="canonical"]');
   if (!link) {
     link = document.createElement('link');
@@ -41,69 +32,138 @@ const setCanonical = (href) => {
   link.setAttribute('href', href);
 };
 
-function CreateProjectCard({ project, isOpen, onToggle }) {
+function FeaturedProject({ project, isOpen, onToggle }) {
   return (
-    <article className={`create-project-card ${isOpen ? 'is-open' : ''}`}>
-      <div className="create-project-card-top">
-        <span className="create-project-ghost-number" aria-hidden="true">{project.index}</span>
-
-        <div className="create-project-copy">
-          <div className="create-project-meta">
-            <span>{project.index} / PROJECT</span>
-            <span>[ADD STATUS]</span>
-          </div>
-
-          <h3 className="create-project-title">{project.title}</h3>
-
-          <p className="create-project-description">{project.description}</p>
-
-          <div className="create-project-tags" aria-label="Project stack">
-            <span>[ADD STACK]</span>
-          </div>
-
-          <button
-            type="button"
-            className="create-project-open"
-            aria-expanded={isOpen}
-            aria-controls={`create-project-details-${project.index}`}
-            onClick={onToggle}
-          >
-            <span>{isOpen ? 'CLOSE PROJECT' : 'EXPLORE PROJECT'}</span>
-            <span aria-hidden="true">{isOpen ? '↑' : '↗'}</span>
-          </button>
+    <article className={`create-featured ${isOpen ? 'is-open' : ''}`}>
+      <div className="create-featured-visual" aria-hidden="true">
+        <div className="create-featured-orbit create-featured-orbit-one" />
+        <div className="create-featured-orbit create-featured-orbit-two" />
+        <div className="create-featured-orbit create-featured-orbit-three" />
+        <div className="create-featured-star create-featured-star-one" />
+        <div className="create-featured-star create-featured-star-two" />
+        <div className="create-featured-core">
+          <span>{project.index}</span>
         </div>
-
-        <div className="create-project-visual" role="img" aria-label={`Screenshot placeholder for ${project.title}`}>
-          <div className="create-project-visual-grid" aria-hidden="true" />
-          <div className="create-project-visual-mark" aria-hidden="true">
-            <span>{project.index}</span>
-          </div>
-          <span className="create-project-visual-label">[ADD SCREENSHOT]</span>
+        <div className="create-featured-caption">
+          <span>{project.visualLabel}</span>
+          <span>{project.visualCaption}</span>
         </div>
       </div>
 
-      <div
-        id={`create-project-details-${project.index}`}
-        className="create-project-details"
-        hidden={!isOpen}
-      >
-        <div className="create-project-details-inner">
+      <div className="create-featured-content">
+        <div className="create-project-kicker">
+          <span>{project.index} / {project.type}</span>
+          <span>{project.year}</span>
+        </div>
+
+        <div className="create-featured-heading">
+          <span className="create-project-state">{project.status}</span>
+          <h2>{project.title}</h2>
+          <p>{project.description}</p>
+        </div>
+
+        <div className="create-featured-meta">
           <div>
-            <span className="create-project-label">PROBLEM</span>
-            <p>[ADD TEXT]</p>
+            <span>FOCUS</span>
+            <strong>{project.focus}</strong>
           </div>
           <div>
-            <span className="create-project-label">WHAT I BUILT</span>
-            <p>[ADD TEXT]</p>
+            <span>BUILT WITH</span>
+            <strong>{project.technologies.join(' · ')}</strong>
+          </div>
+        </div>
+
+        <div className="create-featured-actions">
+          <button
+            type="button"
+            className="create-detail-toggle"
+            aria-expanded={isOpen}
+            aria-controls={`create-detail-${project.id}`}
+            onClick={onToggle}
+          >
+            <span>{isOpen ? 'CLOSE DETAILS' : 'READ THE BUILD'}</span>
+            <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
+          </button>
+          {project.link && (
+            <a
+              className="create-source-link"
+              href={project.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              SOURCE <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+
+        <div id={`create-detail-${project.id}`} className="create-featured-details" hidden={!isOpen}>
+          <div>
+            <span>ROLE</span>
+            <p>{project.role.join(' · ')}</p>
           </div>
           <div>
-            <span className="create-project-label">WHAT I LEARNED</span>
-            <p>[ADD TEXT]</p>
+            <span>OVERVIEW</span>
+            <p>{project.overview}</p>
           </div>
           <div>
-            <span className="create-project-label">LINKS</span>
-            <p>No live or GitHub link provided.</p>
+            <span>BUILD NOTE</span>
+            <p>{project.buildNote}</p>
           </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ArchiveProject({ project, isOpen, onToggle }) {
+  return (
+    <article className={`create-archive-item ${isOpen ? 'is-open' : ''}`}>
+      <div className="create-archive-index" aria-hidden="true">{project.index}</div>
+
+      <div className="create-archive-main">
+        <div className="create-project-kicker">
+          <span>{project.type}</span>
+          <span>{project.year}</span>
+        </div>
+
+        <div className="create-archive-title-row">
+          <h3>{project.title}</h3>
+          <span className="create-project-state">{project.status}</span>
+        </div>
+
+        <p>{project.description}</p>
+
+        <div className="create-archive-footer">
+          <span>{project.technologies.join(' · ')}</span>
+          <button
+            type="button"
+            className="create-detail-toggle"
+            aria-expanded={isOpen}
+            aria-controls={`create-detail-${project.id}`}
+            onClick={onToggle}
+          >
+            <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
+            <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
+          </button>
+        </div>
+      </div>
+
+      <div id={`create-detail-${project.id}`} className="create-archive-details" hidden={!isOpen}>
+        <div>
+          <span>FOCUS</span>
+          <p>{project.focus}</p>
+        </div>
+        <div>
+          <span>ROLE</span>
+          <p>{project.role.join(' · ')}</p>
+        </div>
+        <div>
+          <span>OVERVIEW</span>
+          <p>{project.overview}</p>
+        </div>
+        <div>
+          <span>BUILD NOTE</span>
+          <p>{project.buildNote}</p>
         </div>
       </div>
     </article>
@@ -116,8 +176,8 @@ export default function CreatePage() {
   const [openProject, setOpenProject] = useState(null);
 
   useEffect(() => {
-    const title = 'Create — Projects by Shahriar Khan';
-    const description = 'A curated archive of projects and experiments by Shahriar Khan.';
+    const title = 'Create — Shahriar’s Personal Universe';
+    const description = 'Projects, interfaces, systems, and experiments by Shahriar Khan.';
     const canonical = 'https://shahriarkhan.me/create';
 
     document.title = title;
@@ -129,6 +189,9 @@ export default function CreatePage() {
     setMeta('og:description', description, 'property');
     setMeta('og:site_name', "Shahriar's Personal Universe", 'property');
   }, []);
+
+  const featured = createProjects.find(project => project.featured);
+  const archive = createProjects.filter(project => !project.featured);
 
   return (
     <main className="create-page" id="mainContent">
@@ -159,31 +222,46 @@ export default function CreatePage() {
         </div>
       </section>
 
-      <section className="create-projects-section section-pad" id="projects">
-        <div className="create-projects-shell">
-          <header className="create-projects-header">
-            <div className="create-projects-heading">
-              <span className="create-section-number">03 / CREATE</span>
-              <h2 className="create-projects-title">Create</h2>
-              <p className="create-projects-subtitle">projects & experiments</p>
-            </div>
-            <div className="create-projects-intro">
-              <span>SELECTED WORK</span>
-              <p>Two pieces of work from an evolving digital practice.</p>
-            </div>
-          </header>
+      <section className="create-intro section-pad" id="projects">
+        <div className="create-intro-line" />
+        <div className="create-intro-grid">
+          <span className="create-eyebrow">03 / THE ARCHIVE</span>
+          <div>
+            <h2>Things that<br /><em>took shape.</em></h2>
+            <p>Interfaces, systems, and experiments made while figuring things out.</p>
+          </div>
+        </div>
+      </section>
 
-          <div className="create-project-archive" id="create-project-archive">
-            {createProjects.map((project) => (
-              <CreateProjectCard
-                key={project.index}
+      {featured && (
+        <section className="create-featured-section section-pad" aria-label="Featured project">
+          <div className="create-shell">
+            <FeaturedProject
+              project={featured}
+              isOpen={openProject === featured.id}
+              onToggle={() => setOpenProject(current => current === featured.id ? null : featured.id)}
+            />
+          </div>
+        </section>
+      )}
+
+      <section className="create-archive-section section-pad" aria-label="Other projects">
+        <div className="create-shell">
+          <div className="create-archive-heading">
+            <div>
+              <span className="create-eyebrow">02—03 / EARLIER WORK</span>
+              <h2>Other things<br /><em>I’ve built.</em></h2>
+            </div>
+            <p>Earlier pieces of the same learning curve.</p>
+          </div>
+
+          <div className="create-archive-list">
+            {archive.map(project => (
+              <ArchiveProject
+                key={project.id}
                 project={project}
-                isOpen={openProject === project.index}
-                onToggle={() =>
-                  setOpenProject((current) =>
-                    current === project.index ? null : project.index
-                  )
-                }
+                isOpen={openProject === project.id}
+                onToggle={() => setOpenProject(current => current === project.id ? null : project.id)}
               />
             ))}
           </div>
@@ -192,9 +270,9 @@ export default function CreatePage() {
 
       <section className="create-closing section-pad" aria-label="Return to homepage">
         <div className="create-closing-inner">
-          <span className="create-closing-eyebrow">END OF CURRENT CHAPTER</span>
-          <p className="create-closing-line">Built from curiosity. Still becoming.</p>
-          <a className="create-closing-link" href="/">
+          <span className="create-eyebrow">CURRENT CHAPTER</span>
+          <p>Still learning. Still building. Still becoming.</p>
+          <a href="/" className="create-closing-link">
             RETURN TO HOME <span aria-hidden="true">↗</span>
           </a>
         </div>
