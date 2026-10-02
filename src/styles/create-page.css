@@ -134,7 +134,7 @@
   .create-page .create-archive-footer{margin-top:17px;padding-top:11px;font-size:6.5px}
   .create-page .create-archive-footer .create-detail-toggle{min-height:34px}
   .create-page .create-archive-details-inner{grid-template-columns:1fr}
-  .create-page .create-archive-details.is-visible{max-height:420px;padding-top:12px}
+  .create-page .create-archive-details.is-visible{padding-top:12px}
   .create-page .create-archive-details-inner>div{padding-bottom:12px}
   .create-page .create-closing{padding-bottom:var(--section-space-major-mobile)}
   .create-page .create-closing-inner{padding-top:24px}
