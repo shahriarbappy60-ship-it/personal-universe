@@ -62,7 +62,20 @@ function FeaturedProject({ project, isOpen, onToggle }) {
 
         <div className="create-featured-heading">
           <span className="create-project-state">{project.status}</span>
-          <h2>{project.title}</h2>
+          <h2
+            className="create-project-title-toggle"
+            role="button"
+            tabIndex="0"
+            aria-expanded={isOpen}
+            aria-controls={`create-detail-${project.id}`}
+            onClick={onToggle}
+            onKeyDown={event => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onToggle();
+              }
+            }}
+          >{project.title}</h2>
           <p>{project.description}</p>
         </div>
 
@@ -133,7 +146,20 @@ function ArchiveProject({ project, isOpen, onToggle }) {
         </div>
 
         <div className="create-archive-title-row">
-          <h3>{project.title}</h3>
+          <h3
+            className="create-project-title-toggle"
+            role="button"
+            tabIndex="0"
+            aria-expanded={isOpen}
+            aria-controls={`create-detail-${project.id}`}
+            onClick={onToggle}
+            onKeyDown={event => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                onToggle();
+              }
+            }}
+          >{project.title}</h3>
           <span className="create-project-state">{project.status}</span>
         </div>
 
