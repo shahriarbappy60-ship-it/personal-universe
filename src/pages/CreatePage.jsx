@@ -167,16 +167,23 @@ function ArchiveProject({ project, isOpen, onToggle }) {
 
         <div className="create-archive-footer">
           <span>{project.technologies.join(' · ')}</span>
-          <button
-            type="button"
-            className="create-detail-toggle"
-            aria-expanded={isOpen}
-            aria-controls={`create-detail-${project.id}`}
-            onClick={onToggle}
-          >
-            <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
-            <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
-          </button>
+          <div className="create-archive-actions">
+            <button
+              type="button"
+              className="create-detail-toggle"
+              aria-expanded={isOpen}
+              aria-controls={`create-detail-${project.id}`}
+              onClick={onToggle}
+            >
+              <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
+              <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
+            </button>
+            {project.link && (
+              <a className="create-source-link" href={project.link} target="_blank" rel="noreferrer">
+                SOURCE <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
         </div>
       </div>
 
