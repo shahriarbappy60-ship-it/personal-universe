@@ -62,20 +62,7 @@ function FeaturedProject({ project, isOpen, onToggle }) {
 
         <div className="create-featured-heading">
           <span className="create-project-state">{project.status}</span>
-          <h2
-            className="create-project-title-toggle"
-            role="button"
-            tabIndex="0"
-            aria-expanded={isOpen}
-            aria-controls={`create-detail-${project.id}`}
-            onClick={onToggle}
-            onKeyDown={event => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                onToggle();
-              }
-            }}
-          >{project.title}</h2>
+          <h2>{project.title}</h2>
           <p>{project.description}</p>
         </div>
 
@@ -101,7 +88,7 @@ function FeaturedProject({ project, isOpen, onToggle }) {
             <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
             <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
           </button>
-          {project.link && (
+          {project.link && project.id === 'project-01' && (
             <a
               className="create-source-link"
               href={project.link}
@@ -146,20 +133,7 @@ function ArchiveProject({ project, isOpen, onToggle }) {
         </div>
 
         <div className="create-archive-title-row">
-          <h3
-            className="create-project-title-toggle"
-            role="button"
-            tabIndex="0"
-            aria-expanded={isOpen}
-            aria-controls={`create-detail-${project.id}`}
-            onClick={onToggle}
-            onKeyDown={event => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                onToggle();
-              }
-            }}
-          >{project.title}</h3>
+          <h3>{project.title}</h3>
           <span className="create-project-state">{project.status}</span>
         </div>
 
@@ -167,23 +141,16 @@ function ArchiveProject({ project, isOpen, onToggle }) {
 
         <div className="create-archive-footer">
           <span>{project.technologies.join(' · ')}</span>
-          <div className="create-archive-actions">
-            <button
-              type="button"
-              className="create-detail-toggle"
-              aria-expanded={isOpen}
-              aria-controls={`create-detail-${project.id}`}
-              onClick={onToggle}
-            >
-              <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
-              <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
-            </button>
-            {project.link && (
-              <a className="create-source-link" href={project.link} target="_blank" rel="noreferrer">
-                SOURCE <span aria-hidden="true">↗</span>
-              </a>
-            )}
-          </div>
+          <button
+            type="button"
+            className="create-detail-toggle"
+            aria-expanded={isOpen}
+            aria-controls={`create-detail-${project.id}`}
+            onClick={onToggle}
+          >
+            <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
+            <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
+          </button>
         </div>
       </div>
 
