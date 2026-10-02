@@ -85,7 +85,7 @@ function FeaturedProject({ project, isOpen, onToggle }) {
             aria-controls={`create-detail-${project.id}`}
             onClick={onToggle}
           >
-            <span>{isOpen ? 'CLOSE DETAILS' : 'READ THE BUILD'}</span>
+            <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
             <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
           </button>
           {project.link && project.id === 'project-01' && (
@@ -101,21 +101,19 @@ function FeaturedProject({ project, isOpen, onToggle }) {
         </div>
 
         <div id={`create-detail-${project.id}`} className={`create-featured-details ${isOpen ? 'is-visible' : ''}`} aria-hidden={!isOpen}>
-          <div className="create-detail-overview">
-            <span>OVERVIEW</span>
-            <p>{project.overview}</p>
-          </div>
-          <div>
-            <span>ROLE</span>
-            <p>{project.role.join(' · ')}</p>
-          </div>
-          <div>
-            <span>BUILT WITH</span>
-            <p>{project.technologies.join(' · ')}</p>
-          </div>
-          <div className="create-detail-build">
-            <span>BUILD NOTE</span>
-            <p>{project.buildNote}</p>
+          <div className="create-featured-details-inner">
+            <div className="create-detail-overview">
+              <span>OVERVIEW</span>
+              <p>{project.overview}</p>
+            </div>
+            <div>
+              <span>ROLE</span>
+              <p>{project.role.join(' · ')}</p>
+            </div>
+            <div className="create-detail-build">
+              <span>BUILD NOTE</span>
+              <p>{project.buildNote}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -157,21 +155,23 @@ function ArchiveProject({ project, isOpen, onToggle }) {
       </div>
 
       <div id={`create-detail-${project.id}`} className={`create-archive-details ${isOpen ? 'is-visible' : ''}`} aria-hidden={!isOpen}>
-        <div>
-          <span>FOCUS</span>
-          <p>{project.focus}</p>
-        </div>
-        <div>
-          <span>ROLE</span>
-          <p>{project.role.join(' · ')}</p>
-        </div>
-        <div>
-          <span>OVERVIEW</span>
-          <p>{project.overview}</p>
-        </div>
-        <div>
-          <span>BUILD NOTE</span>
-          <p>{project.buildNote}</p>
+        <div className="create-archive-details-inner">
+          <div>
+            <span>FOCUS</span>
+            <p>{project.focus}</p>
+          </div>
+          <div>
+            <span>ROLE</span>
+            <p>{project.role.join(' · ')}</p>
+          </div>
+          <div>
+            <span>OVERVIEW</span>
+            <p>{project.overview}</p>
+          </div>
+          <div>
+            <span>BUILD NOTE</span>
+            <p>{project.buildNote}</p>
+          </div>
         </div>
       </div>
     </article>
@@ -257,7 +257,7 @@ export default function CreatePage() {
         <div className="create-shell">
           <div className="create-archive-heading">
             <div>
-              <span className="create-eyebrow">02—03 / EARLIER WORK</span>
+              <span className="create-eyebrow">EARLIER WORK</span>
               <h2>Other things<br /><em>I’ve built.</em></h2>
             </div>
             <p>Earlier pieces of the same learning curve.</p>
