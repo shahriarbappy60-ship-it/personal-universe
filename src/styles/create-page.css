@@ -71,6 +71,7 @@
 .create-page .create-archive-title-row .create-project-state{flex:0 0 auto;color:var(--faint);font-size:7px}
 .create-page .create-archive-main>p{max-width:690px;margin:12px 0 0;color:var(--muted);font-size:12px;line-height:1.72}
 .create-page .create-archive-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:20px;padding-top:14px;color:var(--faint);font-size:7px;line-height:1.5}
+.create-page .create-archive-actions{display:flex;align-items:center;gap:20px}
 .create-page .create-archive-footer .create-detail-toggle{min-height:34px;color:var(--muted)}
 .create-page .create-archive-details{grid-column:2}
 .create-page .create-archive-details-inner{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px}
