@@ -9117,82 +9117,6 @@ html[data-theme="light"] .project-archive-row:hover .archive-row-title {
 }
 
 @media (max-width: 768px) {
-    .swipe-hint-nudge {
-        animation: swipeHintNudge 2.5s cubic-bezier(0.25, 1, 0.5, 1) 1;
-        animation-delay: 1.5s; /* Wait a bit after appearing */
-    }
-}
-}
-
-/* CREATE — mobile View More is an editorial footer action, never a button */
-@media(max-width:900px){
-  .create-page .project-archive-row{
-    padding-top:30px;
-    padding-bottom:0;
-  }
-  .create-page .archive-row-header{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-  }
-  .create-page .archive-row-main{width:100%;max-width:none}
-  .create-page .archive-row-side{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    gap:0;
-    margin-top:0;
-    padding-top:22px;
-  }
-  .create-page .archive-side-rail{
-    width:100%;
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:16px 22px;
-    max-width:none;
-    padding-bottom:4px;
-  }
-  .create-page .archive-row-arrow-wrap{
-    width:100%;
-    flex:0 0 auto;
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    margin-top:18px;
-    padding:12px 0 20px;
-    border-top:1px solid var(--line-soft);
-  }
-  .create-page .archive-row-arrow{
-    display:inline-flex;
-    width:auto;
-    min-height:32px;
-    padding:8px 0;
-    margin:0;
-    border:0;
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-    font:500 9px/1 var(--font-mono);
-    letter-spacing:.14em;
-    color:var(--faint);
-    text-transform:uppercase;
-    transform:none!important;
-  }
-  .create-page .project-archive-row:hover .archive-row-arrow,
-  .create-page .project-archive-row.is-expanded .archive-row-arrow{
-    color:var(--text);
-    transform:none!important;
-  }
-}
-@media(max-width:420px){
-  .create-page .archive-side-rail{grid-template-columns:1fr}
-}
-
-/* =========================================================
-   WONDER / CREATE — CENTERED MOBILE RHYTHM
-   Shared with Self's refined mobile composition.
-========================================================= */
 @media (max-width:768px){
   .wonder-page .observe-hero,
   .create-page .observe-hero{
@@ -10439,26 +10363,3 @@ html.js-ready .hero-celestial-stage{
     .page-transition--enter .page-transition__veil,
     .page-transition--enter .page-transition__veil::after,
     .page-transition--enter .page-transition__chapter {
-        animation: none !important;
-    }
-
-    .page-transition--exit .page-transition__stage,
-    .page-transition--enter .page-transition__stage {
-        opacity: 1;
-        transform: none;
-        filter: none;
-    }
-
-    .page-transition__veil {
-    }
-    .create-page .archive-feature-visual .project-celestial-stage {
-        transform:translate(-50%,-50%) scale(.30);
-    }
-}
-
-
-/* Create archive controls */
-.archive-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:20px;flex-wrap:wrap;margin-top:30px;padding-top:28px;border-top:1px dotted var(--line)}
-.archive-close-button{appearance:none;background:none;border:0;padding:0;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .25s ease}
-.archive-close-button:hover{color:var(--text)}
-@media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
