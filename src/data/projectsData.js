@@ -68,7 +68,7 @@ export const projectsData = [
     description: 'An interactive event portal and registration interface designed for a university engineering and technology symposium.',
     status: 'Foundation',
     year: '2024',
-    link: 'https://github.com/shahriarbappy60-ship-it',
+    link: 'https://github.com/shahriarbappy60-ship-it/SEU-Tech-Event',
     featured: false,
     highlight: 'Event UI & Responsive Framing',
     overview: 'A digital portal serving as the primary touchpoint for a technical symposium, providing event details, schedules, and a streamlined registration flow.',
