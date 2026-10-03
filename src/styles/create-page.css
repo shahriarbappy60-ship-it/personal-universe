@@ -581,3 +581,32 @@
   .create-page .create-project-details,
   .create-page .create-detail-toggle span:last-child{transition:none}
 }
+/* Surface pass — subtle project cards, keeping the mother design quiet. */
+.create-page .create-featured-project{
+  padding:clamp(18px,2.2vw,28px);
+  border:1px solid rgba(243,243,239,.075);
+  border-radius:18px;
+  background:linear-gradient(145deg,rgba(243,243,239,.028),rgba(243,243,239,.012));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.018);
+}
+.create-page .create-featured-header{padding:8px 4px 26px}
+.create-page .create-celestial-visual{border:1px solid rgba(243,243,239,.065);border-radius:13px;background:radial-gradient(circle at 50% 50%,rgba(243,243,239,.05),transparent 20%),var(--bg-deep)}
+.create-page .create-featured-bottom{padding:20px 4px 2px}
+.create-page .create-project-details.is-visible{margin:18px 4px 2px;padding:18px 0 0}
+.create-page .create-archive-list{border:0;display:grid;gap:12px}
+.create-page .create-archive-project{position:relative;grid-template-columns:42px minmax(0,1fr);column-gap:18px;padding:24px 26px;border:1px solid rgba(243,243,239,.065);border-radius:14px;background:rgba(243,243,239,.015);transition:border-color 240ms ease,background 240ms ease}
+.create-page .create-archive-project:hover,.create-page .create-archive-project.is-open{border-color:rgba(243,243,239,.105);background:rgba(243,243,239,.022)}
+.create-page .create-archive-index{padding-top:2px}
+.create-page .create-archive-content{padding:0}
+.create-page .create-archive-footer{margin-top:18px;padding-top:12px;border-top:1px solid rgba(243,243,239,.055)}
+.create-page .create-archive-project .create-project-details.is-visible{margin-top:16px}
+@media(max-width:600px){
+ .create-page .create-featured-project{padding:13px;border-radius:14px}
+ .create-page .create-featured-header{padding:9px 2px 20px}
+ .create-page .create-celestial-visual{height:245px;border-radius:10px}
+ .create-page .create-featured-bottom{padding:16px 2px 1px}
+ .create-page .create-project-details.is-visible{margin-inline:2px}
+ .create-page .create-archive-list{gap:10px}
+ .create-page .create-archive-project{grid-template-columns:27px minmax(0,1fr);column-gap:9px;padding:19px 17px;border-radius:12px}
+ .create-page .create-archive-footer{margin-top:15px}
+}
