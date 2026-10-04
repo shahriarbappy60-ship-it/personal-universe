@@ -798,21 +798,21 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
 }
 
 .theme-toggle {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    min-height: 36px;
-    max-width: 36px;
-    max-height: 36px;
+    position: relative;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--line);
     border-radius: 50%;
     background: transparent;
+    color: var(--text);
     cursor: pointer;
     flex-shrink: 0;
     aspect-ratio: 1 / 1;
@@ -821,10 +821,32 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
     -webkit-appearance: none;
     appearance: none;
     -webkit-tap-highlight-color: transparent !important;
-    -webkit-touch-callout: none;
     user-select: none;
     -webkit-user-select: none;
-    transition: transform .4s var(--ease-spring);
+    transition:
+        border-color .35s var(--ease),
+        background-color .35s var(--ease),
+        color .35s var(--ease),
+        transform .45s var(--ease-spring);
+}
+
+.theme-toggle::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    border: 1px solid var(--line-soft);
+    opacity: .7;
+    pointer-events: none;
+}
+
+.theme-toggle:hover {
+    transform: rotate(45deg);
+    border-color: var(--line-strong);
+}
+
+.theme-toggle:active {
+    transform: scale(.92);
 }
 
 .theme-toggle:focus,
@@ -833,58 +855,34 @@ html[data-theme="light"] .navbar-floating-back-btn:hover {
 .theme-toggle:active {
     outline: none !important;
     box-shadow: none !important;
-    border-color: var(--line) !important;
     background: transparent !important;
-}
-
-.theme-toggle:hover {
-    transform: rotate(45deg);
-}
-
-.theme-toggle:active {
-    transform: scale(0.92);
 }
 
 .theme-icon {
-    font-size: 16.5px;
-    line-height: 1;
-    display: flex;
+    position: relative;
+    z-index: 1;
+    width: 17px;
+    height: 17px;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+}
+
+.theme-icon svg {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
-    pointer-events: none;
-    user-select: none;
-    text-align: center;
+    display: block;
+    transition: transform .55s var(--ease), opacity .3s ease;
 }
 
 html[data-theme="light"] .theme-toggle {
-    border-color: var(--line) !important;
+    border-color: var(--line);
     color: var(--text);
 }
 
-html[data-theme="light"] .theme-toggle:focus,
-html[data-theme="light"] .theme-toggle:focus-visible,
-html[data-theme="light"] .theme-toggle:hover,
-html[data-theme="light"] .theme-toggle:active {
-    outline: none !important;
-    box-shadow: none !important;
-    border-color: var(--line) !important;
-    background: transparent !important;
-}
-
 html[data-theme="light"] .theme-toggle:hover {
-    transform: rotate(45deg);
-}
-
-html[data-theme="light"] .theme-icon-moon {
-    display: none;
-}
-
-html[data-theme="dark"] .theme-icon-sun {
-    display: none;
+    border-color: var(--line-strong);
 }
 
 .connect-button {
