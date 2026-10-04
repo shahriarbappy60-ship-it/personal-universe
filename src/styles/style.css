@@ -11037,3 +11037,31 @@ html.js-ready .hero-celestial-stage{
 .archive-close-button{appearance:none;background:none;border:0;padding:0;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .25s ease}
 .archive-close-button:hover{color:var(--text)}
 @media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
+
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    .theme-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media (max-width: 420px) {
+    .theme-toggle {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+        min-height: 30px;
+    }
+
+    .theme-icon {
+        width: 13px;
+        height: 13px;
+    }
+}
