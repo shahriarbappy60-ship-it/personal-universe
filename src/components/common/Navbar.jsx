@@ -90,7 +90,16 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
           onClick={toggleTheme}
         >
           <span className="theme-icon" aria-hidden="true">
-            {theme === 'light' ? '☼' : '◐'}
+            {theme === 'light' ? (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <circle cx="12" cy="12" r="4.25" stroke="currentColor" strokeWidth="1.35"/>
+                <path d="M12 2.5v2.25M12 19.25v2.25M21.5 12h-2.25M4.75 12H2.5M18.72 5.28l-1.6 1.6M6.88 17.12l-1.6 1.6M18.72 18.72l-1.6-1.6M6.88 6.88l-1.6-1.6" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M20 15.1A8.25 8.25 0 0 1 8.9 4 8.25 8.25 0 1 0 20 15.1Z" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            )}
           </span>
         </button>
 
