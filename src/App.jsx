@@ -17,6 +17,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import './styles/style.css';
 import './styles/observe.css';
 import './styles/wonder.css';
+import './styles/editorial-refinement.css';
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
