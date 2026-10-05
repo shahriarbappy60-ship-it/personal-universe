@@ -329,7 +329,7 @@ a {
 ========================================================= */
 
 .noise {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: 200;
     pointer-events: none;
@@ -497,7 +497,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 ========================================================= */
 
 .site-header {
-    position: fixed;
+    position: absolute;
     top: 18px;
     left: 50%;
     width: min(1240px, calc(100% - 36px));
@@ -11175,3 +11175,118 @@ html[data-theme="light"] .create-page .archive-visit-link:hover,
 html[data-theme="light"] .create-page .archive-close-button:hover {
     color: #141414 !important;
 }
+
+
+/* =========================================================
+   WHITE MODE / MOTHER DESIGN — FINAL CALIBRATION
+   Silver canvas · smoked glass · editorial typography
+   Dark mode intentionally untouched.
+========================================================= */
+html[data-theme="light"] {
+  --header-bg: rgba(30,30,30,.16);
+  --header-bg-scrolled: rgba(30,30,30,.20);
+  --solid-bg: #141414;
+  --solid-text: #f3f3ef;
+  --solid-bg-hover: #000000;
+  --line-soft: rgba(0,0,0,.06);
+  --line: rgba(0,0,0,.10);
+  --line-strong: rgba(0,0,0,.16);
+}
+html[data-theme="light"] .site-header {
+  position: absolute !important;
+  background: rgba(30,30,30,.16) !important;
+  border-color: rgba(0,0,0,.12) !important;
+  box-shadow: 0 12px 32px rgba(0,0,0,.075), inset 0 -1px 0 rgba(0,0,0,.045) !important;
+  backdrop-filter: blur(36px) saturate(125%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(125%) contrast(102%) !important;
+}
+html[data-theme="light"] .site-header.scrolled {
+  background: rgba(30,30,30,.20) !important;
+  border-color: rgba(0,0,0,.14) !important;
+  box-shadow: 0 18px 42px rgba(0,0,0,.10), inset 0 -1px 0 rgba(0,0,0,.055) !important;
+}
+html[data-theme="light"] .desktop-nav a { color:#363636 !important; }
+html[data-theme="light"] .desktop-nav a:hover,
+html[data-theme="light"] .desktop-nav a.active {
+  color:#141414 !important;
+  background:rgba(0,0,0,.075) !important;
+  border-color:rgba(0,0,0,.12) !important;
+  box-shadow:none !important;
+}
+html[data-theme="light"] .desktop-nav a.active {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08) !important;
+}
+html[data-theme="light"] .brand,
+html[data-theme="light"] .clock { color:#363636 !important; }
+html[data-theme="light"] .theme-toggle {
+  color:#141414 !important;
+  background:rgba(0,0,0,.075) !important;
+  border-color:rgba(0,0,0,.12) !important;
+}
+html[data-theme="light"] .connect-button {
+  color:#f3f3ef !important;
+  background:#141414 !important;
+  border-color:#141414 !important;
+  box-shadow:none !important;
+}
+html[data-theme="light"] .navbar-floating-back-btn {
+  position:absolute !important;
+  color:#141414 !important;
+  background:rgba(0,0,0,.075) !important;
+  border-color:rgba(0,0,0,.12) !important;
+  box-shadow:none !important;
+}
+html[data-theme="light"] .mobile-menu {
+  background:rgba(30,30,30,.92) !important;
+  border-color:rgba(0,0,0,.16) !important;
+}
+html[data-theme="light"] .mobile-glass-pill-btn {
+  color:#363636 !important;
+  background:rgba(0,0,0,.06) !important;
+  border-color:rgba(0,0,0,.10) !important;
+}
+html[data-theme="light"] .mobile-glass-pill-btn.active {
+  color:#141414 !important;
+  background:rgba(0,0,0,.12) !important;
+  border-color:rgba(0,0,0,.16) !important;
+}
+html[data-theme="light"] .mobile-pill-arrow,
+html[data-theme="light"] .mobile-meta-info { color:#525252 !important; }
+html[data-theme="light"] .mobile-connect-btn {
+  color:#f3f3ef !important;
+  background:#141414 !important;
+  border-color:#141414 !important;
+}
+html[data-theme="light"] .site-footer {
+  border-color:var(--line) !important;
+}
+html[data-theme="light"] .footer-brand { color:#141414 !important; }
+html[data-theme="light"] .footer-nav-link,
+html[data-theme="light"] .footer-coords,
+html[data-theme="light"] .footer-copy,
+html[data-theme="light"] .footer-social-link { color:#525252 !important; }
+html[data-theme="light"] .footer-nav-link:hover,
+html[data-theme="light"] .footer-social-link:hover { color:#141414 !important; }
+html[data-theme="light"] .conversation-modal-panel {
+  background:rgba(188,188,188,.94) !important;
+  border-color:rgba(0,0,0,.14) !important;
+  box-shadow:0 30px 90px rgba(0,0,0,.20) !important;
+}
+html[data-theme="light"] .conversation-modal-title { color:#141414 !important; }
+html[data-theme="light"] .conversation-field label { color:#525252 !important; }
+html[data-theme="light"] .conversation-field input,
+html[data-theme="light"] .conversation-field textarea {
+  color:#141414 !important;
+  background:rgba(0,0,0,.055) !important;
+  border-color:rgba(0,0,0,.12) !important;
+}
+html[data-theme="light"] .conversation-field input:focus,
+html[data-theme="light"] .conversation-field textarea:focus {
+  border-color:rgba(0,0,0,.22) !important;
+  background:rgba(0,0,0,.075) !important;
+}
+html[data-theme="light"] .modal-close { color:#525252 !important; }
+html[data-theme="light"] .modal-close:hover { color:#141414 !important; }
+html[data-theme="light"] .conversation-error-state { color:#5a2a2a !important; }
+html[data-theme="light"] .conversation-sent-state { color:#363636 !important; }
+html[data-theme="light"] .sent-indicator { color:#141414 !important; }
