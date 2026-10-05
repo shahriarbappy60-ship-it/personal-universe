@@ -11290,3 +11290,51 @@ html[data-theme="light"] .modal-close:hover { color:#141414 !important; }
 html[data-theme="light"] .conversation-error-state { color:#5a2a2a !important; }
 html[data-theme="light"] .conversation-sent-state { color:#363636 !important; }
 html[data-theme="light"] .sent-indicator { color:#141414 !important; }
+
+
+/* =========================================================
+   WHITE MODE / MATERIAL CONSISTENCY
+   No bright/white edge highlights. Controls and cards use
+   the same smoked-dark material language as the navbar.
+   Dark mode intentionally untouched.
+========================================================= */
+html[data-theme="light"] .btn-glass,
+html[data-theme="light"] .photo-card-item,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .project-card-item,
+html[data-theme="light"] .project-feature-portrait,
+html[data-theme="light"] .project-secondary-column .project-card,
+html[data-theme="light"] .portrait-card,
+html[data-theme="light"] .self-portrait-frame,
+html[data-theme="light"] .now-card,
+html[data-theme="light"] .becoming-node-card {
+    background: rgba(30,30,30,.075) !important;
+    border: 1px solid rgba(0,0,0,.12) !important;
+    border-top-color: rgba(0,0,0,.12) !important;
+    border-left-color: rgba(0,0,0,.12) !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,.055) !important;
+}
+
+html[data-theme="light"] .btn-glass:hover,
+html[data-theme="light"] .photo-card-item:hover,
+html[data-theme="light"] .project-card:hover,
+html[data-theme="light"] .project-card-item:hover,
+html[data-theme="light"] .project-feature-portrait:hover,
+html[data-theme="light"] .project-secondary-column .project-card:hover,
+html[data-theme="light"] .now-card:hover,
+html[data-theme="light"] .becoming-node-card:hover {
+    background: rgba(30,30,30,.11) !important;
+    border-color: rgba(0,0,0,.16) !important;
+    border-top-color: rgba(0,0,0,.16) !important;
+    border-left-color: rgba(0,0,0,.16) !important;
+    box-shadow: 0 14px 34px rgba(0,0,0,.075) !important;
+}
+
+html[data-theme="light"] .btn-outline {
+    border-color: rgba(0,0,0,.12) !important;
+}
+
+html[data-theme="light"] .btn-outline:hover {
+    background: rgba(30,30,30,.055) !important;
+    border-color: rgba(0,0,0,.18) !important;
+}
