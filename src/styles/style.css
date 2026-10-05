@@ -497,7 +497,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 ========================================================= */
 
 .site-header {
-    position: fixed;
+    position: absolute;
     top: 18px;
     left: 50%;
     width: min(1240px, calc(100% - 36px));
@@ -11042,11 +11042,11 @@ html.js-ready .hero-celestial-stage{
 
 
 /* =========================================================
-   PHASE 1 CORE NAVBAR — FIXED VIEWPORT CONTRACT
-   Navbar stays in place while page content scrolls underneath.
+   PHASE 1 CORE NAVBAR — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
+   This rule intentionally overrides any earlier fixed/sticky declaration.
 ========================================================= */
 .site-header[data-floating-navbar="true"]{
-  position:fixed !important;
+  position:absolute !important;
   inset:auto auto auto 50% !important;
   top:18px !important;
   right:auto !important;
@@ -11054,7 +11054,7 @@ html.js-ready .hero-celestial-stage{
   transform:translate3d(-50%,0,0) !important;
 }
 .site-header[data-floating-navbar="true"].scrolled{
-  position:fixed !important;
+  position:absolute !important;
 }
 @media(max-width:650px){
   .site-header[data-floating-navbar="true"]{
@@ -11066,9 +11066,10 @@ html.js-ready .hero-celestial-stage{
 
 
 /* =========================================================
-   PHASE 1 CORE BACK BUTTON — FIXED VIEWPORT CONTRACT
+   PHASE 1 CORE BACK BUTTON — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
+   Keep the back button in document flow with the navbar.
 ========================================================= */
 .navbar-floating-back-btn,
 .navbar-floating-back-btn.scrolled {
-    position: fixed !important;
+    position: absolute !important;
 }
