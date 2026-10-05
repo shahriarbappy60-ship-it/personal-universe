@@ -11040,28 +11040,26 @@ html.js-ready .hero-celestial-stage{
 .archive-close-button:hover{color:var(--text)}
 @media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
 
+
 /* =========================================================
-   PHASE 1 CORE NAVBAR — TRUE FLOATING HEADER
-   The header belongs to document flow/hero, never viewport.
-   Do not convert this to fixed/sticky.
+   PHASE 1 CORE NAVBAR — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
+   This rule intentionally overrides any earlier fixed/sticky declaration.
 ========================================================= */
-.site-header{
+.site-header[data-floating-navbar="true"]{
   position:absolute !important;
+  inset:auto auto auto 50% !important;
   top:18px !important;
-  left:50% !important;
   right:auto !important;
   bottom:auto !important;
-  transform:translateX(-50%) !important;
+  transform:translate3d(-50%,0,0) !important;
 }
-.site-header.scrolled{
+.site-header[data-floating-navbar="true"].scrolled{
   position:absolute !important;
-  top:18px !important;
 }
 @media(max-width:650px){
-  .site-header{
+  .site-header[data-floating-navbar="true"]{
     top:10px !important;
     left:50% !important;
-    right:auto !important;
-    transform:translateX(-50%) !important;
+    transform:translate3d(-50%,0,0) !important;
   }
 }
