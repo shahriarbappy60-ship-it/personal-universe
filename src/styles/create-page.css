@@ -340,3 +340,48 @@
 @media(prefers-reduced-motion:reduce){
   .create-page .create-celestial-stage,.create-page .create-project-details,.create-page .create-detail-toggle span:last-child{transition:none}
 }
+
+
+/* WHITE MODE — CREATE / follows Wonder editorial hierarchy */
+html[data-theme="light"] .create-page h1,
+html[data-theme="light"] .create-page h2,
+html[data-theme="light"] .create-page h3,
+html[data-theme="light"] .create-page .archive-row-title,
+html[data-theme="light"] .create-page .gateway-title { color:#141414 !important; }
+html[data-theme="light"] .create-page em,
+html[data-theme="light"] .create-page .editorial-serif,
+html[data-theme="light"] .create-page .gateway-title em { color:#1e1e1e !important; }
+html[data-theme="light"] .create-page p,
+html[data-theme="light"] .create-page .archive-row-desc,
+html[data-theme="light"] .create-page .expanded-block p,
+html[data-theme="light"] .create-page .expanded-list li,
+html[data-theme="light"] .create-page .gateway-subtitle { color:#363636 !important; }
+html[data-theme="light"] .create-page .archive-row-meta,
+html[data-theme="light"] .create-page .archive-row-type,
+html[data-theme="light"] .create-page .rail-label,
+html[data-theme="light"] .create-page .rail-value,
+html[data-theme="light"] .create-page .expanded-eyebrow,
+html[data-theme="light"] .create-page .archive-row-arrow,
+html[data-theme="light"] .create-page .archive-visit-link,
+html[data-theme="light"] .create-page .archive-close-button { color:#525252 !important; }
+html[data-theme="light"] .create-page .project-archive-row,
+html[data-theme="light"] .create-page .expanded-project {
+  border-color:rgba(0,0,0,.10) !important;
+}
+html[data-theme="light"] .create-page .project-archive-row:hover {
+  background:rgba(0,0,0,.035) !important;
+  border-color:rgba(0,0,0,.14) !important;
+}
+html[data-theme="light"] .create-page .expanded-project {
+  background:rgba(0,0,0,.035) !important;
+}
+html[data-theme="light"] .create-page .archive-visit-link:hover,
+html[data-theme="light"] .create-page .archive-close-button:hover,
+html[data-theme="light"] .create-page .archive-row-arrow:hover { color:#141414 !important; }
+html[data-theme="light"] .create-page .button,
+html[data-theme="light"] .create-page button.primary,
+html[data-theme="light"] .create-page a.button-primary {
+  color:#f3f3ef !important;
+  background:#141414 !important;
+  border-color:#141414 !important;
+}
