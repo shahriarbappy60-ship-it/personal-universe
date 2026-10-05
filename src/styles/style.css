@@ -11338,3 +11338,19 @@ html[data-theme="light"] .btn-outline:hover {
     background: rgba(30,30,30,.055) !important;
     border-color: rgba(0,0,0,.18) !important;
 }
+
+
+/* =========================================================
+   NAVBAR CORE POSITIONING — MOBILE REGRESSION GUARD
+   The header is intentionally document-flow positioned.
+   It must scroll away with the page on touch devices.
+   Never convert it to fixed/sticky positioning.
+========================================================= */
+@media (max-width: 950px) {
+  .site-header {
+    position: absolute !important;
+    top: 10px !important;
+    bottom: auto !important;
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+}
