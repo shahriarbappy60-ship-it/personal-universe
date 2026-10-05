@@ -497,7 +497,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 ========================================================= */
 
 .site-header {
-    position: fixed;
+    position: absolute;
     top: 18px;
     left: 50%;
     width: min(1240px, calc(100% - 36px));
@@ -694,7 +694,7 @@ html[data-theme="light"] .desktop-nav a.active {
    TOP NAVBAR FLOATING BACK BUTTON (RESTFUL, NON-HIGHLIGHTED)
 ========================================================= */
 .navbar-floating-back-btn {
-    position: fixed;
+    position: absolute;
     top: 26px;
     left: calc(50% - 620px - 48px - 14px);
     width: 48px;
