@@ -1429,3 +1429,42 @@ html[data-theme="light"] .wonder-essay-pill-cta {
     justify-content:flex-end;
   }
 }
+
+
+/* WHITE MODE — WONDER / editorial writing */
+html[data-theme="light"] .wonder-page h1,
+html[data-theme="light"] .wonder-page h2,
+html[data-theme="light"] .wonder-page h3,
+html[data-theme="light"] .wonder-page .wonder-title,
+html[data-theme="light"] .wonder-page .writing-title { color:#141414 !important; }
+html[data-theme="light"] .wonder-page em,
+html[data-theme="light"] .wonder-page .wonder-quote,
+html[data-theme="light"] .wonder-page .writing-lead,
+html[data-theme="light"] .wonder-page blockquote { color:#1e1e1e !important; }
+html[data-theme="light"] .wonder-page p,
+html[data-theme="light"] .wonder-page .writing-excerpt,
+html[data-theme="light"] .wonder-page .writing-body { color:#363636 !important; }
+html[data-theme="light"] .wonder-page .eyebrow,
+html[data-theme="light"] .wonder-page .writing-meta,
+html[data-theme="light"] .wonder-page .writing-category,
+html[data-theme="light"] .wonder-page .writing-index,
+html[data-theme="light"] .wonder-page .share-button,
+html[data-theme="light"] .wonder-page .read-button,
+html[data-theme="light"] .wonder-page .close-button { color:#525252 !important; }
+html[data-theme="light"] .wonder-page .writing-row {
+  border-color:rgba(0,0,0,.10) !important;
+  background:transparent !important;
+}
+html[data-theme="light"] .wonder-page .writing-row:hover {
+  background:rgba(0,0,0,.035) !important;
+  border-color:rgba(0,0,0,.14) !important;
+}
+html[data-theme="light"] .wonder-page .writing-reader,
+html[data-theme="light"] .wonder-page .expanded-writing,
+html[data-theme="light"] .wonder-page .writing-content {
+  background:rgba(0,0,0,.035) !important;
+  border-color:rgba(0,0,0,.10) !important;
+}
+html[data-theme="light"] .wonder-page .read-button:hover,
+html[data-theme="light"] .wonder-page .share-button:hover,
+html[data-theme="light"] .wonder-page .close-button:hover { color:#141414 !important; }
