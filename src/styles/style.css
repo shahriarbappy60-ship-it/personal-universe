@@ -497,7 +497,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 ========================================================= */
 
 .site-header {
-    position: absolute;
+    position: fixed;
     top: 18px;
     left: 50%;
     width: min(1240px, calc(100% - 36px));
@@ -11341,14 +11341,14 @@ html[data-theme="light"] .btn-outline:hover {
 
 
 /* =========================================================
-   NAVBAR CORE POSITIONING — MOBILE REGRESSION GUARD
-   The header is intentionally document-flow positioned.
-   It must scroll away with the page on touch devices.
-   Never convert it to fixed/sticky positioning.
+   NAVBAR CORE POSITIONING — FLOATING OVERLAY
+   The header intentionally stays fixed to the viewport.
+   Page content scrolls underneath the transparent/glass navbar.
+   This behavior is shared by desktop and mobile.
 ========================================================= */
 @media (max-width: 950px) {
   .site-header {
-    position: absolute !important;
+    position: fixed !important;
     top: 10px !important;
     bottom: auto !important;
     transform: translate3d(-50%, 0, 0) !important;
