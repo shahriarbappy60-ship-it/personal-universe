@@ -11063,3 +11063,13 @@ html.js-ready .hero-celestial-stage{
     transform:translate3d(-50%,0,0) !important;
   }
 }
+
+
+/* =========================================================
+   PHASE 1 CORE BACK BUTTON — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
+   Keep the back button in document flow with the navbar.
+========================================================= */
+.navbar-floating-back-btn,
+.navbar-floating-back-btn.scrolled {
+    position: absolute !important;
+}
