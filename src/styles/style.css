@@ -11091,3 +11091,87 @@ html.js-ready .hero-celestial-stage{
 .archive-close-button{appearance:none;background:none;border:0;padding:0;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:color .25s ease}
 .archive-close-button:hover{color:var(--text)}
 @media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
+
+/* =========================================================
+   CREATE / LIGHT MODE MOTHER-DESIGN TYPOGRAPHY CALIBRATION
+========================================================= */
+
+html[data-theme="light"] .site-header {
+    background: rgba(30, 30, 30, .16) !important;
+    backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
+    -webkit-backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
+    border-color: rgba(0, 0, 0, .12) !important;
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, .075),
+        inset 0 -1px 0 rgba(0, 0, 0, .045) !important;
+}
+
+html[data-theme="light"] .site-header.scrolled {
+    background: rgba(30, 30, 30, .20) !important;
+    border-color: rgba(0, 0, 0, .14) !important;
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, .10),
+        inset 0 -1px 0 rgba(0, 0, 0, .055) !important;
+}
+
+html[data-theme="light"] .desktop-nav a {
+    color: #141414 !important;
+}
+
+html[data-theme="light"] .desktop-nav a:hover,
+html[data-theme="light"] .desktop-nav a.active {
+    color: #141414 !important;
+    background: rgba(0, 0, 0, .075) !important;
+    border-color: rgba(0, 0, 0, .12) !important;
+    box-shadow: none !important;
+}
+
+/* Create follows the same light-mode editorial hierarchy used by Home / Observe / Wonder:
+   primary headings #141414, serif emphasis #1E1E1E, body #363636, metadata #525252. */
+html[data-theme="light"] .create-page .archive-row-title,
+html[data-theme="light"] .create-page .gateway-title {
+    color: #141414 !important;
+}
+
+html[data-theme="light"] .create-page .archive-row-title em,
+html[data-theme="light"] .create-page .gateway-title em,
+html[data-theme="light"] .create-page .editorial-serif {
+    color: #1E1E1E !important;
+    font-family: var(--serif);
+}
+
+html[data-theme="light"] .create-page .archive-row-desc,
+html[data-theme="light"] .create-page .expanded-block p,
+html[data-theme="light"] .create-page .expanded-list li,
+html[data-theme="light"] .create-page .gateway-subtitle {
+    color: #363636 !important;
+}
+
+html[data-theme="light"] .create-page .archive-row-meta,
+html[data-theme="light"] .create-page .archive-row-type,
+html[data-theme="light"] .create-page .rail-label,
+html[data-theme="light"] .create-page .rail-value,
+html[data-theme="light"] .create-page .expanded-eyebrow,
+html[data-theme="light"] .create-page .archive-row-arrow,
+html[data-theme="light"] .create-page .archive-visit-link,
+html[data-theme="light"] .create-page .archive-close-button,
+html[data-theme="light"] .create-page .wonder-tier-eyebrow {
+    color: #525252 !important;
+}
+
+html[data-theme="light"] .create-page .archive-row-title,
+html[data-theme="light"] .create-page .archive-row-desc,
+html[data-theme="light"] .create-page .gateway-title,
+html[data-theme="light"] .create-page .gateway-subtitle,
+html[data-theme="light"] .create-page .rail-value,
+html[data-theme="light"] .create-page .expanded-block p,
+html[data-theme="light"] .create-page .expanded-list li {
+    text-shadow: none;
+}
+
+html[data-theme="light"] .create-page .project-archive-row:hover .archive-row-title,
+html[data-theme="light"] .create-page .project-archive-row:hover .archive-row-arrow,
+html[data-theme="light"] .create-page .archive-visit-link:hover,
+html[data-theme="light"] .create-page .archive-close-button:hover {
+    color: #141414 !important;
+}
