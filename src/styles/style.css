@@ -10065,31 +10065,107 @@ html.js-ready .hero-celestial-stage{
 }
 
 
-/* Home Create — curated density without becoming a project catalogue */
+/* Home Create — liquid glass cards, scoped to Create only */
 .create-composition {
     grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
     gap: 18px;
 }
+
 .create-supporting-projects {
     display: grid;
     grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 18px;
 }
+
+/* Liquid-glass treatment inspired by the supplied preview:
+   layered translucency + blur + restrained inner highlights + deep depth.
+   Intentionally scoped to the Home Create cards only. */
+.project-feature-portrait,
+.create-support-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .11);
+    background:
+        radial-gradient(420px circle at 18% 8%, rgba(255,255,255,.10), transparent 58%),
+        linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 58%, rgba(255,255,255,.055));
+    -webkit-backdrop-filter: blur(26px) saturate(120%) brightness(.94);
+    backdrop-filter: blur(26px) saturate(120%) brightness(.94);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.30),
+        inset 0 -1px 0 rgba(255,255,255,.035),
+        inset 1px 0 0 rgba(255,255,255,.09),
+        inset -1px 0 0 rgba(255,255,255,.045),
+        0 28px 72px rgba(0,0,0,.34),
+        0 3px 10px rgba(0,0,0,.20);
+    transition:
+        border-color .35s var(--ease),
+        transform .45s var(--ease),
+        box-shadow .45s var(--ease),
+        background .45s var(--ease);
+}
+
+.project-feature-portrait::before,
+.create-support-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,.12), transparent 27%);
+    opacity: .72;
+}
+
+.project-feature-portrait::after,
+.create-support-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(300px circle at 78% 12%, rgba(255,255,255,.055), transparent 62%);
+    opacity: 0;
+    transition: opacity .45s var(--ease);
+}
+
+.project-feature-portrait:hover,
+.create-support-card:hover {
+    border-color: rgba(255,255,255,.18);
+    transform: translateY(-2px);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.38),
+        inset 0 -1px 0 rgba(255,255,255,.045),
+        inset 1px 0 0 rgba(255,255,255,.11),
+        inset -1px 0 0 rgba(255,255,255,.055),
+        0 34px 90px rgba(0,0,0,.42),
+        0 4px 12px rgba(0,0,0,.22);
+}
+
+.project-feature-portrait:hover::after,
+.create-support-card:hover::after {
+    opacity: 1;
+}
+
+/* Keep the featured card's existing composition/padding intact. */
+.project-feature-portrait {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 22px;
+    padding: 12px 12px 0 12px;
+}
+
 .create-support-card {
     min-height: 166px;
     padding: 22px 22px 18px;
-    border: 1px solid var(--line);
     border-radius: 18px;
-    background: var(--surface);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: border-color .3s var(--ease), transform .3s var(--ease), background-color .3s var(--ease);
 }
-.create-support-card:hover {
-    border-color: var(--line-strong);
-    transform: translateY(-2px);
-}
+
 .create-support-meta,
 .create-support-footer {
     display: flex;
@@ -10102,6 +10178,7 @@ html.js-ready .hero-celestial-stage{
     letter-spacing: .12em;
     text-transform: uppercase;
 }
+
 .create-support-type {
     display: block;
     margin: 14px 0 8px;
@@ -10111,12 +10188,14 @@ html.js-ready .hero-celestial-stage{
     letter-spacing: .12em;
     text-transform: uppercase;
 }
+
 .create-support-card h3 {
     margin: 0 0 7px;
     font-size: clamp(18px, 1.7vw, 23px);
     line-height: 1.15;
     letter-spacing: -.025em;
 }
+
 .create-support-card p {
     margin: 0;
     color: var(--muted);
@@ -10124,19 +10203,57 @@ html.js-ready .hero-celestial-stage{
     line-height: 1.55;
     max-width: 42ch;
 }
+
 .create-support-footer {
     margin-top: 18px;
     color: var(--faint);
 }
+
 .create-support-footer span:last-child {
     color: var(--muted);
 }
+
 .arrow-link {
     gap: 0;
 }
+
 .arrow-link .arrow-icon {
     display: none !important;
 }
+
+/* Light mode: smoked glass on the existing silver-gray architecture. */
+html[data-theme="light"] .project-feature-portrait,
+html[data-theme="light"] .create-support-card {
+    border-color: rgba(0,0,0,.13);
+    background:
+        radial-gradient(420px circle at 18% 8%, rgba(255,255,255,.25), transparent 58%),
+        linear-gradient(145deg, rgba(255,255,255,.24), rgba(0,0,0,.055) 58%, rgba(255,255,255,.13));
+    -webkit-backdrop-filter: blur(26px) saturate(115%) brightness(1.02);
+    backdrop-filter: blur(26px) saturate(115%) brightness(1.02);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.48),
+        inset 0 -1px 0 rgba(0,0,0,.035),
+        inset 1px 0 0 rgba(255,255,255,.20),
+        inset -1px 0 0 rgba(0,0,0,.045),
+        0 24px 60px rgba(0,0,0,.10),
+        0 2px 8px rgba(0,0,0,.06);
+}
+
+html[data-theme="light"] .project-feature-portrait::before,
+html[data-theme="light"] .create-support-card::before {
+    background: linear-gradient(180deg, rgba(255,255,255,.32), transparent 27%);
+}
+
+html[data-theme="light"] .project-feature-portrait:hover,
+html[data-theme="light"] .create-support-card:hover {
+    border-color: rgba(0,0,0,.19);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.58),
+        inset 0 -1px 0 rgba(0,0,0,.045),
+        0 30px 72px rgba(0,0,0,.13),
+        0 3px 10px rgba(0,0,0,.08);
+}
+
 @media (max-width: 900px) {
     .create-composition {
         grid-template-columns: 1fr;
@@ -10146,22 +10263,31 @@ html.js-ready .hero-celestial-stage{
         grid-template-rows: none;
     }
 }
-@media (max-width: 600px) {
-    .create-supporting-projects {
-        grid-template-columns: 1fr;
-    }
-    .create-support-card {
-        min-height: 150px;
-    }
-}
 
-/* Home Create — mobile keeps the section focused on the primary build only. */
 @media (max-width: 768px) {
     .create-supporting-projects {
         display: none;
     }
 }
 
+@media (max-width: 600px) {
+    .create-supporting-projects {
+        grid-template-columns: 1fr;
+    }
+    .create-support-card {
+        min-height: 150px;
+        border-radius: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-feature-portrait,
+    .create-support-card,
+    .project-feature-portrait::after,
+    .create-support-card::after {
+        transition: none !important;
+    }
+}
 
 /* Lightbox v2 — stable viewport + simple timeless navigation */
 #lightboxModal .lightbox-fluid-content {
