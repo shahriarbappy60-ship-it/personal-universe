@@ -507,14 +507,12 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
     align-items: center;
     justify-content: space-between;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 20px;
     background: var(--header-bg);
     backdrop-filter: blur(var(--header-blur)) saturate(190%) contrast(105%) brightness(102%);
     -webkit-backdrop-filter: blur(var(--header-blur)) saturate(190%) contrast(105%) brightness(102%);
     box-shadow:
         0 14px 38px rgba(0, 0, 0, .30),
-        inset 0 1px 0 rgba(255, 255, 255, .10),
         inset 0 -1px 0 rgba(0, 0, 0, .14);
     z-index: 100;
     transform: translate3d(-50%, 0, 0);
@@ -526,10 +524,8 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 .site-header.scrolled {
     background: var(--header-bg-scrolled);
     border-color: rgba(255, 255, 255, 0.10);
-    border-top-color: rgba(255, 255, 255, 0.20);
     box-shadow:
         0 20px 48px -6px rgba(0, 0, 0, .45),
-        inset 0 1px 0 rgba(255, 255, 255, .12),
         inset 0 -1px 0 rgba(0, 0, 0, .16);
 }
 
