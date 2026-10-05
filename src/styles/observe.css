@@ -4030,3 +4030,66 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 }
 
 }
+
+
+/* WHITE MODE — OBSERVE / editorial archive */
+html[data-theme="light"] .observe-page,
+html[data-theme="light"] .observe-page * { --observe-ink:#141414; --observe-body:#363636; --observe-meta:#525252; }
+html[data-theme="light"] .observe-page h1,
+html[data-theme="light"] .observe-page h2,
+html[data-theme="light"] .observe-page h3,
+html[data-theme="light"] .observe-page h4,
+html[data-theme="light"] .observe-page .observe-hero-title,
+html[data-theme="light"] .observe-page .archive-title,
+html[data-theme="light"] .observe-page .album-title,
+html[data-theme="light"] .observe-page .album-detail-title { color:#141414 !important; }
+html[data-theme="light"] .observe-page em,
+html[data-theme="light"] .observe-page .observe-hero-title em,
+html[data-theme="light"] .observe-page .archive-title em { color:#1e1e1e !important; }
+html[data-theme="light"] .observe-page p,
+html[data-theme="light"] .observe-page .observe-hero-copy,
+html[data-theme="light"] .observe-page .album-subtitle,
+html[data-theme="light"] .observe-page .stream-story,
+html[data-theme="light"] .observe-page .album-detail-description { color:#363636 !important; }
+html[data-theme="light"] .observe-page .eyebrow,
+html[data-theme="light"] .observe-page .hero-meta,
+html[data-theme="light"] .observe-page .archive-label,
+html[data-theme="light"] .observe-page .archive-count,
+html[data-theme="light"] .observe-page .album-meta,
+html[data-theme="light"] .observe-page .photo-meta,
+html[data-theme="light"] .observe-page .stream-meta,
+html[data-theme="light"] .observe-page .exif-bar,
+html[data-theme="light"] .observe-page .album-back,
+html[data-theme="light"] .observe-page .view-switch,
+html[data-theme="light"] .observe-page .filter-button { color:#525252 !important; }
+html[data-theme="light"] .observe-page .filter-button.active,
+html[data-theme="light"] .observe-page .view-switch.active { color:#141414 !important; }
+html[data-theme="light"] .observe-page input,
+html[data-theme="light"] .observe-page .archive-search,
+html[data-theme="light"] .observe-page .search-input {
+  color:#141414 !important;
+  background:rgba(0,0,0,.055) !important;
+  border-color:rgba(0,0,0,.12) !important;
+}
+html[data-theme="light"] .observe-page input::placeholder { color:#525252 !important; opacity:1; }
+html[data-theme="light"] .observe-page .album-card,
+html[data-theme="light"] .observe-page .photo-card {
+  border-color:rgba(0,0,0,.10) !important;
+  background:rgba(0,0,0,.035) !important;
+}
+html[data-theme="light"] .observe-page .album-card:hover,
+html[data-theme="light"] .observe-page .photo-card:hover {
+  border-color:rgba(0,0,0,.16) !important;
+  background:rgba(0,0,0,.055) !important;
+}
+html[data-theme="light"] .observe-page .photo-card-title,
+html[data-theme="light"] .observe-page .album-card-title,
+html[data-theme="light"] .observe-page .stream-title { color:#141414 !important; }
+html[data-theme="light"] .observe-page .album-count-badge,
+html[data-theme="light"] .observe-page .photo-count-badge {
+  color:#f3f3ef !important;
+  background:rgba(20,20,20,.72) !important;
+  border-color:rgba(255,255,255,.12) !important;
+}
+html[data-theme="light"] .observe-page .stream-row,
+html[data-theme="light"] .observe-page .album-detail-header { border-color:rgba(0,0,0,.10) !important; }

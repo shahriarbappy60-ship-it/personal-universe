@@ -1,117 +1,170 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { projectsData } from '../data/projectsData';
 import Button from '../components/common/Button';
+import { projectsData } from '../data/projectsData';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
+import '../styles/create-page.css';
 
-function ProjectArchiveRow({ project, isExpanded, onToggle }) {
-  const isExternal = project.link && project.link.startsWith('http');
-  const isFeatured = project.id === 'project-01';
+const createProjects = projectsData.map(project => ({
+  ...project,
+  index: String(project.index).padStart(2, '0')
+}));
 
+const setMeta = (name, content, attribute = 'name') => {
+  let element = document.head.querySelector(`meta[${attribute}="${name}"][data-create-seo]`);
+  if (!element) {
+    element = document.createElement('meta');
+    element.setAttribute('name', name);
+    element.setAttribute('data-create-seo', 'true');
+    document.head.appendChild(element);
+  }
+  element.setAttribute('content', content);
+};
+
+const setCanonical = href => {
+  let link = document.head.querySelector('link[data-create-seo="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.setAttribute('rel', 'canonical');
+    link.setAttribute('data-create-seo', 'canonical');
+    document.head.appendChild(link);
+  }
+  link.setAttribute('href', href);
+};
+
+function CelestialVisual({ project }) {
   return (
-    <article 
-      className={`project-archive-row ${isExpanded ? 'is-expanded' : ''} ${isFeatured ? 'is-featured' : ''}`}
-      onClick={onToggle}
-      role="button"
-      tabIndex={0}
-      aria-expanded={isExpanded}
-      aria-controls={`project-archive-body-${project.id}`}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onToggle(); } }}
-    >
-      <div className="archive-row-header">
-        <div className="archive-row-main">
-          <div className="archive-row-meta">
-            <span>{project.index} / {isFeatured ? 'CURRENT BUILD' : project.status.toUpperCase()}</span>
-          </div>
-          
-          <div className="archive-row-title-block">
-            <h3 className="archive-row-title">
-              {project.title}
-            </h3>
-            <span className="archive-row-type">{project.type}</span>
-          </div>
-
-          <p className="archive-row-desc">{project.description}</p>
+    <div className="create-celestial-visual" aria-hidden="true">
+      <div className="create-celestial-stage">
+        <div className="celestial-corona-aura" />
+        <div className="celestial-rings-layer celestial-rings-rear">
+          <div className="celestial-ring ring-outer" />
+          <div className="celestial-ring ring-accretion"><div className="accretion-dust-texture" /></div>
+          <div className="celestial-ring ring-inner" />
         </div>
+        <div className="celestial-body">
+          <div className="celestial-atmosphere" />
+          <div className="celestial-inner-core" />
+          <div className="celestial-rim-light" />
+        </div>
+        <div className="celestial-rings-layer celestial-rings-front">
+          <div className="celestial-ring ring-outer" />
+          <div className="celestial-ring ring-accretion"><div className="accretion-dust-texture" /></div>
+          <div className="celestial-ring ring-inner" />
+        </div>
+      </div>
+      <span className="create-visual-label">{project.visualLabel}</span>
+      <span className="create-visual-caption">{project.visualCaption}</span>
+    </div>
+  );
+}
 
-        <div className="archive-row-side">
-          <div className="archive-side-rail">
-            <div className="rail-item">
-              <span className="rail-label">FOCUS</span>
-              <span className="rail-value">{project.highlight || project.focus}</span>
-            </div>
-            <div className="rail-item">
-              <span className="rail-label">STACK</span>
-              <span className="rail-value">{project.technologies.join(' · ')}</span>
-            </div>
-            <div className="rail-item">
-              <span className="rail-label">STATUS</span>
-              <span className="rail-value">{project.status}</span>
-            </div>
-            <div className="rail-item">
-              <span className="rail-label">YEAR</span>
-              <span className="rail-value">{project.year}</span>
-            </div>
+function DetailContent({ project, featured = false }) {
+  return (
+    <div className={featured ? 'create-detail-grid create-detail-grid-featured' : 'create-detail-grid'}>
+      <div>
+        <span>OVERVIEW</span>
+        <p>{project.overview}</p>
+      </div>
+      <div>
+        <span>ROLE</span>
+        <p>{project.role.join(' · ')}</p>
+      </div>
+      <div>
+        <span>FOCUS</span>
+        <p>{project.focus}</p>
+      </div>
+      <div>
+        <span>BUILD NOTE</span>
+        <p>{project.buildNote}</p>
+      </div>
+    </div>
+  );
+}
+
+function ProjectAction({ project, isOpen, onToggle }) {
+  return (
+    <div className="create-project-actions">
+      <button
+        type="button"
+        className="create-detail-toggle"
+        aria-expanded={isOpen}
+        aria-controls={`create-detail-${project.id}`}
+        onClick={onToggle}
+      >
+        <span>{isOpen ? 'CLOSE' : 'DETAILS'}</span>
+        <span aria-hidden="true">{isOpen ? '×' : '↓'}</span>
+      </button>
+      {project.link && (
+        <a className="create-source-link" href={project.link} target="_blank" rel="noreferrer">
+          SOURCE <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
+  );
+}
+
+function FeaturedProject({ project, isOpen, onToggle }) {
+  return (
+    <article className={`create-featured-project${isOpen ? ' is-open' : ''}`}>
+      <div className="create-featured-header">
+        <div className="create-project-index">{project.index}</div>
+        <div className="create-featured-heading">
+          <div className="create-project-kicker">
+            <span>{project.type}</span>
+            <span>{project.year}</span>
           </div>
-          
-          <div className="archive-row-arrow-wrap">
-            <span className="archive-row-arrow" aria-hidden="true">
-              {isExpanded ? 'VIEW LESS ↑' : 'VIEW MORE ↗'}
-            </span>
-          </div>
+          <span className="create-project-state">{project.status}</span>
+          <h2>{project.title}</h2>
+          <p>{project.description}</p>
         </div>
       </div>
 
-      <div id={`project-archive-body-${project.id}`} className="archive-row-body" aria-hidden={!isExpanded}>
-        <div className="archive-row-body-inner" style={{ minHeight: 0 }}>
-          <div className="archive-row-divider" />
-          
-          <div className="archive-expanded-grid">
-            <div className="expanded-main-col">
-              <div className="expanded-block">
-                <span className="expanded-eyebrow">ABOUT</span>
-                <p>{project.overview || project.description}</p>
-              </div>
-              {project.buildNote && (
-                <div className="expanded-block">
-                  <span className="expanded-eyebrow">BUILD NOTE</span>
-                  <p>{project.buildNote}</p>
-                </div>
-              )}
-            </div>
+      <CelestialVisual project={project} />
 
-            <div className="expanded-side-col">
-              {project.role && (
-                <div className="expanded-block">
-                  <span className="expanded-eyebrow">MY ROLE</span>
-                  <ul className="expanded-list">
-                    {project.role.map(r => <li key={r}>{r}</li>)}
-                  </ul>
-                </div>
-              )}
-              <div className="expanded-block">
-                <span className="expanded-eyebrow">BUILT WITH</span>
-                <ul className="expanded-list">
-                  {project.technologies.map(t => <li key={t}>{t}</li>)}
-                </ul>
-              </div>
-            </div>
-          </div>
-          
-          {project.link && (
-             <div className="archive-row-actions">
-               <a 
-                 href={project.link} 
-                 target={isExternal ? '_blank' : '_self'} 
-                 rel={isExternal ? 'noopener noreferrer' : ''}
-                 className="archive-visit-link"
-                 onClick={e => e.stopPropagation()}
-               >
-                 VISIT PROJECT ↗
-               </a>
-             </div>
-          )}
+      <div className="create-featured-bottom">
+        <div className="create-featured-meta">
+          <div><span>STATUS</span><strong>{project.status}</strong></div>
+          <div><span>BUILT WITH</span><strong>{project.technologies.join(' · ')}</strong></div>
+        </div>
+        <ProjectAction project={project} isOpen={isOpen} onToggle={onToggle} />
+      </div>
+
+      <div
+        id={`create-detail-${project.id}`}
+        className={`create-project-details${isOpen ? ' is-visible' : ''}`}
+        aria-hidden={!isOpen}
+      >
+        <DetailContent project={project} featured />
+      </div>
+    </article>
+  );
+}
+
+function ArchiveProject({ project, isOpen, onToggle }) {
+  return (
+    <article className={`create-archive-project${isOpen ? ' is-open' : ''}`}>
+      <div className="create-archive-index">{project.index}</div>
+      <div className="create-archive-content">
+        <div className="create-project-kicker">
+          <span>{project.type}</span>
+          <span>{project.year}</span>
+        </div>
+        <div className="create-archive-title-row">
+          <h3>{project.title}</h3>
+          <span className="create-project-state">{project.status}</span>
+        </div>
+        <p className="create-archive-description">{project.description}</p>
+        <div className="create-archive-footer">
+          <span>{project.technologies.join(' · ')}</span>
+          <ProjectAction project={project} isOpen={isOpen} onToggle={onToggle} />
+        </div>
+        <div
+          id={`create-detail-${project.id}`}
+          className={`create-project-details${isOpen ? ' is-visible' : ''}`}
+          aria-hidden={!isOpen}
+        >
+          <DetailContent project={project} />
         </div>
       </div>
     </article>
@@ -119,23 +172,33 @@ function ProjectArchiveRow({ project, isExpanded, onToggle }) {
 }
 
 export default function CreatePage() {
-  useScrollReveal([]);
+  const [openProject, setOpenProject] = useState(null);
+  useScrollReveal([openProject]);
   useMagnetic([]);
-  const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
-    document.title = "Create — Shahriar's Personal Universe";
+    const title = 'Create — Shahriar’s Personal Universe';
+    const description = 'Projects, interfaces, systems, and experiments by Shahriar Khan.';
+    const canonical = 'https://shahriarkhan.me/create';
+    document.title = title;
+    setMeta('description', description);
+    setCanonical(canonical);
+    setMeta('og:type', 'website', 'property');
+    setMeta('og:url', canonical, 'property');
+    setMeta('og:title', title, 'property');
+    setMeta('og:description', description, 'property');
+    setMeta('og:site_name', "Shahriar's Personal Universe", 'property');
   }, []);
 
-  const handleToggle = (id) => {
-    setExpandedId(prev => prev === id ? null : id);
+  const featured = createProjects.find(project => project.featured);
+  const archive = createProjects.filter(project => !project.featured);
+
+  const toggleProject = id => {
+    setOpenProject(current => current === id ? null : id);
   };
 
   return (
     <main className="create-page" id="mainContent">
-      {/* ═══════════════════════════════════════════════════
-          SECTION 1: CREATE HERO (LOCKED DESIGN AREA)
-      ═══════════════════════════════════════════════════ */}
       <section className="observe-hero section-pad" id="createHero">
         <div className="observe-shell">
           <div className="observe-hero-content">
@@ -148,13 +211,10 @@ export default function CreatePage() {
               Turning curiosity into interfaces, experiments, software architecture and things that can exist beyond an idea.
             </p>
             <div className="observe-hero-actions reveal delay-2">
-              <Button href="#projects" variant="glass" icon="↓">
-                EXPLORE ARCHIVE
-              </Button>
+              <Button href="#projects" variant="glass" icon="↓">EXPLORE ARCHIVE</Button>
               <span className="observe-status">SYSTEMS ARCHIVE</span>
             </div>
           </div>
-
           <div className="observe-hero-meta">
             <span>23° 48′ N</span>
             <span>90° 24′ E</span>
@@ -163,52 +223,54 @@ export default function CreatePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════
-          SECTION 2: SELECTED WORKS / EDITORIAL ARCHIVE
-      ═══════════════════════════════════════════════════ */}
-      <section className="section-pad" id="projects">
-        <div className="wonder-shell">
-          <div className="wonder-tier-header">
-            <span className="wonder-tier-eyebrow reveal">SYSTEMS & EXPERIMENTS</span>
-            <p className="wonder-tier-subtitle reveal">Selected works.</p>
+      <section className="create-intro section-pad" id="projects">
+        <div className="create-intro-grid">
+          <span className="create-eyebrow">03 / THE ARCHIVE</span>
+          <div>
+            <h2>Things that<br /><em>took shape.</em></h2>
+            <p>Interfaces, systems, and experiments made while figuring things out.</p>
+          </div>
+        </div>
+      </section>
+
+      {featured && (
+        <section className="create-featured-section section-pad" aria-label="Featured project">
+          <div className="create-shell">
+            <FeaturedProject
+              project={featured}
+              isOpen={openProject === featured.id}
+              onToggle={() => toggleProject(featured.id)}
+            />
+          </div>
+        </section>
+      )}
+
+      <section className="create-archive-section section-pad" aria-label="Earlier work">
+        <div className="create-shell">
+          <div className="create-archive-heading">
+            <span className="create-eyebrow">EARLIER WORK</span>
+            <h2>Other things<br /><em>I’ve built.</em></h2>
+            <p>Earlier pieces of the same learning curve.</p>
           </div>
 
-          <div className="create-vertical-archive mt-10 reveal">
-            {projectsData.map(project => (
-              <ProjectArchiveRow 
-                key={project.id} 
+          <div className="create-archive-list">
+            {archive.map(project => (
+              <ArchiveProject
+                key={project.id}
                 project={project}
-                isExpanded={expandedId === project.id}
-                onToggle={() => handleToggle(project.id)}
+                isOpen={openProject === project.id}
+                onToggle={() => toggleProject(project.id)}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════
-          SECTION 3: ENDING GATEWAY (TO IDENTITY)
-      ═══════════════════════════════════════════════════ */}
-      <section className="section-pad" style={{ paddingBottom: '120px' }}>
-        <div className="wonder-shell">
-          <div className="wonder-gateway reveal">
-            <span className="gateway-eyebrow">NEXT CHAPTER · 04 / IDENTITY</span>
-            <h2 className="gateway-title">
-              The observer behind<br />
-              <em>the craft.</em>
-            </h2>
-            <p className="gateway-subtitle">
-              Exploring identity, curriculum vitae, and the questions that shape each build.
-            </p>
-            <div className="gateway-actions">
-              <Button to="/identity" variant="glass">
-                VIEW IDENTITY
-              </Button>
-              <Button to="/contact" variant="outline">
-                GET IN TOUCH
-              </Button>
-            </div>
-          </div>
+      <section className="create-closing section-pad" aria-label="Current chapter">
+        <div className="create-closing-inner">
+          <span className="create-eyebrow">CURRENT CHAPTER</span>
+          <p>Still learning.<br />Still building.<br />Still becoming.</p>
+          <a href="/" className="create-closing-link">RETURN TO HOME <span aria-hidden="true">↗</span></a>
         </div>
       </section>
     </main>

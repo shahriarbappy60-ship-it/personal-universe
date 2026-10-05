@@ -180,7 +180,7 @@ export default function IdentityPage() {
           <div className="self-v2-direction reveal">
             <div className="self-v2-direction-narrative">
               <p>I used to move through life without asking much of it. Then I started asking different questions — about who I am, why I’m here, and what it means to experience life from inside one particular mind.</p>
-              <p>I’m still learning, building, and questioning. I don’t think I need to have it all figured out yet.</p>
+              <p>I’m still trying to understand what all of this means to me. I’m learning to live with the questions instead of rushing to answer them.</p>
               <p className="self-v2-direction-closing">For now, I’m okay with not knowing.</p>
             </div>
             <div className="self-v2-direction-action">
