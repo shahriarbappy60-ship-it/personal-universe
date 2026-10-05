@@ -148,3 +148,28 @@
 .identity-page-v2 .self-v2-statement{font-size:25px}
 }
 @media(prefers-reduced-motion:reduce){.identity-page-v2 .self-v2-photo-media img{transition:none}}
+
+/* WHITE MODE — IDENTITY / calm personal editorial */
+html[data-theme="light"] .identity-page h1,
+html[data-theme="light"] .identity-page h2,
+html[data-theme="light"] .identity-page h3,
+html[data-theme="light"] .identity-page .self-v2-title { color:#141414 !important; }
+html[data-theme="light"] .identity-page em,
+html[data-theme="light"] .identity-page .self-v2-direction-closing,
+html[data-theme="light"] .identity-page .self-v2-hero-statement { color:#1e1e1e !important; }
+html[data-theme="light"] .identity-page p,
+html[data-theme="light"] .identity-page .self-v2-practice-statement { color:#363636 !important; }
+html[data-theme="light"] .identity-page .self-v2-eyebrow,
+html[data-theme="light"] .identity-page .self-v2-practice-row > span,
+html[data-theme="light"] .identity-page .self-v2-practice-foot span { color:#525252 !important; }
+html[data-theme="light"] .identity-page .self-v2-practice-row,
+html[data-theme="light"] .identity-page .self-v2-practice-foot {
+  border-color:rgba(0,0,0,.10) !important;
+}
+html[data-theme="light"] .identity-page .self-v2-profile,
+html[data-theme="light"] .identity-page .self-v2-card {
+  background:rgba(0,0,0,.035) !important;
+  border-color:rgba(0,0,0,.10) !important;
+}
+html[data-theme="light"] .identity-page .self-v2-social-link { color:#525252 !important; }
+html[data-theme="light"] .identity-page .self-v2-social-link:hover { color:#141414 !important; }
