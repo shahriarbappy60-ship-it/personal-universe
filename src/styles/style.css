@@ -510,8 +510,8 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
     border-top: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 20px;
     background: var(--header-bg);
-    backdrop-filter: blur(24px) saturate(180%) contrast(105%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(105%);
+    backdrop-filter: blur(34px) saturate(150%) contrast(103%);
+    -webkit-backdrop-filter: blur(34px) saturate(150%) contrast(103%);
     box-shadow:
         0 14px 38px rgba(0, 0, 0, .28),
         inset 0 1px 0 rgba(255, 255, 255, .12),
@@ -604,8 +604,8 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 /* LIGHT THEME NAVBAR HIGHLIGHT */
 html[data-theme="light"] .site-header {
     background: rgba(255, 255, 255, 0.72) !important;
-    backdrop-filter: blur(24px) saturate(180%) contrast(102%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(102%) !important;
+    backdrop-filter: blur(34px) saturate(150%) contrast(102%) !important;
+    -webkit-backdrop-filter: blur(34px) saturate(150%) contrast(102%) !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.95) !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
@@ -656,8 +656,8 @@ html[data-theme="light"] .desktop-nav a.active {
         width: calc(100% - 20px);
         height: 58px;
         border-radius: 18px;
-        backdrop-filter: blur(20px) saturate(180%) contrast(105%);
-        -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(105%);
+        backdrop-filter: blur(30px) saturate(150%) contrast(103%);
+        -webkit-backdrop-filter: blur(30px) saturate(150%) contrast(103%);
         box-shadow:
             0 8px 26px rgba(0, 0, 0, .20),
             inset 0 1px 0 rgba(255, 255, 255, .10),
@@ -673,8 +673,8 @@ html[data-theme="light"] .desktop-nav a.active {
 
     html[data-theme="light"] .site-header {
         background: rgba(255, 255, 255, 0.78) !important;
-        backdrop-filter: blur(20px) saturate(180%) contrast(102%) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%) contrast(102%) !important;
+        backdrop-filter: blur(30px) saturate(150%) contrast(102%) !important;
+        -webkit-backdrop-filter: blur(30px) saturate(150%) contrast(102%) !important;
         box-shadow:
             0 8px 24px rgba(0, 0, 0, .05),
             inset 0 1px 0 rgba(255, 255, 255, .90),
@@ -10089,7 +10089,7 @@ html.js-ready .hero-celestial-stage{
     background:
         radial-gradient(420px circle at 18% 8%, rgba(255,255,255,.10), transparent 58%),
         linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.025) 58%, rgba(255,255,255,.055));
-    -webkit-backdrop-filter: blur(26px) saturate(120%) brightness(.94);
+    -webkit-backdrop-filter: blur(34px) saturate(115%) brightness(.94);
     backdrop-filter: blur(26px) saturate(120%) brightness(.94);
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.30),
@@ -10228,7 +10228,7 @@ html[data-theme="light"] .create-support-card {
     background:
         radial-gradient(420px circle at 18% 8%, rgba(255,255,255,.25), transparent 58%),
         linear-gradient(145deg, rgba(255,255,255,.24), rgba(0,0,0,.055) 58%, rgba(255,255,255,.13));
-    -webkit-backdrop-filter: blur(26px) saturate(115%) brightness(1.02);
+    -webkit-backdrop-filter: blur(34px) saturate(112%) brightness(1.02);
     backdrop-filter: blur(26px) saturate(115%) brightness(1.02);
     box-shadow:
         inset 0 1px 0 rgba(255,255,255,.48),
@@ -11232,3 +11232,24 @@ html[data-theme="light"] .create-support-card:hover {
 .archive-close-button:hover{color:var(--text)}
 @media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
 
+
+/* Unified glass material calibration — Create cards + site navbar */
+.project-feature-portrait,
+.create-support-card,
+.site-header {
+    will-change: transform, backdrop-filter;
+}
+
+.project-feature-portrait,
+.create-support-card,
+.site-header {
+    -webkit-backdrop-filter: blur(34px) saturate(115%) contrast(103%);
+    backdrop-filter: blur(34px) saturate(115%) contrast(103%);
+}
+
+html[data-theme="light"] .project-feature-portrait,
+html[data-theme="light"] .create-support-card,
+html[data-theme="light"] .site-header {
+    -webkit-backdrop-filter: blur(34px) saturate(112%) contrast(102%);
+    backdrop-filter: blur(34px) saturate(112%) contrast(102%);
+}
