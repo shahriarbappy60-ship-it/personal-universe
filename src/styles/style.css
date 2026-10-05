@@ -9574,30 +9574,33 @@ html.js-ready body{
 }
 html.js-ready #root{
   opacity:0;
-  transform:translate3d(0,8px,0);
   animation:universe-arrival 1.35s cubic-bezier(.22,1,.36,1) .08s forwards;
 }
 html.js-ready .site-header{
   opacity:0;
-  transform:translate3d(0,-6px,0);
+  transform:translate3d(-50%,-6px,0);
   animation:universe-header-arrival 1s cubic-bezier(.22,1,.36,1) .32s forwards;
 }
 @keyframes universe-arrival{
-  0%{opacity:0;transform:translate3d(0,8px,0)}
-  100%{opacity:1;transform:translate3d(0,0,0)}
+  0%{opacity:0}
+  100%{opacity:1}
 }
 @keyframes universe-header-arrival{
   0%{opacity:0;transform:translate3d(-50%,-6px,0)}
   100%{opacity:1;transform:translate3d(-50%,0,0)}
 }
 @media(prefers-reduced-motion:reduce){
-  html.js-ready #root,
+  html.js-ready #root{
+    opacity:1;
+    animation:none;
+  }
   html.js-ready .site-header{
     opacity:1;
-    transform:none;
+    transform:translate3d(-50%,0,0);
     animation:none;
   }
 }
+
 
 /* Initial hero arrival — prevent the visual from feeling like it enters from the side */
 html.js-ready .hero .reveal,
@@ -11040,36 +11043,3 @@ html.js-ready .hero-celestial-stage{
 .archive-close-button:hover{color:var(--text)}
 @media(max-width:700px){.archive-row-actions{justify-content:space-between}.archive-close-button{font-size:10px}}
 
-
-/* =========================================================
-   PHASE 1 CORE NAVBAR — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
-   This rule intentionally overrides any earlier fixed/sticky declaration.
-========================================================= */
-.site-header[data-floating-navbar="true"]{
-  position:fixed !important;
-  inset:auto auto auto 50% !important;
-  top:18px !important;
-  right:auto !important;
-  bottom:auto !important;
-  transform:translate3d(-50%,0,0) !important;
-}
-.site-header[data-floating-navbar="true"].scrolled{
-  position:fixed !important;
-}
-@media(max-width:650px){
-  .site-header[data-floating-navbar="true"]{
-    top:10px !important;
-    left:50% !important;
-    transform:translate3d(-50%,0,0) !important;
-  }
-}
-
-
-/* =========================================================
-   PHASE 1 CORE BACK BUTTON — ABSOLUTE FLOATING CONTRACT (LAST-WINS)
-   Keep the back button in document flow with the navbar.
-========================================================= */
-.navbar-floating-back-btn,
-.navbar-floating-back-btn.scrolled {
-    position: absolute !important;
-}

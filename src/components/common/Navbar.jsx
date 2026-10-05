@@ -61,7 +61,7 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
         </button>
       )}
 
-      <header data-floating-navbar="true" className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'has-back-btn' : ''}`} id="siteHeader">
+      <header className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'has-back-btn' : ''}`} id="siteHeader">
       <Link to="/" className="brand" aria-label="Shahriar Personal Universe home">
         <span className="brand-mark" aria-hidden="true" />
         <span>SHAHRIAR</span>
