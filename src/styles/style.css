@@ -497,7 +497,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 ========================================================= */
 
 .site-header {
-    position: absolute;
+    position: fixed;
     top: 18px;
     left: 50%;
     width: min(1240px, calc(100% - 36px));
@@ -11046,7 +11046,7 @@ html.js-ready .hero-celestial-stage{
    This rule intentionally overrides any earlier fixed/sticky declaration.
 ========================================================= */
 .site-header[data-floating-navbar="true"]{
-  position:absolute !important;
+  position:fixed !important;
   inset:auto auto auto 50% !important;
   top:18px !important;
   right:auto !important;
@@ -11054,7 +11054,7 @@ html.js-ready .hero-celestial-stage{
   transform:translate3d(-50%,0,0) !important;
 }
 .site-header[data-floating-navbar="true"].scrolled{
-  position:absolute !important;
+  position:fixed !important;
 }
 @media(max-width:650px){
   .site-header[data-floating-navbar="true"]{
