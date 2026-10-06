@@ -1,25 +1,22 @@
 import React, { useEffect } from 'react';
-import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { useDhakaClock } from '../../hooks/useDhakaClock';
 
 export default function MobileMenu({ isOpen, onClose }) {
   const location = useLocation();
   const dhakaTime = useDhakaClock();
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add('menu-open');
-    } else {
-      document.body.classList.remove('menu-open');
+  const handleClose = () => {
+    if (typeof onClose === 'function') {
+      onClose();
     }
-    return () => document.body.classList.remove('menu-open');
-  }, [isOpen]);
+  };
 
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.key === 'Escape' && isOpen) {
-        onClose();
+        if (typeof onClose === 'function') {
+          onClose();
+        }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -35,7 +32,7 @@ export default function MobileMenu({ isOpen, onClose }) {
 
   const menu = (
     <aside
-      className={`mobile-menu ${isOpen ? 'open' : ''}`}
+      className={`mobile-menu mobile-nav-panel ${isOpen ? 'open' : ''}`}
       id="mobileMenu"
       aria-hidden={!isOpen}
     >
@@ -44,7 +41,7 @@ export default function MobileMenu({ isOpen, onClose }) {
         <Link
           to="/"
           className="mobile-universe-home"
-          onClick={onClose}
+          onClick={handleClose}
           aria-label="Universe home"
         >
           <span className="mobile-universe-mark" aria-hidden="true" />
@@ -58,7 +55,7 @@ export default function MobileMenu({ isOpen, onClose }) {
               key={item.path}
               to={item.path}
               className={`mobile-glass-pill-btn ${isCurrentRoute ? 'active' : ''}`}
-              onClick={onClose}
+              onClick={handleClose}
             >
               <div className="mobile-pill-left">
                 <span className="mobile-pill-indicator" aria-hidden="true" />
@@ -78,7 +75,7 @@ export default function MobileMenu({ isOpen, onClose }) {
         <Link
           to="/contact"
           className="mobile-connect-btn"
-          onClick={onClose}
+          onClick={handleClose}
         >
           <span>Get in touch</span>
           <span>→</span>
@@ -87,5 +84,5 @@ export default function MobileMenu({ isOpen, onClose }) {
     </aside>
   );
 
-  return typeof document !== 'undefined' ? createPortal(menu, document.body) : null;
+  return menu;
 }

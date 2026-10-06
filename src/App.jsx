@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/common/Navbar';
-import MobileMenu from './components/common/MobileMenu';
 import Footer from './components/common/Footer';
 import StarCanvas from './components/common/StarCanvas';
 import CustomCursor from './components/common/CustomCursor';
@@ -81,6 +80,38 @@ export default function App() {
 
   const renderedLocation = displayLocation || location;
   const chapter = getChapterLabel(renderedLocation.pathname);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+  const toggleMobileMenu = () => {
+    if (window.innerWidth > 950) {
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    setIsMobileMenuOpen(prev => !prev);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 950) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+
+    const handleOutsidePointer = event => {
+      const siteHeader = document.getElementById('siteHeader');
+      if (!siteHeader || siteHeader.contains(event.target)) return;
+      setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener('pointerdown', handleOutsidePointer);
+    return () => window.removeEventListener('pointerdown', handleOutsidePointer);
+  }, [isMobileMenuOpen]);
 
   return (
     <>
@@ -90,14 +121,10 @@ export default function App() {
 
       <Navbar
         onOpenContact={() => setIsContactOpen(true)}
-        onToggleMobileMenu={() => setIsMobileMenuOpen(prev => !prev)}
+        onToggleMobileMenu={toggleMobileMenu}
+        onCloseMobileMenu={closeMobileMenu}
         isMobileMenuOpen={isMobileMenuOpen}
         activeSection={activeSection}
-      />
-
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
       />
 
       <main
