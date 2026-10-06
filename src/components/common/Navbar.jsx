@@ -3,8 +3,15 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useDhakaClock } from '../../hooks/useDhakaClock';
 import { useHeaderScroll } from '../../hooks/useHeaderScroll';
+import MobileMenu from './MobileMenu';
 
-export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenuOpen, activeSection }) {
+export default function Navbar({
+  onOpenContact,
+  onToggleMobileMenu,
+  onCloseMobileMenu,
+  isMobileMenuOpen,
+  activeSection,
+}) {
   const { theme, toggleTheme } = useTheme();
   const dhakaTime = useDhakaClock();
   const isScrolled = useHeaderScroll();
@@ -36,6 +43,12 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
     }
   };
 
+  const handleToggleMobileMenu = () => {
+    if (typeof window !== 'undefined' && window.innerWidth <= 950) {
+      onToggleMobileMenu?.();
+    }
+  };
+
   return (
     <>
       {!isHome && (
@@ -61,7 +74,10 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
         </button>
       )}
 
-      <header className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'has-back-btn' : ''}`} id="siteHeader">
+      <header
+        className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'has-back-btn' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}
+        id="siteHeader"
+      >
       <Link to="/" className="brand" aria-label="Shahriar Personal Universe home">
         <span className="brand-mark" aria-hidden="true" />
         <span>SHAHRIAR</span>
@@ -110,12 +126,17 @@ export default function Navbar({ onOpenContact, onToggleMobileMenu, isMobileMenu
           aria-label={isMobileMenuOpen ? 'Close navigation' : 'Open navigation'}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobileMenu"
-          onClick={onToggleMobileMenu}
+          onClick={handleToggleMobileMenu}
         >
           <span />
           <span />
         </button>
       </div>
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={onCloseMobileMenu}
+      />
     </header>
   </>
   );
