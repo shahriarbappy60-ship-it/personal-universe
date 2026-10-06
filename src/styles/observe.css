@@ -3964,10 +3964,6 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     }
 
     .observe-dynamic-view-btn {
-        width: 44px !important;
-        height: 44px !important;
-        min-width: 44px !important;
-        min-height: 44px !important;
         padding: 0 !important;
         border-radius: 50% !important;
         justify-content: center !important;
@@ -3976,7 +3972,6 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
 
     .observe-dynamic-view-btn .view-btn-label,
     .observe-dynamic-view-btn .view-btn-cycle-hint {
-        display: none !important;
     }
 
     .observe-dynamic-view-btn .view-btn-icon-box {
@@ -3985,8 +3980,6 @@ html[data-theme="light"] .observe-lightbox-nav:hover {
     }
 
     .observe-dynamic-view-btn .view-btn-icon-box svg {
-        width: 17px !important;
-        height: 17px !important;
     }
 }
 

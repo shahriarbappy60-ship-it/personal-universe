@@ -59,9 +59,9 @@
     --grain-opacity: .014;
 
     /* Header */
-    --header-bg: rgba(8, 8, 10, .62);
-    --header-bg-scrolled: rgba(8, 8, 10, .62);
-    --header-blur: 36px;
+    --header-bg: rgba(8, 8, 10, .42);
+    --header-bg-scrolled: rgba(8, 8, 10, .48);
+    --header-blur: 200px;
 
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "Manrope", Arial, sans-serif;
@@ -160,9 +160,9 @@ html[data-theme="light"] {
     --atmosphere-glow: rgba(0, 0, 0, 0.06);
     --grain-opacity: .018;
 
-    --header-bg: rgba(246, 246, 244, .66);
-    --header-bg-scrolled: rgba(246, 246, 244, .66);
-    --header-blur: 36px;
+    --header-bg: rgba(246, 246, 244, .52);
+    --header-bg-scrolled: rgba(246, 246, 244, .58);
+    --header-blur: 200px;
 
     --light-section: var(--bg);
     --light-surface: var(--glass-bg-strong);
@@ -648,8 +648,8 @@ html[data-theme="light"] .desktop-nav a.active {
         width: calc(100% - 20px);
         height: 58px;
         border-radius: 18px;
-        backdrop-filter: blur(32px) saturate(190%) contrast(105%) brightness(102%);
-        -webkit-backdrop-filter: blur(32px) saturate(190%) contrast(105%) brightness(102%);
+        backdrop-filter: blur(200px) saturate(190%) contrast(105%) brightness(102%);
+        -webkit-backdrop-filter: blur(200px) saturate(190%) contrast(105%) brightness(102%);
         box-shadow:
             0 8px 26px rgba(0, 0, 0, .20),
             inset 0 1px 0 rgba(255, 255, 255, .10),
@@ -665,8 +665,8 @@ html[data-theme="light"] .desktop-nav a.active {
 
     html[data-theme="light"] .site-header {
         background: var(--header-bg) !important;
-        backdrop-filter: blur(32px) saturate(160%) contrast(102%) !important;
-        -webkit-backdrop-filter: blur(32px) saturate(160%) contrast(102%) !important;
+        backdrop-filter: blur(200px) saturate(160%) contrast(102%) !important;
+        -webkit-backdrop-filter: blur(200px) saturate(160%) contrast(102%) !important;
         box-shadow:
             0 8px 24px rgba(0, 0, 0, .05),
             inset 0 1px 0 rgba(255, 255, 255, .85),
@@ -11097,7 +11097,7 @@ html.js-ready .hero-celestial-stage{
 ========================================================= */
 
 html[data-theme="light"] .site-header {
-    background: rgba(30, 30, 30, .16) !important;
+    background: rgba(246, 246, 244, .72) !important;
     backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
     -webkit-backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
     border-color: rgba(0, 0, 0, .12) !important;
@@ -11107,7 +11107,7 @@ html[data-theme="light"] .site-header {
 }
 
 html[data-theme="light"] .site-header.scrolled {
-    background: rgba(30, 30, 30, .20) !important;
+    background: rgba(246, 246, 244, .82) !important;
     border-color: rgba(0, 0, 0, .14) !important;
     box-shadow:
         0 18px 42px rgba(0, 0, 0, .10),
@@ -11183,8 +11183,8 @@ html[data-theme="light"] .create-page .archive-close-button:hover {
    Dark mode intentionally untouched.
 ========================================================= */
 html[data-theme="light"] {
-  --header-bg: rgba(30,30,30,.16);
-  --header-bg-scrolled: rgba(30,30,30,.20);
+  --header-bg: rgba(246,246,244,.52);
+  --header-bg-scrolled: rgba(246,246,244,.58);
   --solid-bg: #141414;
   --solid-text: #f3f3ef;
   --solid-bg-hover: #000000;
@@ -11193,15 +11193,17 @@ html[data-theme="light"] {
   --line-strong: rgba(0,0,0,.16);
 }
 html[data-theme="light"] .site-header {
-  position: absolute !important;
-  background: rgba(30,30,30,.16) !important;
+  position: fixed !important;
+  background: rgba(246,246,244,.52) !important;
+  background-color: rgba(246,246,244,.52) !important;
   border-color: rgba(0,0,0,.12) !important;
   box-shadow: 0 12px 32px rgba(0,0,0,.075), inset 0 -1px 0 rgba(0,0,0,.045) !important;
-  backdrop-filter: blur(36px) saturate(125%) contrast(102%) !important;
-  -webkit-backdrop-filter: blur(36px) saturate(125%) contrast(102%) !important;
+  backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
+  -webkit-backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
 }
 html[data-theme="light"] .site-header.scrolled {
-  background: rgba(30,30,30,.20) !important;
+  background: rgba(246,246,244,.58) !important;
+  background-color: rgba(246,246,244,.58) !important;
   border-color: rgba(0,0,0,.14) !important;
   box-shadow: 0 18px 42px rgba(0,0,0,.10), inset 0 -1px 0 rgba(0,0,0,.055) !important;
 }
@@ -11352,5 +11354,12 @@ html[data-theme="light"] .btn-outline:hover {
     top: 10px !important;
     bottom: auto !important;
     transform: translate3d(-50%, 0, 0) !important;
+  }
+}
+
+@media (max-width: 650px) {
+  html[data-theme="light"] .site-header {
+    backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
+    -webkit-backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
   }
 }
