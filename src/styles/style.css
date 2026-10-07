@@ -351,7 +351,7 @@ html[data-theme="light"] .noise {
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: -10;
+    z-index: 1;
     pointer-events: none;
     opacity: .72;
     transition: opacity var(--theme-duration) var(--ease);
@@ -398,11 +398,16 @@ html[data-theme="light"] body::after {
 .observe-hero ~ section,
 .self-v2-hero ~ section,
 main > section:not(.hero):not(.observe-hero):not(.self-v2-hero),
+.contact-page,
 .contact-page section {
+    position: relative;
+    z-index: 2;
     background-color: var(--bg);
 }
 
 .site-footer {
+    position: relative;
+    z-index: 2;
     background-color: var(--bg);
     box-shadow: 0 0 0 100vmax var(--bg);
     clip-path: inset(0 -100vmax);
@@ -1344,6 +1349,8 @@ h6 em {
 
 .hero {
     position: relative;
+    z-index: 0;
+    background-color: var(--bg);
     min-height: 100svh;
     max-width: 1600px;
     margin: 0 auto;
@@ -10388,13 +10395,11 @@ html.js-ready .hero-celestial-stage{
 ========================================================= */
 .page-transition {
     position: relative;
-    isolation: isolate;
 }
 
 .page-transition__stage {
     position: relative;
     transform-origin: 50% 50%;
-    will-change: transform, opacity, filter;
 }
 
 .page-transition__veil {
@@ -10410,7 +10415,9 @@ html.js-ready .hero-celestial-stage{
         rgba(0,0,0,.12);
     opacity: 0;
     visibility: hidden;
-    transition: opacity .32s var(--ease);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: opacity .14s var(--ease), backdrop-filter .14s var(--ease), -webkit-backdrop-filter .14s var(--ease);
 }
 
 .page-transition__veil::after {
@@ -10424,41 +10431,20 @@ html.js-ready .hero-celestial-stage{
 }
 
 .page-transition__chapter {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: rgba(243,243,239,.58);
-    opacity: 0;
-    transform: translateY(5px);
-}
-
-.page-transition--exit .page-transition__stage {
-    animation: universe-page-exit .14s var(--ease) both;
+    display: none !important;
 }
 
 .page-transition--exit .page-transition__veil {
     opacity: 1;
     visibility: visible;
-}
-
-.page-transition--exit .page-transition__chapter {
-    opacity: .45;
-    transform: translateY(0);
-    transition: opacity .12s ease, transform .12s var(--ease);
-}
-
-.page-transition--enter .page-transition__stage {
-    animation: universe-page-enter .50s var(--ease-soft) both;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .page-transition--enter .page-transition__veil {
     opacity: 1;
     visibility: visible;
-    animation: universe-veil-out .50s var(--ease-soft) .08s both;
+    animation: universe-veil-out .45s var(--ease-soft) both;
 }
 
 .page-transition--enter .page-transition__veil::after {
@@ -10466,44 +10452,16 @@ html.js-ready .hero-celestial-stage{
     animation: universe-light-sweep .58s var(--ease-soft) both;
 }
 
-.page-transition--enter .page-transition__chapter {
-    opacity: 0;
-    transform: translateY(-4px);
-    animation: universe-chapter-out .36s var(--ease) .04s both;
-}
-
-@keyframes universe-page-exit {
-    from {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
-    }
-    to {
-        opacity: .76;
-        transform: scale(.985);
-        filter: blur(3px);
-    }
-}
-
-@keyframes universe-page-enter {
-    from {
-        opacity: .72;
-        transform: scale(.985);
-        filter: blur(3px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
-    }
-}
-
 @keyframes universe-veil-out {
     from {
         opacity: 1;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
     }
     to {
         opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
         visibility: hidden;
     }
 }
@@ -10522,26 +10480,9 @@ html.js-ready .hero-celestial-stage{
     }
 }
 
-@keyframes universe-chapter-out {
-    from {
-        opacity: .48;
-        transform: translateY(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-4px);
-    }
-}
+
 
 @media (max-width: 768px) {
-    .page-transition--exit .page-transition__stage {
-        animation-duration: .12s;
-    }
-
-    .page-transition--enter .page-transition__stage {
-        animation-duration: .38s;
-    }
-
     .page-transition__chapter {
         font-size: 8px;
         letter-spacing: .18em;
@@ -10553,19 +10494,10 @@ html.js-ready .hero-celestial-stage{
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .page-transition--exit .page-transition__stage,
-    .page-transition--enter .page-transition__stage,
     .page-transition--enter .page-transition__veil,
     .page-transition--enter .page-transition__veil::after,
     .page-transition--enter .page-transition__chapter {
         animation: none !important;
-    }
-
-    .page-transition--exit .page-transition__stage,
-    .page-transition--enter .page-transition__stage {
-        opacity: 1;
-        transform: none;
-        filter: none;
     }
 
     .page-transition__veil {

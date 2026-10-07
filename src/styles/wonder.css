@@ -22,7 +22,8 @@
     position: relative !important;
     overflow: hidden !important;
     box-sizing: border-box !important;
-    background: transparent !important;
+    background-color: var(--bg) !important;
+    z-index: 0 !important;
     margin: 0 auto !important;
     width: 100% !important;
     max-width: 100% !important;

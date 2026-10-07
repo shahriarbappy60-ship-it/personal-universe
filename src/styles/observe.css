@@ -26,7 +26,8 @@ html[data-theme="light"] .observe-page {
     padding-top: clamp(100px, 14vh, 140px);
     padding-bottom: clamp(28px, 4vh, 40px);
     overflow: hidden;
-    background: transparent !important;
+    background-color: var(--bg);
+    z-index: 0;
     box-sizing: border-box;
     width: 100%;
 }
