@@ -21,6 +21,13 @@ export default function ObservePage() {
     document.title = "Observe — Shahriar's Visual Archive";
   }, []);
 
+  useEffect(() => {
+    const photoId = new URLSearchParams(window.location.search).get("photo");
+    if (!photoId) return;
+    const index = observePhotos.findIndex(photo => photo.id === photoId);
+    if (index !== -1) setLightboxIndex(index);
+  }, []);
+
   const normalize = val =>
     String(val || '')
       .toLowerCase()
@@ -133,17 +140,39 @@ export default function ObservePage() {
     });
   };
 
+  const setPhotoShareUrl = photo => {
+    if (!photo?.id) return;
+    window.history.replaceState(null, "", "/share/photo/" + encodeURIComponent(photo.id));
+  };
+
+  const clearPhotoShareUrl = () => {
+    const url = new URL(window.location.href);
+    if (!url.searchParams.has("photo")) return;
+    url.searchParams.delete("photo");
+    window.history.replaceState(null, "", url.pathname + (url.search ? url.search : "") + (url.hash || ""));
+  };
+
   const openLightboxForPhoto = (photo, idx) => {
     const foundIndex = currentPhotosList.findIndex(p => p.id === photo.id);
-    setLightboxIndex(foundIndex !== -1 ? foundIndex : idx);
+    const nextIndex = foundIndex !== -1 ? foundIndex : idx;
+    setLightboxIndex(nextIndex);
+    setPhotoShareUrl(currentPhotosList[nextIndex] || photo);
   };
 
   const handlePrev = () => {
-    setLightboxIndex(prev => (prev <= 0 ? currentPhotosList.length - 1 : prev - 1));
+    setLightboxIndex(prev => {
+      const nextIndex = prev <= 0 ? currentPhotosList.length - 1 : prev - 1;
+      setPhotoShareUrl(currentPhotosList[nextIndex]);
+      return nextIndex;
+    });
   };
 
   const handleNext = () => {
-    setLightboxIndex(prev => (prev >= currentPhotosList.length - 1 ? 0 : prev + 1));
+    setLightboxIndex(prev => {
+      const nextIndex = prev >= currentPhotosList.length - 1 ? 0 : prev + 1;
+      setPhotoShareUrl(currentPhotosList[nextIndex]);
+      return nextIndex;
+    });
   };
 
   return (
@@ -446,7 +475,7 @@ export default function ObservePage() {
       <LightboxModal
         photos={currentPhotosList}
         currentIndex={lightboxIndex}
-        onClose={() => setLightboxIndex(-1)}
+        onClose={() => { setLightboxIndex(-1); clearPhotoShareUrl(); }}
         onPrev={handlePrev}
         onNext={handleNext}
       />
