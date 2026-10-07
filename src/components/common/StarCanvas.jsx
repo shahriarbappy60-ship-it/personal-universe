@@ -51,13 +51,13 @@ export default function StarCanvas() {
       createStars();
     }
 
+    const isLight = theme === 'light' || document.documentElement.dataset.theme === 'light';
+    canvas.style.opacity = isLight
+      ? (isObserve ? '.40' : '.32')
+      : (isObserve ? '.82' : '.72');
+
     function drawStars(time) {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-
-      const isLight = document.documentElement.dataset.theme === 'light';
-      canvas.style.opacity = isLight
-        ? (isObserve ? '.40' : '.32')
-        : (isObserve ? '.82' : '.72');
 
       stars.forEach(star => {
         star.y -= star.speed;

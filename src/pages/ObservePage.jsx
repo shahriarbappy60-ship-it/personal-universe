@@ -378,6 +378,7 @@ export default function ObservePage() {
                         src={photo.src}
                         alt={photo.alt || photo.title || 'Photograph'}
                         loading={idx < 2 ? 'eager' : 'lazy'}
+                        decoding="async"
                       />
                       <span className="observe-stream-index">
                         {String(idx + 1).padStart(2, '0')}

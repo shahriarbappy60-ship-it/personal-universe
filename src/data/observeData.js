@@ -13,10 +13,10 @@ export const observePhotos = [
     "date": "21 JAN 2026",
     "year": "2026",
     "meta": "SCENES \u00b7 21 JAN 2026",
-    "src": "/images/observe/scenes/20260121_154717.jpeg",
+    "src": "/images/observe/scenes/20260121_154717.webp",
     "alt": "Between Waves",
     "aspectRatio": "portrait",
-    "filename": "20260121_154717.jpeg"
+    "filename": "20260121_154717.webp"
   },
   {
     "id": "photo-002",
@@ -29,10 +29,10 @@ export const observePhotos = [
     "date": "27 JUL 2024",
     "year": "2024",
     "meta": "SCENES \u00b7 27 JUL 2024",
-    "src": "/images/observe/scenes/20240727_045727.jpg",
+    "src": "/images/observe/scenes/20240727_045727.webp",
     "alt": "Before Night",
     "aspectRatio": "landscape",
-    "filename": "20240727_045727.jpg"
+    "filename": "20240727_045727.webp"
   },
   {
     "id": "photo-003",
@@ -45,10 +45,10 @@ export const observePhotos = [
     "date": "28 SEP 2024",
     "year": "2024",
     "meta": "SCENES \u00b7 28 SEP 2024",
-    "src": "/images/observe/scenes/20240928_181249.jpg",
+    "src": "/images/observe/scenes/20240928_181249.webp",
     "alt": "Blue Hour",
     "aspectRatio": "landscape",
-    "filename": "20240928_181249.jpg"
+    "filename": "20240928_181249.webp"
   },
   {
     "id": "photo-004",
@@ -61,10 +61,10 @@ export const observePhotos = [
     "date": "13 SEP 2025",
     "year": "2025",
     "meta": "SCENES \u00b7 13 SEP 2025",
-    "src": "/images/observe/scenes/20250913_110451.jpg",
+    "src": "/images/observe/scenes/20250913_110451.webp",
     "alt": "Through the Grid",
     "aspectRatio": "portrait",
-    "filename": "20250913_110451.jpg"
+    "filename": "20250913_110451.webp"
   },
   {
     "id": "photo-005",
@@ -77,10 +77,10 @@ export const observePhotos = [
     "date": "23 DEC 2025",
     "year": "2025",
     "meta": "SCENES \u00b7 23 DEC 2025",
-    "src": "/images/observe/scenes/20251223_170229.jpg",
+    "src": "/images/observe/scenes/20251223_170229.webp",
     "alt": "Across the River",
     "aspectRatio": "portrait",
-    "filename": "20251223_170229.jpg"
+    "filename": "20251223_170229.webp"
   },
   {
     "id": "photo-006",
@@ -93,10 +93,10 @@ export const observePhotos = [
     "date": null,
     "year": null,
     "meta": "SCENES / 06",
-    "src": "/images/observe/scenes/Snapchat-403199108(1).jpeg",
+    "src": "/images/observe/scenes/Snapchat-403199108(1).webp",
     "alt": "Inside the Frame",
     "aspectRatio": "portrait",
-    "filename": "Snapchat-403199108(1).jpeg"
+    "filename": "Snapchat-403199108(1).webp"
   },
   {
     "id": "photo-007",
@@ -109,10 +109,10 @@ export const observePhotos = [
     "date": null,
     "year": null,
     "meta": "SCENES / 07",
-    "src": "/images/observe/scenes/b2c402cb-ed6d-454c-a564-3ea115e93f99-01.jpg",
+    "src": "/images/observe/scenes/b2c402cb-ed6d-454c-a564-3ea115e93f99-01.webp",
     "alt": "Moon on Water",
     "aspectRatio": "portrait",
-    "filename": "b2c402cb-ed6d-454c-a564-3ea115e93f99-01.jpg"
+    "filename": "b2c402cb-ed6d-454c-a564-3ea115e93f99-01.webp"
   },
   {
     "id": "photo-008",
@@ -125,10 +125,10 @@ export const observePhotos = [
     "date": "20 AUG 2026",
     "year": "2026",
     "meta": "SCENES \u00b7 20 AUG 2026",
-    "src": "/images/observe/scenes/20260820_184147.jpg",
+    "src": "/images/observe/scenes/20260820_184147.webp",
     "alt": "River at Dusk",
     "aspectRatio": "portrait",
-    "filename": "20260820_184147.heic"
+    "filename": "20260820_184147.webp"
   },
   {
     "id": "photo-009",
@@ -141,10 +141,10 @@ export const observePhotos = [
     "date": null,
     "year": null,
     "meta": "MOMENTS / 01",
-    "src": "/images/observe/moments/snapseed__1778675198799%20-%20Copy.jpeg",
+    "src": "/images/observe/moments/snapseed__1778675198799%20-%20Copy.webp",
     "alt": "Moving Forward",
     "aspectRatio": "portrait",
-    "filename": "snapseed__1778675198799 - Copy.jpeg"
+    "filename": "snapseed__1778675198799 - Copy.webp"
   },
   {
     "id": "photo-010",
@@ -157,10 +157,10 @@ export const observePhotos = [
     "date": "24 AUG 2024",
     "year": "2024",
     "meta": "ATMOSPHERE \u00b7 24 AUG 2024",
-    "src": "/images/observe/atmosphere/20240824_133611.jpg",
+    "src": "/images/observe/atmosphere/20240824_133611.webp",
     "alt": "Looking Up",
     "aspectRatio": "portrait",
-    "filename": "20240824_133611.jpg"
+    "filename": "20240824_133611.webp"
   },
   {
     "id": "photo-011",
@@ -173,10 +173,10 @@ export const observePhotos = [
     "date": "03 JUL 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 03 JUL 2026",
-    "src": "/images/observe/atmosphere/20260703_185533.jpg",
+    "src": "/images/observe/atmosphere/20260703_185533.webp",
     "alt": "After the Light",
     "aspectRatio": "landscape",
-    "filename": "20260703_185533.jpg"
+    "filename": "20260703_185533.webp"
   },
   {
     "id": "photo-012",
@@ -189,10 +189,10 @@ export const observePhotos = [
     "date": "03 JUL 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 03 JUL 2026",
-    "src": "/images/observe/atmosphere/20260703_185551.jpg",
+    "src": "/images/observe/atmosphere/20260703_185551.webp",
     "alt": "Last Light",
     "aspectRatio": "landscape",
-    "filename": "20260703_185551.jpg"
+    "filename": "20260703_185551.webp"
   },
   {
     "id": "photo-013",
@@ -205,10 +205,10 @@ export const observePhotos = [
     "date": "08 APR 2025",
     "year": "2025",
     "meta": "ATMOSPHERE \u00b7 08 APR 2025",
-    "src": "/images/observe/atmosphere/20250408_175146.jpg",
+    "src": "/images/observe/atmosphere/20250408_175146.webp",
     "alt": "Bloom",
     "aspectRatio": "portrait",
-    "filename": "20250408_175146.jpg"
+    "filename": "20250408_175146.webp"
   },
   {
     "id": "photo-014",
@@ -221,10 +221,10 @@ export const observePhotos = [
     "date": "15 JUL 2024",
     "year": "2024",
     "meta": "ATMOSPHERE \u00b7 15 JUL 2024",
-    "src": "/images/observe/atmosphere/20240715_185158.jpg",
+    "src": "/images/observe/atmosphere/20240715_185158.webp",
     "alt": "Under the Light",
     "aspectRatio": "portrait",
-    "filename": "20240715_185158.jpg"
+    "filename": "20240715_185158.webp"
   },
   {
     "id": "photo-015",
@@ -237,10 +237,10 @@ export const observePhotos = [
     "date": null,
     "year": null,
     "meta": "ATMOSPHERE / 06",
-    "src": "/images/observe/atmosphere/image1.jpg",
+    "src": "/images/observe/atmosphere/image1.webp",
     "alt": "Green Wall",
     "aspectRatio": "portrait",
-    "filename": "image1.jpg"
+    "filename": "image1.webp"
   },
   {
     "id": "photo-016",
@@ -253,10 +253,10 @@ export const observePhotos = [
     "date": "08 APR 2025",
     "year": "2025",
     "meta": "ATMOSPHERE \u00b7 08 APR 2025",
-    "src": "/images/observe/atmosphere/20250408_175219.jpg",
+    "src": "/images/observe/atmosphere/20250408_175219.webp",
     "alt": "White Against Blue",
     "aspectRatio": "portrait",
-    "filename": "20250408_175219.jpg"
+    "filename": "20250408_175219.webp"
   },
   {
     "id": "photo-017",
@@ -269,10 +269,10 @@ export const observePhotos = [
     "date": "06 SEP 2025",
     "year": "2025",
     "meta": "ATMOSPHERE \u00b7 06 SEP 2025",
-    "src": "/images/observe/atmosphere/20250906_180134.jpg",
+    "src": "/images/observe/atmosphere/20250906_180134.webp",
     "alt": "Bare Branches",
     "aspectRatio": "portrait",
-    "filename": "20250906_180134.jpg"
+    "filename": "20250906_180134.webp"
   },
   {
     "id": "photo-018",
@@ -285,10 +285,10 @@ export const observePhotos = [
     "date": "21 MAY 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 21 MAY 2026",
-    "src": "/images/observe/atmosphere/20260521_121800.jpg",
+    "src": "/images/observe/atmosphere/20260521_121800.webp",
     "alt": "Under the Canopy",
     "aspectRatio": "portrait",
-    "filename": "20260521_121800.jpg"
+    "filename": "20260521_121800.webp"
   },
   {
     "id": "photo-019",
@@ -301,10 +301,10 @@ export const observePhotos = [
     "date": "01 JUN 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 01 JUN 2026",
-    "src": "/images/observe/atmosphere/20260601_131429.jpg",
+    "src": "/images/observe/atmosphere/20260601_131429.webp",
     "alt": "Green Water",
     "aspectRatio": "landscape",
-    "filename": "20260601_131429.jpg"
+    "filename": "20260601_131429.webp"
   },
   {
     "id": "photo-020",
@@ -317,10 +317,10 @@ export const observePhotos = [
     "date": "06 MAR 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 06 MAR 2026",
-    "src": "/images/observe/atmosphere/IMG_20260306_224048_414.jpg",
+    "src": "/images/observe/atmosphere/IMG_20260306_224048_414.webp",
     "alt": "Branches",
     "aspectRatio": "portrait",
-    "filename": "IMG_20260306_224048_414.jpg"
+    "filename": "IMG_20260306_224048_414.webp"
   },
   {
     "id": "photo-021",
@@ -333,10 +333,10 @@ export const observePhotos = [
     "date": "10 SEP 2026",
     "year": "2026",
     "meta": "ATMOSPHERE \u00b7 10 SEP 2026",
-    "src": "/images/observe/atmosphere/20260910_180619.jpg",
+    "src": "/images/observe/atmosphere/20260910_180619.webp",
     "alt": "Before Darkness",
     "aspectRatio": "landscape",
-    "filename": "20260910_180619.heic"
+    "filename": "20260910_180619.webp"
   }
 ];
 
@@ -346,7 +346,7 @@ export const observeAlbums = [
     "category": "scenes",
     "title": "Scenes & Horizons",
     "subtitle": "Places, landscapes, architecture, larger visual environments",
-    "cover": "/images/observe/scenes/20260121_154717.jpeg",
+    "cover": "/images/observe/scenes/20260121_154717.webp",
     "year": "2024 \u2014 2026",
     "description": "Places, landscapes, architecture, and larger visual environments captured across changing light and geography.",
     "photoIds": [
@@ -365,7 +365,7 @@ export const observeAlbums = [
     "category": "moments",
     "title": "Passing Moments",
     "subtitle": "People, movement, birds, passing scenes, fleeting events",
-    "cover": "/images/observe/moments/snapseed__1778675198799%20-%20Copy.jpeg",
+    "cover": "/images/observe/moments/snapseed__1778675198799%20-%20Copy.webp",
     "year": "2026",
     "description": "People, movement, birds, passing scenes, and fleeting events caught before they disappear into memory.",
     "photoIds": [
@@ -377,7 +377,7 @@ export const observeAlbums = [
     "category": "atmosphere",
     "title": "Atmospheric Stillness",
     "subtitle": "Light, sky, clouds, trees, texture, quiet visual observations",
-    "cover": "/images/observe/atmosphere/20240824_133611.jpg",
+    "cover": "/images/observe/atmosphere/20240824_133611.webp",
     "year": "2024 \u2014 2026",
     "description": "Light, sky, clouds, trees, texture, and quiet visual observations held in the stillness of day and night.",
     "photoIds": [

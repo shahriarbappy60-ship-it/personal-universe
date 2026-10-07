@@ -245,6 +245,7 @@ export default function ResonanceSection() {
               alt={`${displayItem.title} by ${displayItem.creator}`}
               className="resonance-fade-in"
               loading="lazy"
+              decoding="async"
             />
             <div className="resonance-visual-scrim" aria-hidden="true" />
             <span

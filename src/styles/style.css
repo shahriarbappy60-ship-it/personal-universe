@@ -61,7 +61,7 @@
     /* Header */
     --header-bg: rgba(8, 8, 10, .42);
     --header-bg-scrolled: rgba(8, 8, 10, .48);
-    --header-blur: 200px;
+    --header-blur: 24px;
 
     --serif: "Instrument Serif", Georgia, serif;
     --sans: "Manrope", Arial, sans-serif;
@@ -674,8 +674,8 @@ html[data-theme="light"] .desktop-nav a.active {
         width: calc(100% - 20px);
         height: 58px;
         border-radius: 18px;
-        backdrop-filter: blur(200px) saturate(190%) contrast(105%) brightness(102%);
-        -webkit-backdrop-filter: blur(200px) saturate(190%) contrast(105%) brightness(102%);
+        backdrop-filter: blur(24px) saturate(190%) contrast(105%) brightness(102%);
+        -webkit-backdrop-filter: blur(24px) saturate(190%) contrast(105%) brightness(102%);
         box-shadow:
             0 8px 26px rgba(0, 0, 0, .20),
             inset 0 1px 0 rgba(255, 255, 255, .10),
@@ -691,8 +691,8 @@ html[data-theme="light"] .desktop-nav a.active {
 
     html[data-theme="light"] .site-header {
         background: var(--header-bg) !important;
-        backdrop-filter: blur(200px) saturate(160%) contrast(102%) !important;
-        -webkit-backdrop-filter: blur(200px) saturate(160%) contrast(102%) !important;
+        backdrop-filter: blur(24px) saturate(160%) contrast(102%) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(160%) contrast(102%) !important;
         box-shadow:
             0 8px 24px rgba(0, 0, 0, .05),
             inset 0 1px 0 rgba(255, 255, 255, .85),
