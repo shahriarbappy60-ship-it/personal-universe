@@ -49,7 +49,6 @@ export default function IdentitySection() {
               variant="glass"
               icon="→"
               ariaLabel="View Shahriar's identity"
-              className="rounded-full px-6 py-2.5 text-sm"
             >
               VIEW IDENTITY
             </Button>
