@@ -11599,3 +11599,72 @@ html[data-theme="light"] .btn-outline:hover {
 }
 
 
+
+/* =========================================================
+   WHITE MODE — BUTTON SYSTEM CALIBRATION
+   Scoped to shared Button component only. Dark mode untouched.
+========================================================= */
+html[data-theme="light"] .btn-master.btn-glass {
+    color: #171717 !important;
+    background: rgba(28, 28, 28, 0.105) !important;
+    border-color: rgba(0, 0, 0, 0.145) !important;
+    box-shadow:
+        0 5px 16px rgba(0, 0, 0, 0.055),
+        inset 0 1px 0 rgba(255, 255, 255, 0.34) !important;
+}
+
+html[data-theme="light"] .btn-master.btn-glass:hover,
+html[data-theme="light"] .btn-master.btn-glass:focus-visible {
+    color: #090909 !important;
+    background: rgba(24, 24, 24, 0.145) !important;
+    border-color: rgba(0, 0, 0, 0.19) !important;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.075),
+        inset 0 1px 0 rgba(255, 255, 255, 0.40) !important;
+}
+
+html[data-theme="light"] .btn-master.btn-outline {
+    color: #171717 !important;
+    background: transparent !important;
+    border-color: rgba(0, 0, 0, 0.145) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="light"] .btn-master.btn-outline:hover,
+html[data-theme="light"] .btn-master.btn-outline:focus-visible {
+    color: #090909 !important;
+    background: rgba(0, 0, 0, 0.045) !important;
+    border-color: rgba(0, 0, 0, 0.20) !important;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.045) !important;
+}
+
+html[data-theme="light"] .btn-master.btn-solid {
+    color: #f3f3ef !important;
+    background: #171717 !important;
+    border-color: #171717 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10) !important;
+}
+
+html[data-theme="light"] .btn-master.btn-solid:hover,
+html[data-theme="light"] .btn-master.btn-solid:focus-visible {
+    color: #f3f3ef !important;
+    background: #050505 !important;
+    border-color: #050505 !important;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.13) !important;
+}
+
+@media (max-width: 650px) {
+    html[data-theme="light"] .btn-master {
+        height: 40px !important;
+        min-height: 40px !important;
+        padding: 0 18px !important;
+        font-size: 9.5px !important;
+        letter-spacing: .115em !important;
+        border-radius: 999px !important;
+    }
+
+    html[data-theme="light"] .btn-master .btn-text {
+        white-space: nowrap !important;
+        line-height: 1 !important;
+    }
+}
