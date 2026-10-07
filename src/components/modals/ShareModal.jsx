@@ -25,18 +25,9 @@ export default function ShareModal({
   if (!isOpen || !photo) return null;
 
   const photoTitle = photo.title || 'Photograph';
-  const photoKey = photo.slug || photo.id || photo.number || photoTitle
-    .toString()
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-  const currentUrl = (() => {
-    const url = new URL(window.location.href);
-    url.hash = '';
-    url.searchParams.set('photo', photoKey);
-    return url.toString();
-  })();
+  // Stable archive id keeps every photograph on one canonical share URL.
+  const photoKey = (photo.id || photo.slug || photo.number || photoTitle).toString().trim();
+  const currentUrl = `${window.location.origin}/share/photo/${encodeURIComponent(photoKey)}`;
   const category = (photo.category || 'SCENES').toUpperCase();
   const locationText = photo.location
     ? `${photo.location}${photo.date ? ` · ${photo.date}` : (photo.year ? ` · ${photo.year}` : '')}`
