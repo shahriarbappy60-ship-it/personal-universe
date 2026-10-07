@@ -6147,29 +6147,6 @@ html[data-theme="light"] .portrait-overlay p {
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5) !important;
 }
 
-html[data-theme="light"] .about-action-row .btn-master {
-    background: rgba(0, 0, 0, 0.08) !important;
-    border: 1px solid rgba(0, 0, 0, 0.14) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.42) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.28) !important;
-    color: #09090b !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    border-radius: 9999px !important;
-    padding: 10px 24px !important;
-    font-size: 0.875rem !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
-    transition: all 0.3s ease !important;
-}
-
-html[data-theme="light"] .about-action-row .btn-master:hover {
-    background: rgba(0, 0, 0, 0.15) !important;
-    border-color: rgba(0, 0, 0, 0.20) !important;
-    border-top-color: rgba(255, 255, 255, 0.52) !important;
-    color: #000000 !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
-}
-
 html[data-theme="light"] .photo-caption {
     background: rgba(0, 0, 0, 0.05) !important;
     border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
