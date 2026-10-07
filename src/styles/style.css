@@ -11654,13 +11654,14 @@ html[data-theme="light"] .btn-master.btn-solid:focus-visible {
 }
 
 @media (max-width: 650px) {
+    /* Match the canonical dark-mode mobile button geometry exactly. */
     html[data-theme="light"] .btn-master {
-        height: 36px !important;
-        min-height: 36px !important;
-        padding: 0 15px !important;
-        font-size: 9px !important;
-        letter-spacing: .10em !important;
-        border-radius: 999px !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        padding: 0 16px !important;
+        font-size: 9.5px !important;
+        letter-spacing: .12em !important;
+        border-radius: 100px !important;
     }
 
     html[data-theme="light"] .btn-master .btn-text {
