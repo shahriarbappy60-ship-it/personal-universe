@@ -11655,11 +11655,11 @@ html[data-theme="light"] .btn-master.btn-solid:focus-visible {
 
 @media (max-width: 650px) {
     html[data-theme="light"] .btn-master {
-        height: 40px !important;
-        min-height: 40px !important;
-        padding: 0 18px !important;
-        font-size: 9.5px !important;
-        letter-spacing: .115em !important;
+        height: 36px !important;
+        min-height: 36px !important;
+        padding: 0 15px !important;
+        font-size: 9px !important;
+        letter-spacing: .10em !important;
         border-radius: 999px !important;
     }
 
