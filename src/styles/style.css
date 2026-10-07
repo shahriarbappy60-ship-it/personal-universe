@@ -5961,23 +5961,29 @@ html[data-theme="light"] .btn-outline:hover {
 }
 
 html[data-theme="light"] .btn-glass {
-    background: rgba(0, 0, 0, 0.08) !important;
-    border: 1px solid rgba(0, 0, 0, 0.14) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.42) !important;
-    border-left: 1px solid rgba(255, 255, 255, 0.28) !important;
-    color: #09090b !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.38) !important;
-    transition: all 0.3s ease !important;
+    background: rgba(30, 30, 30, .075) !important;
+    border: 1px solid rgba(0, 0, 0, .075) !important;
+    border-top: 1px solid rgba(255, 255, 255, .55) !important;
+    border-left: 1px solid rgba(255, 255, 255, .35) !important;
+    color: #1A1A1A !important;
+    backdrop-filter: blur(var(--header-blur)) saturate(135%) contrast(102%) !important;
+    -webkit-backdrop-filter: blur(var(--header-blur)) saturate(135%) contrast(102%) !important;
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, .055),
+        inset 0 1px 0 rgba(255, 255, 255, .55),
+        inset 0 -1px 0 rgba(0, 0, 0, .025) !important;
+    transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease) !important;
 }
 
 html[data-theme="light"] .btn-glass:hover {
-    background: rgba(0, 0, 0, 0.15) !important;
-    border-color: rgba(0, 0, 0, 0.20) !important;
-    border-top-color: rgba(255, 255, 255, 0.52) !important;
+    background: rgba(30, 30, 30, .10) !important;
+    border-color: rgba(0, 0, 0, .09) !important;
+    border-top-color: rgba(255, 255, 255, .58) !important;
     color: #000000 !important;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, .075),
+        inset 0 1px 0 rgba(255, 255, 255, .58),
+        inset 0 -1px 0 rgba(0, 0, 0, .035) !important;
 }
 
 /* 2. MASTER UNIFIED PHOTOCARD SYSTEM */
