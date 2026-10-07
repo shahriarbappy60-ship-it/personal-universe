@@ -147,6 +147,10 @@ export default function ObservePage() {
 
   const clearPhotoShareUrl = () => {
     const url = new URL(window.location.href);
+    if (url.pathname.startsWith("/share/photo/")) {
+      window.history.replaceState(null, "", "/observe");
+      return;
+    }
     if (!url.searchParams.has("photo")) return;
     url.searchParams.delete("photo");
     window.history.replaceState(null, "", url.pathname + (url.search ? url.search : "") + (url.hash || ""));
