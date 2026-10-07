@@ -295,11 +295,6 @@ export const essays = [
     subtitle: "A careful exploration of perception and the strange assumption that awareness must have a single location.",
     readTime: "09 MIN READ",
     excerpt: "A careful exploration of perception, experience and the strange assumption that awareness must have a single location.",
-    image: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=1200&q=85",
-    imageCaption: {
-      title: "CONSCIOUSNESS & HORIZON LIGHT",
-      meta: "CONTEMPLATIVE VISUAL STUDY · 2026"
-    },
     body: `
       <p class="lead">
         We experience consciousness from somewhere. But the feeling of having an inner location may itself be part of the mystery.

@@ -100,7 +100,7 @@ export default function App() {
         onClose={() => setIsMobileMenuOpen(false)}
       />
 
-      <main
+      <div
         className={`page-transition page-transition--${transitionPhase}`}
         data-route={renderedLocation.pathname}
       >
@@ -136,7 +136,7 @@ export default function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
-      </main>
+      </div>
 
       <Footer />
 

@@ -28,6 +28,7 @@ export default function PhotoCard({
         {!loaded && <div className="photo-skeleton" aria-hidden="true" />}
         <img
           loading={priority ? 'eager' : 'lazy'}
+          decoding="async"
           src={photo.src}
           alt={photo.alt || photo.title || 'Photograph'}
           className={loaded ? 'is-loaded' : 'is-loading'}

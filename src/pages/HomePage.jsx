@@ -76,7 +76,7 @@ export default function HomePage({ onOpenContact, setActiveSection }) {
   };
 
   return (
-    <main>
+    <main id="mainContent">
       <HeroSection onOpenContact={onOpenContact} />
       <ObserveSection onSelectPhoto={handleSelectPhoto} />
       <WonderSection onOpenEssay={() => setIsEssayOpen(true)} />

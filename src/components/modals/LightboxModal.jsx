@@ -173,6 +173,7 @@ export default function LightboxModal({
                 src={activePhoto.src}
                 alt={activePhoto.title || activePhoto.alt || 'Photograph'}
                 draggable="false"
+                decoding="async"
                 onLoad={event => {
                   const { naturalWidth, naturalHeight } = event.currentTarget;
                   if (naturalWidth && naturalHeight) {
@@ -187,6 +188,7 @@ export default function LightboxModal({
                   src={slide.photo.src}
                   alt={slide.photo.title || slide.photo.alt || 'Photograph'}
                   draggable="false"
+                  decoding="async"
                 />
               )}
             </div>

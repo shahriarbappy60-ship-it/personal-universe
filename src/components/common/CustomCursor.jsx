@@ -59,6 +59,12 @@ export default function CustomCursor() {
       }
     };
 
+    const startAnimation = () => {
+      if (!animationFrame) {
+        animationFrame = requestAnimationFrame(animateCursor);
+      }
+    };
+
     const handlePointerMove = event => {
       if (event.pointerType === 'touch') {
         hideCursor();
@@ -67,16 +73,13 @@ export default function CustomCursor() {
       cursorX = event.clientX;
       cursorY = event.clientY;
       showCursor();
+      startAnimation();
     };
 
-    const handleMouseMove = event => {
-      cursorX = event.clientX;
-      cursorY = event.clientY;
-      showCursor();
-    };
+    const hasPointerEvents = typeof window !== 'undefined' && 'PointerEvent' in window;
+    const moveEvent = hasPointerEvents ? 'pointermove' : 'mousemove';
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener(moveEvent, handlePointerMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', hideCursor);
     window.addEventListener('blur', hideCursor);
 
@@ -91,6 +94,16 @@ export default function CustomCursor() {
       ballY += velY;
 
       const speed = Math.sqrt(velX * velX + velY * velY);
+
+      // Sleep when practically stationary
+      if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05 && speed < 0.05) {
+        ballX = cursorX;
+        ballY = cursorY;
+        ball.style.transform = `translate3d(${ballX}px, ${ballY}px, 0) translate(-50%, -50%) rotate(0deg) scale(1, 1)`;
+        animationFrame = null;
+        return;
+      }
+
       const angle = Math.atan2(velY, velX) * (180 / Math.PI);
       const stretch = Math.min(speed * 0.016, 0.22);
       const scaleX = 1 + stretch;
@@ -101,7 +114,7 @@ export default function CustomCursor() {
       animationFrame = requestAnimationFrame(animateCursor);
     }
 
-    animationFrame = requestAnimationFrame(animateCursor);
+    startAnimation();
 
     // Event delegation for interactive hover states
     const handleMouseOver = e => {
@@ -118,8 +131,7 @@ export default function CustomCursor() {
     window.addEventListener('mouseover', handleMouseOver, { passive: true });
 
     return () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener(moveEvent, handlePointerMove);
       document.documentElement.removeEventListener('mouseleave', hideCursor);
       window.removeEventListener('blur', hideCursor);
       window.removeEventListener('mouseover', handleMouseOver);

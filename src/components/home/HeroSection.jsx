@@ -71,7 +71,44 @@ export default function HeroSection() {
       stageEl.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     }
 
+    let isVisible = true;
+    let observer = null;
+
+    function startAnimation() {
+      if (!animationFrame && isVisible) {
+        animationFrame = requestAnimationFrame(animateParallax);
+      }
+    }
+
+    function stopAnimation() {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+    }
+
+    if ('IntersectionObserver' in window && sectionRef.current) {
+      observer = new IntersectionObserver(
+        entries => {
+          const entry = entries[0];
+          isVisible = entry ? entry.isIntersecting : true;
+          if (isVisible) {
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        },
+        { threshold: 0 }
+      );
+      observer.observe(sectionRef.current);
+    }
+
     function animateParallax(now) {
+      if (!isVisible) {
+        animationFrame = null;
+        return;
+      }
+
       const elapsed = now - startTime;
 
       // Gentle organic cosmic idle breathing oscillation (subtle micro-drift)
@@ -111,7 +148,7 @@ export default function HeroSection() {
       animationFrame = requestAnimationFrame(animateParallax);
     }
 
-    animationFrame = requestAnimationFrame(animateParallax);
+    startAnimation();
 
     return () => {
       window.removeEventListener('pointermove', handlePointerMove);
@@ -121,7 +158,8 @@ export default function HeroSection() {
         stageEl.removeEventListener('touchend', handleTouchEnd);
         stageEl.removeEventListener('touchcancel', handleTouchEnd);
       }
-      if (animationFrame) cancelAnimationFrame(animationFrame);
+      if (observer) observer.disconnect();
+      stopAnimation();
     };
   }, []);
 
