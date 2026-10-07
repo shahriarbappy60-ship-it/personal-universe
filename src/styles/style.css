@@ -160,8 +160,8 @@ html[data-theme="light"] {
     --atmosphere-glow: rgba(0, 0, 0, 0.06);
     --grain-opacity: .018;
 
-    --header-bg: rgba(246, 246, 244, .52);
-    --header-bg-scrolled: rgba(246, 246, 244, .58);
+    --header-bg: rgba(30, 30, 30, .075);
+    --header-bg-scrolled: rgba(30, 30, 30, .075);
     --header-blur: 200px;
 
     --light-section: var(--bg);
@@ -389,6 +389,27 @@ html[data-theme="light"] body::after {
 }
 
 /* =========================================================
+   BACKGROUND SCOPE CORRECTION
+   Constrain moving particles to hero sections only.
+   Lower sections use existing page background token (var(--bg)).
+========================================================= */
+
+.hero ~ section,
+.observe-hero ~ section,
+.self-v2-hero ~ section,
+main > section:not(.hero):not(.observe-hero):not(.self-v2-hero),
+.contact-page section {
+    background-color: var(--bg);
+}
+
+.site-footer {
+    background-color: var(--bg);
+    box-shadow: 0 0 0 100vmax var(--bg);
+    clip-path: inset(0 -100vmax);
+}
+
+
+/* =========================================================
    CURSOR (DELICATE LIQUID GLASS DROP — COMPACT & NO GLOW)
 ========================================================= */
 
@@ -599,7 +620,7 @@ html[data-theme="light"] body.cursor-hover .cursor-glass-ball {
 
 /* LIGHT THEME NAVBAR HIGHLIGHT */
 html[data-theme="light"] .site-header {
-    background: rgba(246, 246, 244, .72) !important;
+    background: rgba(30, 30, 30, .075) !important;
     backdrop-filter: blur(var(--header-blur)) saturate(135%) contrast(102%) !important;
     -webkit-backdrop-filter: blur(var(--header-blur)) saturate(135%) contrast(102%) !important;
     border: 1px solid rgba(0, 0, 0, .075) !important;
@@ -610,7 +631,7 @@ html[data-theme="light"] .site-header {
 }
 
 html[data-theme="light"] .site-header.scrolled {
-    background: rgba(246, 246, 244, .82) !important;
+    background: rgba(30, 30, 30, .075) !important;
     border: 1px solid rgba(0, 0, 0, .09) !important;
     box-shadow:
         0 18px 42px rgba(0, 0, 0, .075),
@@ -11097,7 +11118,7 @@ html.js-ready .hero-celestial-stage{
 ========================================================= */
 
 html[data-theme="light"] .site-header {
-    background: rgba(246, 246, 244, .72) !important;
+    background: rgba(30, 30, 30, .075) !important;
     backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
     -webkit-backdrop-filter: blur(var(--header-blur)) saturate(125%) contrast(102%) !important;
     border-color: rgba(0, 0, 0, .12) !important;
@@ -11107,7 +11128,7 @@ html[data-theme="light"] .site-header {
 }
 
 html[data-theme="light"] .site-header.scrolled {
-    background: rgba(246, 246, 244, .82) !important;
+    background: rgba(30, 30, 30, .075) !important;
     border-color: rgba(0, 0, 0, .14) !important;
     box-shadow:
         0 18px 42px rgba(0, 0, 0, .10),
@@ -11183,8 +11204,8 @@ html[data-theme="light"] .create-page .archive-close-button:hover {
    Dark mode intentionally untouched.
 ========================================================= */
 html[data-theme="light"] {
-  --header-bg: rgba(246,246,244,.52);
-  --header-bg-scrolled: rgba(246,246,244,.58);
+  --header-bg: rgba(30, 30, 30, .075);
+  --header-bg-scrolled: rgba(30, 30, 30, .075);
   --solid-bg: #141414;
   --solid-text: #f3f3ef;
   --solid-bg-hover: #000000;
@@ -11194,16 +11215,16 @@ html[data-theme="light"] {
 }
 html[data-theme="light"] .site-header {
   position: fixed !important;
-  background: rgba(246,246,244,.52) !important;
-  background-color: rgba(246,246,244,.52) !important;
+  background: rgba(30, 30, 30, .075) !important;
+  background-color: rgba(30, 30, 30, .075) !important;
   border-color: rgba(0,0,0,.12) !important;
   box-shadow: 0 12px 32px rgba(0,0,0,.075), inset 0 -1px 0 rgba(0,0,0,.045) !important;
   backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
   -webkit-backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
 }
 html[data-theme="light"] .site-header.scrolled {
-  background: rgba(246,246,244,.58) !important;
-  background-color: rgba(246,246,244,.58) !important;
+  background: rgba(30, 30, 30, .075) !important;
+  background-color: rgba(30, 30, 30, .075) !important;
   border-color: rgba(0,0,0,.14) !important;
   box-shadow: 0 18px 42px rgba(0,0,0,.10), inset 0 -1px 0 rgba(0,0,0,.055) !important;
 }
@@ -11363,3 +11384,286 @@ html[data-theme="light"] .btn-outline:hover {
     -webkit-backdrop-filter: blur(200px) saturate(125%) contrast(102%) !important;
   }
 }
+
+/* =========================================================
+   DESKTOP NAVBAR SAFETY LOCK — 100% PRESERVED
+   Ensures desktop navbar layout is identical and untouched.
+========================================================= */
+@media (min-width: 951px) {
+  .site-header-bar {
+    display: contents;
+  }
+  .site-header-drawer {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE EXPANDABLE NAVBAR & DRAWER
+   Exact original mobile navbar dimensions strictly preserved.
+========================================================= */
+@media (max-width: 950px) {
+  .site-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: max-height 0.42s cubic-bezier(0.22, 1, 0.36, 1), background-color .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+
+  .site-header-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    min-height: 0;
+    transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .site-header.is-mobile-open .site-header-drawer {
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-header-drawer-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    border-top: 1px solid var(--line-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.22s ease, transform 0.25s ease;
+    pointer-events: none;
+  }
+
+  .site-header.is-mobile-open .site-header-drawer-inner {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.32s ease 0.08s, transform 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.06s;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 44px;
+    padding: 0 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid transparent;
+    transition: color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link:active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .mobile-nav-link.active {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-nav-link-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+  }
+
+  .mobile-nav-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .mobile-nav-link.active .mobile-nav-dot {
+    background: var(--text);
+    box-shadow: 0 0 6px var(--text);
+  }
+
+  .mobile-nav-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: inherit;
+    transition: color 0.22s ease;
+  }
+
+  .mobile-nav-link.active .mobile-nav-label {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .mobile-nav-arrow {
+    font-size: 13px;
+    line-height: 1;
+    color: var(--muted);
+    opacity: 0.45;
+    transition: transform 0.22s ease, opacity 0.22s ease, color 0.22s ease;
+  }
+
+  .mobile-nav-link:hover .mobile-nav-arrow,
+  .mobile-nav-link:active .mobile-nav-arrow,
+  .mobile-nav-link.active .mobile-nav-arrow {
+    color: var(--text);
+    opacity: 0.95;
+    transform: translateX(2px);
+  }
+
+  /* Light theme overrides for drawer links */
+  html[data-theme="light"] .mobile-nav-link:hover,
+  html[data-theme="light"] .mobile-nav-link:active {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  html[data-theme="light"] .mobile-nav-link.active {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.09);
+  }
+
+  .mobile-drawer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 2px 2px;
+    margin-top: 4px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .mobile-drawer-clock {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .mobile-drawer-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 9px;
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-drawer-contact:hover,
+  .mobile-drawer-contact:active,
+  .mobile-drawer-contact.active {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
+  html[data-theme="light"] .mobile-drawer-contact {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.10);
+    color: var(--text);
+  }
+
+  html[data-theme="light"] .mobile-drawer-contact:hover,
+  html[data-theme="light"] .mobile-drawer-contact:active,
+  html[data-theme="light"] .mobile-drawer-contact.active {
+    background: #09090b;
+    color: #ffffff;
+    border-color: #09090b;
+  }
+}
+
+/* Tablet (651px - 950px): Preserve exact original 64px height, 20px radius, 0 18px 0 22px padding */
+@media (min-width: 651px) and (max-width: 950px) {
+  .site-header {
+    width: min(1240px, calc(100% - 36px)) !important;
+    height: auto !important;
+    min-height: 64px !important;
+    max-height: 64px;
+    padding: 0 18px 0 22px !important;
+    border-radius: 20px !important;
+  }
+
+  .site-header.is-mobile-open {
+    max-height: calc(100svh - 20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .site-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 64px;
+    flex-shrink: 0;
+  }
+}
+
+/* Mobile (<= 650px): Strictly preserve exact original 56px height, 16px radius, 0 14px padding, calc(100% - 24px) width */
+@media (max-width: 650px) {
+  .site-header {
+    top: 10px !important;
+    width: calc(100% - 24px) !important;
+    max-width: calc(100% - 24px) !important;
+    height: auto !important;
+    min-height: 56px !important;
+    max-height: 56px;
+    padding: 0 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .site-header.is-mobile-open {
+    max-height: calc(100svh - 20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .site-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 56px;
+    flex-shrink: 0;
+  }
+}
+
+

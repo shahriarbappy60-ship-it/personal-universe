@@ -2,14 +2,13 @@
    OBSERVE PAGE — UNIFIED OBSIDIAN CANVAS (#050505)
 ========================================================= */
 .observe-page {
-    background-color: #050505 !important;
     min-height: 100vh;
     position: relative;
     color: var(--text);
 }
 
 html[data-theme="light"] .observe-page {
-    background-color: var(--bg) !important;
+    min-height: 100vh;
 }
 
 .observe-hero {
