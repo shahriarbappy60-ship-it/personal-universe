@@ -262,8 +262,8 @@ export default function ObserveLightbox({
               </div>
 
               <div className="exif-cell">
-                <span>YEAR</span>
-                <strong>{currentPhoto.year || '2026'}</strong>
+                <span>{currentPhoto.date ? 'DATE' : 'YEAR'}</span>
+                <strong>{currentPhoto.date || currentPhoto.year || '—'}</strong>
               </div>
 
               {currentPhoto.camera ? (

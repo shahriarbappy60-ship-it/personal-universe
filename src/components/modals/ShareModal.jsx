@@ -38,8 +38,10 @@ export default function ShareModal({
     return url.toString();
   })();
   const category = (photo.category || 'SCENES').toUpperCase();
-  const locationText = photo.location ? `${photo.location}${photo.year ? ` · ${photo.year}` : ''}` : (photo.year || '');
-  const storyText = photo.story || '';
+  const locationText = photo.location
+    ? `${photo.location}${photo.date ? ` · ${photo.date}` : (photo.year ? ` · ${photo.year}` : '')}`
+    : (photo.date || photo.year || '');
+  const storyText = photo.caption || photo.story || '';
 
   // Formatted caption for social sharing
   const shareText = `📸 ${photoTitle} [${category}]\n${locationText ? `📍 ${locationText}\n` : ''}${storyText ? `\n"${storyText}"\n` : ''}\n✨ Shahriar's Visual Archive:\n${currentUrl}`;

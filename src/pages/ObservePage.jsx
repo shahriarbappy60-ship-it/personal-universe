@@ -38,10 +38,12 @@ export default function ObservePage() {
       const searchable = [
         photo.title,
         photo.category,
-        photo.location,
+        photo.caption,
+        photo.story,
+        photo.date,
         photo.year,
-        photo.story
-      ].map(normalize).join(' ');
+        photo.location
+      ].filter(Boolean).map(normalize).join(' ');
 
       return normalize(search).split(' ').filter(Boolean).every(w => searchable.includes(w));
     });
@@ -397,9 +399,9 @@ export default function ObservePage() {
                             <span>Location</span><strong>{photo.location}</strong>
                           </div>
                         )}
-                        {photo.year && (
+                        {(photo.date || photo.year) && (
                           <div className="observe-stream-exif-item">
-                            <span>Year</span><strong>{photo.year}</strong>
+                            <span>{photo.date ? 'Date' : 'Year'}</span><strong>{photo.date || photo.year}</strong>
                           </div>
                         )}
                       </div>
